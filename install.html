@@ -1,0 +1,891 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installation &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orginstall.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using PROJ" href="usage/index.html" />
+    <link rel="prev" title="Download" href="download.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-from-package-management-systems">Installation from package management systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cross-platform">Cross platform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#conda">Conda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker">Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#debian">Debian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fedora">Fedora</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#red-hat">Red Hat</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mac-os-x">Mac OS X</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#compilation-and-installation-from-source-code">Compilation and installation from source code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-requirements">Build requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autotools">Autotools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#autotools-configure-options">Autotools configure options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake">CMake</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cmake-configure-options">CMake configure options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-on-windows-with-vcpkg-and-visual-studio-2017-or-2019">Building on Windows with vcpkg and Visual Studio 2017 or 2019</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#install-git">Install git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-vcpkg">Install Vcpkg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-proj-dependencies">Install PROJ dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checkout-proj-sources">Checkout PROJ sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-proj">Build PROJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-proj-tests">Run PROJ tests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#building-on-windows-with-conda-dependencies-and-visual-studio-2017-or-2019">Building on Windows with Conda dependencies and Visual Studio 2017 or 2019</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Install git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-miniconda">Install miniconda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Install PROJ dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Checkout PROJ sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Build PROJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Run PROJ tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/install.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="usage/index.html" class="btn btn-neutral float-right" title="Using PROJ" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="download.html" class="btn btn-neutral float-left" title="Download" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="installation">
+<span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>These pages describe how to install PROJ on your computer without compiling it
+yourself. Below are guides for installing on Windows, Linux and Mac OS X. This
+is a good place to get started if this is your first time using PROJ. More
+advanced users may want to compile the software themselves.</p>
+<section id="installation-from-package-management-systems">
+<h2>Installation from package management systems<a class="headerlink" href="#installation-from-package-management-systems" title="Permalink to this headline">¶</a></h2>
+<section id="cross-platform">
+<h3>Cross platform<a class="headerlink" href="#cross-platform" title="Permalink to this headline">¶</a></h3>
+<p>PROJ is also available via cross platform package managers.</p>
+<section id="conda">
+<h4>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h4>
+<p>The conda package manager includes several PROJ packages. We recommend installing
+from the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge proj
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code> you can also install the PROJ data package. Here’s how to install
+the <cite>proj-data</cite> package:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge proj-data
+</pre></div>
+</div>
+<p>Available is also the legacy packages <code class="docutils literal notranslate"><span class="pre">proj-datumgrid-europe</span></code>,
+<code class="docutils literal notranslate"><span class="pre">proj-datumgrid-north-america</span></code>, <code class="docutils literal notranslate"><span class="pre">proj-datumgrid-oceania</span></code> and
+<code class="docutils literal notranslate"><span class="pre">proj-datumgrid-world</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Read more about the various datumgrid packages available <a class="reference internal" href="resource_files.html#datumgrid"><span class="std std-ref">here</span></a>.</p>
+</div>
+</section>
+<section id="docker">
+<h4>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h4>
+<p>A <a class="reference external" href="https://www.docker.com/">Docker</a> image with just PROJ binaries and a full compliment of grid shift
+files is available on <a class="reference external" href="https://hub.docker.com/r/osgeo/proj/">DockerHub</a>. Get the package with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker pull osgeo/proj
+</pre></div>
+</div>
+</section>
+</section>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>The simplest way to install PROJ on Windows is to use the <a class="reference external" href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a> software
+distribution. OSGeo4W provides easy access to many popular open source geospatial
+software packages. After installation you can use PROJ from the OSGeo4W shell.
+To install PROJ do the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have already installed software via OSGeo4W on your computer, or if
+you have already installed QGIS on your computer, it is likely that PROJ is
+already installed. Type “OSGeo4W Shell” in your start menu and check whether
+that gives a match.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Download either the <a class="reference external" href="https://download.osgeo.org/osgeo4w/osgeo4w-setup-x86.exe">32 bit</a> or <a class="reference external" href="https://download.osgeo.org/osgeo4w/osgeo4w-setup-x86_64.exe">64 bit</a> installer.</p></li>
+<li><p>Run the OSGeo4W setup program.</p></li>
+<li><p>Select “Advanced Install” and press Next.</p></li>
+<li><p>Select “Install from Internet” and press Next.</p></li>
+<li><p>Select a installation directory. The default suggestion is fine in most cases. Press Next.</p></li>
+<li><p>Select “Local package directory”. The default suggestion is fine in most cases. Press Next.</p></li>
+<li><p>Select “Direct connection” and press Next.</p></li>
+<li><p>Choose the download.osgeo.org server and press Next.</p></li>
+<li><p>Find “proj” under “Commandline_Utilities” and click the package in the “New” column until the version you want to install appears.</p></li>
+<li><p>Press next to install PROJ.</p></li>
+</ol>
+<p>You should now have a “OSGeo” menu in your start menu. Within that menu you can
+find the “OSGeo4W Shell” where you have access to all the OSGeo4W applications,
+including proj.</p>
+<p>For those who are more inclined to the command line, steps 2–10 above can be
+accomplished by executing the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>C:\temp\osgeo4w-setup-x86-64.exe -q -k -r -A -s https://download.osgeo.org/osgeo4w/ -a x86_64 -P proj
+</pre></div>
+</div>
+</section>
+<section id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>How to install PROJ on Linux depends on which distribution you are using. Below
+is a few examples for some of the more common Linux distributions:</p>
+<section id="debian">
+<h4>Debian<a class="headerlink" href="#debian" title="Permalink to this headline">¶</a></h4>
+<p>On Debian and similar systems (e.g. Ubuntu) the APT package manager is used:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install proj-bin
+</pre></div>
+</div>
+</section>
+<section id="fedora">
+<h4>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h4>
+<p>On Fedora the <strong class="program">dnf</strong> package manager is used:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo dnf install proj
+</pre></div>
+</div>
+</section>
+<section id="red-hat">
+<h4>Red Hat<a class="headerlink" href="#red-hat" title="Permalink to this headline">¶</a></h4>
+<p>On Red Hat based system packages are installed with <strong class="program">yum</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum install proj
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mac-os-x">
+<h3>Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h3>
+<p>On OS X PROJ can be installed via the Homebrew package manager:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>brew install proj
+</pre></div>
+</div>
+<p>PROJ is also available from the MacPorts system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo ports install proj
+</pre></div>
+</div>
+</section>
+</section>
+<section id="compilation-and-installation-from-source-code">
+<h2>Compilation and installation from source code<a class="headerlink" href="#compilation-and-installation-from-source-code" title="Permalink to this headline">¶</a></h2>
+<p>The classic way of installing PROJ is via the source code distribution. The
+most recent version is available from the <a class="reference internal" href="download.html#current-release"><span class="std std-ref">download page</span></a>.</p>
+<p>The following guides show how to compile and install the software using the
+Autotools and CMake build systems.</p>
+<section id="build-requirements">
+<h3>Build requirements<a class="headerlink" href="#build-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>C99 compiler</p></li>
+<li><p>C++11 compiler</p></li>
+<li><p>SQLite3 &gt;= 3.11 (headers, library and executable)</p></li>
+<li><p>libtiff &gt;= 4.0 (headers and library)</p></li>
+<li><p>optional (but recommended): curl &gt;= 7.29.0</p></li>
+<li><p>GNU make for autotools build or CMake &gt;= 3.9</p></li>
+</ul>
+</section>
+<section id="autotools">
+<h3>Autotools<a class="headerlink" href="#autotools" title="Permalink to this headline">¶</a></h3>
+<p>FSF’s configuration procedure is used to ease installation of the PROJ system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Autotools build system is only available on UNIX-like systems.
+Follow the CMake installation guide if you are not using a UNIX-like
+operating system.</p>
+</div>
+<p>The default destination path prefix for installed files is <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>.
+Results from the installation script will be placed into subdirectories <code class="docutils literal notranslate"><span class="pre">bin</span></code>,
+<code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib</span></code>, and <code class="docutils literal notranslate"><span class="pre">man/man1</span></code>. If this default path prefix
+is proper, then execute:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./configure
+</pre></div>
+</div>
+<p>If another path prefix is required, then execute:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./configure --prefix=/my/path
+</pre></div>
+</div>
+<p>In either case, the directory of the prefix path must exist and be writable by
+the installer.</p>
+<p>If you are building from the git repository you have to first run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./autogen.sh
+</pre></div>
+</div>
+<p>which will generate a configure script that can be used as described above.</p>
+<p>With the data files in place we can now build and install PROJ:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make
+make install
+</pre></div>
+</div>
+<p>The install target will create, if necessary, all required sub-directories.</p>
+<p>Tests are run with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make check
+</pre></div>
+</div>
+<p>With a successful install of PROJ we can now install data files using the
+<strong class="program">projsync</strong> utility:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projsync --system-directory
+</pre></div>
+</div>
+<p>which will download all resource files currently available for PROJ. If less than
+the entire collection of resource files is needed the call to <strong class="program">projsync</strong>
+can be modified to suit the users needs. See <a class="reference internal" href="apps/projsync.html#projsync"><span class="std std-ref">projsync</span></a> for more options.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The use of <strong class="program">projsync</strong> requires that network support is enabled (the
+default option). If the resource files are not installed using
+<strong class="program">projsync</strong> PROJ will attempt to fetch them automatically when a
+transformation needs a specific data file. This  requires that
+<span class="target" id="index-0"></span><a class="reference internal" href="usage/environmentvars.html#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">ON</span></code>.</p>
+<p>As an alternative on systems where network access is disabled, the
+<a class="reference internal" href="resource_files.html#datumgrid"><span class="std std-ref">proj-data</span></a>
+package can be downloaded and added to the <span class="target" id="index-1"></span><a class="reference internal" href="usage/environmentvars.html#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a> directory.</p>
+</div>
+<section id="autotools-configure-options">
+<h4>Autotools configure options<a class="headerlink" href="#autotools-configure-options" title="Permalink to this headline">¶</a></h4>
+<p>Most POSIX systems may not require any options to <code class="docutils literal notranslate"><span class="pre">./configure</span></code> if all
+PROJ requirements are met, installed into common directories, and a
+“default” behavior is desired.</p>
+<p>Some influential environment variables are used by <code class="docutils literal notranslate"><span class="pre">./configure</span></code>,
+with no expected defaults:</p>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-CC">
+<span class="sig-name descname"><span class="pre">CC</span></span><a class="headerlink" href="#envvar-CC" title="Permalink to this definition">¶</a></dt>
+<dd><p>C compiler command.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-CFLAGS">
+<span class="sig-name descname"><span class="pre">CFLAGS</span></span><a class="headerlink" href="#envvar-CFLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>C compiler flags.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-CXX">
+<span class="sig-name descname"><span class="pre">CXX</span></span><a class="headerlink" href="#envvar-CXX" title="Permalink to this definition">¶</a></dt>
+<dd><p>C++ compiler command.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-CXXFLAGS">
+<span class="sig-name descname"><span class="pre">CXXFLAGS</span></span><a class="headerlink" href="#envvar-CXXFLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>C++ compiler flags</p>
+</dd></dl>
+
+<p>See <code class="docutils literal notranslate"><span class="pre">./configure</span> <span class="pre">--help</span></code> for all options, here are a few key options:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-enable-lto">
+<span class="sig-name descname"><span class="pre">--enable-lto</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-enable-lto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable compiler’s Link Time Optimization, default disabled.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-disable-tiff">
+<span class="sig-name descname"><span class="pre">--disable-tiff</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-disable-tiff" title="Permalink to this definition">¶</a></dt>
+<dd><p>TIFF support is enabled by default to use PROJ-data resource files,
+but this can be disabled, if required.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-with-curl">
+<span class="sig-name descname"><span class="pre">--with-curl</span></span><span class="sig-prename descclassname"><span class="pre">=ARG</span></span><a class="headerlink" href="#cmdoption-with-curl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable CURL support (<code class="docutils literal notranslate"><span class="pre">ARG=path</span></code> to <code class="docutils literal notranslate"><span class="pre">curl-config</span></code>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-without-mutex">
+<span class="sig-name descname"><span class="pre">--without-mutex</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-without-mutex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable real mutex locks (lacking pthreads).</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="cmake">
+<h3>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h3>
+<p>With the CMake build system you can compile and install PROJ on more or less any
+platform. After unpacking the source distribution archive step into the source-
+tree:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd proj-8.1.0
+</pre></div>
+</div>
+<p>Create a build directory and step into it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mkdir build
+cd build
+</pre></div>
+</div>
+<p>From the build directory you can now configure CMake, build and install the binaries:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cmake ..
+cmake --build .
+cmake --build . --target install
+</pre></div>
+</div>
+<p>On Windows, one may need to specify generator:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cmake -G &quot;Visual Studio 15 2017&quot; ..
+</pre></div>
+</div>
+<p>If the SQLite3 dependency is installed in a custom location, specify the
+paths to the include directory and the library:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cmake -DSQLITE3_INCLUDE_DIR=/opt/SQLite/include -DSQLITE3_LIBRARY=/opt/SQLite/lib/libsqlite3.so ..
+</pre></div>
+</div>
+<p>Alternatively, the custom prefix for SQLite3 can be specified:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cmake -DCMAKE_PREFIX_PATH=/opt/SQLite ..
+</pre></div>
+</div>
+<p>Tests are run with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ctest
+</pre></div>
+</div>
+<p>With a successful install of PROJ we can now install data files using the
+<strong class="program">projsync</strong> utility:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projsync --system-directory
+</pre></div>
+</div>
+<p>which will download all resource files currently available for PROJ. If less than
+the entire collection of resource files is needed the call to <strong class="program">projsync</strong>
+can be modified to suit the users needs. See <a class="reference internal" href="apps/projsync.html#projsync"><span class="std std-ref">projsync</span></a> for more options.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The use of <strong class="program">projsync</strong> requires that network support is enabled (the
+default option). If the resource files are not installed using
+<strong class="program">projsync</strong> PROJ will attempt to fetch them automatically when a
+transformation needs a specific data file. This  requires that
+<span class="target" id="index-2"></span><a class="reference internal" href="usage/environmentvars.html#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">ON</span></code>.</p>
+<p>As an alternative on systems where network access is disabled, the
+<a class="reference internal" href="resource_files.html#datumgrid"><span class="std std-ref">proj-data</span></a>
+package can be downloaded and added to the <span class="target" id="index-3"></span><a class="reference internal" href="usage/environmentvars.html#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a> directory.</p>
+</div>
+<section id="cmake-configure-options">
+<h4>CMake configure options<a class="headerlink" href="#cmake-configure-options" title="Permalink to this headline">¶</a></h4>
+<p>Options to configure a CMake are provided using <code class="docutils literal notranslate"><span class="pre">-D&lt;var&gt;=&lt;value&gt;</span></code>.
+All cached entries can be viewed using <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-LAH</span></code> from a build directory.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_CCT">
+<span id="cmdoption-arg-build-cct"></span><span class="sig-name descname"><span class="pre">BUILD_CCT</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_CCT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/cct.html#cct"><span class="std std-ref">cct</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_CS2CS">
+<span id="cmdoption-arg-build-cs2cs"></span><span class="sig-name descname"><span class="pre">BUILD_CS2CS</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_CS2CS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/cs2cs.html#cs2cs"><span class="std std-ref">cs2cs</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_GEOD">
+<span id="cmdoption-arg-build-geod"></span><span class="sig-name descname"><span class="pre">BUILD_GEOD</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_GEOD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/geod.html#geod"><span class="std std-ref">geod</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_GIE">
+<span id="cmdoption-arg-build-gie"></span><span class="sig-name descname"><span class="pre">BUILD_GIE</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_GIE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/gie.html#gie"><span class="std std-ref">gie</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_PROJ">
+<span id="cmdoption-arg-build-proj"></span><span class="sig-name descname"><span class="pre">BUILD_PROJ</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_PROJ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/proj.html#proj"><span class="std std-ref">proj</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_PROJINFO">
+<span id="cmdoption-arg-build-projinfo"></span><span class="sig-name descname"><span class="pre">BUILD_PROJINFO</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_PROJINFO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/projinfo.html#projinfo"><span class="std std-ref">projinfo</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_PROJSYNC">
+<span id="cmdoption-arg-build-projsync"></span><span class="sig-name descname"><span class="pre">BUILD_PROJSYNC</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_PROJSYNC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="apps/projsync.html#projsync"><span class="std std-ref">projsync</span></a>, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_SHARED_LIBS">
+<span id="cmdoption-arg-build-shared-libs"></span><span class="sig-name descname"><span class="pre">BUILD_SHARED_LIBS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-BUILD_SHARED_LIBS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build PROJ library shared. Default for Windows is OFF, building only
+a static library. Default for all others is ON. See also the CMake
+documentation for <a class="reference external" href="https://cmake.org/cmake/help/v3.9/variable/BUILD_SHARED_LIBS.html">BUILD_SHARED_LIBS</a>.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 7.0: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">BUILD_LIBPROJ_SHARED</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-BUILD_TESTING">
+<span id="cmdoption-arg-build-testing"></span><span class="sig-name descname"><span class="pre">BUILD_TESTING</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-BUILD_TESTING" title="Permalink to this definition">¶</a></dt>
+<dd><p>CTest option to build the testing tree, which also downloads and installs
+Googletest. Default is ON, but can be turned OFF if tests are not required.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 7.0: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">PROJ_TESTS</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CMAKE_BUILD_TYPE">
+<span id="cmdoption-arg-cmake-build-type"></span><span class="sig-name descname"><span class="pre">CMAKE_BUILD_TYPE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CMAKE_BUILD_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose the type of build, options are: None (default), Debug, Release,
+RelWithDebInfo, or MinSizeRel. See also the CMake documentation for
+<a class="reference external" href="https://cmake.org/cmake/help/v3.9/variable/CMAKE_BUILD_TYPE.html">CMAKE_BUILD_TYPE</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A default build is not optimized without specifying
+<code class="docutils literal notranslate"><span class="pre">-DCMAKE_BUILD_TYPE=Release</span></code> (or similar) during configuration,
+or by specifying <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">Release</span></code> with CMake
+multi-configuration build tools (see example below).</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CMAKE_C_COMPILER">
+<span id="cmdoption-arg-cmake-c-compiler"></span><span class="sig-name descname"><span class="pre">CMAKE_C_COMPILER</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CMAKE_C_COMPILER" title="Permalink to this definition">¶</a></dt>
+<dd><p>C compiler. Ignored for some generators, such as Visual Studio.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CMAKE_C_FLAGS">
+<span id="cmdoption-arg-cmake-c-flags"></span><span class="sig-name descname"><span class="pre">CMAKE_C_FLAGS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CMAKE_C_FLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flags used by the C compiler during all build types. This is
+initialized by the <span class="target" id="index-4"></span><a class="reference internal" href="#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> environment variable.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CMAKE_CXX_COMPILER">
+<span id="cmdoption-arg-cmake-cxx-compiler"></span><span class="sig-name descname"><span class="pre">CMAKE_CXX_COMPILER</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CMAKE_CXX_COMPILER" title="Permalink to this definition">¶</a></dt>
+<dd><p>C++ compiler. Ignored for some generators, such as Visual Studio.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CMAKE_CXX_FLAGS">
+<span id="cmdoption-arg-cmake-cxx-flags"></span><span class="sig-name descname"><span class="pre">CMAKE_CXX_FLAGS</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CMAKE_CXX_FLAGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flags used by the C++ compiler during all build types. This is
+initialized by the <span class="target" id="index-5"></span><a class="reference internal" href="#envvar-CXXFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CXXFLAGS</span></code></a> environment variable.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CMAKE_INSTALL_PREFIX">
+<span id="cmdoption-arg-cmake-install-prefix"></span><span class="sig-name descname"><span class="pre">CMAKE_INSTALL_PREFIX</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CMAKE_INSTALL_PREFIX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default for Windows is based on the environment variable
+<span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">OSGEO4W_ROOT</span></code> (if set), otherwise is <code class="docutils literal notranslate"><span class="pre">c:/OSGeo4W</span></code>.
+Default for Unix-like is <code class="docutils literal notranslate"><span class="pre">/usr/local/</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ENABLE_IPO">
+<span id="cmdoption-arg-enable-ipo"></span><span class="sig-name descname"><span class="pre">ENABLE_IPO</span></span><span class="sig-prename descclassname"><span class="pre">=OFF</span></span><a class="headerlink" href="#cmdoption-arg-ENABLE_IPO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build library using the compiler’s <a class="reference external" href="https://en.wikipedia.org/wiki/Interprocedural_optimization">interprocedural optimization</a>
+(IPO), if available, default OFF.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 7.0: </span>Renamed from <code class="docutils literal notranslate"><span class="pre">ENABLE_LTO</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-EXE_SQLITE3">
+<span id="cmdoption-arg-exe-sqlite3"></span><span class="sig-name descname"><span class="pre">EXE_SQLITE3</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-EXE_SQLITE3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to an <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> or <code class="docutils literal notranslate"><span class="pre">sqlite3.exe</span></code> executable.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SQLITE3_INCLUDE_DIR">
+<span id="cmdoption-arg-sqlite3-include-dir"></span><span class="sig-name descname"><span class="pre">SQLITE3_INCLUDE_DIR</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SQLITE3_INCLUDE_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to an include directory with the <code class="docutils literal notranslate"><span class="pre">sqlite3.h</span></code> header file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-SQLITE3_LIBRARY">
+<span id="cmdoption-arg-sqlite3-library"></span><span class="sig-name descname"><span class="pre">SQLITE3_LIBRARY</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-SQLITE3_LIBRARY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to a shared or static library file, such as <code class="docutils literal notranslate"><span class="pre">sqlite3.dll</span></code>,
+<code class="docutils literal notranslate"><span class="pre">libsqlite3.so</span></code>, <code class="docutils literal notranslate"><span class="pre">sqlite3.lib</span></code> or other name.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ENABLE_CURL">
+<span id="cmdoption-arg-enable-curl"></span><span class="sig-name descname"><span class="pre">ENABLE_CURL</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-ENABLE_CURL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable CURL support, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CURL_INCLUDE_DIR">
+<span id="cmdoption-arg-curl-include-dir"></span><span class="sig-name descname"><span class="pre">CURL_INCLUDE_DIR</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CURL_INCLUDE_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to an include directory with the <code class="docutils literal notranslate"><span class="pre">curl</span></code> directory.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-CURL_LIBRARY">
+<span id="cmdoption-arg-curl-library"></span><span class="sig-name descname"><span class="pre">CURL_LIBRARY</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-CURL_LIBRARY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to a shared or static library file, such as <code class="docutils literal notranslate"><span class="pre">libcurl.dll</span></code>,
+<code class="docutils literal notranslate"><span class="pre">libcurl.so</span></code>, <code class="docutils literal notranslate"><span class="pre">libcurl.lib</span></code>, or other name.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ENABLE_TIFF">
+<span id="cmdoption-arg-enable-tiff"></span><span class="sig-name descname"><span class="pre">ENABLE_TIFF</span></span><span class="sig-prename descclassname"><span class="pre">=ON</span></span><a class="headerlink" href="#cmdoption-arg-ENABLE_TIFF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable TIFF support to use PROJ-data resource files, default ON.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-TIFF_INCLUDE_DIR">
+<span id="cmdoption-arg-tiff-include-dir"></span><span class="sig-name descname"><span class="pre">TIFF_INCLUDE_DIR</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-TIFF_INCLUDE_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to an include directory with the <code class="docutils literal notranslate"><span class="pre">tiff.h</span></code> header file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-TIFF_LIBRARY_RELEASE">
+<span id="cmdoption-arg-tiff-library-release"></span><span class="sig-name descname"><span class="pre">TIFF_LIBRARY_RELEASE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-TIFF_LIBRARY_RELEASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to a shared or static library file, such as <code class="docutils literal notranslate"><span class="pre">tiff.dll</span></code>,
+<code class="docutils literal notranslate"><span class="pre">libtiff.so</span></code>, <code class="docutils literal notranslate"><span class="pre">tiff.lib</span></code>, or other name. A similar variable
+<code class="docutils literal notranslate"><span class="pre">TIFF_LIBRARY_DEBUG</span></code> can also be specified to a similar library for
+building Debug releases.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="building-on-windows-with-vcpkg-and-visual-studio-2017-or-2019">
+<h3>Building on Windows with vcpkg and Visual Studio 2017 or 2019<a class="headerlink" href="#building-on-windows-with-vcpkg-and-visual-studio-2017-or-2019" title="Permalink to this headline">¶</a></h3>
+<p>This method is the preferred one to generate Debug and Release builds.</p>
+<section id="install-git">
+<h4>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h4>
+<p>Install <a class="reference external" href="https://git-scm.com/download/win">git</a></p>
+</section>
+<section id="install-vcpkg">
+<h4>Install Vcpkg<a class="headerlink" href="#install-vcpkg" title="Permalink to this headline">¶</a></h4>
+<p>Assuming there is a c:\dev directory</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev
+git clone https://github.com/Microsoft/vcpkg.git
+
+cd vcpkg
+.\bootstrap-vcpkg.bat
+</pre></div>
+</div>
+</section>
+<section id="install-proj-dependencies">
+<h4>Install PROJ dependencies<a class="headerlink" href="#install-proj-dependencies" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vcpkg.exe install sqlite3[core,tool]:x86-windows tiff:x86-windows curl:x86-windows
+vcpkg.exe install sqlite3[core,tool]:x64-windows tiff:x64-windows curl:x64-windows
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tiff and curl dependencies are only needed since PROJ 7.0</p>
+</div>
+</section>
+<section id="checkout-proj-sources">
+<h4>Checkout PROJ sources<a class="headerlink" href="#checkout-proj-sources" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev
+git clone https://github.com/OSGeo/PROJ.git
+</pre></div>
+</div>
+</section>
+<section id="build-proj">
+<h4>Build PROJ<a class="headerlink" href="#build-proj" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev\PROJ
+mkdir build_vs2019
+cd build_vs2019
+cmake -DCMAKE_TOOLCHAIN_FILE=C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake ..
+cmake --build . --config Debug -j 8
+</pre></div>
+</div>
+</section>
+<section id="run-proj-tests">
+<h4>Run PROJ tests<a class="headerlink" href="#run-proj-tests" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev\PROJ\build_vs2019
+ctest -V --build-config Debug
+</pre></div>
+</div>
+</section>
+</section>
+<section id="building-on-windows-with-conda-dependencies-and-visual-studio-2017-or-2019">
+<h3>Building on Windows with Conda dependencies and Visual Studio 2017 or 2019<a class="headerlink" href="#building-on-windows-with-conda-dependencies-and-visual-studio-2017-or-2019" title="Permalink to this headline">¶</a></h3>
+<p>Variant of the above method but using Conda for SQLite3, TIFF and CURL dependencies.
+It is less appropriate for Debug builds of PROJ than the method based on vcpkg.</p>
+<section id="id3">
+<h4>Install git<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p>Install <a class="reference external" href="https://git-scm.com/download/win">git</a></p>
+</section>
+<section id="install-miniconda">
+<h4>Install miniconda<a class="headerlink" href="#install-miniconda" title="Permalink to this headline">¶</a></h4>
+<p>Install <a class="reference external" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe">miniconda</a></p>
+</section>
+<section id="id5">
+<h4>Install PROJ dependencies<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>Start a Conda enabled console and assuming there is a c:\dev directory</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev
+conda create --name proj
+conda activate proj
+conda install sqlite libtiff curl cmake
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The libtiff and curl dependencies are only needed since PROJ 7.0</p>
+</div>
+</section>
+<section id="id6">
+<h4>Checkout PROJ sources<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev
+git clone https://github.com/OSGeo/PROJ.git
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>Build PROJ<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>From a Conda enabled console</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda activate proj
+cd c:\dev\PROJ
+call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat&quot;
+cmake -S . -B _build.vs2019 -DCMAKE_LIBRARY_PATH:FILEPATH=&quot;%CONDA_PREFIX%/Library/lib&quot; -DCMAKE_INCLUDE_PATH:FILEPATH=&quot;%CONDA_PREFIX%/Library/include&quot;
+cmake --build _build.vs2019 --config Release -j 8
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>Run PROJ tests<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\dev\PROJ
+cd _build.vs2019
+ctest -V --build-config Release
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="usage/index.html" class="btn btn-neutral float-right" title="Using PROJ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="download.html" class="btn btn-neutral float-left" title="Download" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>The pipeline operator &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/pipeline.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Computation of coordinate operations between two CRS" href="operations_computation.html" />
+    <link rel="prev" title="Geocentric grid shift" href="transformations/xyzgridshift.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="projections/index.html">Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conversions/index.html">Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations/index.html">Transformations</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The pipeline operator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rules-for-pipelines">Rules for pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#required">Required</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optional">Optional</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Coordinate operations</a> &raquo;</li>
+        
+      <li>The pipeline operator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/pipeline.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="operations_computation.html" class="btn btn-neutral float-right" title="Computation of coordinate operations between two CRS" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="transformations/xyzgridshift.html" class="btn btn-neutral float-left" title="Geocentric grid shift" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="the-pipeline-operator">
+<span id="pipeline"></span><h1>The pipeline operator<a class="headerlink" href="#the-pipeline-operator" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.0.0.</span></p>
+</div>
+<p>Construct complex operations by daisy-chaining operations in a sequential pipeline.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>pipeline</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>2D, 3D and 4D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input type</strong></p></td>
+<td><p>Any</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output type</strong></p></td>
+<td><p>Any</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the section on <a class="reference internal" href="../usage/transformation.html#transformation"><span class="std std-ref">Geodetic transformation</span></a> for a more thorough introduction
+to the concept of transformation pipelines in PROJ.</p>
+</div>
+<p>With the pipeline operation it is possible to perform several operations after each
+other on the same input data. This feature makes it possible to create transformations
+that are made up of more than one operation, e.g. performing a datum shift and then
+applying a suitable map projection. Theoretically any transformation between two
+coordinate reference systems is possible to perform using the pipeline operation,
+provided that the necessary coordinate operations in each step is available in PROJ.</p>
+<p>A pipeline is made up of a number of steps, with each step being a coordinate operation
+in itself. By connecting these individual steps sequentially we end up with a concatenated
+coordinate operation. An example of this is a transformation from geodetic coordinates
+on the GRS80 ellipsoid to a projected system where the east-west and north-east axes has
+been swapped:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline +ellps=GRS80 +step +proj=merc +step +proj=axisswap +order=2,1
+</pre></div>
+</div>
+<p>Here the first step is applying the <a class="reference internal" href="projections/merc.html#merc"><span class="std std-ref">Mercator</span></a> projection and the second step is
+applying the <a class="reference internal" href="conversions/axisswap.html#axisswap"><span class="std std-ref">Axis swap</span></a> conversion. Note that the <cite>+ellps=GRS80</cite> is specified
+before the first occurrence of <cite>+step</cite>. This means that the GRS80 ellipsoid is used
+in both steps, since any parameter stated before the first occurrence of <cite>+step</cite> is
+treated as a global parameter and is transferred to each individual steps.</p>
+<section id="rules-for-pipelines">
+<h2>Rules for pipelines<a class="headerlink" href="#rules-for-pipelines" title="Permalink to this headline">¶</a></h2>
+<p><strong>1. Pipelines must consist of at least one step.</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
+</pre></div>
+</div>
+<p>Will result in an error.</p>
+<p><strong>2. Pipelines can only be nested if the nested pipeline is defined in an init file.</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
++step +proj=pipeline +step +proj=merc +step +proj=axisswap +order=2,1
++step +proj=unitconvert +xy_in=m +xy_out=us-ft
+</pre></div>
+</div>
+<p>Results in an error, while</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
++step +init=predefined_pipelines:projectandswap
++step +proj=unitconvert +xy_in=m +xy_out=us-ft
+</pre></div>
+</div>
+<p>does not.</p>
+<p><strong>3. Pipelines without a forward path can’t be constructed.</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline +step +inv +proj=urm5
+</pre></div>
+</div>
+<p>Will result in an error since <a class="reference internal" href="projections/urm5.html#urm5"><span class="std std-ref">Urmaev V</span></a> does not have an inverse operation defined.</p>
+<p id="global-pipeline-parameter"><strong>4. Parameters added before the first `+step` are global and will be applied to all steps.</strong></p>
+<p>In the following the GRS80 ellipsoid will be applied to all steps.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline +ellps=GRS80
++step +proj=cart
++step +proj=helmert +x=10 +y=3 +z=1
++step +proj=cart +inv
++step +proj=merc
+</pre></div>
+</div>
+<p><strong>5. Units of operations must match between steps.</strong></p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.1.0.</span></p>
+</div>
+<p>The output units of step <em>n</em> must match the expected input unit of step <em>n+1</em>. E.g., you can’t
+pass an operation that outputs projected coordinates to an operation that expects angular units
+(degrees). An example of such a unit mismatch is displayed below.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
++step +proj=merc  # Mercator outputs projected coordinates
++step +proj=robin # The Robinson projection expects angular input
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<section id="required">
+<h3>Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-step">
+<span class="sig-name descname"><span class="pre">+step</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Separate each step in a pipeline.</p>
+</dd></dl>
+
+</section>
+<section id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inv">
+<span class="sig-name descname"><span class="pre">+inv</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invert a step in a pipeline.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-omit_fwd">
+<span id="cmdoption-arg-omit-fwd"></span><span class="sig-name descname"><span class="pre">+omit_fwd</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-omit_fwd" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 6.3.0.</span></p>
+</div>
+<p>Skip a step of the pipeline when it is followed in the forward path.</p>
+<p>The following example shows a combined use of <a class="reference internal" href="conversions/push.html#push"><span class="std std-ref">push</span></a> and <a class="reference internal" href="conversions/pop.html#pop"><span class="std std-ref">pop</span></a> operators,
+with <code class="docutils literal notranslate"><span class="pre">omit_fwd</span></code> and <code class="docutils literal notranslate"><span class="pre">omit_inv</span></code> options, to implement a vertical adjustment that must
+be done in a interpolation CRS that is different from the horizontal CRS
+used in input and output. +omit_fwd in the forward path avoid a useless
+inverse horizontal transformation and relies on the pop operator to restore
+initial horizontal coordinates. +omit_inv serves the similar purpose when
+the pipeline is executed in the reverse direction</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
++step +proj=unitconvert +xy_in=deg +xy_out=rad
++step +proj=push +v_1 +v_2
++step +proj=hgridshift +grids=nvhpgn.gsb +omit_inv
++step +proj=vgridshift +grids=g1999u05.gtx +multiplier=1
++step +inv +proj=hgridshift +grids=nvhpgn.gsb +omit_fwd
++step +proj=pop +v_1 +v_2
++step +proj=unitconvert +xy_in=rad +xy_out=deg
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-omit_inv">
+<span id="cmdoption-arg-omit-inv"></span><span class="sig-name descname"><span class="pre">+omit_inv</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-omit_inv" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 6.3.0.</span></p>
+</div>
+<p>Skip a step of the pipeline when it is followed in the reverse path.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="operations_computation.html" class="btn btn-neutral float-right" title="Computation of coordinate operations between two CRS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="transformations/xyzgridshift.html" class="btn btn-neutral float-left" title="Geocentric grid shift" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

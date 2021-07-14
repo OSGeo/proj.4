@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Language bindings &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgdevelopment/bindings.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Version 4 to 6 API Migration" href="migration.html" />
+    <link rel="prev" title="Using PROJ in CMake projects" href="cmake.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformations.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errorhandling.html">Error handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html">Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/index.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html">Using PROJ in CMake projects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Language bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ruby">Ruby</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rust">Rust</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#go-golang">Go (Golang)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#julia">Julia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcl">TCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mysql">MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#excel">Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visual-basic">Visual Basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fortran">Fortran</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Version 4 to 6 API Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#version-4-to-5-api-migration">Version 4 to 5 API Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Development</a> &raquo;</li>
+        
+      <li>Language bindings</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/development/bindings.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="migration.html" class="btn btn-neutral float-right" title="Version 4 to 6 API Migration" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="cmake.html" class="btn btn-neutral float-left" title="Using PROJ in CMake projects" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="language-bindings">
+<span id="bindings"></span><h1>Language bindings<a class="headerlink" href="#language-bindings" title="Permalink to this headline">¶</a></h1>
+<p>PROJ bindings are available for a number of different development platforms.</p>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://pypi.python.org/pypi/pyproj">pyproj</a>:
+Python interface (wrapper for PROJ)</p>
+</section>
+<section id="ruby">
+<h2>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/cfis/proj4rb">proj4rb</a>:
+Bindings for PROJ in ruby</p>
+</section>
+<section id="rust">
+<h2>Rust<a class="headerlink" href="#rust" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/georust/proj">proj</a>:
+Rust bindings for the latest stable version of PROJ</p>
+</section>
+<section id="go-golang">
+<h2>Go (Golang)<a class="headerlink" href="#go-golang" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/everystreet/go-proj">go-proj</a>:
+Go bindings and idiomatic wrapper for PROJ</p>
+</section>
+<section id="julia">
+<h2>Julia<a class="headerlink" href="#julia" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/JuliaGeo/Proj4.jl">Proj4.jl</a>:
+Julia bindings and idiomatic wrapper for PROJ.</p>
+</section>
+<section id="tcl">
+<h2>TCL<a class="headerlink" href="#tcl" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://wiki.tcl.tk/41270">proj4tcl</a>:
+Bindings for PROJ in tcl (critcl source)</p>
+</section>
+<section id="mysql">
+<h2>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://sourceforge.net/projects/mysqlscientific/files/fPROJ4/">fProj4</a>:
+Bindings for PROJ in MySQL</p>
+</section>
+<section id="excel">
+<h2>Excel<a class="headerlink" href="#excel" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/jbuonagurio/proj.xll">proj.xll</a>:
+Excel add-in for PROJ map projections</p>
+</section>
+<section id="visual-basic">
+<h2>Visual Basic<a class="headerlink" href="#visual-basic" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://ftp.dfg.ca.gov/Public/BDB/Tools/proj4/proj_api.zip">PROJ VB Wrappers</a>:
+By Eric G. Miller.</p>
+</section>
+<section id="fortran">
+<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://gitlab.com/likeno/fortran-proj">Fortran-Proj</a>:
+Bindings for PROJ in Fortran (By João Macedo &#64;likeno)</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="migration.html" class="btn btn-neutral float-right" title="Version 4 to 6 API Migration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cmake.html" class="btn btn-neutral float-left" title="Using PROJ in CMake projects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

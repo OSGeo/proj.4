@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Horner polynomial evaluation &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/transformations/horner.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Molodensky transform" href="molodensky.html" />
+    <link rel="prev" title="Helmert transform" href="helmert.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projections/index.html">Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conversions/index.html">Conversions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Transformations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="affine.html">Affine transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defmodel.html">Multi-component time-based deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deformation.html">Kinematic datum shifting utilizing a deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geogoffset.html">Geographic offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helmert.html">Helmert transform</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Horner polynomial evaluation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="molodensky.html">Molodensky transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molobadekas.html">Molodensky-Badekas transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hgridshift.html">Horizontal grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tinshift.html">Triangulated Irregular Network based transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vgridshift.html">Vertical grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xyzgridshift.html">Geocentric grid shift</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Transformations</a> &raquo;</li>
+        
+      <li>Horner polynomial evaluation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/transformations/horner.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="molodensky.html" class="btn btn-neutral float-right" title="Molodensky transform" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="helmert.html" class="btn btn-neutral float-left" title="Helmert transform" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="horner-polynomial-evaluation">
+<span id="horner"></span><h1>Horner polynomial evaluation<a class="headerlink" href="#horner-polynomial-evaluation" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.0.0.</span></p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>horner</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>2D and 3D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input type</strong></p></td>
+<td><p>Geodetic and projected coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output type</strong></p></td>
+<td><p>Geodetic and projected coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Horner polynomial evaluation scheme is used for transformations between reference
+frames where one or both are inhomogeneous or internally distorted. This will typically
+be reference frames created before the introduction of space geodetic techniques such
+as GPS.</p>
+<p>Horner polynomials, or Multiple Regression Equations as they are also known as, have
+their strength in being able to create complicated mappings between coordinate
+reference frames while still being lightweight in both computational cost and disk
+space used.</p>
+<p>PROJ implements two versions of the Horner evaluation scheme: Real and complex
+polynomial evaluation. Below both are briefly described. For more details consult
+<span id="id1">[<a class="reference internal" href="../../zreferences.html#id31" title="Ruffhead, A. C. Introduction to multiple regression equations in datum transformations and their reversibility. Survey Review, 50(358):82–90, 2016. doi:10.1080/00396265.2016.1244143.">Ruffhead2016</a>]</span> and <span id="id2">[<a class="reference internal" href="../../zreferences.html#id17" title="IOGP. Geomatics guidance note 7, part 2: coordinate conversions &amp; transformations including formulas. IOGP Publication 373-7-2, International Association For Oil And Gas Producers, 2018. URL: https://www.iogp.org/bookstore/product/coordinate-conversions-and-transformation-including-formulas/.">IOGP2018</a>]</span>.</p>
+<p>The polynomial evaluation in real number space is defined by the following equations:</p>
+<div class="math notranslate nohighlight" id="equation-real-poly">
+<span class="eqno">(1)<a class="headerlink" href="#equation-real-poly" title="Permalink to this equation">¶</a></span>\[ \begin{align}\begin{aligned}\Delta X = \sum_{i,j} u_{i,j} U^i V^j\\\Delta Y = \sum_{i,j} v_{i,j} U^i V^j\end{aligned}\end{align} \]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-uv">
+<span class="eqno">(2)<a class="headerlink" href="#equation-uv" title="Permalink to this equation">¶</a></span>\[ \begin{align}\begin{aligned}U = X_{in} - X_{origin}\\V = Y_{in} - Y_{origin}\end{aligned}\end{align} \]</div>
+<p>and <span class="math notranslate nohighlight">\(u_{i,j}\)</span> and <span class="math notranslate nohighlight">\(v_{i,j}\)</span> are coefficients that make up
+the polynomial.</p>
+<p>The final coordinates are determined as</p>
+<div class="math notranslate nohighlight" id="equation-xy-out">
+<span class="eqno">(3)<a class="headerlink" href="#equation-xy-out" title="Permalink to this equation">¶</a></span>\[ \begin{align}\begin{aligned}X_{out} = X_{in} + \Delta X\\Y_{out} = Y_{in} + \Delta Y\end{aligned}\end{align} \]</div>
+<p>The inverse transform is the same as the above but requires a different set of
+coefficients.</p>
+<p>Evaluation of the complex polynomials are defined by the following equations:</p>
+<div class="math notranslate nohighlight" id="equation-complex-poly">
+<span class="eqno">(4)<a class="headerlink" href="#equation-complex-poly" title="Permalink to this equation">¶</a></span>\[\Delta X + i \Delta Y = \sum_{j=1}^n (c_{2j-1} + i c_{2j}) (U + i V)^j\]</div>
+<p>Where <span class="math notranslate nohighlight">\(n\)</span> is the degree of the polynomial. <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are
+defined as in <a class="reference internal" href="#equation-uv">(2)</a> and the resulting coordinates are again determined
+by <a class="reference internal" href="#equation-xy-out">(3)</a>.</p>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Mapping between Danish TC32 and ETRS89/UTM zone 32 using polynomials in real
+number space:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=horner
++ellps=intl
++range=500000
++fwd_origin=877605.269066,6125810.306769
++inv_origin=877605.760036,6125811.281773
++deg=4
++fwd_v=6.1258112678e+06,9.9999971567e-01,1.5372750011e-10,5.9300860915e-15,2.2609497633e-19,4.3188227445e-05,2.8225130416e-10,7.8740007114e-16,-1.7453997279e-19,1.6877465415e-10,-1.1234649773e-14,-1.7042333358e-18,-7.9303467953e-15,-5.2906832535e-19,3.9984284847e-19
++fwd_u=8.7760574982e+05,9.9999752475e-01,2.8817299305e-10,5.5641310680e-15,-1.5544700949e-18,-4.1357045890e-05,4.2106213519e-11,2.8525551629e-14,-1.9107771273e-18,3.3615590093e-10,2.4380247154e-14,-2.0241230315e-18,1.2429019719e-15,5.3886155968e-19,-1.0167505000e-18
++inv_v=6.1258103208e+06,1.0000002826e+00,-1.5372762184e-10,-5.9304261011e-15,-2.2612705361e-19,-4.3188331419e-05,-2.8225549995e-10,-7.8529116371e-16,1.7476576773e-19,-1.6875687989e-10,1.1236475299e-14,1.7042518057e-18,7.9300735257e-15,5.2881862699e-19,-3.9990736798e-19
++inv_u=8.7760527928e+05,1.0000024735e+00,-2.8817540032e-10,-5.5627059451e-15,1.5543637570e-18,4.1357152105e-05,-4.2114813612e-11,-2.8523713454e-14,1.9109017837e-18,-3.3616407783e-10,-2.4382678126e-14,2.0245020199e-18,-1.2441377565e-15,-5.3885232238e-19,1.0167203661e-18
+</pre></div>
+</div>
+<p>Mapping between Danish System Storebælt and ETRS89/UTM zone 32 using complex
+polynomials:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=horner
++ellps=intl
++range=500000
++fwd_origin=4.94690026817276e+05,6.13342113183056e+06
++inv_origin=6.19480258923588e+05,6.13258568148837e+06
++deg=3
++fwd_c=6.13258562111350e+06,6.19480105709997e+05,9.99378966275206e-01,-2.82153291753490e-02,-2.27089979140026e-10,-1.77019590701470e-09,1.08522286274070e-14,2.11430298751604e-15
++inv_c=6.13342118787027e+06,4.94690181709311e+05,9.99824464710368e-01,2.82279070814774e-02,7.66123542220864e-11,1.78425334628927e-09,-1.05584823306400e-14,-3.32554258683744e-15
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<p>Setting up Horner polynomials requires many coefficients being explicitly
+written, even for polynomials of low degree. For this reason it is recommended
+to store the polynomial definitions in an <a class="reference internal" href="../../resource_files.html#init-files"><span class="std std-ref">init file</span></a> for
+easier writing and reuse.</p>
+<section id="required">
+<h3>Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<p>Below is a list of required parameters that can be set for the Horner polynomial
+transformation. As stated above, the transformation takes to forms, either using
+real or complex polynomials. These are divided into separate sections below.
+Parameters from the two sections are mutually exclusive, that is parameters
+describing real and complex polynomials can’t be mixed.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ellps">
+<span class="sig-name descname"><span class="pre">+ellps</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-ellps" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../../apps/proj.html#cmdoption-proj-le"><code class="xref std std-option docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-le</span></code></a> for a list of available ellipsoids.</p>
+<p><em>Defaults to “GRS80”.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-deg">
+<span class="sig-name descname"><span class="pre">+deg</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-deg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Degree of polynomial</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-fwd_origin">
+<span id="cmdoption-arg-fwd-origin"></span><span class="sig-name descname"><span class="pre">+fwd_origin</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;northing,easting&gt;</span></span><a class="headerlink" href="#cmdoption-arg-fwd_origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coordinate of origin for the forward mapping</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inv_origin">
+<span id="cmdoption-arg-inv-origin"></span><span class="sig-name descname"><span class="pre">+inv_origin</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;northing,easting&gt;</span></span><a class="headerlink" href="#cmdoption-arg-inv_origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coordinate of origin for the inverse mapping</p>
+</dd></dl>
+
+<section id="real-polynomials">
+<h4>Real polynomials<a class="headerlink" href="#real-polynomials" title="Permalink to this headline">¶</a></h4>
+<p>The following parameters has to be set if the transformation consists of
+polynomials in real space. Each parameter takes a comma-separated list of
+coefficients. The number of coefficients is governed by the degree, <span class="math notranslate nohighlight">\(d\)</span>,
+of the polynomial:</p>
+<div class="math notranslate nohighlight">
+\[N = \frac{(d + 1)(d + 2)}{2}\]</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-fwd_u">
+<span id="cmdoption-arg-fwd-u"></span><span class="sig-name descname"><span class="pre">+fwd_u</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;u_11,u_12,...,u_ij,..,u_mn&gt;</span></span><a class="headerlink" href="#cmdoption-arg-fwd_u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients for the forward transformation i.e. latitude to northing
+as described in <a class="reference internal" href="#equation-real-poly">(1)</a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-fwd_v">
+<span id="cmdoption-arg-fwd-v"></span><span class="sig-name descname"><span class="pre">+fwd_v</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;v_11,v_12,...,v_ij,..,v_mn&gt;</span></span><a class="headerlink" href="#cmdoption-arg-fwd_v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients for the forward transformation i.e. longitude to easting
+as described in <a class="reference internal" href="#equation-real-poly">(1)</a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inv_u">
+<span id="cmdoption-arg-inv-u"></span><span class="sig-name descname"><span class="pre">+inv_u</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;u_11,u_12,...,u_ij,..,u_mn&gt;</span></span><a class="headerlink" href="#cmdoption-arg-inv_u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients for the inverse transformation i.e. latitude to northing
+as described in <a class="reference internal" href="#equation-real-poly">(1)</a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inv_v">
+<span id="cmdoption-arg-inv-v"></span><span class="sig-name descname"><span class="pre">+inv_v</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;v_11,v_12,...,v_ij,..,v_mn&gt;</span></span><a class="headerlink" href="#cmdoption-arg-inv_v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients for the inverse transformation i.e. longitude to easting
+as described in <a class="reference internal" href="#equation-real-poly">(1)</a>.</p>
+</dd></dl>
+
+</section>
+<section id="complex-polynomials">
+<h4>Complex polynomials<a class="headerlink" href="#complex-polynomials" title="Permalink to this headline">¶</a></h4>
+<p>The following parameters has to be set if the transformation consists of
+polynomials in complex space. Each parameter takes a comma-separated list of
+coefficients. The number of coefficients is governed by the degree, <span class="math notranslate nohighlight">\(d\)</span>,
+of the polynomial:</p>
+<div class="math notranslate nohighlight">
+\[N = 2d + 2\]</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-fwd_c">
+<span id="cmdoption-arg-fwd-c"></span><span class="sig-name descname"><span class="pre">+fwd_c</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;c_1,c_2,...,c_N&gt;</span></span><a class="headerlink" href="#cmdoption-arg-fwd_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients for the complex forward transformation
+as described in <a class="reference internal" href="#equation-complex-poly">(4)</a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-inv_c">
+<span id="cmdoption-arg-inv-c"></span><span class="sig-name descname"><span class="pre">+inv_c</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;c_1,c_2,...,c_N&gt;</span></span><a class="headerlink" href="#cmdoption-arg-inv_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coefficients for the complex inverse transformation
+as described in <a class="reference internal" href="#equation-complex-poly">(4)</a>.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-range">
+<span class="sig-name descname"><span class="pre">+range</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the region of validity.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-uneg">
+<span class="sig-name descname"><span class="pre">+uneg</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-uneg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Express latitude as southing. Only applies for complex polynomials.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-vneg">
+<span class="sig-name descname"><span class="pre">+vneg</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-vneg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Express longitude as westing. Only applies for complex polynomials.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Horner%27s_method">Wikipedia</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="molodensky.html" class="btn btn-neutral float-right" title="Molodensky transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="helmert.html" class="btn btn-neutral float-left" title="Helmert transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

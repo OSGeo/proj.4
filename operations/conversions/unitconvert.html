@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Unit conversion &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/conversions/unitconvert.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Transformations" href="../transformations/index.html" />
+    <link rel="prev" title="Geocentric to topocentric conversion" href="topocentric.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projections/index.html">Projections</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Conversions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="axisswap.html">Axis swap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cart.html">Geodetic to cartesian conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoc.html">Geocentric Latitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="latlon.html">Lat/long (Geodetic alias)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="noop.html">No operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pop.html">Pop coordinate value to pipeline stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="push.html">Push coordinate value to pipeline stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="set.html">Set coordinate value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topocentric.html">Geocentric to topocentric conversion</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Unit conversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#distance-units">Distance units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#angular-units">Angular units</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-units">Time units</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../transformations/index.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Conversions</a> &raquo;</li>
+        
+      <li>Unit conversion</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/conversions/unitconvert.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="../transformations/index.html" class="btn btn-neutral float-right" title="Transformations" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="topocentric.html" class="btn btn-neutral float-left" title="Geocentric to topocentric conversion" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="unit-conversion">
+<span id="unitconvert"></span><h1>Unit conversion<a class="headerlink" href="#unit-conversion" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.0.0.</span></p>
+</div>
+<p>Convert between various distance, angular and time units.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>unitconvert</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>2D, 3D or 4D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input type</strong></p></td>
+<td><p>Any</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output type</strong></p></td>
+<td><p>Any</p></td>
+</tr>
+</tbody>
+</table>
+<p>There are many examples of coordinate reference systems that are expressed in
+other units than the meter. There are also many cases where temporal data
+has to be translated to different units. The <cite>unitconvert</cite> operation takes care
+of that.</p>
+<p>Many North American systems are defined with coordinates in feet. For example
+in Vermont:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
++step +proj=tmerc +lat_0=42.5 +lon_0=-72.5 +k_0=0.999964286 +x_0=500000.00001016 +y_0=0
++step +proj=unitconvert +xy_in=m +xy_out=us-ft
+</pre></div>
+</div>
+<p>Often when working with GNSS data the timestamps are presented in GPS-weeks,
+but when the data transformed with the <cite>helmert</cite> operation timestamps are
+expected to be in units of decimalyears. This can be fixed with <cite>unitconvert</cite>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=pipeline
++step +proj=unitconvert +t_in=gps_week +t_out=decimalyear
++step +proj=helmert +epoch=2000.0 +t_obs=2017.5 ...
+</pre></div>
+</div>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-xy_in">
+<span id="cmdoption-arg-xy-in"></span><span class="sig-name descname"><span class="pre">+xy_in</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;unit&gt;</span> <span class="pre">or</span> <span class="pre">&lt;conversion_factor&gt;</span></span><a class="headerlink" href="#cmdoption-arg-xy_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Horizontal input units. See <a class="reference internal" href="#distance-units"><span class="std std-ref">Distance units</span></a> and <a class="reference internal" href="#angular-units"><span class="std std-ref">Angular units</span></a>
+for a list of available units. <cite>&lt;conversion_factor&gt;</cite> is the conversion factor
+from the input unit to metre for linear units, or to radian for angular
+units.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-xy_out">
+<span id="cmdoption-arg-xy-out"></span><span class="sig-name descname"><span class="pre">+xy_out</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;unit&gt;</span> <span class="pre">or</span> <span class="pre">&lt;conversion_factor&gt;</span></span><a class="headerlink" href="#cmdoption-arg-xy_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Horizontal output units. See <a class="reference internal" href="#distance-units"><span class="std std-ref">Distance units</span></a> and <a class="reference internal" href="#angular-units"><span class="std std-ref">Angular units</span></a>
+for a list of available units. <cite>&lt;conversion_factor&gt;</cite> is the conversion factor
+from the output unit to metre for linear units, or to radian for angular
+units.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-z_in">
+<span id="cmdoption-arg-z-in"></span><span class="sig-name descname"><span class="pre">+z_in</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;unit&gt;</span> <span class="pre">or</span> <span class="pre">&lt;conversion_factor&gt;</span></span><a class="headerlink" href="#cmdoption-arg-z_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertical output units. See <a class="reference internal" href="#distance-units"><span class="std std-ref">Distance units</span></a> and <a class="reference internal" href="#angular-units"><span class="std std-ref">Angular units</span></a>
+for a list of available units. <cite>&lt;conversion_factor&gt;</cite> is the conversion factor
+from the input unit to metre for linear units, or to radian for angular
+units.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-z_out">
+<span id="cmdoption-arg-z-out"></span><span class="sig-name descname"><span class="pre">+z_out</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;unit&gt;</span> <span class="pre">or</span> <span class="pre">&lt;conversion_factor&gt;</span></span><a class="headerlink" href="#cmdoption-arg-z_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vertical output units. See <a class="reference internal" href="#distance-units"><span class="std std-ref">Distance units</span></a> and <a class="reference internal" href="#angular-units"><span class="std std-ref">Angular units</span></a>
+for a list of available units.  <cite>&lt;conversion_factor&gt;</cite> is the conversion factor
+from the output unit to metre for linear units, or to radian for angular
+units.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-t_in">
+<span id="cmdoption-arg-t-in"></span><span class="sig-name descname"><span class="pre">+t_in</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;unit&gt;</span></span><a class="headerlink" href="#cmdoption-arg-t_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temporal input units. See <a class="reference internal" href="#time-units"><span class="std std-ref">Time units</span></a> for a list of available units.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-t_out">
+<span id="cmdoption-arg-t-out"></span><span class="sig-name descname"><span class="pre">+t_out</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;unit&gt;</span></span><a class="headerlink" href="#cmdoption-arg-t_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Temporal output units. See <a class="reference internal" href="#time-units"><span class="std std-ref">Time units</span></a> for a list of available units.</p>
+</dd></dl>
+
+</section>
+<section id="distance-units">
+<span id="id1"></span><h2>Distance units<a class="headerlink" href="#distance-units" title="Permalink to this headline">¶</a></h2>
+<p>In the table below all distance units supported by PROJ are listed.
+The same list can also be produced on the command line with <strong class="program">proj</strong> or
+<strong class="program">cs2cs</strong>, by adding the <cite>-lu</cite> flag when calling the utility.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>km</p></td>
+<td><p>Kilometer</p></td>
+</tr>
+<tr class="row-odd"><td><p>m</p></td>
+<td><p>Meter</p></td>
+</tr>
+<tr class="row-even"><td><p>dm</p></td>
+<td><p>Decimeter</p></td>
+</tr>
+<tr class="row-odd"><td><p>cm</p></td>
+<td><p>Centimeter</p></td>
+</tr>
+<tr class="row-even"><td><p>mm</p></td>
+<td><p>Millimeter</p></td>
+</tr>
+<tr class="row-odd"><td><p>kmi</p></td>
+<td><p>International Nautical Mile</p></td>
+</tr>
+<tr class="row-even"><td><p>in</p></td>
+<td><p>International Inch</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft</p></td>
+<td><p>International Foot</p></td>
+</tr>
+<tr class="row-even"><td><p>yd</p></td>
+<td><p>International Yard</p></td>
+</tr>
+<tr class="row-odd"><td><p>mi</p></td>
+<td><p>International Statute Mile</p></td>
+</tr>
+<tr class="row-even"><td><p>fath</p></td>
+<td><p>International Fathom</p></td>
+</tr>
+<tr class="row-odd"><td><p>ch</p></td>
+<td><p>International Chain</p></td>
+</tr>
+<tr class="row-even"><td><p>link</p></td>
+<td><p>International Link</p></td>
+</tr>
+<tr class="row-odd"><td><p>us-in</p></td>
+<td><p>U.S. Surveyor’s Inch</p></td>
+</tr>
+<tr class="row-even"><td><p>us-ft</p></td>
+<td><p>U.S. Surveyor’s Foot</p></td>
+</tr>
+<tr class="row-odd"><td><p>us-yd</p></td>
+<td><p>U.S. Surveyor’s Yard</p></td>
+</tr>
+<tr class="row-even"><td><p>us-ch</p></td>
+<td><p>U.S. Surveyor’s Chain</p></td>
+</tr>
+<tr class="row-odd"><td><p>us-mi</p></td>
+<td><p>U.S. Surveyor’s Statute Mile</p></td>
+</tr>
+<tr class="row-even"><td><p>ind-yd</p></td>
+<td><p>Indian Yard</p></td>
+</tr>
+<tr class="row-odd"><td><p>ind-ft</p></td>
+<td><p>Indian Foot</p></td>
+</tr>
+<tr class="row-even"><td><p>ind-ch</p></td>
+<td><p>Indian Chain</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="angular-units">
+<span id="id2"></span><h2>Angular units<a class="headerlink" href="#angular-units" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.2.0.</span></p>
+</div>
+<p>In the table below all angular units supported by PROJ <cite>unitconvert</cite> are listed.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>deg</p></td>
+<td><p>Degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>grad</p></td>
+<td><p>Grad</p></td>
+</tr>
+<tr class="row-even"><td><p>rad</p></td>
+<td><p>Radian</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="time-units">
+<span id="id3"></span><h2>Time units<a class="headerlink" href="#time-units" title="Permalink to this headline">¶</a></h2>
+<p>In the table below all time units supported by PROJ are listed.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Label</p></th>
+<th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>mjd</p></td>
+<td><p>Modified Julian date</p></td>
+</tr>
+<tr class="row-odd"><td><p>decimalyear</p></td>
+<td><p>Decimal year</p></td>
+</tr>
+<tr class="row-even"><td><p>gps_week</p></td>
+<td><p>GPS Week</p></td>
+</tr>
+<tr class="row-odd"><td><p>yyyymmdd</p></td>
+<td><p>Date in yyyymmdd format</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../transformations/index.html" class="btn btn-neutral float-right" title="Transformations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="topocentric.html" class="btn btn-neutral float-left" title="Geocentric to topocentric conversion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

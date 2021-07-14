@@ -1,0 +1,922 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>projinfo &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgapps/projinfo.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="projsync" href="projsync.html" />
+    <link rel="prev" title="proj" href="proj.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cct.html">cct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cs2cs.html">cs2cs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geod.html">geod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gie.html">gie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html">proj</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">projinfo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="projsync.html">projsync</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Applications</a> &raquo;</li>
+        
+      <li>projinfo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/apps/projinfo.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="projsync.html" class="btn btn-neutral float-right" title="projsync" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="proj.html" class="btn btn-neutral float-left" title="proj" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="projinfo">
+<span id="id1"></span><h1>projinfo<a class="headerlink" href="#projinfo" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded" id="index-0">
+<p><span class="versionmodified added">New in version 6.0.0.</span></p>
+</div>
+<p>Geodetic object and coordinate operation queries</p>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>projinfo</strong></div>
+<div class="line-block">
+<div class="line">[-o formats] [-k crs|operation|datum|ensemble|ellipsoid] [–summary] [-q]</div>
+<div class="line">[[–area name_or_code] | [–bbox west_long,south_lat,east_long,north_lat]]</div>
+<div class="line">[–spatial-test contains|intersects]</div>
+<div class="line">[–crs-extent-use none|both|intersection|smallest]</div>
+<div class="line">[–grid-check none|discard_missing|sort|known_available]</div>
+<div class="line">[–pivot-crs always|if_no_direct_transformation|never|{auth:code[,auth:code]*}]</div>
+<div class="line">[–show-superseded] [–hide-ballpark] [–accuracy {accuracy}]</div>
+<div class="line">[–allow-ellipsoidal-height-as-vertical-crs]</div>
+<div class="line">[–boundcrs-to-wgs84]</div>
+<div class="line">[–authority name]</div>
+<div class="line">[–main-db-path path] [–aux-db-path path]*</div>
+<div class="line">[–dump-db-structure]</div>
+<div class="line">[–identify] [–3d]</div>
+<div class="line">[–output-id AUTH:CODE]</div>
+<div class="line">[–c-ify] [–single-line]</div>
+<div class="line">–searchpaths | –remote-data |</div>
+<div class="line">–list-crs [list-crs-filter] |</div>
+<div class="line">–dump-db-structure [{object_definition} | {object_reference}] |</div>
+<div class="line">{object_definition} | {object_reference} | (-s {srs_def} -t {srs_def})</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<p>where {object_definition} or {srs_def} is one of the possibilities accepted
+by <a class="reference internal" href="../development/reference/functions.html#c.proj_create" title="proj_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">proj_create()</span></code></a></p>
+<ul class="simple">
+<li><p>a proj-string,</p></li>
+<li><p>a WKT string,</p></li>
+<li><p>an object code (like “EPSG:4326”, “urn:ogc:def:crs:EPSG::4326”,
+“urn:ogc:def:coordinateOperation:EPSG::1671”),</p></li>
+<li><p>an Object name. e.g “WGS 84”, “WGS 84 / UTM zone 31N”. In that case as
+uniqueness is not guaranteed, heuristics are applied to determine the appropriate best match.</p></li>
+<li><p>a OGC URN combining references for compound coordinate reference systems
+(e.g “<a class="reference external" href="urn:ogc:def:crs,crs:EPSG::2393,crs:EPSG::5717">urn:ogc:def:crs,crs:EPSG::2393,crs:EPSG::5717</a>” or custom abbreviated
+syntax “EPSG:2393+5717”),</p></li>
+<li><p>a OGC URN combining references for references for projected or derived CRSs
+e.g. for Projected 3D CRS “UTM zone 31N / WGS 84 (3D)”:
+“<a class="reference external" href="urn:ogc:def:crs,crs:EPSG::4979,cs:PROJ::ENh,coordinateOperation:EPSG::16031">urn:ogc:def:crs,crs:EPSG::4979,cs:PROJ::ENh,coordinateOperation:EPSG::16031</a>”
+(<em>added in 6.2</em>)</p></li>
+<li><p>a OGC URN combining references for concatenated operations
+(e.g. “<a class="reference external" href="urn:ogc:def:coordinateOperation,coordinateOperation:EPSG::3895,coordinateOperation:EPSG::1618">urn:ogc:def:coordinateOperation,coordinateOperation:EPSG::3895,coordinateOperation:EPSG::1618</a>”)</p></li>
+<li><p>a PROJJSON string. The jsonschema is at <a class="reference external" href="https://proj.org/schemas/v0.2/projjson.schema.json">https://proj.org/schemas/v0.2/projjson.schema.json</a> (<em>added in 6.2</em>)</p></li>
+<li><p>a compound CRS made from two object names separated with ” + “. e.g. “WGS 84 + EGM96 height” (<em>added in 7.1</em>)</p></li>
+</ul>
+<p>{object_reference} is a filename preceded by the ‘&#64;’ character.  The
+file referenced by the {object_reference} must contain a valid
+{object_definition}.</p>
+</div></blockquote>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">projinfo</strong> is a program that can query information on a geodetic object,
+coordinate reference system (CRS) or coordinate operation, when the <code class="docutils literal notranslate"><span class="pre">-s</span></code> and <code class="docutils literal notranslate"><span class="pre">-t</span></code>
+options are specified, and display it under different formats (PROJ string, WKT string
+or PROJJSON string).</p>
+<p>It can also be used to query coordinate operations available between two CRS.</p>
+<p>The program is named with some reference to the GDAL <strong class="program">gdalsrsinfo</strong> that offers
+partly similar services.</p>
+<p>The following control parameters can appear in any order:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">formats</span></span><a class="headerlink" href="#cmdoption-projinfo-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>formats is a comma separated combination of:
+<code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">default</span></code>, <code class="docutils literal notranslate"><span class="pre">PROJ</span></code>, <code class="docutils literal notranslate"><span class="pre">WKT_ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">WKT2:2015</span></code>, <code class="docutils literal notranslate"><span class="pre">WKT2:2019</span></code>, <code class="docutils literal notranslate"><span class="pre">WKT1:GDAL</span></code>, <code class="docutils literal notranslate"><span class="pre">WKT1:ESRI</span></code>, <code class="docutils literal notranslate"><span class="pre">PROJJSON</span></code>, <code class="docutils literal notranslate"><span class="pre">SQL</span></code>.</p>
+<p>Except <code class="docutils literal notranslate"><span class="pre">all</span></code> and <code class="docutils literal notranslate"><span class="pre">default</span></code>, other formats can be preceded by <code class="docutils literal notranslate"><span class="pre">-</span></code> to disable them.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>WKT2_2019 was previously called WKT2_2018.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before PROJ 6.3.0, WKT1:GDAL was implicitly calling –boundcrs-to-wgs84.
+This is no longer the case.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When SQL is specified, <a class="reference internal" href="#cmdoption-projinfo-output-id"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-id</span></code></a> must be specified.</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-k">
+<span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"> <span class="pre">crs|operation|datum|ensemble|ellipsoid</span></span><a class="headerlink" href="#cmdoption-projinfo-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>When used to query a single object with a AUTHORITY:CODE, determines the (k)ind of the object
+in case there are CRS, coordinate operations or ellipsoids with the same CODE.
+The default is crs.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-summary">
+<span class="sig-name descname"><span class="pre">--summary</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>When listing coordinate operations available between 2 CRS, return the
+result in a summary format, mentioning only the name of the coordinate
+operation, its accuracy and its area of use.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-q">
+<span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turn on quiet mode. Quiet mode is only available for queries on single objects,
+and only one output format is selected. In that mode, only the PROJ, WKT or PROJJSON
+string is displayed, without other introduction output. The output is then
+potentially compatible of being piped in other utilities.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-area">
+<span class="sig-name descname"><span class="pre">--area</span></span><span class="sig-prename descclassname"> <span class="pre">name_or_code</span></span><a class="headerlink" href="#cmdoption-projinfo-area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify an area of interest to restrict the results when researching
+coordinate operations between 2 CRS. The area of interest can be specified either
+as a name (e.g “Denmark - onshore”) or a AUTHORITY:CODE (EPSG:3237)
+This option is exclusive of <a class="reference internal" href="#cmdoption-projinfo-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-bbox">
+<span class="sig-name descname"><span class="pre">--bbox</span></span><span class="sig-prename descclassname"> <span class="pre">west_long,south_lat,east_long,north_lat</span></span><a class="headerlink" href="#cmdoption-projinfo-bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify an area of interest to restrict the results when researching
+coordinate operations between 2 CRS. The area of interest is specified as a
+bounding box with geographic coordinates, expressed in degrees in a
+unspecified geographic CRS.
+<cite>west_long</cite> and <cite>east_long</cite> should be in the [-180,180] range, and
+<cite>south_lat</cite> and <cite>north_lat</cite> in the [-90,90]. <cite>west_long</cite> is generally lower than
+<cite>east_long</cite>, except in the case where the area of interest crosses the antimeridian.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-spatial-test">
+<span class="sig-name descname"><span class="pre">--spatial-test</span></span><span class="sig-prename descclassname"> <span class="pre">contains|intersects</span></span><a class="headerlink" href="#cmdoption-projinfo-spatial-test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify how the area of use of coordinate operations found in the database
+are compared to the area of use specified explicitly with <a class="reference internal" href="#cmdoption-projinfo-area"><code class="xref std std-option docutils literal notranslate"><span class="pre">--area</span></code></a> or <a class="reference internal" href="#cmdoption-projinfo-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a>,
+or derived implicitly from the area of use of the source and target CRS.
+By default, <strong class="program">projinfo</strong> will only keep coordinate operations whose are of use
+is strictly within the area of interest (<code class="docutils literal notranslate"><span class="pre">contains</span></code> strategy).
+If using the <code class="docutils literal notranslate"><span class="pre">intersects</span></code> strategy, the spatial test is relaxed, and any
+coordinate operation whose area of use at least partly intersects the
+area of interest is listed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-crs-extent-use">
+<span class="sig-name descname"><span class="pre">--crs-extent-use</span></span><span class="sig-prename descclassname"> <span class="pre">none|both|intersection|smallest</span></span><a class="headerlink" href="#cmdoption-projinfo-crs-extent-use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify which area of interest to consider when no explicit one is specified
+with <a class="reference internal" href="#cmdoption-projinfo-area"><code class="xref std std-option docutils literal notranslate"><span class="pre">--area</span></code></a> or <a class="reference internal" href="#cmdoption-projinfo-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a> options.
+By default (<code class="docutils literal notranslate"><span class="pre">smallest</span></code> strategy), the area of
+use of the source or target CRS will be looked, and the one that is the
+smallest one in terms of area will be used as the area of interest.
+If using <code class="docutils literal notranslate"><span class="pre">none</span></code>, no area of interest is used.
+If using <code class="docutils literal notranslate"><span class="pre">both</span></code>, only coordinate operations that relate (contain or intersect
+depending of the <a class="reference internal" href="#cmdoption-projinfo-spatial-test"><code class="xref std std-option docutils literal notranslate"><span class="pre">--spatial-test</span></code></a> strategy) to the area of use of both CRS
+are selected.
+If using <code class="docutils literal notranslate"><span class="pre">intersection</span></code>, the area of interest is the intersection of the
+bounding box of the area of use of the source and target CRS</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-grid-check">
+<span class="sig-name descname"><span class="pre">--grid-check</span></span><span class="sig-prename descclassname"> <span class="pre">none|discard_missing|sort|known_available</span></span><a class="headerlink" href="#cmdoption-projinfo-grid-check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify how the presence or absence of a horizontal or vertical shift grid
+required for a coordinate operation affects the results returned when
+researching coordinate operations between 2 CRS.
+The default strategy is <code class="docutils literal notranslate"><span class="pre">sort</span></code> (if <span class="target" id="index-1"></span><a class="reference internal" href="../usage/environmentvars.html#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> is not defined).
+In that case, all candidate
+operations are returned, but the actual availability of the grids is used
+to determine the sorting order. That is, if a coordinate operation involves
+using a grid that is not available in the PROJ resource directories
+(determined by the <span class="target" id="index-2"></span><a class="reference internal" href="../usage/environmentvars.html#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a> environment variable, it will be listed in
+the bottom of the results.
+The <code class="docutils literal notranslate"><span class="pre">none</span></code> strategy completely disables the checks of presence of grids and
+this returns the results as if all the grids where available.
+The <code class="docutils literal notranslate"><span class="pre">discard_missing</span></code> strategy discards results that involve grids not
+present in the PROJ resource directories.
+The <code class="docutils literal notranslate"><span class="pre">known_available</span></code> strategy discards results that involve grids not
+present in the PROJ resource directories and that are not known of the CDN.
+This is the default strategy is <span class="target" id="index-3"></span><a class="reference internal" href="../usage/environmentvars.html#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">ON</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-pivot-crs">
+<span class="sig-name descname"><span class="pre">--pivot-crs</span></span><span class="sig-prename descclassname"> <span class="pre">always|if_no_direct_transformation|never|{auth:code[,auth:code]*}</span></span><a class="headerlink" href="#cmdoption-projinfo-pivot-crs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if intermediate (pivot) CRS can be used when researching coordinate
+operation between 2 CRS. A typical example is the WGS84 pivot. By default,
+<strong class="program">projinfo</strong> will consider any potential pivot if there is no direct transformation
+( <code class="docutils literal notranslate"><span class="pre">if_no_direct_transformation</span></code>). If using the <code class="docutils literal notranslate"><span class="pre">never</span></code> strategy,
+only direct transformations between the source and target CRS will be
+used. If using the <code class="docutils literal notranslate"><span class="pre">always</span></code> strategy, intermediate CRS will be considered
+even if there are direct transformations.
+It is also possible to restrict the pivot CRS to consider by specifying
+one or several CRS by their AUTHORITY:CODE.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-show-superseded">
+<span class="sig-name descname"><span class="pre">--show-superseded</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-show-superseded" title="Permalink to this definition">¶</a></dt>
+<dd><p>When enabled, coordinate operations that are superseded by others will be
+listed. Note that supersession is not equivalent to deprecation: superseded
+operations are still considered valid although they have a better equivalent,
+whereas deprecated operations have been determined to be erroneous and are
+not considered at all.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-hide-ballpark">
+<span class="sig-name descname"><span class="pre">--hide-ballpark</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-hide-ballpark" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.1.</span></p>
+</div>
+<p>Hides any coordinate operation that is, or contains, a
+<a class="reference internal" href="../glossary.html#term-Ballpark-transformation"><span class="xref std std-term">Ballpark transformation</span></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-accuracy">
+<span class="sig-name descname"><span class="pre">--accuracy</span></span><span class="sig-prename descclassname"> <span class="pre">{accuracy}</span></span><a class="headerlink" href="#cmdoption-projinfo-accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.0.</span></p>
+</div>
+<p>Sets the minimum desired accuracy for returned coordinate operations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for coordinate operation computation</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-allow-ellipsoidal-height-as-vertical-crs">
+<span class="sig-name descname"><span class="pre">--allow-ellipsoidal-height-as-vertical-crs</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-allow-ellipsoidal-height-as-vertical-crs" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.0.</span></p>
+</div>
+<p>Allows exporting a geographic or projected 3D CRS as a compound CRS whose
+vertical CRS represents the ellipsoidal height.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>only used for CRS, and with WKT1:GDAL output format</p>
+</div>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-boundcrs-to-wgs84">
+<span class="sig-name descname"><span class="pre">--boundcrs-to-wgs84</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-boundcrs-to-wgs84" title="Permalink to this definition">¶</a></dt>
+<dd><p>When specified, this option researches a coordinate operation from the
+base geographic CRS of the single CRS, source or target CRS to the WGS84
+geographic CRS, and if found, wraps those CRS into a BoundCRS object.
+This is mostly to be used for early-binding approaches.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-authority">
+<span class="sig-name descname"><span class="pre">--authority</span></span><span class="sig-prename descclassname"> <span class="pre">name</span></span><a class="headerlink" href="#cmdoption-projinfo-authority" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name of the authority into which to restrict looks up for
+objects, when specifying an object by name or when coordinate operations are
+computed. The default is to allow all authorities.</p>
+<p>When used with SQL output, this restricts the authorities to which intermediate
+objects can belong to (the default is EPSG and PROJ). Note that the authority
+of the <a class="reference internal" href="#cmdoption-projinfo-output-id"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-id</span></code></a> option will also be implicitly added.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-main-db-path">
+<span class="sig-name descname"><span class="pre">--main-db-path</span></span><span class="sig-prename descclassname"> <span class="pre">path</span></span><a class="headerlink" href="#cmdoption-projinfo-main-db-path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name and path of the database to be used by <strong class="program">projinfo</strong>.
+The default is <code class="file docutils literal notranslate"><span class="pre">proj.db</span></code> in the PROJ resource directories.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-aux-db-path">
+<span class="sig-name descname"><span class="pre">--aux-db-path</span></span><span class="sig-prename descclassname"> <span class="pre">path</span></span><a class="headerlink" href="#cmdoption-projinfo-aux-db-path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name and path of auxiliary databases, that are to be combined
+with the main database. Those auxiliary databases must have a table
+structure that is identical to the main database, but can be partly filled
+and their entries can refer to entries of the main database.
+The option may be repeated to specify several auxiliary databases.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-identify">
+<span class="sig-name descname"><span class="pre">--identify</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-identify" title="Permalink to this definition">¶</a></dt>
+<dd><p>When used with an object definition, this queries the PROJ database to find
+known objects, typically CRS, that are close or identical to the object.
+Each candidate object is associated with an approximate likelihood percentage.
+This is useful when used with a WKT string that lacks a EPSG identifier,
+such as ESRI WKT1. This might also be used with PROJ strings.
+For example, <cite>+proj=utm +zone=31 +datum=WGS84 +type=crs</cite> will be identified
+with a likelihood of 70% to EPSG:32631</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-dump-db-structure">
+<span class="sig-name descname"><span class="pre">--dump-db-structure</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-dump-db-structure" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.1.</span></p>
+</div>
+<p>Outputs the sequence of SQL statements to create a new empty valid auxiliary
+database. This option can be specified as the only switch of the utility.
+If also specifying a CRS object and the <a class="reference internal" href="#cmdoption-projinfo-output-id"><code class="xref std std-option docutils literal notranslate"><span class="pre">--output-id</span></code></a> option, the
+definition of the object as SQL statements will be appended.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-list-crs">
+<span class="sig-name descname"><span class="pre">--list-crs</span></span><span class="sig-prename descclassname"> <span class="pre">[list-crs-filter]</span></span><a class="headerlink" href="#cmdoption-projinfo-list-crs" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.1.</span></p>
+</div>
+<p>Outputs a list (authority name:code and CRS name) of the filtered CRSs from the database.
+If no filter is provided all authority names and types of non deprecated CRSs are dumped.
+list-crs-filter is a comma separated combination of: allow_deprecated,geodetic,geocentric,
+geographic,geographic_2d,geographic_3d,vertical,projected,compound.
+Affected by options <a class="reference internal" href="#cmdoption-projinfo-authority"><code class="xref std std-option docutils literal notranslate"><span class="pre">--authority</span></code></a>, <a class="reference internal" href="#cmdoption-projinfo-area"><code class="xref std std-option docutils literal notranslate"><span class="pre">--area</span></code></a>, <a class="reference internal" href="#cmdoption-projinfo-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a> and <a class="reference internal" href="#cmdoption-projinfo-spatial-test"><code class="xref std std-option docutils literal notranslate"><span class="pre">--spatial-test</span></code></a></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-3d">
+<span class="sig-name descname"><span class="pre">--3d</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-3d" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 6.3.</span></p>
+</div>
+<p>“Promote” the CRS(s) to their 3D version. In the context of researching
+available coordinate transformations, explicitly specifying this option is
+not necessary, because when one of the source or target CRS has a vertical
+component but not the other one, the one that has no vertical component is
+automatically promoted to a 3D version, where its vertical axis is the
+ellipsoidal height in metres, using the ellipsoid of the base geodetic CRS.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-output-id">
+<span class="sig-name descname"><span class="pre">--output-id</span></span><span class="sig-prename descclassname"><span class="pre">=AUTH:NAME</span></span><a class="headerlink" href="#cmdoption-projinfo-output-id" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.1.</span></p>
+</div>
+<p>Identifier to assign to the object (for SQL output).</p>
+<p>It is strongly recommended that new objects should not be added in common
+registries, such as <code class="docutils literal notranslate"><span class="pre">EPSG</span></code>, <code class="docutils literal notranslate"><span class="pre">ESRI</span></code>, <code class="docutils literal notranslate"><span class="pre">IAU</span></code>, etc.
+Users should use a custom authority name instead. If a new object should be
+added to the official EPSG registry, users are invited to follow the
+procedure explained at <a class="reference external" href="https://epsg.org/dataset-change-requests.html">https://epsg.org/dataset-change-requests.html</a>.</p>
+<p>Combined with <a class="reference internal" href="#cmdoption-projinfo-dump-db-structure"><code class="xref std std-option docutils literal notranslate"><span class="pre">--dump-db-structure</span></code></a>, users can create
+auxiliary databases, instead of directly modifying the main <code class="file docutils literal notranslate"><span class="pre">proj.db</span></code> database.
+See the <a class="reference internal" href="#projinfo-aux-db-example"><span class="std std-ref">example how to export to an auxiliary database</span></a>.</p>
+<p>Those auxiliary databases can be specified through
+<a class="reference internal" href="../development/reference/functions.html#_CPPv430proj_context_set_database_pathP10PJ_CONTEXTPKcPPCKcPPCKc" title="proj_context_set_database_path"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_context_set_database_path()</span></code></a> or the <span class="target" id="index-4"></span><a class="reference internal" href="../usage/environmentvars.html#envvar-PROJ_AUX_DB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_AUX_DB</span></code></a>
+environment variable.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-c-ify">
+<span class="sig-name descname"><span class="pre">--c-ify</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-c-ify" title="Permalink to this definition">¶</a></dt>
+<dd><p>For developers only. Modify the string output of the utility so that it
+is easy to put those strings in C/C++ code</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-single-line">
+<span class="sig-name descname"><span class="pre">--single-line</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-single-line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Output PROJ, WKT or PROJJSON strings on a single line, instead of multiple
+indented lines by default.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-searchpaths">
+<span class="sig-name descname"><span class="pre">--searchpaths</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-searchpaths" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.</span></p>
+</div>
+<p>Output the directories into which PROJ resources will be looked for
+(if not using C API such as <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_context_set_search_paths()</span></code>
+that will override them.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projinfo-remote-data">
+<span class="sig-name descname"><span class="pre">--remote-data</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projinfo-remote-data" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.</span></p>
+</div>
+<p>Display information regarding if <a class="reference internal" href="../usage/network.html#network"><span class="std std-ref">Network capabilities</span></a> is enabled, and the
+related URL.</p>
+</dd></dl>
+
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Query the CRS object corresponding to EPSG:4326</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projinfo EPSG:4326</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>PROJ.4 string:
++proj=longlat +datum=WGS84 +no_defs +type=crs
+
+WKT2:2019 string:
+GEOGCRS[&quot;WGS 84&quot;,
+    DATUM[&quot;World Geodetic System 1984&quot;,
+        ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+            LENGTHUNIT[&quot;metre&quot;,1]]],
+    PRIMEM[&quot;Greenwich&quot;,0,
+        ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+            ORDER[1],
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+            ORDER[2],
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+    USAGE[
+        SCOPE[&quot;unknown&quot;],
+        AREA[&quot;World&quot;],
+        BBOX[-90,-180,90,180]],
+    ID[&quot;EPSG&quot;,4326]]
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>List the coordinate operations between NAD27 (designed with its CRS name)
+and NAD83 (designed with its EPSG code 4269) within an area of interest</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projinfo -s NAD27 -t EPSG:4269 --area &quot;USA - Missouri&quot;</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DERIVED_FROM(EPSG):1241, NAD27 to NAD83 (1), 0.15 m, USA - CONUS including EEZ
+
+PROJ string:
++proj=pipeline +step +proj=axisswap +order=2,1 +step +proj=unitconvert \
++xy_in=deg +xy_out=rad +step +proj=hgridshift +grids=conus \
++step +proj=unitconvert +xy_in=rad +xy_out=deg +step +proj=axisswap +order=2,1
+
+WKT2:2019 string:
+COORDINATEOPERATION[&quot;NAD27 to NAD83 (1)&quot;,
+    SOURCECRS[
+        GEOGCRS[&quot;NAD27&quot;,
+            DATUM[&quot;North American Datum 1927&quot;,
+                ELLIPSOID[&quot;Clarke 1866&quot;,6378206.4,294.978698213898,
+                    LENGTHUNIT[&quot;metre&quot;,1]]],
+            PRIMEM[&quot;Greenwich&quot;,0,
+                ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+            CS[ellipsoidal,2],
+                AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+                    ORDER[1],
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+                AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+                    ORDER[2],
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]]]],
+    TARGETCRS[
+        GEOGCRS[&quot;NAD83&quot;,
+            DATUM[&quot;North American Datum 1983&quot;,
+                ELLIPSOID[&quot;GRS 1980&quot;,6378137,298.257222101,
+                    LENGTHUNIT[&quot;metre&quot;,1]]],
+            PRIMEM[&quot;Greenwich&quot;,0,
+                ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+            CS[ellipsoidal,2],
+                AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+                    ORDER[1],
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+                AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+                    ORDER[2],
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]]]],
+    METHOD[&quot;CTABLE2&quot;],
+    PARAMETERFILE[&quot;Latitude and longitude difference file&quot;,&quot;conus&quot;],
+    OPERATIONACCURACY[0.15],
+    USAGE[
+        SCOPE[&quot;unknown&quot;],
+        AREA[&quot;USA - CONUS including EEZ&quot;],
+        BBOX[23.81,-129.17,49.38,-65.69]],
+    ID[&quot;DERIVED_FROM(EPSG)&quot;,1241]]
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Export an object as a PROJJSON string</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projinfo GDA94 -o PROJJSON -q</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;GeographicCRS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GDA94&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;datum&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;GeodeticReferenceFrame&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Geocentric Datum of Australia 1994&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ellipsoid&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;GRS 1980&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;semi_major_axis&quot;</span><span class="p">:</span> <span class="mi">6378137</span><span class="p">,</span>
+            <span class="nt">&quot;inverse_flattening&quot;</span><span class="p">:</span> <span class="mf">298.257222101</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;coordinate_system&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;subtype&quot;</span><span class="p">:</span> <span class="s2">&quot;ellipsoidal&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;axis&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Geodetic latitude&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;abbreviation&quot;</span><span class="p">:</span> <span class="s2">&quot;Lat&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;north&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;degree&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Geodetic longitude&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;abbreviation&quot;</span><span class="p">:</span> <span class="s2">&quot;Lon&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;direction&quot;</span><span class="p">:</span> <span class="s2">&quot;east&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;degree&quot;</span>
+        <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;area&quot;</span><span class="p">:</span> <span class="s2">&quot;Australia - GDA&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;bbox&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;south_latitude&quot;</span><span class="p">:</span> <span class="mf">-60.56</span><span class="p">,</span>
+        <span class="nt">&quot;west_longitude&quot;</span><span class="p">:</span> <span class="mf">93.41</span><span class="p">,</span>
+        <span class="nt">&quot;north_latitude&quot;</span><span class="p">:</span> <span class="mf">-8.47</span><span class="p">,</span>
+        <span class="nt">&quot;east_longitude&quot;</span><span class="p">:</span> <span class="mf">173.35</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;authority&quot;</span><span class="p">:</span> <span class="s2">&quot;EPSG&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="mi">4283</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" id="projinfo-aux-db-example" start="4">
+<li><p>Exporting the SQL statements to insert a new CRS in an auxiliary database.</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Get the SQL statements <span class="k">for</span> a custom CRS
+<span class="go">projinfo &quot;+proj=merc +lat_ts=5 +datum=WGS84 +type=crs +title=my_crs&quot; --output-id HOBU:MY_CRS -o SQL -q &gt; my_crs.sql</span>
+<span class="go">cat my_crs.sql</span>
+
+<span class="gp"># </span>Initialize an auxiliary database with the schema of the reference database
+<span class="go">echo &quot;.schema&quot; | sqlite3 /path/to/proj.db | sqlite3 aux.db</span>
+
+<span class="gp"># </span>Append the content of the definition of HOBU:MY_CRS
+<span class="go">sqlite3 aux.db &lt; my_crs.db</span>
+
+<span class="gp"># </span>Check that everything works OK
+<span class="go">projinfo --aux-db-path aux.db HOBU:MY_CRS</span>
+</pre></div>
+</div>
+<p>or more simply:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Create an auxiliary database with the definition of a custom CRS.
+<span class="go">projinfo &quot;+proj=merc +lat_ts=5 +datum=WGS84 +type=crs +title=my_crs&quot; --output-id HOBU:MY_CRS --dump-db-structure | sqlite3 aux.db</span>
+
+<span class="gp"># </span>Check that everything works OK
+<span class="go">projinfo --aux-db-path aux.db HOBU:MY_CRS</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">geodetic_crs</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;GEODETIC_CRS_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;unknown&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;geographic 2D&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;6424&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;6326&#39;</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">usage</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;USAGE_GEODETIC_CRS_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;geodetic_crs&#39;</span><span class="p">,</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;GEODETIC_CRS_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;PROJ&#39;</span><span class="p">,</span><span class="s1">&#39;EXTENT_UNKNOWN&#39;</span><span class="p">,</span><span class="s1">&#39;PROJ&#39;</span><span class="p">,</span><span class="s1">&#39;SCOPE_UNKNOWN&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">conversion</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;CONVERSION_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;unknown&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;9805&#39;</span><span class="p">,</span><span class="s1">&#39;Mercator (variant B)&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;8823&#39;</span><span class="p">,</span><span class="s1">&#39;Latitude of 1st standard parallel&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;9122&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;8802&#39;</span><span class="p">,</span><span class="s1">&#39;Longitude of natural origin&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;9122&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;8806&#39;</span><span class="p">,</span><span class="s1">&#39;False easting&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;9001&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;8807&#39;</span><span class="p">,</span><span class="s1">&#39;False northing&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;9001&#39;</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">usage</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;USAGE_CONVERSION_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;conversion&#39;</span><span class="p">,</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;CONVERSION_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;PROJ&#39;</span><span class="p">,</span><span class="s1">&#39;EXTENT_UNKNOWN&#39;</span><span class="p">,</span><span class="s1">&#39;PROJ&#39;</span><span class="p">,</span><span class="s1">&#39;SCOPE_UNKNOWN&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">projected_crs</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;my_crs&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;EPSG&#39;</span><span class="p">,</span><span class="s1">&#39;4400&#39;</span><span class="p">,</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;GEODETIC_CRS_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;CONVERSION_MY_CRS&#39;</span><span class="p">,</span><span class="k">NULL</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">usage</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;USAGE_PROJECTED_CRS_MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;projected_crs&#39;</span><span class="p">,</span><span class="s1">&#39;HOBU&#39;</span><span class="p">,</span><span class="s1">&#39;MY_CRS&#39;</span><span class="p">,</span><span class="s1">&#39;PROJ&#39;</span><span class="p">,</span><span class="s1">&#39;EXTENT_UNKNOWN&#39;</span><span class="p">,</span><span class="s1">&#39;PROJ&#39;</span><span class="p">,</span><span class="s1">&#39;SCOPE_UNKNOWN&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>PROJ.4 string:
++proj=merc +lat_ts=5 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs
+
+WKT2:2019 string:
+PROJCRS[&quot;my_crs&quot;,
+    BASEGEOGCRS[&quot;unknown&quot;,
+        ENSEMBLE[&quot;World Geodetic System 1984 ensemble&quot;,
+            MEMBER[&quot;World Geodetic System 1984 (Transit)&quot;],
+            MEMBER[&quot;World Geodetic System 1984 (G730)&quot;],
+            MEMBER[&quot;World Geodetic System 1984 (G873)&quot;],
+            MEMBER[&quot;World Geodetic System 1984 (G1150)&quot;],
+            MEMBER[&quot;World Geodetic System 1984 (G1674)&quot;],
+            MEMBER[&quot;World Geodetic System 1984 (G1762)&quot;],
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]],
+            ENSEMBLEACCURACY[2.0]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;HOBU&quot;,&quot;GEODETIC_CRS_MY_CRS&quot;]],
+    CONVERSION[&quot;unknown&quot;,
+        METHOD[&quot;Mercator (variant B)&quot;,
+            ID[&quot;EPSG&quot;,9805]],
+        PARAMETER[&quot;Latitude of 1st standard parallel&quot;,5,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8823]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;False easting&quot;,0,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,0,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;(E)&quot;,east,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;(N)&quot;,north,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    ID[&quot;HOBU&quot;,&quot;MY_CRS&quot;]]
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Get the WKT representation of EPSG:25832 in the WKT1:GDAL output format and on a single line</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projinfo -o WKT1:GDAL --single-line EPSG:25832</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>WKT1:GDAL string:
+PROJCS[&quot;ETRS89 / UTM zone 32N&quot;,GEOGCS[&quot;ETRS89&quot;,DATUM[&quot;European_Terrestrial_Reference_System_1989&quot;,SPHEROID[&quot;GRS 1980&quot;,6378137,298.257222101,AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6258&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4258&quot;]],PROJECTION[&quot;Transverse_Mercator&quot;],PARAMETER[&quot;latitude_of_origin&quot;,0],PARAMETER[&quot;central_meridian&quot;,9],PARAMETER[&quot;scale_factor&quot;,0.9996],PARAMETER[&quot;false_easting&quot;,500000],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;25832&quot;]]
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="projsync.html" class="btn btn-neutral float-right" title="projsync" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="proj.html" class="btn btn-neutral float-left" title="proj" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Geodetic TIFF grids (GTG) &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgspecifications/geodetictiffgrids.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Community" href="../community/index.html" />
+    <link rel="prev" title="PROJJSON" href="projjson.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Specifications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="projjson.html">PROJJSON</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Geodetic TIFF grids (GTG)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-description">General description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-grid-storage">Multi-grid storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples-of-multi-grid-dataset">Examples of multi-grid dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Specifications</a> &raquo;</li>
+        
+      <li>Geodetic TIFF grids (GTG)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/specifications/geodetictiffgrids.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="../community/index.html" class="btn btn-neutral float-right" title="Community" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="projjson.html" class="btn btn-neutral float-left" title="PROJJSON" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="geodetic-tiff-grids-gtg">
+<span id="geodetictiffgrids"></span><h1>Geodetic TIFF grids (GTG)<a class="headerlink" href="#geodetic-tiff-grids-gtg" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.</span></p>
+</div>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Geodetic TIFF grid format has been introduced per <a class="reference internal" href="../community/rfc/rfc-4.html#rfc4"><span class="std std-ref">PROJ RFC 4: Remote access to grids and GeoTIFF grids</span></a>. It is a
+profile of the TIFF and GeoTIFF formats that addresses the specific requirements
+of geodetic grids: horizontal shifts, vertical shifts, velocity grids, etc…
+It also follows the <a class="reference external" href="http://cogeo.org">Cloud Optimized GeoTIFF</a> principles.</p>
+<p>Such grids are available on a <a class="reference internal" href="../usage/network.html#cdn-grids"><span class="std std-ref">CDN of GeoTIFF grids</span></a>.</p>
+</section>
+<section id="general-description">
+<span id="gtg-general-description"></span><h2>General description<a class="headerlink" href="#general-description" title="Permalink to this headline">¶</a></h2>
+<p>The general principles that guide the following requirements and recommendations
+are such that files will be properly recognized by PROJ, and also by GDAL which
+is an easy way to inspect such grid files:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.awaresystems.be/imaging/tiff/specification/TIFF6.pdf">TIFF 6.0</a>
+based (could possibly be BigTIFF without code changes, if we ever
+need some day to handle grids larger than 4GB)</p></li>
+<li><p><a class="reference external" href="http://docs.opengeospatial.org/is/19-008r4/19-008r4.html">GeoTIFF 1.1</a> for the georeferencing.
+GeoTIFF 1.1 is a recent standard, compared to the original GeoTIFF 1.0 version,
+but its backward compatibility is excellent, so that should not cause much trouble
+to readers that are not official GeoTIFF 1.1 compliant.</p></li>
+<li><p>Files hosted on the CDN will use a Geographic 2D CRS for the GeoTIFF GeoKeys.
+That CRS is intended to be the interpolation CRS as defined in
+<a class="reference external" href="http://docs.opengeospatial.org/as/18-005r4/18-005r4.html">OGC Abstract Specification Topic 2</a>,
+that is the CRS to which grid values are referred to.</p>
+<p>Given that they will nominally be related to the EPSG dataset, the <a class="reference external" href="http://docs.opengeospatial.org/is/19-008r4/19-008r4.html#_requirements_class_geodeticcrsgeokey">GeodeticCRSGeoKey</a>
+will be used to store the EPSG code of the CRS. If the CRS cannot be reliably
+encoded through that key or other geokeys, the <code class="docutils literal notranslate"><span class="pre">interpolation_crs_wkt</span></code> metadata
+item detailed afterwards should be used.</p>
+<p>This CRS will be generally the source CRS (for geographic to
+geographic horizontal shift grids, or geographic to vertical shift grids), but
+for vertical to vertical CRS adjustment, this will be the geographic CRS to
+which the grid is referenced. In some very rare cases of geographic to vertical
+shift grids, the interpolation CRS might be a geographic CRS that is not the
+same as the source CRS (into which ellipsoidal height are expressed). The only
+instance we have in mind is for the EPSG:7001 “ETRS89 to NAP height (1)” transformation
+using the naptrans2008 VDatum-grid which is referenced to Amersfoort EPSG:4289
+instead of ETRS89…</p>
+<p>On the reading side, PROJ will ignore that information:
+the CRS is already stored in the source_crs or interpolation_crs column of the
+grid_transformation table.</p>
+<p>For geographic to vertical shift files (geoid models), the GeoTIFF 1.1
+convention will be used to store the value of the <a class="reference external" href="http://docs.opengeospatial.org/is/19-008r4/19-008r4.html#_requirements_class_verticalgeokey">VerticalGeoKey</a>
+So a geoid model that apply to WGS 84 EPSG:4979 will have GeodeticCRSGeoKey = 4326
+and VerticalGeoKey = 4979.</p>
+</li>
+<li><p>Files hosted on the CDN will use the GeoTIFF defined <a class="reference external" href="http://docs.opengeospatial.org/is/19-008r4/19-008r4.html#_raster_to_model_coordinate_transformation_requirements">ModelTiepointTag and ModelPixelScaleTag</a> TIFF tags
+to store the coordinates of the upper-left pixel and the resolution of the pixels.
+On the reading side, they will be required and ModelTransformationTag will be ignored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regarding anti-meridian handling, a variety of possibilities exist.
+We do not attempt to standardize this and files hosted on the CDN will use
+a georeferencing close to the original data producer.
+For example, NOAA vertical grids that apply to Conterminous USA might even have a top-left
+longitude beyond 180 (for consistency with Alaska grids, whose origin is &lt; 180)
+Anti-meridian handling in PROJ has probably issues. This RFC does not attempt
+to address them in particular, as they are believed to be orthogonal to the
+topics it covers, and being mostly implementation issues.</p>
+</div>
+</li>
+<li><p>Files hosted on the CDN will use the <a class="reference external" href="http://docs.opengeospatial.org/is/19-008r4/19-008r4.html#_requirements_class_gtrastertypegeokey">GTRasterTypeGeoKey</a>
+= PixelIsPoint convention.
+This is the convention used by most existing grid formats currently. Note that GDAL
+typically use a PixelIsArea convention (but can handle both conventions), so the
+georeferencing it displays when opening a .gsb or .gtx file appears to have a
+half-pixel shift regarding to the coordinates stored in the original grid file. On
+the reading side, PROJ will accept both conventions (for equivalent georeferencing,
+the value of the origin in a PixelIsArea convention is shifted by a half-pixel
+towards the upper-left direction). Unspecified behavior if this GeoKey is absent.</p></li>
+<li><p>Files hosted on the CDN will be tiled, presumably with 256x256 tiles (small
+grids that are smaller than 256x256 will use a single strip). On the reading
+side, PROJ will accept TIFF files with any strip or tile organization.
+Tiling is expressed by specifying the TileWidth, TileHeight, TileOffsets
+and TileByteCounts tags. Strip organization is expressed by specifying the
+RowsPerStrip, StripByteCounts and StripOffsets tags.</p></li>
+<li><p>Files hosted on the CDN will use <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/compression.html">Compression</a> = DEFLATE
+or LZW (to be determined, possibly with
+<a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/predictor.html">Predictor</a> = 2
+or 3)
+On the reading side, PROJ will accept TIFF files with any compression method
+(appropriate for the data types and PhotometricInterpretation considered)
+supported by the libtiff build used by PROJ. Of course uncompressed files will be supported.</p></li>
+<li><p>Files hosted on the CDN will use little-endian byte ordering. On the reading
+side, libtiff will transparently handle both little-endian and big-endian
+ordering.</p></li>
+<li><p>Files hosted on the CDN will use PlanarConfiguration=Separate.
+The tools described in a later section will order blocks so that blocks needed
+for a given location are close to each other.
+On the reading side, PROJ will handle also PlanarConfiguration=Contig.</p></li>
+<li><p>Files hosted on the CDN will generally use Float32 (BitsPerSample=32 and SampleFormat=IEEEFP)
+Files may be created using Signed Int 16 (
+<a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/bitspersample.html">BitsPerSample</a> =16 and
+<a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/sampleformat.html">SampleFormat</a> = INT),
+Unsigned Int 16 (BitsPerSample=16 and SampleFormat=UINT), Signed Int 32 or Unsigned Int 32 generally with an
+associate scale/offset.
+On the reading side, only those three data types will be supported as well.</p></li>
+<li><p>Files hosted on the CDN will have a <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/photometricinterpretation.html">PhotometricInterpretation</a> = MinIsBlack.
+It will be assumed, and ignored on the reading side.</p></li>
+<li><p>Files hosted on the CDN will nominally have:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/samplesperpixel.html">SamplesPerPixel</a> = 2
+for horizontal shift grid, with the first sample being the longitude offset
+and the second sample being the latitude offset.</p></li>
+<li><p>SamplesPerPixel = 1 for vertical shift grids.</p></li>
+<li><p>SamplesPerPixel = 3 for deformation models combining
+horizontal and vertical adjustments.</p></li>
+</ul>
+</div></blockquote>
+<p>And even for the current identified needs of horizontal or vertical shifts,
+more samples may be present (to indicate for example uncertainties), but
+will be ignored by PROJ.</p>
+<p>The <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/extrasamples.html">ExtraSamples</a>
+tag should be set to a value of SamplesPerPixel - 1 (given the rules that
+apply for PhotometricInterpretation = MinIsBlack)</p>
+</div></blockquote>
+</li>
+<li><p>The <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/imagedescription.html">ImageDescription</a>
+tag may be used to convey extra information about the name, provenance, version
+and last updated date of the grid.
+Will be set when possible for files hosted on the CDN.
+Ignored by PROJ.</p></li>
+<li><p>The <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/copyright.html">Copyright</a>
+tag may be used to convey extra information about the copyright and license of the grid.
+Will be set when possible for files hosted on the CDN.
+Ignored by PROJ.</p></li>
+<li><p>The <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/datetime.html">DateTime</a>
+tag may be used to convey the date at which the file has been created or
+converted. In case of a file conversion, for example from NTv2, this will be
+the date at which the conversion has been performed. The <code class="docutils literal notranslate"><span class="pre">ImageDescription</span></code>
+tag however will contain the latest of the CREATED or UPDATED fields from the NTv2 file.
+Will be set when possible for files hosted on the CDN.
+Ignored by PROJ.</p></li>
+<li><p>Files hosted on the CDN will use the <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/gdal_nodata.html">GDAL_NODATA</a> tag to encode
+the value of the nodata / missing value, when it applies to the grid.</p>
+<p>If offset and/or scaling is used, the nodata value corresponds to the raw value,
+before applying offset and scaling.
+The value found in this tag, if present, will be honoured (to the extent to
+which current PROJ code makes use of nodata).
+For floating point data, writers are strongly discouraged to use non-finite values
+(+/- infinity, NaN) of nodata to maximimize interoperability.
+The GDAL_NODATA value applies to all samples of a given TIFF IFD.</p>
+</li>
+<li><p>Files hosted on the CDN will use the <a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/gdal_metadata.html">GDAL_METADATA</a> tag to encode extra
+metadata not supported by baseline or extended TIFF.</p>
+<ul>
+<li><p>The root XML node should be <code class="docutils literal notranslate"><span class="pre">GDALMetadata</span></code></p></li>
+<li><p>Zero, one or several child XML nodes <code class="docutils literal notranslate"><span class="pre">Item</span></code> may be present.</p></li>
+<li><p>A Item should have a <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute, and a child text node with its value.
+<code class="docutils literal notranslate"><span class="pre">role</span></code> and <code class="docutils literal notranslate"><span class="pre">sample</span></code> attributes may be present for attributes that have
+a special semantics (recognized by GDAL). The value of <cite>sample</cite> should be
+a integer value between 0 and number_of_samples - 1.</p></li>
+<li><p>Scale and offset to convert integer raw values to floating point values
+may be expressed with XML <cite>Item</cite> elements whose name attribute is respectively
+<code class="docutils literal notranslate"><span class="pre">SCALE</span></code> and <code class="docutils literal notranslate"><span class="pre">OFFSET</span></code>, and their <code class="docutils literal notranslate"><span class="pre">role</span></code> attribute is respectively <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+and <code class="docutils literal notranslate"><span class="pre">offset</span></code>. The decoded value will be: {offset} + {scale} * raw_value_from_geotiff_file</p>
+<p>For a offset value of 1 and scaling of 2, the following payload should be
+stored:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;GDALMetadata&gt;</span>
+    <span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;OFFSET&quot;</span> <span class="na">sample=</span><span class="s">&quot;0&quot;</span> <span class="na">role=</span><span class="s">&quot;offset&quot;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/Item&gt;</span>
+    <span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;SCALE&quot;</span> <span class="na">sample=</span><span class="s">&quot;0&quot;</span> <span class="na">role=</span><span class="s">&quot;scale&quot;</span><span class="nt">&gt;</span>2<span class="nt">&lt;/Item&gt;</span>
+<span class="nt">&lt;/GDALMetadata&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>The type of the grid must be specified with a <cite>Item</cite> whose <code class="docutils literal notranslate"><span class="pre">name</span></code> is set
+to <code class="docutils literal notranslate"><span class="pre">TYPE</span></code>.</p>
+<p>Values recognized by PROJ currently are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HORIZONTAL_OFFSET</span></code>: implies the presence of at least two samples.
+The first sample must contain the latitude offset and the second
+sample must contain the longitude offset.
+Corresponds to PROJ <a class="reference internal" href="../operations/transformations/hgridshift.html#hgridshift"><span class="std std-ref">Horizontal grid shift</span></a> method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL_OFFSET_GEOGRAPHIC_TO_VERTICAL</span></code>: implies the presence of at least one sample.
+The first sample must contain the vertical adjustment. Must be used when
+the source/interpolation CRS is a Geographic CRS and the target CRS a Vertical CRS.
+Corresponds to PROJ  <a class="reference internal" href="../operations/transformations/vgridshift.html#vgridshift"><span class="std std-ref">Vertical grid shift</span></a> method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VERTICAL_OFFSET_VERTICAL_TO_VERTICAL</span></code>: implies the presence of at least one sample.
+The first sample must contain the vertical adjustment. Must be used when
+the source and target CRS are Vertical CRS.
+Corresponds to PROJ <a class="reference internal" href="../operations/transformations/vgridshift.html#vgridshift"><span class="std std-ref">Vertical grid shift</span></a> method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GEOCENTRIC_TRANSLATION</span></code>: implies the presence of at least 3 samples.
+The first 3 samples must be respectively the geocentric adjustments along
+the X, Y and Z axis. Must be used when the source and target CRS are
+geocentric CRS. The interpolation CRS must be a geographic CRS.
+Corresponds to PROJ <a class="reference internal" href="../operations/transformations/xyzgridshift.html#xyzgridshift"><span class="std std-ref">Geocentric grid shift</span></a> method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VELOCITY</span></code>: implies the presence of at least 3 samples.
+The first 3 samples must be respectively the velocities along
+the E(ast), N(orth), U(p) axis in the local topocentric coordinate system.
+Corresponds to PROJ <a class="reference internal" href="../operations/transformations/deformation.html#deformation"><span class="std std-ref">Kinematic datum shifting utilizing a deformation model</span></a> method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEFORMATION_MODEL</span></code>: implies the presence of the <code class="docutils literal notranslate"><span class="pre">DISPLACEMENT_TYPE</span></code>
+and <code class="docutils literal notranslate"><span class="pre">UNCERTAINTY_TYPE</span></code> metadata items.
+Corresponds to PROJ <a class="reference internal" href="../operations/transformations/defmodel.html#defmodel"><span class="std std-ref">Multi-component time-based deformation model</span></a> method.</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;TYPE&quot;</span><span class="nt">&gt;</span>HORIZONTAL_OFFSET<span class="nt">&lt;/Item&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>The description of each sample must be specified with a Item whose <code class="docutils literal notranslate"><span class="pre">name</span></code>
+attribute is set to <code class="docutils literal notranslate"><span class="pre">DESCRIPTION</span></code> and <code class="docutils literal notranslate"><span class="pre">role</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">description</span></code>.</p>
+<p>Values recognized by PROJ for this Item are currently:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">latitude_offset</span></code>: valid for TYPE=HORIZONTAL_OFFSET. Sample values should be
+the value to add a latitude expressed in the CRS encoded in the GeoKeys
+to obtain a latitude value expressed in the target CRS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">longitude_offset</span></code>: valid for TYPE=HORIZONTAL_OFFSET. Sample values should be
+the value to add a longitude expressed in the CRS encoded in the GeoKeys
+to obtain a longitude value expressed in the target CRS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geoid_undulation</span></code>: valid for TYPE=VERTICAL_OFFSET_GEOGRAPHIC_TO_VERTICAL.
+For a source CRS being a geographic CRS and a target CRS being a vertical CRS,
+sample values should be the value to add to a geoid-related height (that
+is expressed in the target CRS) to
+get an ellipsoidal height (that is expressed in the source CRS), also
+called the geoid undulation.
+Note the possible confusion related to what is the source CRS and target CRS and
+the semantics of the value stored (to convert from the source to the target,
+one must subtract the value contained in the grid). This is the convention
+used by the <a class="reference external" href="https://www.epsg-registry.org/export.htm?gml=urn:ogc:def:method:EPSG::9665">EPSG:9665</a>
+operation method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vertical_offset</span></code>: valid for TYPE=VERTICAL_OFFSET_VERTICAL_TO_VERTICAL.
+For a source and target CRS being vertical CRS,
+sample values should be the value to add to an elevation expressed in the
+source CRS to obtain a longitude value expressed in the target CRS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x_translation</span></code> / <code class="docutils literal notranslate"><span class="pre">y_translation</span></code> / <code class="docutils literal notranslate"><span class="pre">z_translation</span></code>: valid for
+TYPE=GEOCENTRIC_TRANSLATION.
+Sample values should be the value to add to the input geocentric coordinates
+expressed in the source CRS to geocentric coordinates expressed in the target CRS.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">east_velocity</span></code> / <code class="docutils literal notranslate"><span class="pre">north_velocity</span></code> / <code class="docutils literal notranslate"><span class="pre">up_velocity</span></code>: valid for
+TYPE=VELOCITY.
+Sample values should be the velocity in a linear/time unit in a ENU local
+topocentric coordinate system.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">east_offset</span></code> / <code class="docutils literal notranslate"><span class="pre">north_offset</span></code> / <code class="docutils literal notranslate"><span class="pre">vertical_offset</span></code>: valid for
+TYPE=DEFORMATION_MODEL.
+For east_offset and north_offset, the unit might be degree or metre.
+For vertical_offset, the unit must be metre.</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;DESCRIPTION&quot;</span> <span class="na">sample=</span><span class="s">&quot;0&quot;</span> <span class="na">role=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>latitude_offset<span class="nt">&lt;/Item&gt;</span>
+<span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;DESCRIPTION&quot;</span> <span class="na">sample=</span><span class="s">&quot;1&quot;</span> <span class="na">role=</span><span class="s">&quot;description&quot;</span><span class="nt">&gt;</span>longitude_offset<span class="nt">&lt;/Item&gt;</span>
+</pre></div>
+</div>
+<p>Other values may be used (not used by PROJ):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">latitude_offset_accuracy</span></code>: valid for TYPE=HORIZONTAL_OFFSET. Sample values should be
+the accuracy of corresponding latitude_offset samples. Generally in metre (if converted from NTv2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">longitude_offset_accuracy</span></code>: valid for TYPE=HORIZONTAL_OFFSET. Sample values should be
+the accuracy of corresponding longitude_offset samples. Generally in metre (if converted from NTv2)</p></li>
+</ul>
+</li>
+<li><p>The sign convention for the values of the <code class="docutils literal notranslate"><span class="pre">longitude_offset</span></code> channel
+should be indicated with an Item named <code class="docutils literal notranslate"><span class="pre">positive_value</span></code> whose value
+can be <code class="docutils literal notranslate"><span class="pre">west</span></code> or <code class="docutils literal notranslate"><span class="pre">east</span></code>. NTv2 products originally use a <code class="docutils literal notranslate"><span class="pre">west</span></code>
+convention, but when converting from them to GeoTIFF, the sign of those
+samples will be inverted so they use a more natural <code class="docutils literal notranslate"><span class="pre">east</span></code> convention.
+If this item is absent, the default value is <code class="docutils literal notranslate"><span class="pre">east</span></code>.</p></li>
+<li><p>The unit of the values stored in the grid must be specified for each
+sample through an Item of name <code class="docutils literal notranslate"><span class="pre">UNITTYPE</span></code> and role <code class="docutils literal notranslate"><span class="pre">unittype</span></code>
+Valid values should be the name of entries from the EPSG <code class="docutils literal notranslate"><span class="pre">unitofmeasure</span></code>
+table. To maximize interoperability, writers are strongly encouraged to
+limit themselves to the following values:</p>
+<p>For linear units:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">metre</span></code> (default value assumed if absent for vertical shift grid files, and value used for files stored on PROJ CDN)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">US</span> <span class="pre">survey</span> <span class="pre">foot</span></code></p></li>
+</ul>
+<p>For angular units:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">degree</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arc-second</span></code> (default value assumed if absent for longitude and latitude offset samples of horizontal shift grid files, and value used for files stored on PROJ CDN)</p></li>
+</ul>
+<p>For velocity units:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">millimetres</span> <span class="pre">per</span> <span class="pre">year</span></code></p></li>
+</ul>
+<p>The longitude and latitude offset samples should use the same unit.
+The geocentric translation samples should use the same unit.
+The velocity samples should use the same unit.</p>
+<p>Example:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;UNITTYPE&quot;</span> <span class="na">sample=</span><span class="s">&quot;0&quot;</span> <span class="na">role=</span><span class="s">&quot;unittype&quot;</span><span class="nt">&gt;</span>arc-second<span class="nt">&lt;/Item&gt;</span>
+<span class="nt">&lt;Item</span> <span class="na">name=</span><span class="s">&quot;UNITTYPE&quot;</span> <span class="na">sample=</span><span class="s">&quot;1&quot;</span> <span class="na">role=</span><span class="s">&quot;unittype&quot;</span><span class="nt">&gt;</span>arc-second<span class="nt">&lt;/Item&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>For TYPE=DEFORMATION_MODEL, the type of the displacement must be specified
+with a <cite>Item</cite> whose <code class="docutils literal notranslate"><span class="pre">name</span></code> is set to <code class="docutils literal notranslate"><span class="pre">DISPLACEMENT_TYPE</span></code>.</p>
+<p>The accepted values are: <code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span></code>, <code class="docutils literal notranslate"><span class="pre">VERTICAL</span></code>, <code class="docutils literal notranslate"><span class="pre">3D</span></code> or <code class="docutils literal notranslate"><span class="pre">NONE</span></code></p>
+</li>
+<li><p>For TYPE=DEFORMATION_MODEL, the type of the uncertainty must be specified
+with a <cite>Item</cite> whose <code class="docutils literal notranslate"><span class="pre">name</span></code> is set to <code class="docutils literal notranslate"><span class="pre">UNCERTAINTY_TYPE</span></code>.</p>
+<p>The accepted values are: <code class="docutils literal notranslate"><span class="pre">HORIZONTAL</span></code>, <code class="docutils literal notranslate"><span class="pre">VERTICAL</span></code>, <code class="docutils literal notranslate"><span class="pre">3D</span></code> or <code class="docutils literal notranslate"><span class="pre">NONE</span></code></p>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">target_crs_epsg_code</span></code> metadata item should be present.
+For a horizontal shift grid, this is the EPSG
+code of the target geographic CRS. For a vertical shift grid, this is the
+EPSG code of a the target vertical CRS.
+If the target CRS has no associated EPSG code, <code class="docutils literal notranslate"><span class="pre">target_crs_wkt</span></code> must be
+used.
+Ignored by PROJ currently.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">target_crs_wkt</span></code> metadata item must be present if the
+<code class="docutils literal notranslate"><span class="pre">target_crs_epsg_code</span></code> cannot be used.
+Its value should be a valid WKT string according to
+<a class="reference external" href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT:2015</a>
+or <a class="reference external" href="hhttp://docs.opengeospatial.org/is/18-010r7/18-010r7.html">WKT:2019</a>
+Ignored by PROJ currently.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">source_crs_epsg_code</span></code> metadata item must be present if the source
+and interpolation CRS are not the same (typical use case is vertical CRS to vertical CRS
+transformation), because the GeoKeys encode the interpolation CRS and not the source CRS.
+If the source CRS has no associated EPSG code, <code class="docutils literal notranslate"><span class="pre">source_crs_wkt</span></code> must be
+used.
+Ignored by PROJ currently.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">source_crs_wkt</span></code> metadata item must be present if the
+<code class="docutils literal notranslate"><span class="pre">source_crs_epsg_code</span></code> cannot be used.
+Its value should be a valid WKT string according to WKT:2015 or WKT:2019.
+Ignored by PROJ currently.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">interpolation_crs_wkt</span></code> metadata item may be present if the GeoKeys
+cannot be used to express reliably the interpolation CRS.
+Its value should be a valid WKT string according to WKT:2015 or WKT:2019.
+Ignored by PROJ currently.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">recommended_interpolation_method</span></code> metadata item may be present to
+describe the method to use to interpolation values at locations not
+coincident with nodes stored in the grid file. Potential values: <code class="docutils literal notranslate"><span class="pre">bilinear</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bicubic</span></code>.
+Ignored by PROJ currently.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">area_of_use</span></code> metadata item can be used to indicate plain text information
+about the area of use of the grid (like “USA - Wisconsin”). In case of multiple
+subgrids, it should be set only on the first one, but applies to the whole
+set of grids, not just the first one.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">grid_name</span></code> metadata item should be present if there are
+subgrids for this grid (that is grids whose extent is contained in the extent
+of this grid), or if this is a subgrid.
+It is intended to be a relatively short identifier
+Will be ignored by PROJ (this information can be inferred by the grids extent)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">parent_grid_name</span></code> metadata item should be present if this is a
+subgrid and its value should be equal to the parent’s <code class="docutils literal notranslate"><span class="pre">grid_name</span></code>
+Will be ignored by PROJ (this information can be inferred by the grids extent)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">number_of_nested_grids</span></code> metadata item should be present if there are
+subgrids for this grid (that is grids whose extent is contained in the extent
+of this grid).
+Will be ignored by PROJ (this information can be inferred by the grids extent)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/OSGeo/PROJ-data/blob/master/fr_ign/fr_ign_ntf_r93.tif">https://github.com/OSGeo/PROJ-data/blob/master/fr_ign/fr_ign_ntf_r93.tif</a> has
+been converted from <a class="reference external" href="https://github.com/OSGeo/proj-datumgrid/blob/master/ntf_r93.gsb">https://github.com/OSGeo/proj-datumgrid/blob/master/ntf_r93.gsb</a>
+with <a class="reference external" href="https://github.com/OSGeo/PROJ-data/blob/master/grid_tools/ntv2_to_gtiff.py">https://github.com/OSGeo/PROJ-data/blob/master/grid_tools/ntv2_to_gtiff.py</a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ tiffinfo ntf_r93.tif
+
+TIFF Directory at offset 0x4e (78)
+Image Width: 156 Image Length: 111
+Bits/Sample: 32
+Sample Format: IEEE floating point
+Compression Scheme: AdobeDeflate
+Photometric Interpretation: min-is-black
+Extra Samples: 3&lt;unspecified, unspecified, unspecified&gt;
+Samples/Pixel: 4
+Rows/Strip: 111
+Planar Configuration: separate image planes
+ImageDescription: NTF (EPSG:4275) to RGF93 (EPSG:4171). Converted from ntf_r93.gsb (version IGN07_01, last updated on 2007-10-31)
+DateTime: 2019:12:09 00:00:00
+Copyright: Derived from work by IGN France. Open License https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+Tag 33550: 0.100000,0.100000,0.000000
+Tag 33922: 0.000000,0.000000,0.000000,-5.500000,52.000000,0.000000
+Tag 34735: 1,1,1,3,1024,0,1,2,1025,0,1,2,2048,0,1,4275
+Tag 42112: &lt;GDALMetadata&gt;
+&lt;Item name=&quot;grid_name&quot;&gt;FRANCE&lt;/Item&gt;
+&lt;Item name=&quot;target_crs_epsg_code&quot;&gt;4171&lt;/Item&gt;
+&lt;Item name=&quot;TYPE&quot;&gt;HORIZONTAL_OFFSET&lt;/Item&gt;
+&lt;Item name=&quot;UNITTYPE&quot; sample=&quot;0&quot; role=&quot;unittype&quot;&gt;arc-second&lt;/Item&gt;
+&lt;Item name=&quot;DESCRIPTION&quot; sample=&quot;0&quot; role=&quot;description&quot;&gt;latitude_offset&lt;/Item&gt;
+&lt;Item name=&quot;positive_value&quot; sample=&quot;1&quot;&gt;east&lt;/Item&gt;
+&lt;Item name=&quot;UNITTYPE&quot; sample=&quot;1&quot; role=&quot;unittype&quot;&gt;arc-second&lt;/Item&gt;
+&lt;Item name=&quot;DESCRIPTION&quot; sample=&quot;1&quot; role=&quot;description&quot;&gt;longitude_offset&lt;/Item&gt;
+&lt;Item name=&quot;UNITTYPE&quot; sample=&quot;2&quot; role=&quot;unittype&quot;&gt;arc-second&lt;/Item&gt;
+&lt;Item name=&quot;DESCRIPTION&quot; sample=&quot;2&quot; role=&quot;description&quot;&gt;latitude_offset_accuracy&lt;/Item&gt;
+&lt;Item name=&quot;UNITTYPE&quot; sample=&quot;3&quot; role=&quot;unittype&quot;&gt;arc-second&lt;/Item&gt;
+&lt;Item name=&quot;DESCRIPTION&quot; sample=&quot;3&quot; role=&quot;description&quot;&gt;longitude_offset_accuracy&lt;/Item&gt;
+&lt;/GDALMetadata&gt;
+
+Predictor: floating point predictor 3 (0x3)
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ listgeo ntf_r93.tif
+
+Geotiff_Information:
+    Version: 1
+    Key_Revision: 1.1
+    Tagged_Information:
+        ModelTiepointTag (2,3):
+            0                 0                 0
+            -5.5              52                0
+        ModelPixelScaleTag (1,3):
+            0.1               0.1               0
+        End_Of_Tags.
+    Keyed_Information:
+        GTModelTypeGeoKey (Short,1): ModelTypeGeographic
+        GTRasterTypeGeoKey (Short,1): RasterPixelIsPoint
+        GeodeticCRSGeoKey (Short,1): Code-4275 (NTF)
+        End_Of_Keys.
+    End_Of_Geotiff.
+
+GCS: 4275/NTF
+Datum: 6275/Nouvelle Triangulation Francaise
+Ellipsoid: 7011/Clarke 1880 (IGN) (6378249.20,6356515.00)
+Prime Meridian: 8901/Greenwich (0.000000/  0d 0&#39; 0.00&quot;E)
+Projection Linear Units: User-Defined (1.000000m)
+
+Corner Coordinates:
+Upper Left    (  5d30&#39; 0.00&quot;W, 52d 0&#39; 0.00&quot;N)
+Lower Left    (  5d30&#39; 0.00&quot;W, 40d54&#39; 0.00&quot;N)
+Upper Right   ( 10d 6&#39; 0.00&quot;E, 52d 0&#39; 0.00&quot;N)
+Lower Right   ( 10d 6&#39; 0.00&quot;E, 40d54&#39; 0.00&quot;N)
+Center        (  2d18&#39; 0.00&quot;E, 46d27&#39; 0.00&quot;N)
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ gdalinfo ntf_r93.tif
+
+Driver: GTiff/GeoTIFF
+Files: ntf_r93.tif
+Size is 156, 111
+Coordinate System is:
+GEOGCRS[&quot;NTF&quot;,
+    DATUM[&quot;Nouvelle Triangulation Francaise&quot;,
+        ELLIPSOID[&quot;Clarke 1880 (IGN)&quot;,6378249.2,293.466021293627,
+            LENGTHUNIT[&quot;metre&quot;,1]]],
+    PRIMEM[&quot;Greenwich&quot;,0,
+        ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+            ORDER[1],
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+            ORDER[2],
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+    ID[&quot;EPSG&quot;,4275]]
+Data axis to CRS axis mapping: 2,1
+Origin = (-5.550000000000000,52.049999999999997)
+Pixel Size = (0.100000000000000,-0.100000000000000)
+Metadata:
+  AREA_OR_POINT=Point
+  grid_name=FRANCE
+  target_crs_epsg_code=4171
+  TIFFTAG_DATETIME=2019:12:09 00:00:00
+  TIFFTAG_IMAGEDESCRIPTION=NTF (EPSG:4275) to RGF93 (EPSG:4171). Converted from ntf_r93.gsb (version IGN07_01, last updated on 2007-10-31)
+  TYPE=HORIZONTAL_OFFSET
+Image Structure Metadata:
+  COMPRESSION=DEFLATE
+  INTERLEAVE=BAND
+Corner Coordinates:
+Upper Left  (  -5.5500000,  52.0500000) (  5d33&#39; 0.00&quot;W, 52d 3&#39; 0.00&quot;N)
+Lower Left  (  -5.5500000,  40.9500000) (  5d33&#39; 0.00&quot;W, 40d57&#39; 0.00&quot;N)
+Upper Right (  10.0500000,  52.0500000) ( 10d 3&#39; 0.00&quot;E, 52d 3&#39; 0.00&quot;N)
+Lower Right (  10.0500000,  40.9500000) ( 10d 3&#39; 0.00&quot;E, 40d57&#39; 0.00&quot;N)
+Center      (   2.2500000,  46.5000000) (  2d15&#39; 0.00&quot;E, 46d30&#39; 0.00&quot;N)
+Band 1 Block=156x111 Type=Float32, ColorInterp=Gray
+  Description = latitude_offset
+  Unit Type: arc-second
+Band 2 Block=156x111 Type=Float32, ColorInterp=Undefined
+  Description = longitude_offset
+  Unit Type: arc-second
+  Metadata:
+    positive_value=east
+Band 3 Block=156x111 Type=Float32, ColorInterp=Undefined
+  Description = latitude_offset_accuracy
+  Unit Type: arc-second
+Band 4 Block=156x111 Type=Float32, ColorInterp=Undefined
+  Description = longitude_offset_accuracy
+  Unit Type: arc-second
+</pre></div>
+</div>
+</section>
+<section id="multi-grid-storage">
+<h2>Multi-grid storage<a class="headerlink" href="#multi-grid-storage" title="Permalink to this headline">¶</a></h2>
+<p>Formats like NTv2 can contain multiple subgrids. This can be transposed to
+TIFF by using several IFD chained together with the last 4 bytes (or 8 bytes
+for BigTIFF) of an IFD pointing to the offset of the next one.</p>
+<p>The first IFD should have a full description according to the
+<a class="reference internal" href="#gtg-general-description"><span class="std std-ref">General description</span></a>.
+Subsequent IFD might have a more compact description, omitting for example, CRS
+information if it is identical to the main IFD (which should be the case for
+the currently envisionned use cases), or Copyright / ImageDescription metadata
+items.</p>
+<p>Each IFD will have its
+<a class="reference external" href="https://www.awaresystems.be/imaging/tiff/tifftags/newsubfiletype.html">NewSubfileType</a>
+tag set to 0.</p>
+<p>If a low-resolution grid is available, it should be put before subgrids of
+higher-resolution in the chain of IFD linking. On reading, PROJ will use the
+value from the highest-resolution grid that contains the point of interest.</p>
+<p>For efficient reading from the network, files hosted on the CDN will use
+a layout similar to the one described in the <a class="reference external" href="https://gdal.org/drivers/raster/cog.html#low-level">low level paragraph of the Cloud Optimized GeoTIFF
+GDAL driver page</a></p>
+<p>The layout for a file converted from NTv2 will for example be:</p>
+<ul class="simple">
+<li><p>TIFF/BigTIFF header/signature and pointer to first IFD (Image File Directory)</p></li>
+<li><p>“ghost area” indicating the generated process</p></li>
+<li><p>IFD of the first grid, followed by TIFF tags values, excluding the TileOffsets and TileByteCounts arrays</p></li>
+<li><p>…</p></li>
+<li><p>IFD of the last grid, followed by TIFF tags values, excluding the GDAL_METADATA tag, TileOffsets and TileByteCounts arrays</p></li>
+<li><p>TileOffsets and TileByteCounts arrays for first IFD</p></li>
+<li><p>…</p></li>
+<li><p>TileOffsets and TileByteCounts arrays for last IFD</p></li>
+<li><p>Value of GDAL_METADATA tag for IFDs following the first IFD</p></li>
+<li><p>First IFD: Data corresponding to latitude offset of Block_0_0</p></li>
+<li><p>First IFD: Data corresponding to longitude offset of Block_0_0</p></li>
+<li><p>First IFD: Data corresponding to latitude offset of Block_0_1</p></li>
+<li><p>First IFD: Data corresponding to longitude offset of Block_0_1</p></li>
+<li><p>…</p></li>
+<li><p>First IFD: Data corresponding to latitude offset of Block_n_m</p></li>
+<li><p>First IFD: Data corresponding to longitude offset of Block_n_m</p></li>
+<li><p>…</p></li>
+<li><p>Last IFD: Data corresponding to latitude offset of Block_0_0</p></li>
+<li><p>Last IFD: Data corresponding to longitude offset of Block_0_0</p></li>
+<li><p>Last IFD: Data corresponding to latitude offset of Block_0_1</p></li>
+<li><p>Last IFD: Data corresponding to longitude offset of Block_0_1</p></li>
+<li><p>…</p></li>
+<li><p>Last IFD: Data corresponding to latitude offset of Block_n_m</p></li>
+<li><p>Last IFD: Data corresponding to longitude offset of Block_n_m</p></li>
+</ul>
+<p>If longitude_offset_accuracy and latitude_offset_accuracy are present, this
+will be followed by:</p>
+<ul class="simple">
+<li><p>First IFD: Data corresponding to latitude offset accuracy of Block_0_0</p></li>
+<li><p>First IFD: Data corresponding to longitude offset accuracy of Block_0_0</p></li>
+<li><p>…</p></li>
+<li><p>First IFD: Data corresponding to latitude offset accuracy of Block_n_m</p></li>
+<li><p>First IFD: Data corresponding to longitude offset accuracy of Block_n_m</p></li>
+<li><p>…</p></li>
+<li><p>Last IFD: Data corresponding to latitude offset accuracy of Block_0_0</p></li>
+<li><p>Last IFD: Data corresponding to longitude offset accuracy of Block_0_0</p></li>
+<li><p>…</p></li>
+<li><p>Last IFD: Data corresponding to latitude offset accuracy of Block_n_m</p></li>
+<li><p>Last IFD: Data corresponding to longitude offset accuracy of Block_n_m</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TIFF has another mechanism to link IFDs, the SubIFD tag. This potentially
+enables to define a hierarchy of IFDs (similar to HDF5 groups). There is no
+support for that in most TIFF-using software, notably GDAL, and no compelling
+need to have a nested hierarchy, so “flat” organization with the standard IFD chaining
+mechanism is adopted.</p>
+</div>
+</section>
+<section id="examples-of-multi-grid-dataset">
+<h2>Examples of multi-grid dataset<a class="headerlink" href="#examples-of-multi-grid-dataset" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/OSGeo/PROJ-data/blob/master/au_icsm/au_icsm_GDA94_GDA2020_conformal.tif">https://github.com/OSGeo/PROJ-data/blob/master/au_icsm/au_icsm_GDA94_GDA2020_conformal.tif</a> has
+been converted from <a class="reference external" href="https://github.com/OSGeo/proj-datumgrid/blob/master/oceania/GDA94_GDA2020_conformal.gsb">https://github.com/OSGeo/proj-datumgrid/blob/master/oceania/GDA94_GDA2020_conformal.gsb</a>
+with <a class="reference external" href="https://github.com/OSGeo/PROJ-data/blob/master/grid_tools/ntv2_to_gtiff.py">https://github.com/OSGeo/PROJ-data/blob/master/grid_tools/ntv2_to_gtiff.py</a></p>
+<p>It contains 5 subgrids. All essential metadata to list the subgrids and their
+georeferencing is contained within the first 3 KB of the file.</p>
+<p>The file size is 4.8 MB using DEFLATE compression and floating-point predictor.
+To be compared with the 83 MB of the original .gsb file.</p>
+<p><a class="reference external" href="https://github.com/OSGeo/PROJ-data/blob/master/ca_nrc/ca_nrc_ntv2_0.tif">https://github.com/OSGeo/PROJ-data/blob/master/ca_nrc/ca_nrc_ntv2_0.tif</a> has
+been converted from <a class="reference external" href="https://github.com/OSGeo/proj-datumgrid/blob/master/north-america/ntv2_0.gsb">https://github.com/OSGeo/proj-datumgrid/blob/master/north-america/ntv2_0.gsb</a></p>
+<p>It contains 114 subgrids. All essential metadata to list the subgrids and their
+georeferencing is contained within the first 40 KB of the file.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../community/index.html" class="btn btn-neutral float-right" title="Community" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="projjson.html" class="btn btn-neutral float-left" title="PROJJSON" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

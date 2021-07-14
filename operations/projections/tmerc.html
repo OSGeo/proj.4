@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Transverse Mercator &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/projections/tmerc.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tobler-Mercator" href="tobmerc.html" />
+    <link rel="prev" title="Tissot" href="tissot.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Projections</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="adams_hemi.html">Adams Hemisphere in a Square</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adams_ws1.html">Adams World in a Square I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adams_ws2.html">Adams World in a Square II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aea.html">Albers Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aeqd.html">Azimuthal Equidistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="airy.html">Airy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aitoff.html">Aitoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alsk.html">Modified Stereographic of Alaska</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apian.html">Apian Globular I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="august.html">August Epicycloidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bacon.html">Bacon Globular</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bertin1953.html">Bertin 1953</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bipc.html">Bipolar conic of western hemisphere</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boggs.html">Boggs Eumorphic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bonne.html">Bonne (Werner lat_1=90)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calcofi.html">Cal Coop Ocean Fish Invest Lines/Stations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cass.html">Cassini (Cassini-Soldner)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cc.html">Central Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ccon.html">Central Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cea.html">Equal Area Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chamb.html">Chamberlin Trimetric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collg.html">Collignon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="col_urban.html">Colombia Urban</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comill.html">Compact Miller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crast.html">Craster Parabolic (Putnins P4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="denoy.html">Denoyer Semi-Elliptical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck1.html">Eckert I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck2.html">Eckert II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck3.html">Eckert III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck4.html">Eckert IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck5.html">Eckert V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck6.html">Eckert VI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqc.html">Equidistant Cylindrical (Plate Carrée)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqdc.html">Equidistant Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqearth.html">Equal Earth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="euler.html">Euler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fahey.html">Fahey</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fouc.html">Foucaut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fouc_s.html">Foucaut Sinusoidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gall.html">Gall (Gall Stereographic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geos.html">Geostationary Satellite View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gins8.html">Ginsburg VIII (TsNIIGAiK)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gn_sinu.html">General Sinusoidal Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gnom.html">Gnomonic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goode.html">Goode Homolosine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gs48.html">Modified Stereographic of 48 U.S.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gs50.html">Modified Stereographic of 50 U.S.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guyou.html">Guyou</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hammer.html">Hammer &amp; Eckert-Greifendorff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatano.html">Hatano Asymmetrical Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="healpix.html">HEALPix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rhealpix.html">rHEALPix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="igh.html">Interrupted Goode Homolosine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="igh_o.html">Interrupted Goode Homolosine (Oceanic View)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imw_p.html">International Map of the World Polyconic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="isea.html">Icosahedral Snyder Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kav5.html">Kavraisky V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kav7.html">Kavraisky VII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="krovak.html">Krovak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labrd.html">Laborde</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laea.html">Lambert Azimuthal Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lagrng.html">Lagrange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="larr.html">Larrivee</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lask.html">Laskowski</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcc.html">Lambert Conformal Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcca.html">Lambert Conformal Conic Alternative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="leac.html">Lambert Equal Area Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lee_os.html">Lee Oblated Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loxim.html">Loximuthal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lsat.html">Space oblique for LANDSAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbt_s.html">McBryde-Thomas Flat-Polar Sine (No. 1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbt_fps.html">McBryde-Thomas Flat-Pole Sine (No. 2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbtfpp.html">McBride-Thomas Flat-Polar Parabolic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbtfpq.html">McBryde-Thomas Flat-Polar Quartic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbtfps.html">McBryde-Thomas Flat-Polar Sinusoidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merc.html">Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mil_os.html">Miller Oblated Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mill.html">Miller Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misrsom.html">Space oblique for MISR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="moll.html">Mollweide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="murd1.html">Murdoch I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="murd2.html">Murdoch II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="murd3.html">Murdoch III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="natearth.html">Natural Earth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="natearth2.html">Natural Earth II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nell.html">Nell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nell_h.html">Nell-Hammer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nicol.html">Nicolosi Globular</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nsper.html">Near-sided perspective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nzmg.html">New Zealand Map Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ob_tran.html">General Oblique Transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ocea.html">Oblique Cylindrical Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oea.html">Oblated Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omerc.html">Oblique Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ortel.html">Ortelius Oval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ortho.html">Orthographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patterson.html">Patterson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pconic.html">Perspective Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="peirce_q.html">Peirce Quincuncial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="poly.html">Polyconic (American)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp1.html">Putnins P1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp2.html">Putnins P2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp3.html">Putnins P3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp3p.html">Putnins P3’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp4p.html">Putnins P4’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp5.html">Putnins P5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp5p.html">Putnins P5’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp6.html">Putnins P6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp6p.html">Putnins P6’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qua_aut.html">Quartic Authalic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qsc.html">Quadrilateralized Spherical Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="robin.html">Robinson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rouss.html">Roussilhe Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpoly.html">Rectangular Polyconic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sch.html">Spherical Cross-track Height</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sinu.html">Sinusoidal (Sanson-Flamsteed)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="somerc.html">Swiss Oblique Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stere.html">Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sterea.html">Oblique Stereographic Alternative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gstmerc.html">Gauss-Schreiber Transverse Mercator (aka Gauss-Laborde Reunion)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tcc.html">Transverse Central Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tcea.html">Transverse Cylindrical Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="times.html">Times</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tissot.html">Tissot</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Transverse Mercator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-definition">Mathematical definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tobmerc.html">Tobler-Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tpeqd.html">Two Point Equidistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tpers.html">Tilted perspective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ups.html">Universal Polar Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urm5.html">Urmaev V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urmfps.html">Urmaev Flat-Polar Sinusoidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utm.html">Universal Transverse Mercator (UTM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg.html">van der Grinten (I)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg2.html">van der Grinten II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg3.html">van der Grinten III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg4.html">van der Grinten IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitk1.html">Vitkovsky I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag1.html">Wagner I (Kavraisky VI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag2.html">Wagner II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag3.html">Wagner III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag4.html">Wagner IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag5.html">Wagner V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag6.html">Wagner VI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag7.html">Wagner VII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webmerc.html">Web Mercator / Pseudo Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="weren.html">Werenskiold I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wink1.html">Winkel I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wink2.html">Winkel II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wintri.html">Winkel Tripel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../conversions/index.html">Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transformations/index.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Projections</a> &raquo;</li>
+        
+      <li>Transverse Mercator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/projections/tmerc.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="tobmerc.html" class="btn btn-neutral float-right" title="Tobler-Mercator" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="tissot.html" class="btn btn-neutral float-left" title="Tissot" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="transverse-mercator">
+<span id="tmerc"></span><h1>Transverse Mercator<a class="headerlink" href="#transverse-mercator" title="Permalink to this headline">¶</a></h1>
+<p>The transverse Mercator projection in its various forms is the most widely used projected coordinate system for world topographical and offshore mapping.
+It is a conformal projection in which a chosen meridian projects to a
+straight line at constant scale.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Classification</strong></p></td>
+<td><p>Transverse and oblique cylindrical</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Available forms</strong></p></td>
+<td><p>Forward and inverse, spherical and ellipsoidal</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Defined area</strong></p></td>
+<td><p>Global, with full accuracy within 3900 km
+of the central meridian</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Alias</strong></p></td>
+<td><p>tmerc</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Domain</strong></p></td>
+<td><p>2D</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Input type</strong></p></td>
+<td><p>Geodetic coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Output type</strong></p></td>
+<td><p>Projected coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../../_images/tmerc.png"><img alt="Transverse Mercator" src="../../_images/tmerc.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">proj-string: <code class="docutils literal notranslate"><span class="pre">+proj=tmerc</span></code></span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Prior to the development of the Universal Transverse Mercator coordinate system, several European nations demonstrated the utility of grid-based conformal maps by mapping their territory during the interwar period.
+Calculating the distance between two points on these maps could be performed more easily in the field (using the Pythagorean theorem) than was possible using the trigonometric formulas required under the graticule-based system of latitude and longitude.
+In the post-war years, these concepts were extended into the Universal Transverse Mercator/Universal Polar Stereographic (UTM/UPS) coordinate system, which is a global (or universal) system of grid-based maps.</p>
+<p>The following table gives special cases of the Transverse Mercator projection.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 30%" />
+<col style="width: 18%" />
+<col style="width: 24%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Projection Name</p></th>
+<th class="head"><p>Areas</p></th>
+<th class="head"><p>Central meridian</p></th>
+<th class="head"><p>Zone width</p></th>
+<th class="head"><p>Scale Factor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Transverse Mercator</p></td>
+<td><p>World wide</p></td>
+<td><p>Various</p></td>
+<td><p>less than 1000 km</p></td>
+<td><p>Various</p></td>
+</tr>
+<tr class="row-odd"><td><p>Transverse Mercator south oriented</p></td>
+<td><p>Southern Africa</p></td>
+<td><p>2° intervals E of 11°E</p></td>
+<td><p>2°</p></td>
+<td><p>1.000</p></td>
+</tr>
+<tr class="row-even"><td><p>UTM North hemisphere</p></td>
+<td><p>World wide equator to 84°N</p></td>
+<td><p>6° intervals E &amp; W of 3° E &amp; W</p></td>
+<td><p>Usually 6°, wider for Norway and Svalbard</p></td>
+<td><p>0.9996</p></td>
+</tr>
+<tr class="row-odd"><td><p>UTM South hemisphere</p></td>
+<td><p>World wide north of 80°S to equator</p></td>
+<td><p>6° intervals E &amp; W of 3° E &amp; W</p></td>
+<td><p>Always 6°</p></td>
+<td><p>0.9996</p></td>
+</tr>
+<tr class="row-even"><td><p>Gauss-Kruger</p></td>
+<td><p>Former USSR, Yugoslavia, Germany, S. America, China</p></td>
+<td><p>Various, according to area</p></td>
+<td><p>Usually less than 6°, often less than 4°</p></td>
+<td><p>1.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gauss Boaga</p></td>
+<td><p>Italy</p></td>
+<td><p>Various, according to area</p></td>
+<td><p>6°</p></td>
+<td><p>0.9996</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example using Gauss-Kruger on Germany area (aka EPSG:31467)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 9 51 | proj +proj=tmerc +lat_0=0 +lon_0=9 +k_0=1 +x_0=3500000 +y_0=0 +ellps=bessel +units=m
+3500000.00  5651505.56
+</pre></div>
+</div>
+<p>Example using Gauss Boaga on Italy area (EPSG:3004)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 15 42 | proj +proj=tmerc +lat_0=0 +lon_0=15 +k_0=0.9996 +x_0=2520000 +y_0=0 +ellps=intl +units=m
+2520000.00  4649858.60
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All parameters for the projection are optional.</p>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-approx">
+<span class="sig-name descname"><span class="pre">+approx</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-approx" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 6.0.0.</span></p>
+</div>
+<p>Use the Evenden-Snyder algorithm described below under “Legacy
+ellipsoidal form”.  It is faster than the default algorithm, but is
+less accurate and diverges beyond 3° from the central meridian.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-algo">
+<span class="sig-name descname"><span class="pre">+algo</span></span><span class="sig-prename descclassname"><span class="pre">=auto/evenden_snyder/poder_engsager</span></span><a class="headerlink" href="#cmdoption-arg-algo" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.1.</span></p>
+</div>
+<p>Selects the algorithm to use. The hardcoded value and the one defined in
+<a class="reference internal" href="../../resource_files.html#proj-ini"><span class="std std-ref">proj.ini</span></a> default to <code class="docutils literal notranslate"><span class="pre">poder_engsager</span></code>; that is the most precise
+one.</p>
+<p>When using auto, a heuristics based on the input coordinate to transform
+is used to determine if the faster Evenden-Snyder method can be used, for
+faster computation, without causing an error greater than 0.1 mm (for an
+ellipsoid of the size of Earth)</p>
+<p>Note that <a class="reference internal" href="utm.html#cmdoption-arg-approx"><code class="xref std std-option docutils literal notranslate"><span class="pre">+approx</span></code></a> and <a class="reference internal" href="utm.html#cmdoption-arg-algo"><code class="xref std std-option docutils literal notranslate"><span class="pre">+algo</span></code></a> are mutually exclusive.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lon_0">
+<span id="cmdoption-arg-lon-0"></span><span class="sig-name descname"><span class="pre">+lon_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-lon_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Longitude of projection center.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lat_0">
+<span id="cmdoption-arg-lat-0"></span><span class="sig-name descname"><span class="pre">+lat_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-lat_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latitude of projection center.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ellps">
+<span class="sig-name descname"><span class="pre">+ellps</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-ellps" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="../../apps/proj.html#cmdoption-proj-le"><code class="xref std std-option docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-le</span></code></a> for a list of available ellipsoids.</p>
+<p><em>Defaults to “GRS80”.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-R">
+<span id="cmdoption-arg-r"></span><span class="sig-name descname"><span class="pre">+R</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the sphere given in meters. If used in conjunction with <code class="docutils literal notranslate"><span class="pre">+ellps</span></code>,
+<code class="docutils literal notranslate"><span class="pre">+R</span></code> takes precedence.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-k_0">
+<span id="cmdoption-arg-k-0"></span><span class="sig-name descname"><span class="pre">+k_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-k_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scale factor. Determines scale factor used in the projection.</p>
+<p><em>Defaults to 1.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-x_0">
+<span id="cmdoption-arg-x-0"></span><span class="sig-name descname"><span class="pre">+x_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-x_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>False easting.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-y_0">
+<span id="cmdoption-arg-y-0"></span><span class="sig-name descname"><span class="pre">+y_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-y_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>False northing.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+</section>
+<section id="mathematical-definition">
+<h2>Mathematical definition<a class="headerlink" href="#mathematical-definition" title="Permalink to this headline">¶</a></h2>
+<p>The formulation given here for the Transverse Mercator projection is due
+to Krüger <span id="id1">[<a class="reference internal" href="../../zreferences.html#id24" title="Krüger, J. H. L. Konforme Abbildung des Erdellipsoids in der Ebene. New Series 52, Royal Prussian Geodetic Institute, Potsdam, 1912. doi:10.2312/GFZ.b103-krueger28.">Krueger1912</a>]</span> who gave the series expansions accurate to
+<span class="math notranslate nohighlight">\(n^4\)</span>, where <span class="math notranslate nohighlight">\(n = (a-b)/(a+b)\)</span> is the third flattening.
+These series were extended to sixth order by Engsager and Poder in
+<span id="id2">[<a class="reference internal" href="../../zreferences.html#id29" title="Poder, K. and Engsager, K. Some conformal mappings and transformations for geodesy and topographic cartography. National Survey and Cadastre Publications, National Survey and Cadastre, Copenhagen, Denmark, 1998.">Poder1998</a>]</span> and <span id="id3">[<a class="reference internal" href="../../zreferences.html#id10" title="Engsager, K. E. and Poder, K. A highly accurate world wide algorithm for the transverse Mercator mapping (almost). In Proc. XXIII Intl. Cartographic Conf. (ICC2007), Moscow, 2.1.2. August 2007.">Engsager2007</a>]</span>.  This gives full
+double-precision accuracy within 3900 km of the central meridian (about
+57% of the surface of the earth) <span id="id4">[<a class="reference internal" href="../../zreferences.html#id21" title="Karney, C. F. F. Transverse Mercator with an accuracy of a few nanometers. J. Geod., 85(8):475-485, August 2011. arXiv:1002.1417, doi:10.1007/s00190-011-0445-3.">Karney2011tm</a>]</span>.  The error is
+less than 0.1 mm within 7000 km of the central meridian (about 89% of
+the surface of the earth).</p>
+<p>This formulation consists of three steps: a conformal projection from
+the ellipsoid to a sphere, the spherical transverse Mercator
+projection, rectifying this projection to give constant scale on the
+central meridian.</p>
+<p>The scale on the central meridian is <span class="math notranslate nohighlight">\(k_0\)</span> and is set by <code class="docutils literal notranslate"><span class="pre">+k_0</span></code>.</p>
+<p>Option <a class="reference internal" href="wintri.html#cmdoption-arg-lon_0"><code class="xref std std-option docutils literal notranslate"><span class="pre">+lon_0</span></code></a> sets the central meridian; in the formulation
+below <span class="math notranslate nohighlight">\(\lambda\)</span> is the longitude relative to the central meridian.</p>
+<p>Options <a class="reference internal" href="tpers.html#cmdoption-arg-lat_0"><code class="xref std std-option docutils literal notranslate"><span class="pre">+lat_0</span></code></a>, <a class="reference internal" href="wintri.html#cmdoption-arg-x_0"><code class="xref std std-option docutils literal notranslate"><span class="pre">+x_0</span></code></a>, and <a class="reference internal" href="wintri.html#cmdoption-arg-y_0"><code class="xref std std-option docutils literal notranslate"><span class="pre">+y_0</span></code></a> serve to
+translate the projected coordinates so that at <span class="math notranslate nohighlight">\((\phi, \lambda) =
+(\phi_0, \lambda_0)\)</span>, the projected coordinates are <span class="math notranslate nohighlight">\((x,y) =
+(x_0,y_0)\)</span>.  To simplify the formulas below, these options are set to
+zero (their default values).</p>
+<p>Because the projection is conformal, the formulation is most
+conveniently given in terms of complex numbers.  In particular, the
+unscaled projected coordinates <span class="math notranslate nohighlight">\(\eta\)</span> (proportional to the
+easting, <span class="math notranslate nohighlight">\(x\)</span>) and <span class="math notranslate nohighlight">\(\xi\)</span> (proportional to the northing,
+<span class="math notranslate nohighlight">\(y\)</span>) are combined into the single complex quantity <span class="math notranslate nohighlight">\(\zeta =
+\xi + i\eta\)</span>, where <span class="math notranslate nohighlight">\(i=\sqrt{-1}\)</span>.  Then any analytic function
+<span class="math notranslate nohighlight">\(f(\zeta)\)</span> defines a conformal mapping (this follows from the
+Cauchy-Riemann conditions).</p>
+<section id="spherical-form">
+<h3>Spherical form<a class="headerlink" href="#spherical-form" title="Permalink to this headline">¶</a></h3>
+<p>Because the full (ellipsoidal) projection includes the spherical
+projection as one of the components, we present the spherical form first
+with the coordinates tagged with primes, <span class="math notranslate nohighlight">\(\phi'\)</span>,
+<span class="math notranslate nohighlight">\(\lambda'\)</span>, <span class="math notranslate nohighlight">\(\zeta' = \xi' + i\eta'\)</span>, <span class="math notranslate nohighlight">\(x'\)</span>,
+<span class="math notranslate nohighlight">\(y'\)</span>, so that they can be distinguished from the corresponding
+ellipsoidal coordinates (without the primes).  The projected coordinates
+for the sphere are given by</p>
+<div class="math notranslate nohighlight">
+\[x' = k_0 R \eta';\qquad y' = k_0 R \xi'\]</div>
+<section id="forward-projection">
+<h4>Forward projection<a class="headerlink" href="#forward-projection" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[\xi' = \tan^{-1}\biggl(\frac{\tan\phi'}{\cos\lambda'}\biggr)\]</div>
+<div class="math notranslate nohighlight">
+\[\eta' = \sinh^{-1}\biggl(\frac{\sin\lambda'}
+{\sqrt{\tan^2\phi' + \cos^2\lambda'}}\biggr)\]</div>
+</section>
+<section id="inverse-projection">
+<h4>Inverse projection<a class="headerlink" href="#inverse-projection" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[\phi' = \tan^{-1}\biggl(\frac{\sin\xi'}
+{\sqrt{\sinh^2\eta' + \cos^2\xi'}}\biggr)\]</div>
+<div class="math notranslate nohighlight">
+\[\lambda' = \tan^{-1}\biggl(\frac{\sinh\eta'}{\cos\xi'}\biggr)\]</div>
+</section>
+</section>
+<section id="ellipsoidal-form">
+<h3>Ellipsoidal form<a class="headerlink" href="#ellipsoidal-form" title="Permalink to this headline">¶</a></h3>
+<p>The projected coordinates are given by</p>
+<div class="math notranslate nohighlight">
+\[\zeta = \xi + i\eta;\qquad x = k_0 A \eta;\qquad y = k_0 A \xi\]</div>
+<div class="math notranslate nohighlight">
+\[A = \frac a{1+n}\biggl(1 + \frac14 n^2 + \frac1{64} n^4 +
+\frac1{256}n^6\biggr)\]</div>
+<p>The series for conversion between ellipsoidal and spherical geographic
+coordinates and ellipsoidal and spherical projected coordinates are
+given in matrix notation where <span class="math notranslate nohighlight">\(\mathbf S(\theta)\)</span> and
+<span class="math notranslate nohighlight">\(\mathbf N\)</span> are the row and column vectors of length 6</p>
+<div class="math notranslate nohighlight">
+\[\mathbf S(\theta) = \begin{pmatrix}
+\sin  2\theta &amp;
+\sin  4\theta &amp;
+\sin  6\theta &amp;
+\sin  8\theta &amp;
+\sin 10\theta &amp;
+\sin 12\theta
+\end{pmatrix}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf N = \begin{pmatrix}
+n \\ n^2 \\ n^3\\ n^4 \\ n^5 \\ n^6
+\end{pmatrix}\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(\mathsf C_{\alpha,\beta}\)</span> are upper triangular
+<span class="math notranslate nohighlight">\(6\times6\)</span> matrices.</p>
+<section id="relation-between-geographic-coordinates">
+<h4>Relation between geographic coordinates<a class="headerlink" href="#relation-between-geographic-coordinates" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[\lambda' = \lambda\]</div>
+<div class="math notranslate nohighlight">
+\[\phi' = \tan^{-1}\sinh\bigl(\sinh^{-1}\tan\phi
+- e \tanh^{-1}(e\sin\phi)\bigr)\]</div>
+<p>Instead of using this analytical formula for <span class="math notranslate nohighlight">\(\phi'\)</span>, the
+conversions between <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\phi'\)</span> use the series
+approximations:</p>
+<div class="math notranslate nohighlight">
+\[\phi' = \phi + \mathbf S(\phi) \cdot \mathsf C_{\chi,\phi} \cdot \mathbf N\]</div>
+<div class="math notranslate nohighlight">
+\[\phi = \phi' + \mathbf S(\phi') \cdot \mathsf C_{\phi,\chi} \cdot \mathbf N\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf C_{\chi,\phi} = \begin{pmatrix}
+-2&amp; \frac{2}{3}&amp; \frac{4}{3}&amp; -\frac{82}{45}&amp; \frac{32}{45}&amp; \frac{4642}{4725} \\
+&amp; \frac{5}{3}&amp; -\frac{16}{15}&amp; -\frac{13}{9}&amp; \frac{904}{315}&amp; -\frac{1522}{945} \\
+&amp; &amp; -\frac{26}{15}&amp; \frac{34}{21}&amp; \frac{8}{5}&amp; -\frac{12686}{2835} \\
+&amp; &amp; &amp; \frac{1237}{630}&amp; -\frac{12}{5}&amp; -\frac{24832}{14175} \\
+&amp; &amp; &amp; &amp; -\frac{734}{315}&amp; \frac{109598}{31185} \\
+&amp; &amp; &amp; &amp; &amp; \frac{444337}{155925} \\
+\end{pmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf C_{\phi,\chi} = \begin{pmatrix}
+2&amp; -\frac{2}{3}&amp; -2&amp; \frac{116}{45}&amp; \frac{26}{45}&amp; -\frac{2854}{675} \\
+&amp; \frac{7}{3}&amp; -\frac{8}{5}&amp; -\frac{227}{45}&amp; \frac{2704}{315}&amp; \frac{2323}{945} \\
+&amp; &amp; \frac{56}{15}&amp; -\frac{136}{35}&amp; -\frac{1262}{105}&amp; \frac{73814}{2835} \\
+&amp; &amp; &amp; \frac{4279}{630}&amp; -\frac{332}{35}&amp; -\frac{399572}{14175} \\
+&amp; &amp; &amp; &amp; \frac{4174}{315}&amp; -\frac{144838}{6237} \\
+&amp; &amp; &amp; &amp; &amp; \frac{601676}{22275} \\
+\end{pmatrix}\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\phi'\)</span> is the conformal latitude (sometimes denoted by
+<span class="math notranslate nohighlight">\(\chi\)</span>) and <span class="math notranslate nohighlight">\(\mathsf C_{\chi,\phi}\)</span> and <span class="math notranslate nohighlight">\(\mathsf
+C_{\phi,\chi}\)</span> are the coefficients in the trigonometric series for
+converting between <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\chi\)</span>.</p>
+</section>
+<section id="relation-between-projected-coordinates">
+<h4>Relation between projected coordinates<a class="headerlink" href="#relation-between-projected-coordinates" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[\zeta = \zeta' + \mathbf S(\zeta') \cdot \mathsf C_{\mu,\chi} \cdot \mathbf N\]</div>
+<div class="math notranslate nohighlight">
+\[\zeta' = \zeta + \mathbf S(\zeta) \cdot \mathsf C_{\chi,\mu} \cdot \mathbf N\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf C_{\mu,\chi} = \begin{pmatrix}
+\frac{1}{2}&amp; -\frac{2}{3}&amp; \frac{5}{16}&amp; \frac{41}{180}&amp; -\frac{127}{288}&amp; \frac{7891}{37800} \\
+&amp; \frac{13}{48}&amp; -\frac{3}{5}&amp; \frac{557}{1440}&amp; \frac{281}{630}&amp; -\frac{1983433}{1935360} \\
+&amp; &amp; \frac{61}{240}&amp; -\frac{103}{140}&amp; \frac{15061}{26880}&amp; \frac{167603}{181440} \\
+&amp; &amp; &amp; \frac{49561}{161280}&amp; -\frac{179}{168}&amp; \frac{6601661}{7257600} \\
+&amp; &amp; &amp; &amp; \frac{34729}{80640}&amp; -\frac{3418889}{1995840} \\
+&amp; &amp; &amp; &amp; &amp; \frac{212378941}{319334400} \\
+\end{pmatrix}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathsf C_{\chi,\mu} = \begin{pmatrix}
+-\frac{1}{2}&amp; \frac{2}{3}&amp; -\frac{37}{96}&amp; \frac{1}{360}&amp; \frac{81}{512}&amp; -\frac{96199}{604800} \\
+&amp; -\frac{1}{48}&amp; -\frac{1}{15}&amp; \frac{437}{1440}&amp; -\frac{46}{105}&amp; \frac{1118711}{3870720} \\
+&amp; &amp; -\frac{17}{480}&amp; \frac{37}{840}&amp; \frac{209}{4480}&amp; -\frac{5569}{90720} \\
+&amp; &amp; &amp; -\frac{4397}{161280}&amp; \frac{11}{504}&amp; \frac{830251}{7257600} \\
+&amp; &amp; &amp; &amp; -\frac{4583}{161280}&amp; \frac{108847}{3991680} \\
+&amp; &amp; &amp; &amp; &amp; -\frac{20648693}{638668800} \\
+\end{pmatrix}\end{split}\]</div>
+<p>On the central meridian (<span class="math notranslate nohighlight">\(\lambda = \lambda' = 0\)</span>), <span class="math notranslate nohighlight">\(\zeta'
+= \phi'\)</span> is the conformal latitude <span class="math notranslate nohighlight">\(\chi\)</span> and <span class="math notranslate nohighlight">\(\zeta\)</span> plays
+the role of the rectifying latitude (sometimes denoted by <span class="math notranslate nohighlight">\(\mu\)</span>).
+<span class="math notranslate nohighlight">\(\mathsf C_{\mu,\chi}\)</span> and <span class="math notranslate nohighlight">\(\mathsf C_{\chi,\mu}\)</span> are the
+coefficients in the trigonometric series for converting between
+<span class="math notranslate nohighlight">\(\chi\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+</section>
+</section>
+<section id="legacy-ellipsoidal-form">
+<h3>Legacy ellipsoidal form<a class="headerlink" href="#legacy-ellipsoidal-form" title="Permalink to this headline">¶</a></h3>
+<p>The formulas below describe the algorithm used when giving the
+<a class="reference internal" href="utm.html#cmdoption-arg-approx"><code class="xref std std-option docutils literal notranslate"><span class="pre">+approx</span></code></a> option. They are originally from <span id="id5">[<a class="reference internal" href="../../zreferences.html#id37" title="Snyder, J. P. Map projections — A working manual. Professional Paper 1395, U.S. Geological Survey, 1987. doi:10.3133/pp1395.">Snyder1987</a>]</span>,
+but here quoted from <span id="id6">[<a class="reference internal" href="../../zreferences.html#id12" title="Evenden, G. I. Cartographic Projection Procedures for the UNIX Environment — A User's Manual. 1995. URL: https://pubs.usgs.gov/of/1990/of90-284/ofr90-284.pdf.">Evenden1995</a>]</span> and <span id="id7">[<a class="reference internal" href="../../zreferences.html#id11" title="Evenden, G. I. libproj4: A Comprehensive Library of Cartographic Projection Functions (Preliminary Draft). 2005. URL: https://github.com/OSGeo/PROJ/blob/master/docs/old/libproj.pdf.">Evenden2005</a>]</span>.  These
+are less accurate that the formulation above and are only valid within
+about 5 degrees of the central meridian.  Here <span class="math notranslate nohighlight">\(M(\phi)\)</span> is the
+meridional distance.</p>
+<section id="id8">
+<h4>Forward projection<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[N = \frac{k_0}{(1 - e^2 \sin^2\phi)^{1/2}}\]</div>
+<div class="math notranslate nohighlight">
+\[R = \frac{k_0(1-e^2)}{(1-e^2 \sin^2\phi)^{3/2}}\]</div>
+<div class="math notranslate nohighlight">
+\[t = \tan\phi\]</div>
+<div class="math notranslate nohighlight">
+\[\eta = \frac{e^2}{1-e^2} \cos^2\phi\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}x &amp;= k_0 \lambda \cos \phi \\
+  &amp;+ \frac{k_0 \lambda^3 \cos^3\phi}{3!}(1-t^2+\eta^2) \\
+  &amp;+ \frac{k_0 \lambda^5 \cos^5\phi}{5!}(5-18t^2+t^4+14\eta^2-58t^2\eta^2) \\
+  &amp;+\frac{k_0 \lambda^7 \cos^7\phi}{7!}(61-479t^2+179t^4-t^6)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}y &amp;= M(\phi) \\
+  &amp;+ \frac{k_0 \lambda^2 \sin\phi \cos \phi}{2!} \\
+  &amp;+ \frac{k_0 \lambda^4 \sin\phi \cos^3\phi}{4!}(5-t^2+9\eta^2+4\eta^4) \\
+  &amp;+ \frac{k_0 \lambda^6 \sin\phi \cos^5\phi}{6!}(61-58t^2+t^4+270\eta^2-330t^2\eta^2) \\
+  &amp;+ \frac{k_0 \lambda^8 \sin\phi \cos^7\phi}{8!}(1385-3111t^2+543t^4-t^6)\end{split}\]</div>
+</section>
+<section id="id9">
+<h4>Inverse projection<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="math notranslate nohighlight">
+\[\phi_1 = M^{-1}(y)\]</div>
+<div class="math notranslate nohighlight">
+\[N_1 = \frac{k_0}{1 - e^2 \sin^2\phi_1)^{1/2}}\]</div>
+<div class="math notranslate nohighlight">
+\[R_1 = \frac{k_0(1-e^2)}{(1-e^2 \sin^2\phi_1)^{3/2}}\]</div>
+<div class="math notranslate nohighlight">
+\[t_1 = \tan(\phi_1)\]</div>
+<div class="math notranslate nohighlight">
+\[\eta_1 = \frac{e^2}{1-e^2} \cos^2\phi_1\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\phi &amp;= \phi_1 \\
+     &amp;- \frac{t_1 x^2}{2! R_1 N_1} \\
+     &amp;+ \frac{t_1 x^4}{4! R_1 N_1^3}(5+3t_1^2+\eta_1^2-4\eta_1^4-9\eta_1^2t_1^2) \\
+     &amp;- \frac{t_1 x^6}{6! R_1 N_1^5}(61+90t_1^2+46\eta_1^2+45t_1^4-252t_1^2\eta_1^2) \\
+     &amp;+ \frac{t_1 x^8}{8! R_1 N_1^7}(1385+3633t_1^2+4095t_1^4+1575t_1^6)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\lambda &amp;= \frac{x}{\cos \phi N_1} \\
+        &amp;- \frac{x^3}{3! \cos \phi N_1^3}(1+2t_1^2+\eta_1^2) \\
+        &amp;+ \frac{x^5}{5! \cos \phi N_1^5}(5+6\eta_1^2+28t_1^2-3\eta_1^2+8t_1^2\eta_1^2) \\
+        &amp;- \frac{x^7}{7! \cos \phi N_1^7}(61+662t_1^2+1320t_1^4+720t_1^6)\end{split}\]</div>
+</section>
+</section>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Transverse_Mercator_projection">Wikipedia</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="tobmerc.html" class="btn btn-neutral float-right" title="Tobler-Mercator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tissot.html" class="btn btn-neutral float-left" title="Tissot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Euler &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/projections/euler.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fahey" href="fahey.html" />
+    <link rel="prev" title="Equal Earth" href="eqearth.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Projections</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="adams_hemi.html">Adams Hemisphere in a Square</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adams_ws1.html">Adams World in a Square I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adams_ws2.html">Adams World in a Square II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aea.html">Albers Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aeqd.html">Azimuthal Equidistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="airy.html">Airy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aitoff.html">Aitoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alsk.html">Modified Stereographic of Alaska</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apian.html">Apian Globular I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="august.html">August Epicycloidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bacon.html">Bacon Globular</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bertin1953.html">Bertin 1953</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bipc.html">Bipolar conic of western hemisphere</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boggs.html">Boggs Eumorphic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bonne.html">Bonne (Werner lat_1=90)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calcofi.html">Cal Coop Ocean Fish Invest Lines/Stations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cass.html">Cassini (Cassini-Soldner)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cc.html">Central Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ccon.html">Central Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cea.html">Equal Area Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chamb.html">Chamberlin Trimetric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collg.html">Collignon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="col_urban.html">Colombia Urban</a></li>
+<li class="toctree-l3"><a class="reference internal" href="comill.html">Compact Miller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crast.html">Craster Parabolic (Putnins P4)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="denoy.html">Denoyer Semi-Elliptical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck1.html">Eckert I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck2.html">Eckert II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck3.html">Eckert III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck4.html">Eckert IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck5.html">Eckert V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eck6.html">Eckert VI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqc.html">Equidistant Cylindrical (Plate Carrée)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqdc.html">Equidistant Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eqearth.html">Equal Earth</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Euler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fahey.html">Fahey</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fouc.html">Foucaut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fouc_s.html">Foucaut Sinusoidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gall.html">Gall (Gall Stereographic)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geos.html">Geostationary Satellite View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gins8.html">Ginsburg VIII (TsNIIGAiK)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gn_sinu.html">General Sinusoidal Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gnom.html">Gnomonic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="goode.html">Goode Homolosine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gs48.html">Modified Stereographic of 48 U.S.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gs50.html">Modified Stereographic of 50 U.S.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guyou.html">Guyou</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hammer.html">Hammer &amp; Eckert-Greifendorff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hatano.html">Hatano Asymmetrical Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="healpix.html">HEALPix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rhealpix.html">rHEALPix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="igh.html">Interrupted Goode Homolosine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="igh_o.html">Interrupted Goode Homolosine (Oceanic View)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imw_p.html">International Map of the World Polyconic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="isea.html">Icosahedral Snyder Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kav5.html">Kavraisky V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kav7.html">Kavraisky VII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="krovak.html">Krovak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="labrd.html">Laborde</a></li>
+<li class="toctree-l3"><a class="reference internal" href="laea.html">Lambert Azimuthal Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lagrng.html">Lagrange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="larr.html">Larrivee</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lask.html">Laskowski</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcc.html">Lambert Conformal Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcca.html">Lambert Conformal Conic Alternative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="leac.html">Lambert Equal Area Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lee_os.html">Lee Oblated Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="loxim.html">Loximuthal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lsat.html">Space oblique for LANDSAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbt_s.html">McBryde-Thomas Flat-Polar Sine (No. 1)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbt_fps.html">McBryde-Thomas Flat-Pole Sine (No. 2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbtfpp.html">McBride-Thomas Flat-Polar Parabolic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbtfpq.html">McBryde-Thomas Flat-Polar Quartic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mbtfps.html">McBryde-Thomas Flat-Polar Sinusoidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="merc.html">Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mil_os.html">Miller Oblated Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mill.html">Miller Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misrsom.html">Space oblique for MISR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="moll.html">Mollweide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="murd1.html">Murdoch I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="murd2.html">Murdoch II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="murd3.html">Murdoch III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="natearth.html">Natural Earth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="natearth2.html">Natural Earth II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nell.html">Nell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nell_h.html">Nell-Hammer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nicol.html">Nicolosi Globular</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nsper.html">Near-sided perspective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nzmg.html">New Zealand Map Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ob_tran.html">General Oblique Transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ocea.html">Oblique Cylindrical Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oea.html">Oblated Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="omerc.html">Oblique Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ortel.html">Ortelius Oval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ortho.html">Orthographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="patterson.html">Patterson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pconic.html">Perspective Conic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="peirce_q.html">Peirce Quincuncial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="poly.html">Polyconic (American)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp1.html">Putnins P1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp2.html">Putnins P2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp3.html">Putnins P3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp3p.html">Putnins P3’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp4p.html">Putnins P4’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp5.html">Putnins P5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp5p.html">Putnins P5’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp6.html">Putnins P6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="putp6p.html">Putnins P6’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qua_aut.html">Quartic Authalic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qsc.html">Quadrilateralized Spherical Cube</a></li>
+<li class="toctree-l3"><a class="reference internal" href="robin.html">Robinson</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rouss.html">Roussilhe Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpoly.html">Rectangular Polyconic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sch.html">Spherical Cross-track Height</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sinu.html">Sinusoidal (Sanson-Flamsteed)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="somerc.html">Swiss Oblique Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stere.html">Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sterea.html">Oblique Stereographic Alternative</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gstmerc.html">Gauss-Schreiber Transverse Mercator (aka Gauss-Laborde Reunion)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tcc.html">Transverse Central Cylindrical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tcea.html">Transverse Cylindrical Equal Area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="times.html">Times</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tissot.html">Tissot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tmerc.html">Transverse Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tobmerc.html">Tobler-Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tpeqd.html">Two Point Equidistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tpers.html">Tilted perspective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ups.html">Universal Polar Stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urm5.html">Urmaev V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urmfps.html">Urmaev Flat-Polar Sinusoidal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utm.html">Universal Transverse Mercator (UTM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg.html">van der Grinten (I)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg2.html">van der Grinten II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg3.html">van der Grinten III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vandg4.html">van der Grinten IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vitk1.html">Vitkovsky I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag1.html">Wagner I (Kavraisky VI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag2.html">Wagner II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag3.html">Wagner III</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag4.html">Wagner IV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag5.html">Wagner V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag6.html">Wagner VI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wag7.html">Wagner VII</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webmerc.html">Web Mercator / Pseudo Mercator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="weren.html">Werenskiold I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wink1.html">Winkel I</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wink2.html">Winkel II</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wintri.html">Winkel Tripel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../conversions/index.html">Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transformations/index.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Projections</a> &raquo;</li>
+        
+      <li>Euler</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/projections/euler.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="fahey.html" class="btn btn-neutral float-right" title="Fahey" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="eqearth.html" class="btn btn-neutral float-left" title="Equal Earth" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="euler">
+<span id="id1"></span><h1>Euler<a class="headerlink" href="#euler" title="Permalink to this headline">¶</a></h1>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Classification</strong></p></td>
+<td><p>Miscellaneous</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Available forms</strong></p></td>
+<td><p>Forward and inverse, spherical projection</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Defined area</strong></p></td>
+<td><p>Global</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Alias</strong></p></td>
+<td><p>euler</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Domain</strong></p></td>
+<td><p>2D</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Input type</strong></p></td>
+<td><p>Geodetic coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Output type</strong></p></td>
+<td><p>Projected coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/euler.png"><img alt="Euler" src="../../_images/euler.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-text">proj-string: <code class="docutils literal notranslate"><span class="pre">+proj=euler</span> <span class="pre">+lat_1=67</span> <span class="pre">+lat_2=75</span></code></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<section id="required">
+<h3>Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lat_1">
+<span id="cmdoption-arg-lat-1"></span><span class="sig-name descname"><span class="pre">+lat_1</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-lat_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>First standard parallel.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lat_2">
+<span id="cmdoption-arg-lat-2"></span><span class="sig-name descname"><span class="pre">+lat_2</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-lat_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Second standard parallel.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+</section>
+<section id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-lon_0">
+<span id="cmdoption-arg-lon-0"></span><span class="sig-name descname"><span class="pre">+lon_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-lon_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Longitude of projection center.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-R">
+<span id="cmdoption-arg-r"></span><span class="sig-name descname"><span class="pre">+R</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Radius of the sphere given in meters. If used in conjunction with <code class="docutils literal notranslate"><span class="pre">+ellps</span></code>,
+<code class="docutils literal notranslate"><span class="pre">+R</span></code> takes precedence.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-x_0">
+<span id="cmdoption-arg-x-0"></span><span class="sig-name descname"><span class="pre">+x_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-x_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>False easting.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-y_0">
+<span id="cmdoption-arg-y-0"></span><span class="sig-name descname"><span class="pre">+y_0</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-y_0" title="Permalink to this definition">¶</a></dt>
+<dd><p>False northing.</p>
+<p><em>Defaults to 0.0.</em></p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="fahey.html" class="btn btn-neutral float-right" title="Fahey" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eqearth.html" class="btn btn-neutral float-left" title="Equal Earth" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

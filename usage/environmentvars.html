@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Environment variables &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgusage/environmentvars.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Known differences between versions" href="differences.html" />
+    <link rel="prev" title="Geodetic transformation" href="transformation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using PROJ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projections.html">Cartographic projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation.html">Geodetic transformation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="differences.html">Known differences between versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network.html">Network capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Using PROJ</a> &raquo;</li>
+        
+      <li>Environment variables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/usage/environmentvars.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="differences.html" class="btn btn-neutral float-right" title="Known differences between versions" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="transformation.html" class="btn btn-neutral float-left" title="Geodetic transformation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="environment-variables">
+<span id="environmentvars"></span><h1>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h1>
+<p>PROJ can be controlled by setting environment variables. Most users will
+have a use for the <span class="target" id="index-0"></span><a class="reference internal" href="#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a>.</p>
+<p>On UNIX systems environment variables can be set for a shell-session with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ export VAR=&quot;some variable&quot;
+</pre></div>
+</div>
+<p>or it can be set for just one command line call:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ VAR=&quot;some variable&quot; ./cmd
+</pre></div>
+</div>
+<p>Environment variables on UNIX are usually removed with the <code class="docutils literal notranslate"><span class="pre">unset</span></code> command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ unset VAR
+</pre></div>
+</div>
+<p>On windows systems environment variables can be set in the command line with:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; set VAR=&quot;some variable&quot;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">VAR</span></code> will be available for the entire session, unless it is unset. This is
+done by setting the variable with no content:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; set VAR=
+</pre></div>
+</div>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PROJ_LIB">
+<span class="sig-name descname"><span class="pre">PROJ_LIB</span></span><a class="headerlink" href="#envvar-PROJ_LIB" title="Permalink to this definition">¶</a></dt>
+<dd><p>The location of PROJ <a class="reference internal" href="../resource_files.html"><span class="doc">resource files</span></a>.</p>
+<p>Starting with PROJ 6, multiple directories can be specified. On Unix, they
+should be separated by the colon (:) character. on Windows, by the semi-colon (;)
+character.</p>
+<p>PROJ is hardcoded to look for resource files
+in other locations as well, amongst those are the
+installation directory (usually <code class="docutils literal notranslate"><span class="pre">share/proj</span></code> under the PROJ
+installation root) and the current folder.</p>
+<p>You can also set the location of the resource files using
+<code class="xref py py-func docutils literal notranslate"><span class="pre">proj_context_set_search_paths()</span></code> in the <code class="file docutils literal notranslate"><span class="pre">proj.h</span></code> API header.</p>
+</dd></dl>
+
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 6.1.0: </span>Starting with PROJ version 6.1.0, the paths set by
+<code class="xref py py-func docutils literal notranslate"><span class="pre">proj_context_set_search_paths()</span></code> will have priority over the
+<span class="target" id="index-1"></span><a class="reference internal" href="#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a> to allow for multiple versions of PROJ
+resource files on your system without conflicting.</p>
+</div>
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PROJ_AUX_DB">
+<span class="sig-name descname"><span class="pre">PROJ_AUX_DB</span></span><a class="headerlink" href="#envvar-PROJ_AUX_DB" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.1.0.</span></p>
+</div>
+<p>To set the path to one or several auxiliary SQLite3 databases of structure
+identical to the main <code class="file docutils literal notranslate"><span class="pre">proj.db</span></code> database and that can contain additional
+object (CRS, transformation, …) definitions. If several paths are
+provided, they must be separated by the colon (:) character on Unix, and
+on Windows, by the semi-colon (;) character.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PROJ_DEBUG">
+<span class="sig-name descname"><span class="pre">PROJ_DEBUG</span></span><a class="headerlink" href="#envvar-PROJ_DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the debug level of PROJ. The default debug level is zero, which results
+in no debug output when using PROJ. A number from 1-3, with 3 being the most
+verbose setting.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PROJ_NETWORK">
+<span class="sig-name descname"><span class="pre">PROJ_NETWORK</span></span><a class="headerlink" href="#envvar-PROJ_NETWORK" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.0.</span></p>
+</div>
+<p>If set to ON, enable the capability to use remote grids stored on CDN
+(Content Delivery Network) storage, when grids are not available locally.
+Alternatively, the <code class="xref c c-func docutils literal notranslate"><span class="pre">proj_context_set_enable_network()</span></code> function can
+be used.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PROJ_NETWORK_ENDPOINT">
+<span class="sig-name descname"><span class="pre">PROJ_NETWORK_ENDPOINT</span></span><a class="headerlink" href="#envvar-PROJ_NETWORK_ENDPOINT" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.0.</span></p>
+</div>
+<p>Define the endpoint of the CDN storage. Normally defined through the
+<code class="file docutils literal notranslate"><span class="pre">proj.ini</span></code> configuration file locale in <span class="target" id="index-2"></span><a class="reference internal" href="#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a>.
+Alternatively, the <code class="xref c c-func docutils literal notranslate"><span class="pre">proj_context_set_url_endpoint()</span></code> function can
+be used.</p>
+</dd></dl>
+
+<dl class="std envvar">
+<dt class="sig sig-object std" id="envvar-PROJ_CURL_CA_BUNDLE">
+<span class="sig-name descname"><span class="pre">PROJ_CURL_CA_BUNDLE</span></span><a class="headerlink" href="#envvar-PROJ_CURL_CA_BUNDLE" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 7.2.0.</span></p>
+</div>
+<p>Define a custom path to the CA Bundle file. This can be useful if <cite>curl</cite>
+and <span class="target" id="index-3"></span><a class="reference internal" href="#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> are enabled. Alternatively, the
+<code class="xref c c-func docutils literal notranslate"><span class="pre">proj_curl_set_ca_bundle_path()</span></code> function can be used.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="differences.html" class="btn btn-neutral float-right" title="Known differences between versions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="transformation.html" class="btn btn-neutral float-left" title="Geodetic transformation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cct &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgapps/cct.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cs2cs" href="cs2cs.html" />
+    <link rel="prev" title="Applications" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cct</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-of-remote-grids">Use of remote grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#background">Background</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cs2cs.html">cs2cs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geod.html">geod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gie.html">gie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html">proj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projinfo.html">projinfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projsync.html">projsync</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Applications</a> &raquo;</li>
+        
+      <li>cct</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/apps/cct.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="cs2cs.html" class="btn btn-neutral float-right" title="cs2cs" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Applications" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="cct">
+<span id="id1"></span><h1>cct<a class="headerlink" href="#cct" title="Permalink to this headline">¶</a></h1>
+<p id="index-0">Coordinate Conversion and Transformation.</p>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>cct</strong> [<strong>-cIostvz</strong> [args]] <em>+opt[=arg]</em> … file …</p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p><strong>cct</strong> [<strong>-cIostvz</strong> [args]] {object_definition} file …</p>
+</div></blockquote>
+<p>Where {object_definition} is one of the possibilities accepted
+by <a class="reference internal" href="../development/reference/functions.html#c.proj_create" title="proj_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">proj_create()</span></code></a>, provided it expresses a coordinate operation</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a proj-string,</p></li>
+<li><p>a WKT string,</p></li>
+<li><p>an object code (like “EPSG:1671” “urn:ogc:def:coordinateOperation:EPSG::1671”),</p></li>
+<li><p>an object name. e.g. “ITRF2014 to ETRF2014 (1)”. In that case as
+uniqueness is not guaranteed, heuristics are applied to determine the appropriate best match.</p></li>
+<li><p>a OGC URN combining references for concatenated operations
+(e.g. “<a class="reference external" href="urn:ogc:def:coordinateOperation,coordinateOperation:EPSG::3895,coordinateOperation:EPSG::1618">urn:ogc:def:coordinateOperation,coordinateOperation:EPSG::3895,coordinateOperation:EPSG::1618</a>”)</p></li>
+<li><p>a PROJJSON string. The jsonschema is at <a class="reference external" href="https://proj.org/schemas/v0.2/projjson.schema.json">https://proj.org/schemas/v0.2/projjson.schema.json</a></p></li>
+</ul>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 8.0.0.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before version 8.0.0 only proj-strings could be used to instantiate
+operations in <strong class="program">cct</strong>.</p>
+</div>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p><strong>cct</strong> [<strong>-cIostvz</strong> [args]] {object_reference} file …</p>
+</div></blockquote>
+<p>where {object_reference} is a filename preceded by the ‘&#64;’ character.  The
+file referenced by the {object_reference} must contain a valid
+{object_definition}.</p>
+<blockquote>
+<div><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.0.0.</span></p>
+</div>
+</div></blockquote>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">cct</strong> is a 4D equivalent to the <strong class="program">proj</strong> projection program,
+performs transformation coordinate systems on a set of input points. The
+coordinate system transformation can include translation between projected
+and geographic coordinates as well as the application of datum shifts.</p>
+<p>The following control parameters can appear in any order:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-c">
+<span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;x,y,z,t&gt;</span></span><a class="headerlink" href="#cmdoption-cct-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify input columns for (up to) 4 input parameters. Defaults to 1,2,3,4.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-d">
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n&gt;</span></span><a class="headerlink" href="#cmdoption-cct-d" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 5.2.0.</span></p>
+</div>
+<p>Specify the number of decimals in the output.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-I">
+<span id="cmdoption-cct-i"></span><span class="sig-name descname"><span class="pre">-I</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cct-I" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do the inverse transformation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-o">
+<span id="cmdoption-cct-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output</span> <span class="pre">file</span> <span class="pre">name&gt;</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;output</span> <span class="pre">file</span> <span class="pre">name&gt;</span></span><a class="headerlink" href="#cmdoption-cct-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name of the output file.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-t">
+<span id="cmdoption-cct-time"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;time&gt;</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--time</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;time&gt;</span></span><a class="headerlink" href="#cmdoption-cct-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify a fixed observation <em>time</em> to be used for all input data.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-z">
+<span id="cmdoption-cct-height"></span><span class="sig-name descname"><span class="pre">-z</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;height&gt;</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--height</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;height&gt;</span></span><a class="headerlink" href="#cmdoption-cct-z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify a fixed observation <em>height</em> to be used for all input data.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-s">
+<span id="cmdoption-cct-skip-lines"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n&gt;</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--skip-lines</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;n&gt;</span></span><a class="headerlink" href="#cmdoption-cct-s" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 5.1.0.</span></p>
+</div>
+<p>Skip the first <em>n</em> lines of input. This applies to any kind of input, whether
+it comes from <code class="docutils literal notranslate"><span class="pre">STDIN</span></code>, a file or interactive user input.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-v">
+<span id="cmdoption-cct-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cct-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write non-essential, but potentially useful, information to stderr.
+Repeat for additional information (<code class="docutils literal notranslate"><span class="pre">-vv</span></code>, <code class="docutils literal notranslate"><span class="pre">-vvv</span></code>, etc.)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cct-version">
+<span class="sig-name descname"><span class="pre">--version</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cct-version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print version number.</p>
+</dd></dl>
+
+<p>The <em>+opt</em> arguments are associated with coordinate operation parameters.
+Usage varies with operation.</p>
+<p>For a complete description consult the <a class="reference internal" href="../operations/projections/index.html#projections"><span class="std std-ref">projection pages</span></a>.</p>
+<p><strong class="program">cct</strong> is an acronym meaning <em>Coordinate Conversion and Transformation</em>.</p>
+<p>The acronym refers to definitions given in the OGC 08-015r2/ISO-19111
+standard “Geographical Information – Spatial Referencing by Coordinates”,
+which defines two different classes of <em>coordinate operations</em>:</p>
+<p><em>Coordinate Conversions</em>, which are coordinate operations where input
+and output datum are identical (e.g. conversion from geographical to
+cartesian coordinates) and</p>
+<p><em>Coordinate Transformations</em>, which are coordinate operations where
+input and output datums differ (e.g. change of reference frame).</p>
+</section>
+<section id="use-of-remote-grids">
+<h2>Use of remote grids<a class="headerlink" href="#use-of-remote-grids" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.0.</span></p>
+</div>
+<p>If the <span class="target" id="index-1"></span><a class="reference internal" href="../usage/environmentvars.html#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> environment variable is set to <code class="docutils literal notranslate"><span class="pre">ON</span></code>,
+<strong class="program">cct</strong> will attempt to use remote grids stored on CDN (Content
+Delivery Network) storage, when they are not available locally.</p>
+<p>More details are available in the <a class="reference internal" href="../usage/network.html#network"><span class="std std-ref">Network capabilities</span></a> section.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>The operator specs describe the action to be performed by <strong class="program">cct</strong>. So
+the following script</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo 12 55 0 0 | cct +proj=utm +zone=32 +ellps=GRS80</span>
+</pre></div>
+</div>
+<p>will transform the input geographic coordinates into UTM zone 32 coordinates.
+Hence, the command</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo 12 55 | cct -z0 -t0 +proj=utm +zone=32 +ellps=GRS80</span>
+</pre></div>
+</div>
+<p>Should give results comparable to the classic <strong class="program">proj</strong> command</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo 12 55 | proj +proj=utm +zone=32 +ellps=GRS80</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Convert geographical input to UTM zone 32 on the GRS80 ellipsoid:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cct +proj=utm +ellps=GRS80 +zone=32</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Roundtrip accuracy check for the case above:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cct +proj=pipeline +proj=utm +ellps=GRS80 +zone=32 +step +step +inv</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>As (2) but specify input columns for longitude, latitude, height and time:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cct -c 5,2,1,4 +proj=utm +ellps=GRS80 +zone=32</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>As (2) but specify fixed height and time, hence needing only 2 cols in
+input:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cct -t 0 -z 0 +proj=utm +ellps=GRS80 +zone=32</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Auxiliary data following the coordinate input is forward to the output
+stream:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">echo</span> <span class="m">12</span> <span class="m">56</span> <span class="m">100</span> <span class="m">2018</span>.0 auxiliary data <span class="p">|</span> cct +proj<span class="o">=</span>merc
+<span class="go">1335833.8895   7522963.2411      100.0000     2018.0000 auxiliary data</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Coordinate operation referenced through its code</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">echo</span> <span class="m">3541657</span>.3778 <span class="m">948984</span>.2343 <span class="m">5201383</span>.5231 <span class="m">2020</span>.5 <span class="p">|</span> cct EPSG:8366
+<span class="go">3541657.9112    948983.7503  5201383.2482     2020.5000</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p>Coordinate operation referenced through its name</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">echo</span> <span class="m">3541657</span>.3778 <span class="m">948984</span>.2343 <span class="m">5201383</span>.5231 <span class="m">2020</span>.5 <span class="p">|</span> cct <span class="s2">&quot;ITRF2014 to ETRF2014 (1)&quot;</span>
+<span class="go">3541657.9112    948983.7503  5201383.2482     2020.5000</span>
+</pre></div>
+</div>
+</section>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">cct</strong> also refers to Carl Christian Tscherning (1942–2014),
+professor of Geodesy at the University of Copenhagen, mentor and advisor
+for a generation of Danish geodesists, colleague and collaborator for
+two generations of global geodesists, Secretary General for the
+International Association of Geodesy, IAG (1995–2007), fellow of the
+American Geophysical Union (1991), recipient of the IAG Levallois Medal
+(2007), the European Geosciences Union Vening Meinesz Medal (2008), and
+of numerous other honours.</p>
+<p><em>cct</em>, or Christian, as he was known to most of us, was recognized for his
+good mood, his sharp wit, his tireless work, and his great commitment to
+the development of geodesy – both through his scientific contributions,
+comprising more than 250 publications, and by his mentoring and teaching
+of the next generations of geodesists.</p>
+<p>As Christian was an avid Fortran programmer, and a keen Unix connoisseur,
+he would have enjoyed to know that his initials would be used to name a
+modest Unix style transformation filter, hinting at the tireless aspect
+of his personality, which was certainly one of the reasons he accomplished
+so much, and meant so much to so many people.</p>
+<p>Hence, in honour of <em>cct</em> (the geodesist) this is <strong class="program">cct</strong> (the program).</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cs2cs.html" class="btn btn-neutral float-right" title="cs2cs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

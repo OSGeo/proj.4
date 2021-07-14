@@ -1,0 +1,70 @@
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+   .wy-table-responsive table td {
+      /* !important prevents the common CSS stylesheets from overriding
+         this as on RTD they are loaded after this stylesheet */
+      white-space: normal !important;
+   }
+
+   .wy-table-responsive {
+      overflow: visible !important;
+   }
+}
+
+/* Align equation numbers to the right of the equation, not above */
+div.math {
+    position: relative;
+    padding-right: 2.5em;
+}
+.eqno {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+.eqno:before {
+    /* Force vertical alignment of number */
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    content: "";
+}
+.eqno .headerlink {
+    display: none;
+    visibility: hidden;
+    font-size: 14px;
+    padding-left: .3em;
+}
+.eqno:hover .headerlink {
+    display: inline-block;
+    visibility: hidden;
+    margin-right: -1.05em;
+}
+.eqno .headerlink:after {
+    visibility: visible;
+    content: "\f0c1";
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -.9em;
+}
+/* Make responsive */
+.MathJax_Display {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Override style of versionmodified directives */
+.versionadded {
+    font-style: italic;
+}
+
+.versionchanged {
+    font-style: italic;
+}
+
+.deprecated {
+    font-style: italic;
+}

@@ -1,0 +1,1155 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PROJ RFC 2: Initial integration of “GDAL SRS barn” work &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgcommunity/rfc/rfc-2.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PROJ RFC 3: Dependency management" href="rfc-3.html" />
+    <link rel="prev" title="PROJ RFC 1: Project Committee Guidelines" href="rfc-1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Community</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../channels.html">Communication channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code_contributions.html">Guidelines for PROJ code contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Request for Comments</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rfc-1.html">PROJ RFC 1: Project Committee Guidelines</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PROJ RFC 2: Initial integration of “GDAL SRS barn” work</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-standards">Related standards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-repository">Code repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database">Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities">Utilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#impacted-files">Impacted files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c-api">C API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-requirements">Build requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#runtime-requirements">Runtime requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backward-compatibility">Backward compatibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#future-work">Future work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adoption-status">Adoption status</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-3.html">PROJ RFC 3: Dependency management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-4.html">PROJ RFC 4: Remote access to grids and GeoTIFF grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-5.html">PROJ RFC 5: Adopt GeoTIFF-based grids for grids delivered with PROJ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-6.html">PROJ RFC 6: Triangulation-based transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#conference">Conference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Community</a> &raquo;</li>
+        
+          <li><a href="index.html">Request for Comments</a> &raquo;</li>
+        
+      <li>PROJ RFC 2: Initial integration of “GDAL SRS barn” work</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/community/rfc/rfc-2.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="rfc-3.html" class="btn btn-neutral float-right" title="PROJ RFC 3: Dependency management" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="rfc-1.html" class="btn btn-neutral float-left" title="PROJ RFC 1: Project Committee Guidelines" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="proj-rfc-2-initial-integration-of-gdal-srs-barn-work">
+<span id="rfc2"></span><h1>PROJ RFC 2: Initial integration of “GDAL SRS barn” work<a class="headerlink" href="#proj-rfc-2-initial-integration-of-gdal-srs-barn-work" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Even Rouault</p>
+</dd>
+<dt class="field-even">Contact</dt>
+<dd class="field-even"><p>even.rouault at spatialys.com</p>
+</dd>
+<dt class="field-odd">Status</dt>
+<dd class="field-odd"><p>Adopted, implemented in PROJ 6.0</p>
+</dd>
+<dt class="field-even">Initial version</dt>
+<dd class="field-even"><p>2018-10-09</p>
+</dd>
+<dt class="field-odd">Last Updated</dt>
+<dd class="field-odd"><p>2018-10-31</p>
+</dd>
+</dl>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This RFC is the result of a first phase of the <a class="reference external" href="https://gdalbarn.com/">GDAL Coordinate System Barn Raising</a>
+efforts. In its current state, this work mostly consists of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a C++ implementation of the ISO-19111:2018 / OGC Topic 2 “Referencing by
+coordinates” classes to represent Datums, Coordinate systems, CRSs
+(Coordinate Reference Systems) and Coordinate Operations.</p></li>
+<li><p>methods to convert between this C++ modeling and WKT1, WKT2 and PROJ string representations of those objects</p></li>
+<li><p>management and query of a SQLite3 database of CRS and Coordinate Operation definition</p></li>
+<li><p>a C API binding part of those capabilities</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="related-standards">
+<h2>Related standards<a class="headerlink" href="#related-standards" title="Permalink to this headline">¶</a></h2>
+<p>Consult <a class="reference external" href="http://even.rouault.free.fr/proj_cpp_api/html/general_doc.html#standards">Applicable standards</a></p>
+<p>(They will be linked from the PROJ documentation)</p>
+</section>
+<section id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<section id="structure-in-packages-namespaces">
+<h3>Structure in packages / namespaces<a class="headerlink" href="#structure-in-packages-namespaces" title="Permalink to this headline">¶</a></h3>
+<p>The C++ implementation of the (upcoming) ISO-19111:2018 / OGC Topic 2 “Referencing by
+coordinates” classes follows this abstract modeling as much as possible, using
+package names as C++ namespaces, abstract classes and method names. A new
+BoundCRS class has been added to cover the modeling of the WKT2 BoundCRS
+construct, that is a generalization of the WKT1 TOWGS84 concept. It is
+strongly recommended to have the ISO-19111 standard open to have an introduction
+for the concepts when looking at the code. A few classes have also been
+inspired by the GeoAPI</p>
+<p>The classes are organized into several namespaces:</p>
+<blockquote>
+<div><ul>
+<li><dl>
+<dt>osgeo::proj::util</dt><dd><p>A set of base types from ISO 19103, GeoAPI and other PROJ “technical”
+specific classes</p>
+<p>Template optional&lt;T&gt;, classes BaseObject, IComparable, BoxedValue,
+ArrayOfBaseObject, PropertyMap, LocalName, NameSpace, GenericName,
+NameFactory, CodeList, Exception, InvalidValueTypeException,
+UnsupportedOperationException</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>osgeo::proj::metadata:</dt><dd><p>Common classes from ISO 19115 (Metadata) standard</p>
+<p>Classes Citation, GeographicExtent, GeographicBoundingBox,
+TemporalExtent, VerticalExtent, Extent, Identifier, PositionalAccuracy,</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>osgeo::proj::common:</dt><dd><p>Common classes: UnitOfMeasure, Measure, Scale, Angle, Length, DateTime,
+DateEpoch, IdentifiedObject, ObjectDomain, ObjectUsage</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>osgeo::proj::cs:</dt><dd><p>Coordinate systems and their axis</p>
+<p>Classes AxisDirection, Meridian, CoordinateSystemAxis, CoordinateSystem,
+SphericalCS, EllipsoidalCS, VerticalCS, CartesianCS, OrdinalCS,
+ParametricCS, TemporalCS, DateTimeTemporalCS, TemporalCountCS,
+TemporalMeasureCS</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>osgeo::proj::datum:</dt><dd><p>Datum (the relationship of a coordinate system to the body)</p>
+<p>Classes Ellipsoid, PrimeMeridian, Datum, DatumEnsemble,
+GeodeticReferenceFrame, DynamicGeodeticReferenceFrame,
+VerticalReferenceFrame, DynamicVerticalReferenceFrame, TemporalDatum,
+EngineeringDatum, ParametricDatum</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>osgeo::proj::crs:</dt><dd><p>CRS = coordinate reference system = coordinate system with a datum</p>
+<p>Classes CRS, GeodeticCRS, GeographicCRS, DerivedCRS, ProjectedCRS,
+VerticalCRS, CompoundCRS, BoundCRS, TemporalCRS, EngineeringCRS,
+ParametricCRS, DerivedGeodeticCRS, DerivedGeographicCRS,
+DerivedProjectedCRS, DerivedVerticalCRS</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>osgeo::proj::operation:</dt><dd><p>Coordinate operations (relationship between any two coordinate
+reference systems)</p>
+<p>Classes CoordinateOperation, GeneralOperationParameter,
+OperationParameter, GeneralParameterValue, ParameterValue,
+OperationParameterValue, OperationMethod, InvalidOperation,
+SingleOperation, Conversion, Transformation, PointMotionOperation,
+ConcatenatedOperation</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>osgeo::proj::io:</dt><dd><p>I/O classes: WKTFormatter, PROJStringFormatter, FormattingException,
+ParsingException, IWKTExportable, IPROJStringExportable, WKTNode,
+WKTParser, PROJStringParser, DatabaseContext, AuthorityFactory,
+FactoryException, NoSuchAuthorityCodeException</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="what-does-what">
+<h3>What does what?<a class="headerlink" href="#what-does-what" title="Permalink to this headline">¶</a></h3>
+<p>The code to parse WKT and PROJ strings and build ISO-19111 objects is
+contained in <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/io.cpp">io.cpp</a></p>
+<p>The code to format WKT and PROJ strings from ISO-19111 objects is mostly
+contained in the related exportToWKT() and exportToPROJString() methods
+overridden in the applicable classes. <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/io.cpp">io.cpp</a> contains the general mechanics
+to build such strings.</p>
+<p>Regarding WKT strings, three variants are handled in import and export:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>WKT2_2018: variant corresponding to the upcoming ISO-19162:2018 standard</p></li>
+<li><p>WKT2_2015: variant corresponding to the current ISO-19162:2015 standard</p></li>
+<li><p>WKT1_GDAL: variant corresponding to the way GDAL understands the OGC
+01-099 and OGC 99-049 standards</p></li>
+</ul>
+</div></blockquote>
+<p>Regarding PROJ strings, two variants are handled in import and export:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>PROJ5: variant used by PROJ &gt;= 5, possibly using pipeline constructs,
+and avoiding +towgs84 / +nadgrids legacy constructs. This variant honours
+axis order and input/output units. That is the pipeline for the conversion
+of EPSG:4326 to EPSG:32631 will assume that the input coordinates are in
+latitude, longitude order, with degrees.</p></li>
+<li><p>PROJ4: variant used by PROJ 4.x</p></li>
+</ul>
+</div></blockquote>
+<p>The raw query of the proj.db database and the upper level construction of
+ISO-19111 objects from the database contents is done in <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/factory.cpp">factory.cpp</a></p>
+</section>
+<section id="a-few-design-principles">
+<h3>A few design principles<a class="headerlink" href="#a-few-design-principles" title="Permalink to this headline">¶</a></h3>
+<p>Methods generally take and return xxxNNPtr objects, that is non-null shared
+pointers (pointers with internal reference counting). The advantage of this
+approach is that the user has not to care about the life-cycle of the
+instances (and this makes the code leak-free by design). The only point of
+attention is to make sure no reference cycles are made. This is the case for
+all classes, except the CoordinateOperation class that point to CRS for
+sourceCRS and targetCRS members, whereas DerivedCRS point to a Conversion
+instance (which derives from CoordinateOperation). This issue was detected in
+the ISO-19111 standard. The solution adopted here is to use std::weak_ptr
+in the CoordinateOperation class to avoid the cycle. This design artefact is
+transparent to users.</p>
+<p>Another important design point is that all ISO19111 objects are immutable after
+creation, that is they only have getters that do not modify their states.
+Consequently they could possibly use in a thread-safe way. There are however
+classes like PROJStringFormatter, WKTFormatter, DatabaseContext, AuthorityFactory
+and CoordinateOperationContext whose instances are mutable and thus can not be
+used by multiple threads at once.</p>
+<p>Example how to build the EPSG:4326 / WGS84 Geographic2D definition from scratch:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>auto greenwich = PrimeMeridian::create(
+    util::PropertyMap()
+        .set(metadata::Identifier::CODESPACE_KEY,
+            metadata::Identifier::EPSG)
+        .set(metadata::Identifier::CODE_KEY, 8901)
+        .set(common::IdentifiedObject::NAME_KEY, &quot;Greenwich&quot;),
+    common::Angle(0));
+// actually predefined as PrimeMeridian::GREENWICH constant
+
+auto ellipsoid = Ellipsoid::createFlattenedSphere(
+    util::PropertyMap()
+        .set(metadata::Identifier::CODESPACE_KEY, metadata::Identifier::EPSG)
+        .set(metadata::Identifier::CODE_KEY, 7030)
+        .set(common::IdentifiedObject::NAME_KEY, &quot;WGS 84&quot;),
+    common::Length(6378137),
+    common::Scale(298.257223563));
+// actually predefined as Ellipsoid::WGS84 constant
+
+auto datum = GeodeticReferenceFrame::create(
+    util::PropertyMap()
+        .set(metadata::Identifier::CODESPACE_KEY, metadata::Identifier::EPSG)
+        .set(metadata::Identifier::CODE_KEY, 6326)
+        .set(common::IdentifiedObject::NAME_KEY, &quot;World Geodetic System 1984&quot;);
+    ellipsoid
+    util::optional&lt;std::string&gt;(), // anchor
+    greenwich);
+// actually predefined as GeodeticReferenceFrame::EPSG_6326 constant
+
+auto geogCRS = GeographicCRS::create(
+    util::PropertyMap()
+        .set(metadata::Identifier::CODESPACE_KEY, metadata::Identifier::EPSG)
+        .set(metadata::Identifier::CODE_KEY, 4326)
+        .set(common::IdentifiedObject::NAME_KEY, &quot;WGS 84&quot;),
+    datum,
+    cs::EllipsoidalCS::createLatitudeLongitude(scommon::UnitOfMeasure::DEGREE));
+// actually predefined as GeographicCRS::EPSG_4326 constant
+</pre></div>
+</div>
+</section>
+<section id="algorithmic-focus">
+<h3>Algorithmic focus<a class="headerlink" href="#algorithmic-focus" title="Permalink to this headline">¶</a></h3>
+<p>On the algorithmic side, a somewhat involved logic is the
+CoordinateOperationFactory::createOperations() in <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/coordinateoperation.cpp">coordinateoperation.cpp</a>
+that takes a pair of source and target CRS and returns a set of possible
+<a class="reference external" href="https://proj.org/operations/index.html">coordinate operations</a> (either single operations like a Conversion or a
+Transformation, or concatenated operations). It uses the intrinsic structure
+of those objects to create the coordinate operation pipeline. That is, if
+going from a ProjectedCRS to another one, by doing first the inverse conversion
+from the source ProjectedCRS to its base GeographicCRS, then finding the
+appropriate transformation(s) from this base GeographicCRS to the base
+GeographicCRS of the target CRS, and then applying the conversion from this
+base GeographicCRS to the target ProjectedCRS. At each step, it queries the
+database to find if one or several transformations are available. The
+resulting coordinate operations are filtered, and sorted, with user provided hints:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>desired accuracy</p></li>
+<li><p>area of use, defined as a bounding box in longitude, latitude space (its
+actual CRS does not matter for the intended use)</p></li>
+<li><p>if no area of use is defined, if and how the area of use of the source
+and target CRS should be used. By default, the smallest area of use is
+used. The rationale is for example when transforming between a national
+ProjectedCRS and a world-scope GeographicCRS to use the are of use of
+this ProjectedCRS to select the appropriate datum shifts.</p></li>
+<li><p>how the area of use of the candidate transformations and the desired area of
+use (either explicitly or implicitly defined, as explained above) are
+compared. By default, only transformations whose area of use is fully
+contained in the desired area of use are selected. It is also possible
+to relax this test by specifying that only an intersection test must be used.</p></li>
+<li><p>whether <a class="reference external" href="https://proj.org/resource_files.html#transformation-grids">PROJ transformation grid</a> names should be substituted to the
+official names, when a match is found in the <cite>grid_alternatives</cite> table
+of the database. Defaults to true</p></li>
+<li><p>whether the availability of those grids should be used to filter and sort
+the results. By default, the transformations using grids available in the
+system will be presented first.</p></li>
+</ul>
+</div></blockquote>
+<p>The results are sorted, with the most relevant ones appearing first in the
+result vector. The criteria used are in that order</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>grid actual availability: operations referencing grids not available will be
+listed after ones with available grids</p></li>
+<li><p>grid potential availability: operation referencing grids not known at
+all in the proj.db will be listed after operations with grids known, but
+not available.</p></li>
+<li><p>known accuracy: operations with unknown accuracies will be listed
+after operations with known accuracy</p></li>
+<li><p>area of use: operations with smaller area of use (the intersection of the
+operation area of used with the desired area of use) will be listed after
+the ones with larger area of use</p></li>
+<li><p>accuracy: operations with lower accuracy will be listed after operations
+with higher accuracy (caution: lower accuracy actually means a higher numeric
+value of the accuracy property, since it is a precision in metre)</p></li>
+</ul>
+</div></blockquote>
+<p>All those settings can be specified in the CoordinateOperationContext instance
+passed to createOperations().</p>
+<p>An interesting example to understand how those parameters play together is
+to use <cite>projinfo -s EPSG:4267 -t EPSG:4326</cite> (NAD27 to WGS84 conversions),
+and see how specifying desired area of use, spatial criterion, grid availability,
+etc. affects the results.</p>
+<p>The following command currently returns 78 results:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projinfo -s EPSG:4267 -t EPSG:4326 --summary --spatial-test intersects
+</pre></div>
+</div>
+<p>The createOperations() algorithm also does a kind of “CRS routing”.
+A typical example is if wanting to transform between CRS A and
+CRS B, but no direct transformation is referenced in proj.db between those.
+But if there are transformations between A &lt;–&gt; C and B &lt;–&gt; C, then it
+is possible to build a concatenated operation A –&gt; C –&gt; B. The typical
+example is when C is WGS84, but the implementation is generic and just finds
+a common pivot from the database. An example of finding a non-WGS84 pivot is
+when searching a transformation between EPSG:4326 and EPSG:6668 (JGD2011 -
+Japanese Geodetic Datum 2011), which has no direct transformation registered
+in the EPSG database . However there are transformations between those two
+CRS and JGD2000 (and also Tokyo datum, but that one involves less accurate
+transformations)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projinfo -s EPSG:4326 -t EPSG:6668  --grid-check none --bbox 135.42,34.84,142.14,41.58 --summary
+
+Candidate operations found: 7
+unknown id, Inverse of JGD2000 to WGS 84 (1) + JGD2000 to JGD2011 (1), 1.2 m, Japan - northern Honshu
+unknown id, Inverse of JGD2000 to WGS 84 (1) + JGD2000 to JGD2011 (2), 2 m, Japan excluding northern main province
+unknown id, Inverse of Tokyo to WGS 84 (108) + Tokyo to JGD2011 (2), 9.2 m, Japan onshore excluding northern main province
+unknown id, Inverse of Tokyo to WGS 84 (108) + Tokyo to JGD2000 (2) + JGD2000 to JGD2011 (1), 9.4 m, Japan - northern Honshu
+unknown id, Inverse of Tokyo to WGS 84 (2) + Tokyo to JGD2011 (2), 13.2 m, Japan - onshore mainland and adjacent islands
+unknown id, Inverse of Tokyo to WGS 84 (2) + Tokyo to JGD2000 (2) + JGD2000 to JGD2011 (1), 13.4 m, Japan - northern Honshu
+unknown id, Inverse of Tokyo to WGS 84 (1) + Tokyo to JGD2011 (2), 29.2 m, Asia - Japan and South Korea
+</pre></div>
+</div>
+</section>
+</section>
+<section id="code-repository">
+<h2>Code repository<a class="headerlink" href="#code-repository" title="Permalink to this headline">¶</a></h2>
+<p>The current state of the work can be found in the
+<a class="reference external" href="https://github.com/rouault/proj.4/tree/iso19111">iso19111 branch of rouault/proj.4 repository</a> , and is also available as
+a GitHub pull request at <a class="reference external" href="https://github.com/OSGeo/proj.4/pull/1040">https://github.com/OSGeo/proj.4/pull/1040</a></p>
+<p>Here is a not-so-usable <a class="reference external" href="https://github.com/OSGeo/proj.4/compare/iso19111_dev...rouault:iso19111">comparison with a fixed snapshot of master branch</a></p>
+</section>
+<section id="database">
+<h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
+<section id="content">
+<h3>Content<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h3>
+<p>The database contains CRS and coordinate operation definitions from the <a class="reference external" href="http://www.epsg.org/">EPSG</a>
+database (IOGP’s EPSG Geodetic Parameter Dataset) v9.5.3,
+<a class="reference external" href="https://geodesie.ign.fr/index.php?page=documentation#titre3">IGNF registry</a> (French National Geographic Institute), ESRI database, as well
+as a few customizations.</p>
+</section>
+<section id="building-for-proj-developers-creating-the-database">
+<h3>Building (for PROJ developers creating the database)<a class="headerlink" href="#building-for-proj-developers-creating-the-database" title="Permalink to this headline">¶</a></h3>
+<p>The building of the database is a several stage process:</p>
+<section id="construct-sql-scripts-for-epsg">
+<h4>Construct SQL scripts for EPSG<a class="headerlink" href="#construct-sql-scripts-for-epsg" title="Permalink to this headline">¶</a></h4>
+<p>The first stage consists in constructing .sql scripts mostly with
+CREATE TABLE and INSERT statements to create the database structure and
+populate it. There is one .sql file for each database table, populated
+with the content of the EPSG database, automatically
+generated with the <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a> script, which processes the PostgreSQL
+dumps issued by IOGP. A number of other scripts are dedicated to manual
+editing, for example <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/grid_alternatives.sql">grid_alternatives.sql</a> file that binds official
+grid names to PROJ grid names</p>
+</section>
+<section id="concert-utf8-sql-to-sqlite3-db">
+<h4>Concert UTF8 SQL to sqlite3 db<a class="headerlink" href="#concert-utf8-sql-to-sqlite3-db" title="Permalink to this headline">¶</a></h4>
+<p>The second stage is done automatically by the make process. It pipes the
+.sql script, in the right order, to the sqlite3 binary to generate a
+first version of the proj.db SQLite3 database.</p>
+</section>
+<section id="add-extra-registries">
+<h4>Add extra registries<a class="headerlink" href="#add-extra-registries" title="Permalink to this headline">¶</a></h4>
+<p>The third stage consists in creating additional .sql files from the
+content of other registries. For that process, we need to bind some
+definitions of those registries to those of the EPSG database, to be
+able to link to existing objects and detect some boring duplicates.
+The <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/ignf.sql">ignf.sql</a> file has been generated using
+the <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db_create_ignf.py">build_db_create_ignf.py</a> script from the current data/IGNF file
+that contains CRS definitions (and implicit transformations to WGS84)
+as PROJ.4 strings.
+The <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/esri.sql">esri.sql</a> file has been generated using the <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db_from_esri.py">build_db_from_esri.py</a>
+script, from the .csv files in
+<a class="reference external" href="https://github.com/Esri/projection-engine-db-doc/tree/master/csv">https://github.com/Esri/projection-engine-db-doc/tree/master/csv</a></p>
+</section>
+<section id="finalize-proj-db">
+<h4>Finalize proj.db<a class="headerlink" href="#finalize-proj-db" title="Permalink to this headline">¶</a></h4>
+<p>The last stage runs make again to incorporate the new .sql files generated
+in the previous stage (so the process of building the database involves
+a kind of bootstrapping…)</p>
+</section>
+</section>
+<section id="building-for-proj-users">
+<h3>Building (for PROJ users)<a class="headerlink" href="#building-for-proj-users" title="Permalink to this headline">¶</a></h3>
+<p>The make process just runs the second stage mentioned above from the .sql
+files. The resulting proj.db is currently 5.3 MB large.</p>
+</section>
+<section id="structure">
+<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h3>
+<p>The database is structured into the following tables and views. They generally
+match a ISO-19111 concept, and is generally close to the general structure of
+the EPSG database. Regarding identification of objects, where the EPSG database
+only contains a ‘code’ numeric column, the PROJ database identifies objects
+with a (auth_name, code) tuple of string values, allowing several registries to
+be combined together.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Technical:</dt><dd><ul>
+<li><p><cite>authority_list</cite>: view enumerating the authorities present in the database. Currently: EPSG, IGNF, PROJ</p></li>
+<li><p><cite>metadata</cite>: a few key/value pairs, for example to indicate the version of the registries imported in the database</p></li>
+<li><p><cite>object_view</cite>: synthetic view listing objects (ellipsoids, datums, CRS, coordinate operations…) code and name, and the table name where they are further described</p></li>
+<li><p><cite>alias_names</cite>: list possible alias for the <cite>name</cite> field of object table</p></li>
+<li><p><cite>link_from_deprecated_to_non_deprecated</cite>: to handle the link between old ESRI to new ESRI/EPSG codes</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Common:</dt><dd><ul>
+<li><p><cite>unit_of_measure</cite>: table with UnitOfMeasure definitions.</p></li>
+<li><p><cite>area</cite>: table with area-of-use (bounding boxes) applicable to CRS and coordinate operations.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Coordinate systems:</dt><dd><ul>
+<li><p><cite>axis</cite>: table with CoordinateSystemAxis definitions.</p></li>
+<li><p><cite>coordinate_system</cite>: table with CoordinateSystem definitions.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Ellipsoid and datums:</dt><dd><ul>
+<li><p><cite>ellipsoid</cite>: table with ellipsoid definitions.</p></li>
+<li><p><cite>prime_meridian</cite>: table with PrimeMeridian definitions.</p></li>
+<li><p><cite>geodetic_datum</cite>: table with GeodeticReferenceFrame definitions.</p></li>
+<li><p><cite>vertical_datum</cite>: table with VerticalReferenceFrame definitions.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>CRS:</dt><dd><ul>
+<li><p><cite>geodetic_crs</cite>: table with GeodeticCRS and GeographicCRS definitions.</p></li>
+<li><p><cite>projected_crs</cite>: table with ProjectedCRS definitions.</p></li>
+<li><p><cite>vertical_crs</cite>: table with VerticalCRS definitions.</p></li>
+<li><p><cite>compound_crs</cite>: table with CompoundCRS definitions.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Coordinate operations:</dt><dd><ul>
+<li><p><cite>coordinate_operation_view</cite>: view giving a number of common attributes shared by the concrete tables implementing CoordinateOperation</p></li>
+<li><p><cite>conversion</cite>: table with definitions of Conversion (mostly parameter and values of Projection)</p></li>
+<li><p><cite>concatenated_operation</cite>: table with definitions of ConcatenatedOperation.</p></li>
+<li><p><cite>grid_transformation</cite>: table with all grid-based transformations.</p></li>
+<li><p><cite>grid_packages</cite>: table listing packages in which grids can be found. ie “proj-datumgrid”, “proj-datumgrid-europe”, …</p></li>
+<li><p><cite>grid_alternatives</cite>: table binding official grid names to PROJ grid names. e.g “Und_min2.5x2.5_egm2008_isw=82_WGS84_TideFree.gz” –&gt; “egm08_25.gtx”</p></li>
+<li><p><cite>helmert_transformation</cite>: table with all Helmert-based transformations.</p></li>
+<li><p><cite>other_transformation</cite>: table with other type of transformations.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The main departure with the structure of the EPSG database is the split of
+the various coordinate operations over several tables. This was done mostly
+for human-readability as the EPSG organization of coordoperation,
+coordoperationmethod, coordoperationparam, coordoperationparamusage,
+coordoperationparamvalue tables makes it hard to grasp at once all the
+parameters and values for a given operation.</p>
+</section>
+</section>
+<section id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<p>A new <cite>projinfo</cite> utility has been added. It enables the user to enter a CRS or
+coordinate operation by a AUTHORITY:CODE, PROJ string or WKT string, and see
+it translated in the different flavors of PROJ and WKT strings.
+It also enables to build coordinate operations between two CRSs.</p>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: projinfo [-o formats] [-k crs|operation] [--summary] [-q]
+                [--bbox min_long,min_lat,max_long,max_lat]
+                [--spatial-test contains|intersects]
+                [--crs-extent-use none|both|intersection|smallest]
+                [--grid-check none|discard_missing|sort]
+                [--boundcrs-to-wgs84]
+                {object_definition} | (-s {srs_def} -t {srs_def})
+
+-o: formats is a comma separated combination of: all,default,PROJ4,PROJ,WKT_ALL,WKT2_2015,WKT2_2018,WKT1_GDAL
+    Except &#39;all&#39; and &#39;default&#39;, other format can be preceded by &#39;-&#39; to disable them
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<section id="specify-crs-by-authority-code">
+<h4>Specify CRS by AUTHORITY:CODE<a class="headerlink" href="#specify-crs-by-authority-code" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ projinfo EPSG:4326
+
+PROJ string:
++proj=pipeline +step +proj=longlat +ellps=WGS84 +step +proj=unitconvert +xy_in=rad +xy_out=deg +step +proj=axisswap +order=2,1
+
+WKT2_2015 string:
+GEODCRS[&quot;WGS 84&quot;,
+    DATUM[&quot;World Geodetic System 1984&quot;,
+        ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+            LENGTHUNIT[&quot;metre&quot;,1]]],
+    PRIMEM[&quot;Greenwich&quot;,0,
+        ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+            ORDER[1],
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+            ORDER[2],
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+    AREA[&quot;World&quot;],
+    BBOX[-90,-180,90,180],
+    ID[&quot;EPSG&quot;,4326]]
+</pre></div>
+</div>
+</section>
+<section id="specify-crs-by-proj-string-and-specify-output-formats">
+<h4>Specify CRS by PROJ string and specify output formats<a class="headerlink" href="#specify-crs-by-proj-string-and-specify-output-formats" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ projinfo -o PROJ4,PROJ,WKT1_GDAL,WKT2_2018 &quot;+title=IGN 1972 Nuku Hiva - UTM fuseau 7 Sud +proj=tmerc +towgs84=165.7320,216.7200,180.5050,-0.6434,-0.4512,-0.0791,7.420400 +a=6378388.0000 +rf=297.0000000000000 +lat_0=0.000000000 +lon_0=-141.000000000 +k_0=0.99960000 +x_0=500000.000 +y_0=10000000.000 +units=m +no_defs&quot;
+
+PROJ string:
+Error when exporting to PROJ string: BoundCRS cannot be exported as a PROJ.5 string, but its baseCRS might
+
+PROJ.4 string:
++proj=utm +zone=7 +south +ellps=intl +towgs84=165.732,216.72,180.505,-0.6434,-0.4512,-0.0791,7.4204
+
+WKT2_2018 string:
+BOUNDCRS[
+    SOURCECRS[
+        PROJCRS[&quot;IGN 1972 Nuku Hiva - UTM fuseau 7 Sud&quot;,
+            BASEGEOGCRS[&quot;unknown&quot;,
+                DATUM[&quot;unknown&quot;,
+                    ELLIPSOID[&quot;International 1909 (Hayford)&quot;,6378388,297,
+                        LENGTHUNIT[&quot;metre&quot;,1,
+                            ID[&quot;EPSG&quot;,9001]]]],
+                PRIMEM[&quot;Greenwich&quot;,0,
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+                    ID[&quot;EPSG&quot;,8901]]],
+            CONVERSION[&quot;unknown&quot;,
+                METHOD[&quot;Transverse Mercator&quot;,
+                    ID[&quot;EPSG&quot;,9807]],
+                PARAMETER[&quot;Latitude of natural origin&quot;,0,
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+                    ID[&quot;EPSG&quot;,8801]],
+                PARAMETER[&quot;Longitude of natural origin&quot;,-141,
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+                    ID[&quot;EPSG&quot;,8802]],
+                PARAMETER[&quot;Scale factor at natural origin&quot;,0.9996,
+                    SCALEUNIT[&quot;unity&quot;,1],
+                    ID[&quot;EPSG&quot;,8805]],
+                PARAMETER[&quot;False easting&quot;,500000,
+                    LENGTHUNIT[&quot;metre&quot;,1],
+                    ID[&quot;EPSG&quot;,8806]],
+                PARAMETER[&quot;False northing&quot;,10000000,
+                    LENGTHUNIT[&quot;metre&quot;,1],
+                    ID[&quot;EPSG&quot;,8807]]],
+            CS[Cartesian,2],
+                AXIS[&quot;(E)&quot;,east,
+                    ORDER[1],
+                    LENGTHUNIT[&quot;metre&quot;,1,
+                        ID[&quot;EPSG&quot;,9001]]],
+                AXIS[&quot;(N)&quot;,north,
+                    ORDER[2],
+                    LENGTHUNIT[&quot;metre&quot;,1,
+                        ID[&quot;EPSG&quot;,9001]]]]],
+    TARGETCRS[
+        GEOGCRS[&quot;WGS 84&quot;,
+            DATUM[&quot;World Geodetic System 1984&quot;,
+                ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                    LENGTHUNIT[&quot;metre&quot;,1]]],
+            PRIMEM[&quot;Greenwich&quot;,0,
+                ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+            CS[ellipsoidal,2],
+                AXIS[&quot;latitude&quot;,north,
+                    ORDER[1],
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+                AXIS[&quot;longitude&quot;,east,
+                    ORDER[2],
+                    ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+            ID[&quot;EPSG&quot;,4326]]],
+    ABRIDGEDTRANSFORMATION[&quot;Transformation from unknown to WGS84&quot;,
+        METHOD[&quot;Position Vector transformation (geog2D domain)&quot;,
+            ID[&quot;EPSG&quot;,9606]],
+        PARAMETER[&quot;X-axis translation&quot;,165.732,
+            ID[&quot;EPSG&quot;,8605]],
+        PARAMETER[&quot;Y-axis translation&quot;,216.72,
+            ID[&quot;EPSG&quot;,8606]],
+        PARAMETER[&quot;Z-axis translation&quot;,180.505,
+            ID[&quot;EPSG&quot;,8607]],
+        PARAMETER[&quot;X-axis rotation&quot;,-0.6434,
+            ID[&quot;EPSG&quot;,8608]],
+        PARAMETER[&quot;Y-axis rotation&quot;,-0.4512,
+            ID[&quot;EPSG&quot;,8609]],
+        PARAMETER[&quot;Z-axis rotation&quot;,-0.0791,
+            ID[&quot;EPSG&quot;,8610]],
+        PARAMETER[&quot;Scale difference&quot;,1.0000074204,
+            ID[&quot;EPSG&quot;,8611]]]]
+
+WKT1_GDAL:
+PROJCS[&quot;IGN 1972 Nuku Hiva - UTM fuseau 7 Sud&quot;,
+    GEOGCS[&quot;unknown&quot;,
+        DATUM[&quot;unknown&quot;,
+            SPHEROID[&quot;International 1909 (Hayford)&quot;,6378388,297],
+            TOWGS84[165.732,216.72,180.505,-0.6434,-0.4512,-0.0791,7.4204]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],
+        UNIT[&quot;degree&quot;,0.0174532925199433,
+            AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],
+        AXIS[&quot;Longitude&quot;,EAST],
+        AXIS[&quot;Latitude&quot;,NORTH]],
+    PROJECTION[&quot;Transverse_Mercator&quot;],
+    PARAMETER[&quot;latitude_of_origin&quot;,0],
+    PARAMETER[&quot;central_meridian&quot;,-141],
+    PARAMETER[&quot;scale_factor&quot;,0.9996],
+    PARAMETER[&quot;false_easting&quot;,500000],
+    PARAMETER[&quot;false_northing&quot;,10000000],
+    UNIT[&quot;metre&quot;,1,
+        AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],
+    AXIS[&quot;Easting&quot;,EAST],
+    AXIS[&quot;Northing&quot;,NORTH]]
+</pre></div>
+</div>
+</section>
+<section id="find-transformations-between-2-crs">
+<h4>Find transformations between 2 CRS<a class="headerlink" href="#find-transformations-between-2-crs" title="Permalink to this headline">¶</a></h4>
+<p>Between “Poland zone I” (based on Pulkovo 42 datum) and “UTM WGS84 zone 34N”</p>
+<p>Summary view:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ projinfo -s EPSG:2171 -t EPSG:32634 --summary
+
+Candidate operations found: 1
+unknown id, Inverse of Poland zone I + Pulkovo 1942(58) to WGS 84 (1) + UTM zone 34N, 1 m, Poland - onshore
+</pre></div>
+</div>
+<p>Display of pipelines:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ PROJ_LIB=data src/projinfo -s EPSG:2171 -t EPSG:32634 -o PROJ
+
+PROJ string:
++proj=pipeline +step +proj=axisswap +order=2,1 +step +inv +proj=sterea +lat_0=50.625 +lon_0=21.0833333333333 +k=0.9998 +x_0=4637000 +y_0=5647000 +ellps=krass +step +proj=cart +ellps=krass +step +proj=helmert +x=33.4 +y=-146.6 +z=-76.3 +rx=-0.359 +ry=-0.053 +rz=0.844 +s=-0.84 +convention=position_vector +step +inv +proj=cart +ellps=WGS84 +step +proj=utm +zone=34 +ellps=WGS84
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="impacted-files">
+<h2>Impacted files<a class="headerlink" href="#impacted-files" title="Permalink to this headline">¶</a></h2>
+<p>New files (excluding makefile.am, CMakeLists.txt and other build infrastructure
+artefacts):</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>include/proj/: Public installed C++ headers</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/common.hpp">common.hpp</a>: declarations of osgeo::proj::common namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/coordinateoperation.hpp">coordinateoperation.hpp</a>:  declarations of osgeo::proj::operation namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/coordinatesystem.hpp">coordinatesystem.hpp</a>:  declarations of osgeo::proj::cs namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/crs.hpp">crs.hpp</a>:  declarations of osgeo::proj::crs namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/datum.hpp">datum.hpp</a>:  declarations of osgeo::proj::datum namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/io.hpp">io.hpp</a>:  declarations of osgeo::proj::io namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/metadata.hpp">metadata.hpp</a>: declarations of osgeo::proj::metadata namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/util.hpp">util.hpp</a>: declarations of osgeo::proj::util namespace.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/nn.hpp">nn.hpp</a>: Code from <a class="reference external" href="https://github.com/dropbox/nn">https://github.com/dropbox/nn</a> to manage Non-nullable pointers for C++</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>include/proj/internal: Private non-installed C++ headers</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/coordinateoperation_internal.hpp">coordinateoperation_internal.hpp</a>: classes InverseCoordinateOperation, InverseConversion, InverseTransformation, PROJBasedOperation, and functions to get conversion mappings between WKT and PROJ syntax</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/coordinateoperation_constants.hpp">coordinateoperation_constants.hpp</a>: Select subset of conversion/transformation EPSG names and codes for the purpose of translating them to PROJ strings</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/coordinatesystem_internal.hpp">coordinatesystem_internal.hpp</a>: classes AxisDirectionWKT1, AxisName and AxisAbbreviation</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/internal.hpp">internal.hpp</a>: a few helper functions, mostly to do string-based operations</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/io_internal.hpp">io_internal.hpp</a>: class WKTConstants</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/helmert_constants.hpp">helmert_constants.hpp</a>: Helmert-based transformation &amp; parameters names and codes.</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/lru_cache.hpp">lru_cache.hpp</a>: code from <a class="reference external" href="https://github.com/mohaps/lrucache11">https://github.com/mohaps/lrucache11</a> to have a generic Least-Recently-Used cache of objects</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>src/:</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/c_api.cpp">c_api.cpp</a>: C++ API mapped to C functions</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/common.cpp">common.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/common.hpp">common.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/coordinateoperation.cpp">coordinateoperation.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/coordinateoperation.hpp">coordinateoperation.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/coordinatesystem.cpp">coordinatesystem.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/coordinatesystem.hpp">coordinatesystem.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/crs.cpp">crs.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/crs.hpp">crs.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/datum.cpp">datum.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/datum.hpp">datum.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/factory.cpp">factory.cpp</a>: implementation of AuthorityFactory class (from <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/io.hpp">io.hpp</a>)</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/internal.cpp">internal.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/internal/internal.hpp">internal.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/io.cpp">io.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/io.hpp">io.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/metadata.cpp">metadata.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/metadata.hpp">metadata.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/static.cpp">static.cpp</a>: a number of static constants (like pre-defined well-known ellipsoid, datum and CRS), put in the right order for correct static initializations</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/util.cpp">util.cpp</a>: implementation of <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/include/proj/util.hpp">util.hpp</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/projinfo.cpp">projinfo.cpp</a>: new ‘projinfo’ binary</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/src/general.dox">general.dox</a>: generic introduction documentation.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>data/sql/:</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/area.sql">area.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/axis.sql">axis.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/begin.sql">begin.sql</a>: hand generated (trivial)</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/commit.sql">commit.sql</a>: hand generated (trivial)</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/compound_crs.sql">compound_crs.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/concatenated_operation.sql">concatenated_operation.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/conversion.sql">conversion.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/coordinate_operation.sql">coordinate_operation.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/coordinate_system.sql">coordinate_system.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/crs.sql">crs.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/customizations.sql">customizations.sql</a>: hand generated (empty)</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/ellipsoid.sql">ellipsoid.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/geodetic_crs.sql">geodetic_crs.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/geodetic_datum.sql">geodetic_datum.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/grid_alternatives.sql">grid_alternatives.sql</a>: hand-generated. Contains links between official registry grid names and PROJ ones</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/grid_transformation.sql">grid_transformation.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/grid_transformation_custom.sql">grid_transformation_custom.sql</a>: hand-generated</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/helmert_transformation.sql">helmert_transformation.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/ignf.sql">ignf.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db_create_ignf.py">build_db_create_ignf.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/esri.sql">esri.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db_from_esri.py">build_db_from_esri.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/metadata.sql">metadata.sql</a>: hand-generated</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/other_transformation.sql">other_transformation.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/prime_meridian.sql">prime_meridian.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/proj_db_table_defs.sql">proj_db_table_defs.sql</a>: hand-generated. Database structure: CREATE TABLE / CREATE VIEW / CREATE TRIGGER</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/projected_crs.sql">projected_crs.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/unit_of_measure.sql">unit_of_measure.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/vertical_crs.sql">vertical_crs.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/vertical_datum.sql">vertical_datum.sql</a>: generated by <a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>scripts/:</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db.py">build_db.py</a> : generate .sql files from EPSG database dumps</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db_create_ignf.py">build_db_create_ignf.py</a>: generates data/sql/<a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/ignf.sql">ignf.sql</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/build_db_from_esri.py">build_db_from_esri.py</a>: generates data/sql/<a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/esri.sql">esri.sql</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/doxygen.sh">doxygen.sh</a>: generates Doxygen documentation</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/gen_html_coverage.sh">gen_html_coverage.sh</a>: generates HTML report of the coverage for –coverage build</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/filter_lcov_info.py">filter_lcov_info.py</a>: utility used by gen_html_coverage.sh</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/reformat.sh">reformat.sh</a>: used by reformat_cpp.sh</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/scripts/reformat_cpp.sh">reformat_cpp.sh</a>: reformat all .cpp/.hpp files according to LLVM-style formatting rules</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>tests/unit/</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_c_api.cpp">test_c_api.cpp</a>: test of src/c_api.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_common.cpp">test_common.cpp</a>: test of src/common.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_util.cpp">test_util.cpp</a>: test of src/util.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_crs.cpp">test_crs.cpp</a>: test of src/crs.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_datum.cpp">test_datum.cpp</a>: test of src/datum.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_factory.cpp">test_factory.cpp</a>: test of src/factory.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_io.cpp">test_io.cpp</a>: test of src/io.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_metadata.cpp">test_metadata.cpp</a>: test of src/metadata.cpp</p></li>
+<li><p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_operation.cpp">test_operation.cpp</a>: test of src/operation.cpp</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="c-api">
+<h2>C API<a class="headerlink" href="#c-api" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://even.rouault.free.fr/proj_cpp_api/html/proj_8h.html">proj.h</a> has been extended to bind a number of C++ classes/methods to a C API.</p>
+<p>The main structure is an opaque PJ_OBJ* roughly encapsulating a osgeo::proj::BaseObject,
+that can represent a CRS or a CoordinateOperation object. A number of the
+C functions will work only if the right type of underlying C++ object is used
+with them. Misuse will be properly handled at runtime. If a user passes
+a PJ_OBJ* representing a coordinate operation to a pj_obj_crs_xxxx() function,
+it will properly error out. This design has been chosen over creating a
+dedicate PJ_xxx object for each C++ class, because such an approach would
+require adding many conversion and free functions for little benefit.</p>
+<p>This C API is incomplete. In particular, it does not allow to
+build ISO19111 objects at hand. However it currently permits a number of
+actions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>building CRS and coordinate operations from WKT and PROJ strings, or
+from the proj.db database</p></li>
+<li><p>exporting CRS and coordinate operations as WKT and PROJ strings</p></li>
+<li><p>querying main attributes of those objects</p></li>
+<li><p>finding coordinate operations between two CRS.</p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/test/unit/test_c_api.cpp">test_c_api.cpp</a> should demonstrates simple usage of the API (note:
+for the conveniency of writing the tests in C++, test_c_api.cpp wraps the C PJ_OBJ*
+instances in C++ ‘keeper’ objects that automatically call the pj_obj_unref()
+function at function end. In a pure C use, the caller must use pj_obj_unref()
+to prevent leaks.)</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>All public C++ classes and methods and C functions are documented with
+Doxygen.</p>
+<p><a class="reference external" href="http://even.rouault.free.fr/proj_cpp_api/html/annotated.html">Current snapshot of Class list</a></p>
+<p><a class="reference external" href="http://even.rouault.free.fr/proj_cpp_api/html/inherits.html">Spaghetti inheritance diagram</a></p>
+<p>A basic integration of the Doxygen XML output into the general PROJ
+documentation (using reStructuredText format) has been done with the
+Sphinx extension <a class="reference external" href="https://breathe.readthedocs.io/en/latest/">Breathe</a>, producing:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://even.rouault.free.fr/proj_cpp_api/rst_generated/html/development/reference/cpp/index.html">One section with the C++ API</a></p></li>
+<li><p><a class="reference external" href="http://even.rouault.free.fr/proj_cpp_api/rst_generated/html/development/reference/functions.html#c-api-for-iso-19111-functionality">One section with the C API</a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>Nearly all exported methods are tested by a unit test. Global line coverage
+of the new files is 92%. Those tests represent 16k lines of codes.</p>
+</section>
+<section id="build-requirements">
+<h2>Build requirements<a class="headerlink" href="#build-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The new code leverages on a number of C++11 features (auto keyword, constexpr,
+initializer list, std::shared_ptr, lambda functions, etc.), which means that
+a C++11-compliant compiler must be used to generate PROJ:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>gcc &gt;= 4.8</p></li>
+<li><p>clang &gt;= 3.3</p></li>
+<li><p>Visual Studio &gt;= 2015.</p></li>
+</ul>
+</div></blockquote>
+<p>Compilers tested by the Travis-CI and AppVeyor continuous integration
+environments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>GCC 4.8</p></li>
+<li><p>mingw-w64-x86-64 4.8</p></li>
+<li><p>clang 5.0</p></li>
+<li><p>Apple LLVM version 9.1.0 (clang-902.0.39.2)</p></li>
+<li><p>MSVC 2015 32 and 64 bit</p></li>
+<li><p>MSVC 2017 32 and 64 bit</p></li>
+</ul>
+</div></blockquote>
+<p>The libsqlite3 &gt;= 3.7 development package must also be available. And the sqlite3
+binary must be available to build the proj.db files from the .sql files.</p>
+</section>
+<section id="runtime-requirements">
+<h2>Runtime requirements<a class="headerlink" href="#runtime-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>libc++/libstdc++/MSVC runtime consistent with the compiler used</p></li>
+<li><p>libsqlite3 &gt;= 3.7</p></li>
+</ul>
+</section>
+<section id="backward-compatibility">
+<h2>Backward compatibility<a class="headerlink" href="#backward-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>At this stage, no backward compatibility issue is foreseen, as no
+existing functional C code has been modified to use the new capabilities</p>
+</section>
+<section id="future-work">
+<h2>Future work<a class="headerlink" href="#future-work" title="Permalink to this headline">¶</a></h2>
+<p>The work described in this RFC will be pursued in a number of directions.
+Non-exhaustively:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Support for ESRI WKT1 dialect (PROJ currently ingest the ProjectedCRS in
+<a class="reference external" href="https://github.com/rouault/proj.4/blob/iso19111/data/sql/esri.sql">esri.sql</a> in that dialect, but there is no mapping between it and EPSG
+operation and parameter names, so conversion to PROJ strings does not
+always work.</p></li>
+<li><p>closer integration with the existing code base. In particular, the +init=dict:code
+syntax should now go first to the database (then the <cite>epsg</cite> and <cite>IGNF</cite>
+files can be removed). Similarly proj_create_crs_to_crs() could use the
+new capabilities to find an appropriate coordinate transformation.</p></li>
+<li><p>and whatever else changes are needed to address GDAL and libgeotiff needs</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="adoption-status">
+<h2>Adoption status<a class="headerlink" href="#adoption-status" title="Permalink to this headline">¶</a></h2>
+<p>The RFC has been adopted with support from PSC members Kurt Schwehr, Kristian
+Evers, Howard Butler and Even Rouault.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rfc-3.html" class="btn btn-neutral float-right" title="PROJ RFC 3: Dependency management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rfc-1.html" class="btn btn-neutral float-left" title="PROJ RFC 1: Project Committee Guidelines" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

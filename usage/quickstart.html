@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Quick start &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgusage/quickstart.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cartographic projection" href="projections.html" />
+    <link rel="prev" title="Using PROJ" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using PROJ</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projections.html">Cartographic projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation.html">Geodetic transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environmentvars.html">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="differences.html">Known differences between versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network.html">Network capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Using PROJ</a> &raquo;</li>
+        
+      <li>Quick start</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/usage/quickstart.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="projections.html" class="btn btn-neutral float-right" title="Cartographic projection" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Using PROJ" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="quick-start">
+<span id="quickstart"></span><h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>Coordinate transformations are defined by, what in PROJ terminology is
+known as, “proj-strings”. A proj-string describes any transformation regardless of
+how simple or complicated it might be. The simplest case is projection of geodetic
+coordinates. This section focuses on the simpler cases and introduces the basic
+anatomy of the proj-string. The complex cases are discussed in
+<a class="reference internal" href="transformation.html"><span class="doc">Geodetic transformation</span></a>.</p>
+<p>A proj-strings holds the parameters of a given coordinate transformation, e.g.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+proj=merc +lat_ts=56.5 +ellps=GRS80
+</pre></div>
+</div>
+<p>I.e. a proj-string consists of a projection specifier, <code class="docutils literal notranslate"><span class="pre">+proj</span></code>, a number of
+parameters that applies to the projection and, if needed, a description of a
+datum shift. In the example above geodetic coordinates are transformed to
+projected space with the <a class="reference internal" href="../operations/projections/merc.html"><span class="doc">Mercator projection</span></a> with
+the latitude of true scale at 56.5 degrees north on the GRS80 ellipsoid. Every
+projection in PROJ is identified by a shorthand such as <code class="docutils literal notranslate"><span class="pre">merc</span></code> in the above
+example.</p>
+<p>By using the  above projection definition as parameters for the command line
+utility <strong class="program">proj</strong> we can convert the geodetic coordinates to projected space:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ proj +proj=merc +lat_ts=56.5 +ellps=GRS80
+</pre></div>
+</div>
+<p>If called as above <strong class="program">proj</strong> will be in interactive mode, letting you
+type the input data manually and getting a response presented on screen.
+<strong class="program">proj</strong> works as any UNIX filter though, which means that you can also
+pipe data to the utility, for instance by using the <strong class="program">echo</strong> command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 55.2 12.2 | proj +proj=merc +lat_ts=56.5 +ellps=GRS80
+3399483.80      752085.60
+</pre></div>
+</div>
+<p>PROJ also comes bundled with the <strong class="program">cs2cs</strong> utility which is used to
+transform from one coordinate reference system to another. Say we want to
+convert the above Mercator coordinates to UTM, we can do that with
+<strong class="program">cs2cs</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 3399483.80 752085.60 | cs2cs +proj=merc +lat_ts=56.5 +ellps=GRS80 +to +proj=utm +zone=32
+6103992.36      1924052.47 0.00
+</pre></div>
+</div>
+<p>Notice the <code class="docutils literal notranslate"><span class="pre">+to</span></code> parameter that separates the source and destination
+projection definitions.</p>
+<p>If you happen to know the EPSG identifiers for the two coordinates reference
+systems you are transforming between you can use those with <strong class="program">cs2cs</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 56 12 | cs2cs +init=epsg:4326 +to +init=epsg:25832
+231950.54      1920310.71 0.00
+</pre></div>
+</div>
+<p>In the above example we transform geodetic coordinates in the WGS84 reference
+frame to UTM zone 32N coordinates in the ETRS89 reference frame.
+UTM coordinates</p>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="projections.html" class="btn btn-neutral float-right" title="Cartographic projection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Using PROJ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

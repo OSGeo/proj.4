@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Geodesic calculations &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orggeodesic.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development" href="development/index.html" />
+    <link rel="prev" title="Resource files" href="resource_files.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource_files.html">Resource files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Geodesic calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#solution-of-geodesic-problems">Solution of geodesic problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-properties">Additional properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-shortest-geodesics">Multiple shortest geodesics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Geodesic calculations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/geodesic.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="development/index.html" class="btn btn-neutral float-right" title="Development" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="resource_files.html" class="btn btn-neutral float-left" title="Resource files" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="geodesic-calculations">
+<span id="geodesic"></span><h1>Geodesic calculations<a class="headerlink" href="#geodesic-calculations" title="Permalink to this headline">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Consider an ellipsoid of revolution with equatorial radius <span class="math notranslate nohighlight">\(a\)</span>, polar
+semi-axis <span class="math notranslate nohighlight">\(b\)</span>, and flattening <span class="math notranslate nohighlight">\(f=(a-b)/a\)</span>.  Points on
+the surface of the ellipsoid are characterized by their latitude <span class="math notranslate nohighlight">\(\phi\)</span>
+and longitude <span class="math notranslate nohighlight">\(\lambda\)</span>.  (Note that latitude here means the
+<em>geographical latitude</em>, the angle between the normal to the ellipsoid
+and the equatorial plane).</p>
+<p>The shortest path between two points on the ellipsoid at
+<span class="math notranslate nohighlight">\((\phi_1,\lambda_1)\)</span> and <span class="math notranslate nohighlight">\((\phi_2,\lambda_2)\)</span>
+is called the geodesic.  Its length is
+<span class="math notranslate nohighlight">\(s_{12}\)</span> and the geodesic from point 1 to point 2 has forward
+azimuths <span class="math notranslate nohighlight">\(\alpha_1\)</span> and <span class="math notranslate nohighlight">\(\alpha_2\)</span> at the two end
+points.  In this figure, we have <span class="math notranslate nohighlight">\(\lambda_{12}=\lambda_2-\lambda_1\)</span>.</p>
+<blockquote>
+<div><center>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Geodesic_problem_on_an_ellipsoid.svg/320px-Geodesic_problem_on_an_ellipsoid.svg.png"
+       alt="Figure from wikipedia"
+       width="320">
+</center></div></blockquote>
+<p>A geodesic can be extended indefinitely by requiring that any
+sufficiently small segment is a shortest path; geodesics are also the
+straightest curves on the surface.</p>
+</section>
+<section id="solution-of-geodesic-problems">
+<h2>Solution of geodesic problems<a class="headerlink" href="#solution-of-geodesic-problems" title="Permalink to this headline">¶</a></h2>
+<p>Traditionally two geodesic problems are considered:</p>
+<ul class="simple">
+<li><p>the direct problem — given <span class="math notranslate nohighlight">\(\phi_1\)</span>,
+<span class="math notranslate nohighlight">\(\lambda_1\)</span>, <span class="math notranslate nohighlight">\(\alpha_1\)</span>, <span class="math notranslate nohighlight">\(s_{12}\)</span>,
+determine <span class="math notranslate nohighlight">\(\phi_2\)</span>, <span class="math notranslate nohighlight">\(\lambda_2\)</span>, <span class="math notranslate nohighlight">\(\alpha_2\)</span>.</p></li>
+<li><p>the inverse problem — given  <span class="math notranslate nohighlight">\(\phi_1\)</span>,
+<span class="math notranslate nohighlight">\(\lambda_1\)</span>,  <span class="math notranslate nohighlight">\(\phi_2\)</span>, <span class="math notranslate nohighlight">\(\lambda_2\)</span>,
+determine <span class="math notranslate nohighlight">\(s_{12}\)</span>, <span class="math notranslate nohighlight">\(\alpha_1\)</span>,
+<span class="math notranslate nohighlight">\(\alpha_2\)</span>.</p></li>
+</ul>
+<p>PROJ incorporates <a class="reference external" href="https://geographiclib.sourceforge.io/1.52/C/">C library for Geodesics</a> from <a class="reference external" href="https://geographiclib.sourceforge.io">GeographicLib</a>.  This library provides
+routines to solve the direct and inverse geodesic problems.  Full double
+precision accuracy is maintained provided that
+<span class="math notranslate nohighlight">\(\lvert f\rvert&lt;\frac1{50}\)</span>.  Refer to the <a class="reference external" href="https://geographiclib.sourceforge.io/1.52/C/geodesic_8h.html">application programming interface</a>
+for full documentation.  A brief summary of the routines is given in
+geodesic(3).</p>
+<p>The interface to the geodesic routines differ in two respects from the
+rest of PROJ:</p>
+<ul class="simple">
+<li><p>angles (latitudes, longitudes, and azimuths) are in degrees (instead
+of in radians);</p></li>
+<li><p>the shape of ellipsoid is specified by the flattening <span class="math notranslate nohighlight">\(f\)</span>; this can
+be negative to denote a prolate ellipsoid; setting <span class="math notranslate nohighlight">\(f=0\)</span> corresponds
+to a sphere, in which case the geodesic becomes a great circle.</p></li>
+</ul>
+<p>PROJ also includes a command line tool, <a class="reference internal" href="apps/geod.html#geod"><span class="std std-ref">geod</span></a>(1), for performing
+simple geodesic calculations.</p>
+</section>
+<section id="additional-properties">
+<h2>Additional properties<a class="headerlink" href="#additional-properties" title="Permalink to this headline">¶</a></h2>
+<p>The routines also calculate several other quantities of interest</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_{12}\)</span> is the area between the geodesic from point 1 to
+point 2 and the equator; i.e., it is the area, measured
+counter-clockwise, of the quadrilateral with corners
+<span class="math notranslate nohighlight">\((\phi_1,\lambda_1)\)</span>, <span class="math notranslate nohighlight">\((0,\lambda_1)\)</span>,
+<span class="math notranslate nohighlight">\((0,\lambda_2)\)</span>, and
+<span class="math notranslate nohighlight">\((\phi_2,\lambda_2)\)</span>.  It is given in
+meters<sup>2</sup>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_{12}\)</span>, the reduced length of the geodesic is defined such
+that if the initial azimuth is perturbed by <span class="math notranslate nohighlight">\(d\alpha_1\)</span>
+(radians) then the second point is displaced by <span class="math notranslate nohighlight">\(m_{12}\,d\alpha_1\)</span>
+in the direction perpendicular to the
+geodesic.  <span class="math notranslate nohighlight">\(m_{12}\)</span> is given in meters.  On a curved surface
+the reduced length obeys a symmetry relation, <span class="math notranslate nohighlight">\(m_{12}+m_{21}=0\)</span>.
+On a flat surface, we have <span class="math notranslate nohighlight">\(m_{12}=s_{12}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(M_{12}\)</span> and <span class="math notranslate nohighlight">\(M_{21}\)</span> are geodesic scales.  If two
+geodesics are parallel at point 1 and separated by a small distance
+<span class="math notranslate nohighlight">\(dt\)</span>, then they are separated by a distance <span class="math notranslate nohighlight">\(M_{12}\,dt\)</span> at
+point 2.  <span class="math notranslate nohighlight">\(M_{21}\)</span> is defined similarly (with the geodesics
+being parallel to one another at point 2).  <span class="math notranslate nohighlight">\(M_{12}\)</span> and
+<span class="math notranslate nohighlight">\(M_{21}\)</span> are dimensionless quantities.  On a flat surface,
+we have <span class="math notranslate nohighlight">\(M_{12}=M_{21}=1\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{12}\)</span> is the arc length on the auxiliary sphere.
+This is a construct for converting the problem to one in spherical
+trigonometry.  The spherical arc length from one equator crossing to
+the next is always <span class="math notranslate nohighlight">\(180^\circ\)</span>.</p></li>
+</ul>
+<p>If points 1, 2, and 3 lie on a single geodesic, then the following
+addition rules hold:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s_{13}=s_{12}+s_{23}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{13}=\sigma_{12}+\sigma_{23}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_{13}=S_{12}+S_{23}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_{13}=m_{12}M_{23}+m_{23}M_{21}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(M_{13}=M_{12}M_{23}-(1-M_{12}M_{21})m_{23}/m_{12}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(M_{31}=M_{32}M_{21}-(1-M_{23}M_{32})m_{12}/m_{23}\)</span>.</p></li>
+</ul>
+</section>
+<section id="multiple-shortest-geodesics">
+<h2>Multiple shortest geodesics<a class="headerlink" href="#multiple-shortest-geodesics" title="Permalink to this headline">¶</a></h2>
+<p>The shortest distance found by solving the inverse problem is
+(obviously) uniquely defined.  However, in a few special cases there are
+multiple azimuths which yield the same shortest distance.  Here is a
+catalog of those cases:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi_1=-\phi_2\)</span> (with neither point at
+a pole).  If <span class="math notranslate nohighlight">\(\alpha_1=\alpha_2\)</span>, the geodesic
+is unique.  Otherwise there are two geodesics and the second one is
+obtained by setting
+<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\leftarrow[\alpha_2,\alpha_1]\)</span>,
+<span class="math notranslate nohighlight">\([M_{12},M_{21}]\leftarrow[M_{21},M_{12}]\)</span>,
+<span class="math notranslate nohighlight">\(S_{12}\leftarrow-S_{12}\)</span>.
+(This occurs when the longitude difference is near <span class="math notranslate nohighlight">\(\pm180^\circ\)</span>
+for oblate ellipsoids.)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda_2=\lambda_1\pm180^\circ\)</span> (with
+neither point at a pole).  If <span class="math notranslate nohighlight">\(\alpha_1=0^\circ\)</span> or
+<span class="math notranslate nohighlight">\(\pm180^\circ\)</span>, the geodesic is unique.  Otherwise there are two
+geodesics and the second one is obtained by setting
+<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\leftarrow[-\alpha_1,-\alpha_2]\)</span>,
+<span class="math notranslate nohighlight">\(S_{12}\leftarrow-S_{12}\)</span>.  (This occurs when
+<span class="math notranslate nohighlight">\(\phi_2\)</span> is near <span class="math notranslate nohighlight">\(-\phi_1\)</span> for prolate
+ellipsoids.)</p></li>
+<li><p>Points 1 and 2 at opposite poles.  There are infinitely many
+geodesics which can be generated by setting
+<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\leftarrow[\alpha_1,\alpha_2]+[\delta,-\delta]\)</span>,
+for arbitrary <span class="math notranslate nohighlight">\(\delta\)</span>.
+(For spheres, this prescription applies when points 1 and 2 are
+antipodal.)</p></li>
+<li><p><span class="math notranslate nohighlight">\(s_{12}=0\)</span> (coincident points).  There are infinitely many
+geodesics which can be generated by setting
+<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\leftarrow[\alpha_1,\alpha_2]+[\delta,\delta]\)</span>,
+for arbitrary <span class="math notranslate nohighlight">\(\delta\)</span>.</p></li>
+</ul>
+</section>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>The algorithms implemented by this package are given in <span id="id1">[<a class="reference internal" href="zreferences.html#id20" title="Karney, C. F. F. Algorithms for geodesics. Journal of Geodesy, 87(1):43–55, 2013. doi:10.1007/s00190-012-0578-z.">Karney2013</a>]</span>
+(<a class="reference external" href="https://geographiclib.sourceforge.io/geod-addenda.html">addenda</a>)
+and are based on <span id="id2">[<a class="reference internal" href="zreferences.html#id4" title="Bessel, F. W. The calculation of longitude and latitude from geodesic measurements. Astronomische Nachrichten, 4(86):241–254, 1825. arXiv:0908.1824.">Bessel1825</a>]</span> and <span id="id3">[<a class="reference internal" href="zreferences.html#id15" title="Helmert, F. R. Mathematical and Physical Theories of Higher Geodesy. Volume 1. Teubner, Leipzig, 1880. doi:10.5281/zenodo.32050.">Helmert1880</a>]</span>; the algorithm for
+areas is based on <span id="id4">[<a class="reference internal" href="zreferences.html#id7" title="Danielsen, J. The area under the geodesic. Survey Review, 30(232):61–66, 1989. doi:10.1179/sre.1989.30.232.61.">Danielsen1989</a>]</span>.  These improve on the work of
+<span id="id5">[<a class="reference internal" href="zreferences.html#id41" title="Vincenty, T. Direct and inverse solutions of geodesics on the ellipsoid with application of nested equations. Survey Review, 23(176):88–93, 1975. doi:10.1179/sre.1975.23.176.88.">Vincenty1975</a>]</span> in the following respects:</p>
+<ul class="simple">
+<li><p>The results are accurate to round-off for terrestrial ellipsoids (the
+error in the distance is less than 15 nanometers, compared to 0.1 mm
+for Vincenty).</p></li>
+<li><p>The solution of the inverse problem is always found.  (Vincenty’s
+method fails to converge for nearly antipodal points.)</p></li>
+<li><p>The routines calculate differential and integral properties of a
+geodesic.  This allows, for example, the area of a geodesic polygon to
+be computed.</p></li>
+</ul>
+<p>Additional background material is provided in GeographicLib’s <a class="reference external" href="https://geographiclib.sourceforge.io/geodesic-papers/biblio.html">geodesic
+bibliography</a>,
+Wikipedia’s article “<a class="reference external" href="https://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid">Geodesics on an ellipsoid</a>”, and <span id="id6">[<a class="reference internal" href="zreferences.html#id22" title="Karney, C. F. F. Geodesics on an ellipsoid of revolution. ArXiv e-prints, 2011. arXiv:1102.1215.">Karney2011</a>]</span>
+(<a class="reference external" href="https://geographiclib.sourceforge.io/geod-addenda.html#geod-errata">errata</a>).</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="development/index.html" class="btn btn-neutral float-right" title="Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="resource_files.html" class="btn btn-neutral float-left" title="Resource files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

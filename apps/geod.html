@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>geod &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgapps/geod.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gie" href="gie.html" />
+    <link rel="prev" title="cs2cs" href="cs2cs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cct.html">cct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cs2cs.html">cs2cs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">geod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gie.html">gie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html">proj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projinfo.html">projinfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projsync.html">projsync</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Applications</a> &raquo;</li>
+        
+      <li>geod</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/apps/geod.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="gie.html" class="btn btn-neutral float-right" title="gie" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="cs2cs.html" class="btn btn-neutral float-left" title="cs2cs" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="geod">
+<span id="id1"></span><h1>geod<a class="headerlink" href="#geod" title="Permalink to this headline">¶</a></h1>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>geod</strong> <em>+ellps=&lt;ellipse&gt;</em> [<strong>-afFIlptwW</strong> [args]] [<em>+opt[=arg]</em> …] file …</p>
+<p><strong>invgeod</strong> <em>+ellps=&lt;ellipse&gt;</em> [<strong>-afFIlptwW</strong> [args]] [<em>+opt[=arg]</em> …] file …</p>
+</div></blockquote>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">geod</strong> (direct) and <strong class="program">invgeod</strong> (inverse) perform geodesic
+(Great Circle) computations for determining latitude, longitude and back
+azimuth of a terminus point given a initial point latitude, longitude,
+azimuth and distance (direct) or the forward and back azimuths and distance
+between an initial and terminus point latitudes and longitudes (inverse).
+The results are accurate to round off for <span class="math notranslate nohighlight">\(|f| &lt; 1/50\)</span>, where
+<span class="math notranslate nohighlight">\(f\)</span> is flattening.</p>
+<p><strong class="program">invgeod</strong> may not be available on all platforms; in this case
+use <a class="reference internal" href="#cmdoption-geod-I"><code class="xref std std-option docutils literal notranslate"><span class="pre">geod</span> <span class="pre">-I</span></code></a> instead.</p>
+<p>The following command-line options can appear in any order:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-I">
+<span id="cmdoption-geod-i"></span><span class="sig-name descname"><span class="pre">-I</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-I" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that the inverse geodesic computation is to be performed. May be
+used with execution of <strong class="program">geod</strong> as an alternative to <strong class="program">invgeod</strong> execution.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-a">
+<span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Latitude and longitudes of the initial and terminal points, forward and
+back azimuths and distance are output.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-t-a">
+<span class="sig-name descname"><span class="pre">-t&lt;a&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-t-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>a</em> specifies a character employed as the first character to denote a control
+line to be passed through without processing.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-le">
+<span class="sig-name descname"><span class="pre">-le</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-le" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives a listing of all the ellipsoids that may be selected with the
+<em>+ellps=</em> option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-lu">
+<span class="sig-name descname"><span class="pre">-lu</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-lu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives a listing of all the units that may be selected with the <em>+units=</em>
+option. (Default units are meters.)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-f">
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-geod-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>format</em> is a printf format string to control the output form of the
+geographic coordinate values. The default mode is DMS.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-F">
+<span class="sig-name descname"><span class="pre">-F</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-geod-F" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>format</em> is a printf format string to control the output form of the distance
+value. The default mode is <code class="docutils literal notranslate"><span class="pre">&quot;%.3f&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-w-n">
+<span class="sig-name descname"><span class="pre">-w&lt;n&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-w-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>n</em> is the number of significant fractional digits to employ for seconds
+output (when the option is not specified, <code class="docutils literal notranslate"><span class="pre">-w3</span></code> is assumed).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-W-n">
+<span class="sig-name descname"><span class="pre">-W&lt;n&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-W-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>n</em> is the number of significant fractional digits to employ for seconds
+output. When <code class="docutils literal notranslate"><span class="pre">-W</span></code> is employed the fields will be constant width
+with leading zeroes.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-geod-p">
+<span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-geod-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>This option causes the azimuthal values to be output as unsigned DMS
+numbers between 0 and 360 degrees. Also note <a class="reference internal" href="#cmdoption-geod-f"><code class="xref std std-option docutils literal notranslate"><span class="pre">-f</span></code></a>.</p>
+</dd></dl>
+
+<p>The <em>+opt</em> command-line options are associated with geodetic
+parameters for specifying the ellipsoidal or sphere to use.
+controls. The options are processed in left to right order
+from the command line. Reentry of an option is ignored with
+the first occurrence assumed to be the desired value.</p>
+<p>See <a class="reference internal" href="../usage/projections.html#projections-intro"><span class="std std-ref">Cartographic projection</span></a> for full
+list of these parameters and controls.</p>
+<p>One or more files (processed in left to right order) specify
+the source of data to be transformed. A <code class="docutils literal notranslate"><span class="pre">-</span></code> will specify the
+location of processing standard input. If no files are specified,
+the input is assumed to be from stdin.</p>
+<p>For direct determinations input data must be in latitude, longitude,
+azimuth and distance order and output will be latitude,
+longitude and back azimuth of the terminus point. Latitude,
+longitude of the initial and terminus point are input for the
+inverse mode and respective forward and back azimuth from the
+initial and terminus points are output along with the distance
+between the points.</p>
+<p>Input geographic coordinates (latitude and longitude) and
+azimuthal data must be in decimal degrees or DMS format and
+input distance data must be in units consistent with the ellipsoid
+major axis or sphere radius units. The latitude must lie
+in the range [-90d,90d]. Output geographic coordinates will be
+in DMS (if the <a class="reference internal" href="#cmdoption-geod-f"><code class="xref std std-option docutils literal notranslate"><span class="pre">-f</span></code></a> switch is not employed) to 0.001” with trailing,
+zero-valued minute-second fields deleted. Output distance
+data will be in the same units as the ellipsoid or sphere
+radius.</p>
+<p>The Earth’s ellipsoidal figure may be selected in the same manner
+as program <strong class="program">proj</strong> by using <em>+ellps=</em>, <em>+a=</em>, <em>+es=</em>, etc.</p>
+<p><strong class="program">geod</strong> may also be used to determine intermediate points along
+either a geodesic line between two points or along an arc of
+specified distance from a geographic point. In both cases an
+initial point must be specified with <em>+lat_1=lat</em> and <em>+lon_1=lon</em>
+parameters and either a terminus point <em>+lat_2=lat</em> and
+<em>+lon_2=lon</em> or a distance and azimuth from the initial point
+with <em>+S=distance</em> and <em>+A=azimuth</em> must be specified.</p>
+<p>If points along a geodesic are to be determined then either
+<em>+n_S=integer</em> specifying the number of intermediate points
+and/or <em>+del_S=distance</em> specifying the incremental distance
+between points must be specified.</p>
+<p>To determine points along an arc equidistant from the initial
+point both <em>+del_A=angle</em> and <em>+n_A=integer</em> must be specified
+which determine the respective angular increments and number of
+points to be determined.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following script determines the geodesic azimuths and distance in U.S.
+statute miles from Boston, MA, to Portland, OR:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">geod +ellps=clrk66 &lt;&lt;EOF -I +units=us-mi</span>
+<span class="go">42d15&#39;N 71d07&#39;W 45d31&#39;N 123d41&#39;W</span>
+<span class="go">EOF</span>
+</pre></div>
+</div>
+<p>which gives the results:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">-66d31&#39;50.141&quot; 75d39&#39;13.083&quot; 2587.504</span>
+</pre></div>
+</div>
+<p>where the first two values are the azimuth from Boston to Portland,
+the back azimuth from Portland to Boston followed by the distance.</p>
+<p>An example of forward geodesic use is to use the Boston location
+and determine Portland’s location by azimuth and distance:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">geod +ellps=clrk66 &lt;&lt;EOF +units=us-mi</span>
+<span class="go">42d15&#39;N 71d07&#39;W -66d31&#39;50.141&quot; 2587.504</span>
+<span class="go">EOF</span>
+</pre></div>
+</div>
+<p>which gives:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">45d31&#39;0.003&quot;N 123d40&#39;59.985&quot;W 75d39&#39;13.094&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Lack of precision in the distance value compromises the
+precision of the Portland location.</p>
+</div>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://geographiclib.sourceforge.io">GeographicLib</a>.</p></li>
+<li><p>C. F. F. Karney, <a class="reference external" href="https://doi.org/10.1007/s00190-012-0578-z">Algorithms for Geodesics</a>, J. Geodesy <strong>87</strong>(1), 43–55 (2013);
+<a class="reference external" href="https://geographiclib.sourceforge.io/geod-addenda.html">addenda</a>.</p></li>
+<li><p><a class="reference external" href="https://geographiclib.sourceforge.io/geodesic-papers/biblio.html">A geodesic bibliography</a>.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="gie.html" class="btn btn-neutral float-right" title="gie" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cs2cs.html" class="btn btn-neutral float-left" title="cs2cs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

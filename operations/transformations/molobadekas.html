@@ -1,0 +1,444 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Molodensky-Badekas transform &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/transformations/molobadekas.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Horizontal grid shift" href="hgridshift.html" />
+    <link rel="prev" title="Molodensky transform" href="molodensky.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projections/index.html">Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conversions/index.html">Conversions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Transformations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="affine.html">Affine transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defmodel.html">Multi-component time-based deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deformation.html">Kinematic datum shifting utilizing a deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geogoffset.html">Geographic offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helmert.html">Helmert transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="horner.html">Horner polynomial evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molodensky.html">Molodensky transform</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Molodensky-Badekas transform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mathematical-description">Mathematical description</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="hgridshift.html">Horizontal grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tinshift.html">Triangulated Irregular Network based transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vgridshift.html">Vertical grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xyzgridshift.html">Geocentric grid shift</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Transformations</a> &raquo;</li>
+        
+      <li>Molodensky-Badekas transform</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/transformations/molobadekas.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="hgridshift.html" class="btn btn-neutral float-right" title="Horizontal grid shift" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="molodensky.html" class="btn btn-neutral float-left" title="Molodensky transform" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="molodensky-badekas-transform">
+<span id="molobadekas"></span><h1>Molodensky-Badekas transform<a class="headerlink" href="#molodensky-badekas-transform" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 6.0.0.</span></p>
+</div>
+<p>The Molodensky-Badekas transformation changes coordinates from one reference frame to
+another by means of a 10-parameter shift.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It should not be confused with the <a class="reference internal" href="molodensky.html#molodensky"><span class="std std-ref">Molodensky transform</span></a> transform which
+operates directly in the geodetic coordinates. Molodensky-Badekas can rather
+be seen as a variation of <a class="reference internal" href="helmert.html#helmert"><span class="std std-ref">Helmert transform</span></a></p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>molobadekas</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>3D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input type</strong></p></td>
+<td><p>Cartesian coordinates</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output type</strong></p></td>
+<td><p>Cartesian coordinates</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Molodensky-Badekas transformation is a variation of the <a class="reference internal" href="helmert.html#helmert"><span class="std std-ref">Helmert transform</span></a> where
+the rotational terms are not directly applied to the ECEF coordinates, but on
+cartesian coordinates relative to a reference point (usually close to Earth surface,
+and to the area of use of the transformation). When <code class="docutils literal notranslate"><span class="pre">px</span></code> = <code class="docutils literal notranslate"><span class="pre">py</span></code> = <code class="docutils literal notranslate"><span class="pre">pz</span></code> = 0,
+this is equivalent to a 7-parameter Helmert transformation.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Transforming coordinates from La Canoa to REGVEN:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=molobadekas convention=coordinate_frame
+       x=-270.933 y=115.599 z=-360.226 rx=-5.266 ry=-1.238 rz=2.381
+       s=-5.109 px=2464351.59 py=-5783466.61 pz=974809.81
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All parameters (except convention) are optional but at least one should be
+used, otherwise the operation will return the coordinates unchanged.</p>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-convention">
+<span class="sig-name descname"><span class="pre">+convention</span></span><span class="sig-prename descclassname"><span class="pre">=coordinate_frame/position_vector</span></span><a class="headerlink" href="#cmdoption-arg-convention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates the convention to express the rotational terms when a 3D-Helmert /
+7-parameter more transform is involved.</p>
+<p>The two conventions are equally popular and a frequent source of confusion.
+The coordinate frame convention is also described as an clockwise
+rotation of the coordinate frame. It corresponds to EPSG method code
+1034 (in the geocentric domain) or 9636 (in the geographic domain)
+The position vector convention is also described as an anticlockwise
+(counter-clockwise) rotation of the coordinate frame.
+It corresponds to as EPSG method code 1061 (in the geocentric domain) or
+1063 (in the geographic domain).</p>
+<p>The result obtained with parameters specified in a given convention
+can be obtained in the other convention by negating the rotational parameters
+(<code class="docutils literal notranslate"><span class="pre">rx</span></code>, <code class="docutils literal notranslate"><span class="pre">ry</span></code>, <code class="docutils literal notranslate"><span class="pre">rz</span></code>)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-x">
+<span class="sig-name descname"><span class="pre">+x</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translation of the x-axis given in meters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-y">
+<span class="sig-name descname"><span class="pre">+y</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translation of the y-axis given in meters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-z">
+<span class="sig-name descname"><span class="pre">+z</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-z" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translation of the z-axis given in meters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-s">
+<span class="sig-name descname"><span class="pre">+s</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scale factor given in ppm.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-rx">
+<span class="sig-name descname"><span class="pre">+rx</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-rx" title="Permalink to this definition">¶</a></dt>
+<dd><p>X-axis rotation given arc seconds.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-ry">
+<span class="sig-name descname"><span class="pre">+ry</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-ry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Y-axis rotation given in arc seconds.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-rz">
+<span class="sig-name descname"><span class="pre">+rz</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-rz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Z-axis rotation given in arc seconds.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-px">
+<span class="sig-name descname"><span class="pre">+px</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-px" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coordinate along the x-axis of the reference point given in meters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-py">
+<span class="sig-name descname"><span class="pre">+py</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-py" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coordinate along the y-axis of the reference point given in meters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-pz">
+<span class="sig-name descname"><span class="pre">+pz</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-pz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coordinate along the z-axis of the reference point given in meters.</p>
+</dd></dl>
+
+</section>
+<section id="mathematical-description">
+<h2>Mathematical description<a class="headerlink" href="#mathematical-description" title="Permalink to this headline">¶</a></h2>
+<p>In the <em>Position Vector</em> convention, we define <span class="math notranslate nohighlight">\(R_x = radians \left( rx \right)\)</span>,
+<span class="math notranslate nohighlight">\(R_z = radians \left( ry \right)\)</span> and <span class="math notranslate nohighlight">\(R_z = radians \left( rz \right)\)</span></p>
+<p>In the <em>Coordinate Frame</em> convention, <span class="math notranslate nohighlight">\(R_x = - radians \left( rx \right)\)</span>,
+<span class="math notranslate nohighlight">\(R_z = - radians \left( ry \right)\)</span> and <span class="math notranslate nohighlight">\(R_z = - radians \left( rz \right)\)</span></p>
+<div class="math notranslate nohighlight" id="equation-10param">
+<span class="eqno">(1)<a class="headerlink" href="#equation-10param" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \begin{bmatrix}
+        X \\
+        Y \\
+        Z \\
+    \end{bmatrix}^{output} =
+    \begin{bmatrix}
+        T_x + P_x\\
+        T_y + P_y\\
+        T_z + P_z\\
+    \end{bmatrix} +
+    \left(1 + s \times 10^{-6}\right)
+    \begin{bmatrix}
+         1  &amp; -R_z  &amp;  R_y \\
+         Rz &amp;  1    &amp; -R_x \\
+        -Ry &amp;  R_x  &amp;  1   \\
+    \end{bmatrix}
+    \begin{bmatrix}
+        X^{input} - P_x\\
+        Y^{input} - P_y\\
+        Z^{input} - P_z\\
+    \end{bmatrix}
+\end{align}\end{split}\]</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="hgridshift.html" class="btn btn-neutral float-right" title="Horizontal grid shift" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="molodensky.html" class="btn btn-neutral float-left" title="Molodensky transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

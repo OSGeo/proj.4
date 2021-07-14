@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>General documentation &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgdevelopment/reference/cpp/cpp_general.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="common namespace" href="common.html" />
+    <link rel="prev" title="C++ API" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../transformations.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../errorhandling.html">Error handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../threads.html">Threads</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../macros.html">Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datatypes.html">Data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">General documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="common.html">common namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="util.html">util namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metadata.html">metadata namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cs.html">cs namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datum.html">datum namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crs.html">crs namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="operation.html">operation namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html">io namespace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cmake.html">Using PROJ in CMake projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bindings.html">Language bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../migration.html">Version 4 to 6 API Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../migration.html#version-4-to-5-api-migration">Version 4 to 5 API Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Development</a> &raquo;</li>
+        
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+        
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+        
+      <li>General documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/development/reference/cpp/cpp_general.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="common.html" class="btn btn-neutral float-right" title="common namespace" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="C++ API" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="general-documentation">
+<span id="cpp-general"></span><h1>General documentation<a class="headerlink" href="#general-documentation" title="Permalink to this headline">¶</a></h1>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="general_doc"></span><em><span class="pre">page</span></em> <span class="sig-name descname"><span class="pre">general_doc</span></span></dt>
+<dd><section id="general_doc_1general_api_design">
+<h2>General API design<a class="headerlink" href="#general_doc_1general_api_design" title="Permalink to this headline">¶</a></h2>
+<p id="general_doc_1general_api_design">The design of the class hierarchy is strongly derived from <a class="reference internal" href="#general_doc_1ISO_19111_2019"><span class="std std-ref">ISO 19111:2019</span></a>.</p>
+<p>Classes for which the constructors are not directly accessible have their instances constructed with create() methods. The returned object is a non-null shared pointer. Such objects are immutable, and thread-safe.</p>
+<p>TODO</p>
+</section>
+<section id="general_doc_1general_properties">
+<h2>General properties<a class="headerlink" href="#general_doc_1general_properties" title="Permalink to this headline">¶</a></h2>
+<p id="general_doc_1general_properties">All classes deriving from IdentifiedObject have general properties that can be defined at creation time. Those properties are:</p>
+<p><ul>
+<li><p><a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Identifier_1af6dee2b9afdad9fba780a01cdde4f39a"><span class="std std-ref">osgeo::proj::metadata::Identifier::DESCRIPTION_KEY</span></a> (“description”): the natural language description of the meaning of the code value, provided a a string. </p></li>
+<li><p><a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Identifier_1adead8852011814afec16a03989ff14f7"><span class="std std-ref">osgeo::proj::metadata::Identifier::CODE_KEY</span></a> (“code”): a numeric or alphanumeric code, provided as a integer or a string. For example 4326, for the EPSG:4326 “WGS84” GeographicalCRS </p></li>
+<li><p><a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Identifier_1ac565fad2dbc1f480cc31fa8a2ff9aba9"><span class="std std-ref">osgeo::proj::metadata::Identifier::CODESPACE_KEY</span></a> (“codespace”): the organization responsible for definition and maintenance of the code., provided a a string. For example “EPSG”. </p></li>
+<li><p><a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Identifier_1ab5679044d62e16c447447f1b6000a55e"><span class="std std-ref">osgeo::proj::metadata::Identifier::VERSION_KEY</span></a> (“version”): the version identifier for the namespace, provided a a string. </p></li>
+<li><p><a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Identifier_1ae4b7ba00c3cc174db90ebcdcc083f202"><span class="std std-ref">osgeo::proj::metadata::Identifier::AUTHORITY_KEY</span></a> (“authority”): a citation for the authority, provided as a string or a <a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Citation"><span class="std std-ref">osgeo::proj::metadata::Citation</span></a> object. Often unused </p></li>
+<li><p><a class="reference internal" href="metadata.html#classosgeo_1_1proj_1_1metadata_1_1Identifier_1a2ce093bce8812891cdfce84ebed1b283"><span class="std std-ref">osgeo::proj::metadata::Identifier::URI_KEY</span></a> (“uri”): the URI of the identifier, provided as a string. Often unused</p>
+<p></p>
+</li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1afa06cdb6d6d48c6785e7374b0db60a59"><span class="std std-ref">osgeo::proj::common::IdentifiedObject::NAME_KEY</span></a> (“name”): the name of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">osgeo::proj::common::IdentifiedObject</span></a>, provided as a string or <a class="reference internal" href="metadata.html#namespaceosgeo_1_1proj_1_1metadata_1aa56f3dbff085fc0fceea708365b3f1be"><span class="std std-ref">osgeo::proj::metadata::IdentifierNNPtr</span></a>. </p></li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a50b1c9dcd7f87da6533e0bd65b2f810a"><span class="std std-ref">osgeo::proj::common::IdentifiedObject::IDENTIFIERS_KEY</span></a> (“identifiers”): the identifier(s) of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">osgeo::proj::common::IdentifiedObject</span></a>, provided as a osgeo::proj::common::IdentifierNNPtr or a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1a7fc091170790d0923879c9367fc5cc6d"><span class="std std-ref">osgeo::proj::util::ArrayOfBaseObjectNNPtr</span></a> of <a class="reference internal" href="metadata.html#namespaceosgeo_1_1proj_1_1metadata_1aa56f3dbff085fc0fceea708365b3f1be"><span class="std std-ref">osgeo::proj::metadata::IdentifierNNPtr</span></a>. </p></li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a4edc3a085e20f518ebd5dff048fc0483"><span class="std std-ref">osgeo::proj::common::IdentifiedObject::ALIAS_KEY</span></a> (“alias”): the alias(es) of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">osgeo::proj::common::IdentifiedObject</span></a>, provided as string, a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1acb99046eaf266f8cdf30304a5c43f696"><span class="std std-ref">osgeo::proj::util::GenericNameNNPtr</span></a> or a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1a7fc091170790d0923879c9367fc5cc6d"><span class="std std-ref">osgeo::proj::util::ArrayOfBaseObjectNNPtr</span></a> of <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1acb99046eaf266f8cdf30304a5c43f696"><span class="std std-ref">osgeo::proj::util::GenericNameNNPtr</span></a>. </p></li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1afb4d796fd45b0268575d3c2e069b06da"><span class="std std-ref">osgeo::proj::common::IdentifiedObject::REMARKS_KEY</span></a> (“remarks”): the remarks of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">osgeo::proj::common::IdentifiedObject</span></a>, provided as a string. </p></li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a0f6f3ad5b0930115364d4a5a94f58a42"><span class="std std-ref">osgeo::proj::common::IdentifiedObject::DEPRECATED_KEY</span></a> (“deprecated”): the deprecation flag of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">osgeo::proj::common::IdentifiedObject</span></a>, provided as a boolean.</p>
+<p></p>
+</li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1ObjectUsage_1ad3253602467718d7a8822b71d6180b11"><span class="std std-ref">osgeo::proj::common::ObjectUsage::SCOPE_KEY</span></a> (“scope”): the scope of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">osgeo::proj::common::ObjectUsage</span></a>, provided as a string. </p></li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1ObjectUsage_1a50478db23c866cb3e6f7068da24f0a6c"><span class="std std-ref">osgeo::proj::common::ObjectUsage::DOMAIN_OF_VALIDITY_KEY</span></a> (“domainOfValidity”): the domain of validity of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">osgeo::proj::common::ObjectUsage</span></a>, provided as a <a class="reference internal" href="metadata.html#namespaceosgeo_1_1proj_1_1metadata_1af1a3c8cdeaecefe3e24f6d6b88b084f3"><span class="std std-ref">osgeo::proj::metadata::ExtentNNPtr</span></a>. </p></li>
+<li><p><a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1ObjectUsage_1a5a34b5e56034634c259ae82560e7dc44"><span class="std std-ref">osgeo::proj::common::ObjectUsage::OBJECT_DOMAIN_KEY</span></a> (“objectDomain”): the object domain(s) of a <a class="reference internal" href="common.html#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">osgeo::proj::common::ObjectUsage</span></a>, provided as a <a class="reference internal" href="common.html#namespaceosgeo_1_1proj_1_1common_1a5b1a089231563f64b7ff97f4c74e9a39"><span class="std std-ref">osgeo::proj::common::ObjectDomainNNPtr</span></a> or a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1a7fc091170790d0923879c9367fc5cc6d"><span class="std std-ref">osgeo::proj::util::ArrayOfBaseObjectNNPtr</span></a> of <a class="reference internal" href="common.html#namespaceosgeo_1_1proj_1_1common_1a5b1a089231563f64b7ff97f4c74e9a39"><span class="std std-ref">osgeo::proj::common::ObjectDomainNNPtr</span></a>.</p>
+<p></p>
+</li>
+</ul>
+</p>
+</section>
+<section id="general_doc_1standards">
+<h2>Applicable standards<a class="headerlink" href="#general_doc_1standards" title="Permalink to this headline">¶</a></h2>
+<section id="general_doc_1ISO_19111">
+<span id="general_doc_1standards"></span><h3>ISO:19111 / OGC Topic 2 standard<a class="headerlink" href="#general_doc_1ISO_19111" title="Permalink to this headline">¶</a></h3>
+<p id="general_doc_1ISO_19111">Topic 2 - Spatial referencing by coordinates.</p>
+<p>This is an Abstract Specification describes the data elements, relationships and associated metadata required for spatial referencing by coordinates. It describes Coordinate Reference Systems (CRS), coordinate systems (CS) and coordinate transformation or coordinate conversion between two different coordinate reference systems.</p>
+<section id="general_doc_1ISO_19111_2019">
+<h4>ISO 19111:2019<a class="headerlink" href="#general_doc_1ISO_19111_2019" title="Permalink to this headline">¶</a></h4>
+<p id="general_doc_1ISO_19111_2019">This is the revision mostly used for PROJ C++ modelling.</p>
+<p><a class="reference external" href="http://docs.opengeospatial.org/as/18-005r4/18-005r4.html">OGC 18-005r4, 2019-02-08, ISO 19111:2019</a></p>
+</section>
+<section id="general_doc_1ISO_19111_2007">
+<h4>ISO 19111:2007<a class="headerlink" href="#general_doc_1ISO_19111_2007" title="Permalink to this headline">¶</a></h4>
+<p id="general_doc_1ISO_19111_2007">The precedent version of the specification was: <a class="reference external" href="http://portal.opengeospatial.org/files/?artifact_id=39049">OGC 08-015r2, 2010-04-27, ISO 19111:2007</a></p>
+</section>
+</section>
+<section id="general_doc_1WKT2">
+<h3>WKT2 standard<a class="headerlink" href="#general_doc_1WKT2" title="Permalink to this headline">¶</a></h3>
+<p id="general_doc_1WKT2">Well-known text representation of coordinate reference systems.</p>
+<p>Well-known Text (WKT) offers a compact machine- and human-readable representation of the critical elements of coordinate reference system (CRS) definitions, and coordinate operations. This is an implementation of <a class="reference internal" href="#general_doc_1ISO_19111"><span class="std std-ref">ISO:19111 / OGC Topic 2 standard</span></a></p>
+<p>PROJ implements the two following revisions of the standard:</p>
+<section id="general_doc_1WKT2_2019">
+<h4>WKT2:2019<a class="headerlink" href="#general_doc_1WKT2_2019" title="Permalink to this headline">¶</a></h4>
+<p id="general_doc_1WKT2_2019"><a class="reference external" href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">OGC 18-010r7, 2019-06-24, WKT2-2019</a></p>
+</section>
+<section id="general_doc_1WKT2_2015">
+<h4>WKT2:2015<a class="headerlink" href="#general_doc_1WKT2_2015" title="Permalink to this headline">¶</a></h4>
+<p id="general_doc_1WKT2_2015"><a class="reference external" href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">OGC 12-063r5, 2015-05-01, ISO 19162:2015(E), WKT2-2015</a></p>
+</section>
+</section>
+<section id="general_doc_1WKT1">
+<h3>WKT1 specification<a class="headerlink" href="#general_doc_1WKT1" title="Permalink to this headline">¶</a></h3>
+<p id="general_doc_1WKT1">Older specifications of well-known text representation of coordinate reference systems are also supported by PROJ, mostly for compatibility with legacy systems, or older versions of GDAL.</p>
+<p>GDAL v2.4 and earlier mostly implements:</p>
+<p><a class="reference external" href="http://portal.opengeospatial.org/files/?artifact_id=999">OGC 01-009, 2001-01-12, OpenGIS Coordinate Transformation Service Implementation Specification</a></p>
+<p>The <a class="reference external" href="https://gdal.org/tutorials/wktproblems.html">GDAL documentation, OGC WKT Coordinate System Issues</a> discusses issues, and GDAL implementation choices.</p>
+<p>An older specification of WKT1 is/was used by some software packages:</p>
+<p><a class="reference external" href="http://portal.opengeospatial.org/files/?artifact_id=829">OGC 99-049, 1999-05-05, OpenGIS Simple Features Specification For SQL v1.1</a></p>
+</section>
+<section id="general_doc_1ISO_19115">
+<h3>ISO 19115 (Metadata)<a class="headerlink" href="#general_doc_1ISO_19115" title="Permalink to this headline">¶</a></h3>
+<p id="general_doc_1ISO_19115">Defines the schema required for describing geographic information and services. It provides information about the identification, the extent, the quality, the spatial and temporal schema, spatial reference, and distribution of digital geographic data.</p>
+<p>PROJ implements a simplified subset of ISO 19115.</p>
+</section>
+<section id="general_doc_1GeoAPI">
+<h3>GeoAPI<a class="headerlink" href="#general_doc_1GeoAPI" title="Permalink to this headline">¶</a></h3>
+<p id="general_doc_1GeoAPI">A set of Java and Python language programming interfaces for geospatial applications.</p>
+<p><a class="reference external" href="http://www.geoapi.org/">GeoAPI main page</a></p>
+<p><a class="reference external" href="http://www.geoapi.org/3.0/javadoc/index.html">GeoAPI Javadoc</a></p>
+<p><a class="reference external" href="http://www.opengeospatial.org/standards/geoapi">OGC GeoAPI Implementation Specification</a> </p>
+</section>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="common.html" class="btn btn-neutral float-right" title="common namespace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="C++ API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

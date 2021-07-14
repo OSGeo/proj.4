@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>projsync &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgapps/projsync.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Coordinate operations" href="../operations/index.html" />
+    <link rel="prev" title="projinfo" href="projinfo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cct.html">cct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cs2cs.html">cs2cs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geod.html">geod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gie.html">gie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proj.html">proj</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projinfo.html">projinfo</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">projsync</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Applications</a> &raquo;</li>
+        
+      <li>projsync</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/apps/projsync.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="../operations/index.html" class="btn btn-neutral float-right" title="Coordinate operations" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="projinfo.html" class="btn btn-neutral float-left" title="projinfo" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="projsync">
+<span id="id1"></span><h1>projsync<a class="headerlink" href="#projsync" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded" id="index-0">
+<p><span class="versionmodified added">New in version 7.0.0.</span></p>
+</div>
+<p>Tool for synchronizing PROJ datum and transformation support data.</p>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="line-block">
+<div class="line"><strong>projsync</strong></div>
+<div class="line-block">
+<div class="line">[–endpoint URL]</div>
+<div class="line">[–local-geojson-file FILENAME]</div>
+<div class="line">([–user-writable-directory] | [–system-directory] | [–target-dir DIRNAME])</div>
+<div class="line">[–bbox west_long,south_lat,east_long,north_lat]</div>
+<div class="line">[–spatial-test contains|intersects]</div>
+<div class="line">[–source-id ID] [–area-of-use NAME]</div>
+<div class="line">[–file NAME]</div>
+<div class="line">[–all] [–exclude-world-coverage]</div>
+<div class="line">[–quiet | –verbose] [–dry-run] [–list-files]</div>
+<div class="line">[–no-version-filtering]</div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">projsync</strong> is a program that downloads remote resource files
+into a local directory. This is an alternative to downloading a proj-data-X.Y.Z
+archive file, or using the on-demand <a class="reference internal" href="../usage/network.html#network"><span class="std std-ref">networking capabilities</span></a> of PROJ.</p>
+<p>The following control parameters can appear in any order:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-endpoint">
+<span class="sig-name descname"><span class="pre">--endpoint</span></span><span class="sig-prename descclassname"> <span class="pre">URL</span></span><a class="headerlink" href="#cmdoption-projsync-endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the URL where to download the master <code class="file docutils literal notranslate"><span class="pre">files.geojson</span></code> file and then
+the resource files. Defaults to the value set in <a class="reference internal" href="../resource_files.html#proj-ini"><span class="std std-ref">proj.ini</span></a></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-local-geojson-file">
+<span class="sig-name descname"><span class="pre">--local-geojson-file</span></span><span class="sig-prename descclassname"> <span class="pre">FILENAME</span></span><a class="headerlink" href="#cmdoption-projsync-local-geojson-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the filename for the master GeoJSON files that references resources.
+Defaults to <code class="docutils literal notranslate"><span class="pre">${endpoint}/files.geojson</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-user-writable-directory">
+<span class="sig-name descname"><span class="pre">--user-writable-directory</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-user-writable-directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that resource files must be downloaded in the
+<a class="reference internal" href="../resource_files.html#user-writable-directory"><span class="std std-ref">user writable directory</span></a>. This is the default.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-system-directory">
+<span class="sig-name descname"><span class="pre">--system-directory</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-system-directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specifies that resource files must be downloaded in the
+${installation_prefix}/share/proj directory. The user launching projsync
+should make sure it has writing rights in that directory.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-target-dir">
+<span class="sig-name descname"><span class="pre">--target-dir</span></span><span class="sig-prename descclassname"> <span class="pre">DIRNAME</span></span><a class="headerlink" href="#cmdoption-projsync-target-dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Directory into which resource files must be downloaded.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-bbox">
+<span class="sig-name descname"><span class="pre">--bbox</span></span><span class="sig-prename descclassname"> <span class="pre">west_long,south_lat,east_long,north_lat</span></span><a class="headerlink" href="#cmdoption-projsync-bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify an area of interest to restrict the resources to download.
+The area of interest is specified as a
+bounding box with geographic coordinates, expressed in degrees in a
+unspecified geographic CRS.
+<cite>west_long</cite> and <cite>east_long</cite> should be in the [-180,180] range, and
+<cite>south_lat</cite> and <cite>north_lat</cite> in the [-90,90]. <cite>west_long</cite> is generally lower than
+<cite>east_long</cite>, except in the case where the area of interest crosses the antimeridian.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-spatial-test">
+<span class="sig-name descname"><span class="pre">--spatial-test</span></span><span class="sig-prename descclassname"> <span class="pre">contains|intersects</span></span><a class="headerlink" href="#cmdoption-projsync-spatial-test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify how the extent of the resource files
+are compared to the area of use specified explicitly with <a class="reference internal" href="#cmdoption-projsync-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a>.
+By default, any resource files whose extent intersects the value specified
+by <a class="reference internal" href="#cmdoption-projsync-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a> will be selected.
+If using the <code class="docutils literal notranslate"><span class="pre">contains</span></code> strategy, only resource files whose extent is
+contained in the value specified by <a class="reference internal" href="#cmdoption-projsync-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a> will be selected.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-source-id">
+<span class="sig-name descname"><span class="pre">--source-id</span></span><span class="sig-prename descclassname"> <span class="pre">ID</span></span><a class="headerlink" href="#cmdoption-projsync-source-id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restrict resource files to be downloaded to those whose source_id property
+contains the ID value. Specifying <code class="docutils literal notranslate"><span class="pre">?</span></code> as ID will list all possible values.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-area-of-use">
+<span class="sig-name descname"><span class="pre">--area-of-use</span></span><span class="sig-prename descclassname"> <span class="pre">NAME</span></span><a class="headerlink" href="#cmdoption-projsync-area-of-use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restrict resource files to be downloaded to those whose area_of_use property
+contains the NAME value. Specifying <code class="docutils literal notranslate"><span class="pre">?</span></code> as NAME will list all possible values.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-file">
+<span class="sig-name descname"><span class="pre">--file</span></span><span class="sig-prename descclassname"> <span class="pre">NAME</span></span><a class="headerlink" href="#cmdoption-projsync-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restrict resource files to be downloaded to those whose name property
+contains the NAME value. Specifying <code class="docutils literal notranslate"><span class="pre">?</span></code> as NAME will list all possible values.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-all">
+<span class="sig-name descname"><span class="pre">--all</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask to download all files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-exclude-world-coverage">
+<span class="sig-name descname"><span class="pre">--exclude-world-coverage</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-exclude-world-coverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exclude files which have world coverage.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-q">
+<span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"> <span class="pre">/</span> <span class="pre">--quiet</span></span><a class="headerlink" href="#cmdoption-projsync-q" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quiet mode</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-verbose">
+<span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-verbose" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.1.</span></p>
+</div>
+<p>Verbose mode (more than default)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-dry-run">
+<span class="sig-name descname"><span class="pre">--dry-run</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-dry-run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate the behavior of the tool without downloading resource files.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-list-files">
+<span class="sig-name descname"><span class="pre">--list-files</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-list-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>List file names, with the source_id and area_of_use properties.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-projsync-no-version-filtering">
+<span class="sig-name descname"><span class="pre">--no-version-filtering</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-projsync-no-version-filtering" title="Permalink to this definition">¶</a></dt>
+<dd><div class="versionadded">
+<p><span class="versionmodified added">New in version 8.1.</span></p>
+</div>
+<p>By default, projsync only downloads files that are compatible of
+the PROJ_DATA.VERSION metadata of <code class="file docutils literal notranslate"><span class="pre">proj.db</span></code>, taking into account the
+<code class="docutils literal notranslate"><span class="pre">version_added</span></code> and <code class="docutils literal notranslate"><span class="pre">version_removed</span></code> properties of entries in <code class="file docutils literal notranslate"><span class="pre">files.geojson</span></code>.
+When specifying this switch, all files referenced in <code class="file docutils literal notranslate"><span class="pre">files.geojson</span></code>
+will be candidate (combined with other filters).</p>
+</dd></dl>
+
+<p>At least one of  <a class="reference internal" href="#cmdoption-projsync-list-files"><code class="xref std std-option docutils literal notranslate"><span class="pre">--list-files</span></code></a>,  <a class="reference internal" href="#cmdoption-projsync-file"><code class="xref std std-option docutils literal notranslate"><span class="pre">--file</span></code></a>,  <a class="reference internal" href="#cmdoption-projsync-source-id"><code class="xref std std-option docutils literal notranslate"><span class="pre">--source-id</span></code></a>,
+<a class="reference internal" href="#cmdoption-projsync-area-of-use"><code class="xref std std-option docutils literal notranslate"><span class="pre">--area-of-use</span></code></a>,  <a class="reference internal" href="#cmdoption-projsync-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a> or  <a class="reference internal" href="#cmdoption-projsync-all"><code class="xref std std-option docutils literal notranslate"><span class="pre">--all</span></code></a> must be specified.</p>
+<p>Options <a class="reference internal" href="#cmdoption-projsync-file"><code class="xref std std-option docutils literal notranslate"><span class="pre">--file</span></code></a>,  <a class="reference internal" href="#cmdoption-projsync-source-id"><code class="xref std std-option docutils literal notranslate"><span class="pre">--source-id</span></code></a>, <a class="reference internal" href="#cmdoption-projsync-area-of-use"><code class="xref std std-option docutils literal notranslate"><span class="pre">--area-of-use</span></code></a> and
+<a class="reference internal" href="#cmdoption-projsync-bbox"><code class="xref std std-option docutils literal notranslate"><span class="pre">--bbox</span></code></a> are combined with a AND logic.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Download all resource files</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projsync --all</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Download resource files covering specified point and attributing to an agency</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projsync --source-id fr_ign --bbox 2,49,2,49</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../operations/index.html" class="btn btn-neutral float-right" title="Coordinate operations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="projinfo.html" class="btn btn-neutral float-left" title="projinfo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

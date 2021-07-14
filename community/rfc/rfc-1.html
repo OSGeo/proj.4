@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PROJ RFC 1: Project Committee Guidelines &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgcommunity/rfc/rfc-1.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PROJ RFC 2: Initial integration of “GDAL SRS barn” work" href="rfc-2.html" />
+    <link rel="prev" title="Request for Comments" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Community</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../channels.html">Communication channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code_contributions.html">Guidelines for PROJ code contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Request for Comments</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PROJ RFC 1: Project Committee Guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-of-psc-members">List of PSC Members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-process">Detailed Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#when-is-vote-required">When is Vote Required?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#observations">Observations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#committee-membership">Committee Membership</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#membership-responsibilities">Membership Responsibilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updates">Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-2.html">PROJ RFC 2: Initial integration of “GDAL SRS barn” work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-3.html">PROJ RFC 3: Dependency management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-4.html">PROJ RFC 4: Remote access to grids and GeoTIFF grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-5.html">PROJ RFC 5: Adopt GeoTIFF-based grids for grids delivered with PROJ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-6.html">PROJ RFC 6: Triangulation-based transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#conference">Conference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Community</a> &raquo;</li>
+        
+          <li><a href="index.html">Request for Comments</a> &raquo;</li>
+        
+      <li>PROJ RFC 1: Project Committee Guidelines</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/community/rfc/rfc-1.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="rfc-2.html" class="btn btn-neutral float-right" title="PROJ RFC 2: Initial integration of “GDAL SRS barn” work" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Request for Comments" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="proj-rfc-1-project-committee-guidelines">
+<span id="rfc1"></span><h1>PROJ RFC 1: Project Committee Guidelines<a class="headerlink" href="#proj-rfc-1-project-committee-guidelines" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Frank Warmerdam, Howard Butler</p>
+</dd>
+<dt class="field-even">Contact</dt>
+<dd class="field-even"><p><a class="reference external" href="mailto:howard&#37;&#52;&#48;hobu&#46;co">howard<span>&#64;</span>hobu<span>&#46;</span>co</a></p>
+</dd>
+<dt class="field-odd">Status</dt>
+<dd class="field-odd"><p>Passed</p>
+</dd>
+<dt class="field-even">Last Updated</dt>
+<dd class="field-even"><p>2018-06-08</p>
+</dd>
+</dl>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This document describes how the PROJ Project Steering Committee (PSC)
+determines membership, and makes decisions on all aspects of the
+PROJ project - both technical and non-technical.</p>
+<p>Examples of PSC management responsibilities:</p>
+<ul class="simple">
+<li><p>setting the overall development road map</p></li>
+<li><p>developing technical standards and policies (e.g. coding standards,
+file naming conventions, etc…)</p></li>
+<li><p>ensuring regular releases (major and maintenance) of PROJ software</p></li>
+<li><p>reviewing RFC for technical enhancements to the software</p></li>
+<li><p>project infrastructure (e.g. GitHub, continuous integration hosting options, etc…)</p></li>
+<li><p>formalization of affiliation with external entities such as OSGeo</p></li>
+<li><p>setting project priorities, especially with respect to project sponsorship</p></li>
+<li><p>creation and oversight of specialized sub-committees (e.g. project
+infrastructure, training)</p></li>
+</ul>
+<p>In brief the project team votes on proposals on the <a class="reference external" href="http://lists.maptools.org/mailman/listinfo/proj">proj mailing list</a>.  Proposals are available for review for at least two days, and a single
+veto is sufficient delay progress though ultimately a majority of members can
+pass a proposal.</p>
+</section>
+<section id="list-of-psc-members">
+<h2>List of PSC Members<a class="headerlink" href="#list-of-psc-members" title="Permalink to this headline">¶</a></h2>
+<p>(up-to-date as of 2018-06)</p>
+<ul class="simple">
+<li><p>Kristian Evers <a class="reference external" href="https://github.com/kbevers">&#64;kbevers</a> (DK) <strong>Chair</strong></p></li>
+<li><p>Howard Butler <a class="reference external" href="https://github.com/hobu">&#64;hobu</a> (USA)</p></li>
+<li><p>Charles Karney <a class="reference external" href="https://github.com/cffk">&#64;cffk</a> (USA)</p></li>
+<li><p>Thomas Knudsen <a class="reference external" href="https://github.com/busstoptaktik">&#64;busstoptaktik</a> (DK)</p></li>
+<li><p>Even Rouault <a class="reference external" href="https://github.com/rouault">&#64;rouault</a> (FR)</p></li>
+<li><p>Kurt Schwehr <a class="reference external" href="https://github.com/schwehr">&#64;schwehr</a> (USA)</p></li>
+<li><p>Frank Warmerdam <a class="reference external" href="https://github.com/warmerdam">&#64;warmerdam</a> (USA) <strong>Emeritus</strong></p></li>
+</ul>
+</section>
+<section id="detailed-process">
+<h2>Detailed Process<a class="headerlink" href="#detailed-process" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Proposals are written up and submitted on the <a class="reference external" href="http://lists.maptools.org/mailman/listinfo/proj">proj mailing list</a>
+for discussion and voting, by any interested party, not just
+committee members.</p></li>
+<li><p>Proposals need to be available for review for at least two business
+days before a final decision can be made.</p></li>
+<li><p>Respondents may vote “+1” to indicate support for the proposal and a
+willingness to support implementation.</p></li>
+<li><p>Respondents may vote “-1” to veto a proposal, but must provide clear
+reasoning and alternate approaches to resolving the problem within
+the two days.</p></li>
+<li><p>A vote of -0 indicates mild disagreement, but has no effect.  A 0
+indicates no opinion.  A +0 indicate mild support, but has no
+effect.</p></li>
+<li><p>Anyone may comment on proposals on the list, but only members of the
+Project Steering Committee’s votes will be counted.</p></li>
+<li><p>A proposal will be accepted if it receives +2 (including the
+author) and no vetoes (-1).</p></li>
+<li><p>If a proposal is vetoed, and it cannot be revised to satisfy all
+parties, then it can be resubmitted for an override vote in which a
+majority of all eligible voters indicating +1 is sufficient to pass it.
+Note that this is a majority of all committee members, not just those who
+actively vote.</p></li>
+<li><p>Upon completion of discussion and voting the author should announce
+whether they are proceeding (proposal accepted) or are withdrawing
+their proposal (vetoed).</p></li>
+<li><p>The Chair gets a vote.</p></li>
+<li><p>The Chair is responsible for keeping track of who is a member of the
+Project Steering Committee (perhaps as part of a PSC file in CVS).</p></li>
+<li><p>Addition and removal of members from the committee, as well as selection
+of a Chair should be handled as a proposal to the committee.</p></li>
+<li><p>The Chair adjudicates in cases of disputes about voting.</p></li>
+</ul>
+<section id="rfc-origin">
+<h3>RFC Origin<a class="headerlink" href="#rfc-origin" title="Permalink to this headline">¶</a></h3>
+<p>PROJ RFC and Project Steering Committee is derived from similar governance
+bodies in both the <a class="reference external" href="https://trac.osgeo.org/gdal/wiki/rfc1_pmc">GDAL</a> and
+<a class="reference external" href="http://mapserver.org/development/rfc/ms-rfc-23.html">MapServer</a> software
+projects.</p>
+</section>
+</section>
+<section id="when-is-vote-required">
+<h2>When is Vote Required?<a class="headerlink" href="#when-is-vote-required" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Any change to committee membership (new members, removing inactive members)</p></li>
+<li><p>Changes to project infrastructure (e.g. tool, location or substantive
+configuration)</p></li>
+<li><p>Anything that could cause backward compatibility issues.</p></li>
+<li><p>Adding substantial amounts of new code.</p></li>
+<li><p>Changing inter-subsystem APIs, or objects.</p></li>
+<li><p>Issues of procedure.</p></li>
+<li><p>When releases should take place.</p></li>
+<li><p>Anything dealing with relationships with external entities such as OSGeo</p></li>
+<li><p>Anything that might be controversial.</p></li>
+</ul>
+</section>
+<section id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The Chair is the ultimate adjudicator if things break down.</p></li>
+<li><p>The absolute majority rule can be used to override an obstructionist
+veto, but it is intended that in normal circumstances vetoers need to be
+convinced to withdraw their veto.  We are trying to reach consensus.</p></li>
+</ul>
+</section>
+<section id="committee-membership">
+<h2>Committee Membership<a class="headerlink" href="#committee-membership" title="Permalink to this headline">¶</a></h2>
+<p>The PSC is made up of individuals consisting of technical contributors
+(e.g. developers) and prominent members of the PROJ user community.
+There is no set number of members for the PSC although the initial desire
+is to set the membership at 6.</p>
+<section id="adding-members">
+<h3>Adding Members<a class="headerlink" href="#adding-members" title="Permalink to this headline">¶</a></h3>
+<p>Any member of the <a class="reference external" href="http://lists.maptools.org/mailman/listinfo/proj">proj mailing list</a> may nominate someone for
+committee membership at any time. Only existing PSC committee members may
+vote on new members.  Nominees must receive a majority vote from existing
+members to be added to the PSC.</p>
+</section>
+<section id="stepping-down">
+<h3>Stepping Down<a class="headerlink" href="#stepping-down" title="Permalink to this headline">¶</a></h3>
+<p>If for any reason a PSC member is not able to fully participate then they
+certainly are free to step down.  If a member is not active (e.g. no
+voting, no IRC or email participation) for a period of two months then
+the committee reserves the right to seek nominations to fill that position.
+Should that person become active again (hey, it happens) then they would
+certainly be welcome, but would require a nomination.</p>
+</section>
+</section>
+<section id="membership-responsibilities">
+<h2>Membership Responsibilities<a class="headerlink" href="#membership-responsibilities" title="Permalink to this headline">¶</a></h2>
+<section id="guiding-development">
+<h3>Guiding Development<a class="headerlink" href="#guiding-development" title="Permalink to this headline">¶</a></h3>
+<p>Members should take an active role guiding the development of new features
+they feel passionate about. Once a change request has been accepted
+and given a green light to proceed does not mean the members are free of
+their obligation. PSC members voting “+1” for a change request are
+expected to stay engaged and ensure the change is implemented and
+documented in a way that is most beneficial to users. Note that this
+applies not only to change requests that affect code, but also those
+that affect the web site, technical infrastructure, policies and standards.</p>
+</section>
+<section id="mailing-list-participation">
+<h3>Mailing List Participation<a class="headerlink" href="#mailing-list-participation" title="Permalink to this headline">¶</a></h3>
+<p>PSC members are expected to be active on the
+<a class="reference external" href="http://lists.maptools.org/mailman/listinfo/proj">proj mailing list</a>, subject to Open Source mailing list
+etiquette. Non-developer members of the PSC are not expected to respond
+to coding level questions on the developer mailing list, however they
+are expected to provide their thoughts and opinions on user level
+requirements and compatibility issues when RFC discussions take place.</p>
+</section>
+</section>
+<section id="updates">
+<h2>Updates<a class="headerlink" href="#updates" title="Permalink to this headline">¶</a></h2>
+<p><strong>June 2018</strong></p>
+<p>RFC 1 was ratified by the following members</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rfc-2.html" class="btn btn-neutral float-right" title="PROJ RFC 2: Initial integration of “GDAL SRS barn” work" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Request for Comments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

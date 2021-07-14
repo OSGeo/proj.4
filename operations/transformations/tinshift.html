@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Triangulated Irregular Network based transformation &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/transformations/tinshift.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vertical grid shift" href="vgridshift.html" />
+    <link rel="prev" title="Horizontal grid shift" href="hgridshift.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projections/index.html">Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conversions/index.html">Conversions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Transformations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="affine.html">Affine transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defmodel.html">Multi-component time-based deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deformation.html">Kinematic datum shifting utilizing a deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geogoffset.html">Geographic offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="helmert.html">Helmert transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="horner.html">Horner polynomial evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molodensky.html">Molodensky transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molobadekas.html">Molodensky-Badekas transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hgridshift.html">Horizontal grid shift</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Triangulated Irregular Network based transformation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vgridshift.html">Vertical grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xyzgridshift.html">Geocentric grid shift</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Transformations</a> &raquo;</li>
+        
+      <li>Triangulated Irregular Network based transformation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/transformations/tinshift.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="vgridshift.html" class="btn btn-neutral float-right" title="Vertical grid shift" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="hgridshift.html" class="btn btn-neutral float-left" title="Horizontal grid shift" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="triangulated-irregular-network-based-transformation">
+<span id="tinshift"></span><h1>Triangulated Irregular Network based transformation<a class="headerlink" href="#triangulated-irregular-network-based-transformation" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 7.2.0.</span></p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>tinshift</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Input type</strong></p></td>
+<td><p>Projected or geographic coordinates (horizontal), meters (vertical)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Output type</strong></p></td>
+<td><p>Projected or geographic coordinates (horizontal), meters (vertical)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>2D or 3D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Available forms</strong></p></td>
+<td><p>Forward and inverse</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">tinshift</span></code> transformation takes one mandatory
+argument, <code class="docutils literal notranslate"><span class="pre">file</span></code>, that points to a JSON file, which contains the
+triangulation and associated metadata. Input and output coordinates must be
+geographic or projected coordinates.
+Depending on the content of the JSON file, horizontal, vertical or both
+components of the coordinates may be transformed.</p>
+<p>The transformation is invertible, with the same computational complexity than
+the forward transformation.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<section id="required">
+<h3>Required<a class="headerlink" href="#required" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-file">
+<span class="sig-name descname"><span class="pre">+file</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-arg-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filename to the JSON file for the TIN.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Transforming a point with the Finland EPSG:2393 (“KKJ / Finland Uniform
+Coordinate System”) projected CRS to EPSG:3067 (“ETRS89 / TM35FIN(E,N)”)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 3210000.0000 6700000.0000 0 2020 | cct +proj=tinshift +file=./triangulation_kkj.json
+
+209948.3217     6697187.0009    0.0000     2020
+</pre></div>
+</div>
+<section id="algorithm">
+<h3>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h3>
+<p>Internally, <code class="docutils literal notranslate"><span class="pre">tinshift</span></code> ingest the whole file into memory. It is considered that
+triangulation should be small enough for that.</p>
+<p>When a point is transformed, one must find the triangle into which it falls into.
+Instead of iterating over all triangles, we build a in-memory quadtree to speed-up
+the identification of candidates triangles.</p>
+<p>To determine if a point falls into a triangle, one computes its 3
+<a class="reference external" href="https://en.wikipedia.org/wiki/Barycentric_coordinate_system#Conversion_between_barycentric_and_Cartesian_coordinates">barycentric coordinates</a>
+from its projected coordinates, <span class="math notranslate nohighlight">\(\lambda_i\)</span> for <span class="math notranslate nohighlight">\(i=1,2,3\)</span>.
+They are real values (in the [0,1] range for a point inside the triangle),
+giving the weight of each of the 3 vertices of the triangles.</p>
+<p>Once those weights are known, interpolating the target horizontal
+coordinate is a matter of doing the linear combination of those weights with
+the target horizontal coordinates at the 3 vertices of the triangle (<span class="math notranslate nohighlight">\(Xt_i\)</span> and <span class="math notranslate nohighlight">\(Yt_i\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}X_{target} = Xt_1 * \lambda_1 + Xt_2 * \lambda_2 + Xt_3 * \lambda_3\\Y_{target} = Yt_1 * \lambda_1 + Yt_2 * \lambda_2 + Yt_3 * \lambda_3\end{aligned}\end{align} \]</div>
+<p>This interpolation is exact at the vertices of the triangulation, and has linear properties
+inside each triangle. It is completely equivalent to other formulations of
+triangular interpolation, such as</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}X_{target} = A + X_{source} * B  + Y_{source} * C\\Y_{target} = D + X_{source} * E  + Y_{source} * F\end{aligned}\end{align} \]</div>
+<p>where the A, B, C, D, E, F constants (for a given triangle) are found by solving
+the 2 systems of 3 linear equations, constraint by the source and target coordinate pairs
+of the 3 vertices of the triangle:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}Xt_i = A + Xs_i * B + Ys_i * C\\Yt_i = D + Xs_i * E + Ys_i * F\end{aligned}\end{align} \]</div>
+<p>Similarly for a vertical coordinate transformation, where <span class="math notranslate nohighlight">\(Zoff_i\)</span> is the vertical
+offset at each vertex of the triangle:</p>
+<div class="math notranslate nohighlight">
+\[Z_{target} = Z_{source} + Zoff_1 * \lambda_1 + Zoff_2 * \lambda_2 + Zoff_3 * \lambda_3\]</div>
+</section>
+<section id="constraints-on-the-triangulation">
+<h3>Constraints on the triangulation<a class="headerlink" href="#constraints-on-the-triangulation" title="Permalink to this headline">¶</a></h3>
+<p>No check is done on the consistence of the triangulation. It is highly
+recommended that triangles do not overlap each other (when considering the
+source coordinates or the forward transformation, or the target coordinates for
+the inverse transformation), otherwise which triangle will be selected is
+unspecified. Besides that, the triangulation does not need to have particular
+properties (like being a Delaunay triangulation)</p>
+</section>
+<section id="file-format">
+<h3>File format<a class="headerlink" href="#file-format" title="Permalink to this headline">¶</a></h3>
+<p>The triangulation is stored in a text-based format, using JSON as a serialization.</p>
+<p>Below a minimal example, from the KKJ to ETRS89 transformation, with just a
+single triangle:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;file_type&quot;</span><span class="p">:</span> <span class="s2">&quot;triangulation_file&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;format_version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;Version&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;publication_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-07-01T00:00:00Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;Creative Commons Attribution 4.0 International&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Test triangulation&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;authority&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Authority name&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;Adress&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;test@example.com&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/about.html&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;about&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text/html&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;About&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/download&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;source&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/zip&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Authoritative source&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://creativecommons.org/licenses/by/4.0/&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;license&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;text/html&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Creative Commons Attribution 4.0 International license&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://example.com/metadata.xml&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot; ISO 19115 XML encoded metadata regarding the deformation model&quot;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;transformed_components&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;horizontal&quot;</span> <span class="p">],</span>
+  <span class="nt">&quot;vertices_columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;source_x&quot;</span><span class="p">,</span> <span class="s2">&quot;source_y&quot;</span><span class="p">,</span> <span class="s2">&quot;target_x&quot;</span><span class="p">,</span> <span class="s2">&quot;target_y&quot;</span> <span class="p">],</span>
+  <span class="nt">&quot;triangles_columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;idx_vertex1&quot;</span><span class="p">,</span> <span class="s2">&quot;idx_vertex2&quot;</span><span class="p">,</span> <span class="s2">&quot;idx_vertex3&quot;</span> <span class="p">],</span>
+  <span class="nt">&quot;vertices&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">49</span><span class="p">,</span><span class="mf">2.1</span><span class="p">,</span><span class="mf">49.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mf">3.1</span><span class="p">,</span><span class="mf">50.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span><span class="mf">50.1</span><span class="p">]</span> <span class="p">],</span>
+  <span class="nt">&quot;triangles&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>So after the generic metadata, we define the input and output CRS (informative
+only), and that the transformation affects horizontal components of
+coordinates. We name the columns of the <code class="docutils literal notranslate"><span class="pre">vertices</span></code> and <code class="docutils literal notranslate"><span class="pre">triangles</span></code> arrays.
+We defined the source and target coordinates of each vertex, and define a
+triangle by referring to the index of its vertices in the <code class="docutils literal notranslate"><span class="pre">vertices</span></code> array.</p>
+<p>More formally, the specific items for the triangulation file are:</p>
+<dl class="simple">
+<dt>input_crs</dt><dd><p>String identifying the CRS of source coordinates
+in the vertices. Typically <code class="docutils literal notranslate"><span class="pre">EPSG:XXXX</span></code>. If the transformation is for vertical
+component, this should be the code for a compound CRS (can be EPSG:XXXX+YYYY
+where XXXX is the code of the horizontal CRS and YYYY the code of the vertical CRS).
+For example, for the KKJ-&gt;ETRS89 transformation, this is EPSG:2393
+(<code class="docutils literal notranslate"><span class="pre">KKJ</span> <span class="pre">/</span> <span class="pre">Finland</span> <span class="pre">Uniform</span> <span class="pre">Coordinate</span> <span class="pre">System</span></code>). The input coordinates are assumed
+to be passed in the “normalized for visualisation” / “GIS friendly” order,
+that is longitude, latitude for geographic coordinates and
+easting, northing for projected coordinates.</p>
+</dd>
+<dt>output_crs</dt><dd><p>String identifying the CRS of target coordinates in the vertices.
+Typically <code class="docutils literal notranslate"><span class="pre">EPSG:XXXX</span></code>. If the transformation is for vertical component,
+this should be the code for a compound CRS (can be EPSG:XXXX+YYYY where
+XXXX is the code of the horizontal CRS and YYYY the code of the vertical CRS).
+For example, for the KKJ-&gt;ETRS89 transformation, this is EPSG:3067
+(&quot;ETRS89 / TM35FIN(E,N)&quot;). The output coordinates will be returned in
+the “normalized for visualisation” / “GIS friendly” order,
+that is longitude, latitude for geographic coordinates and
+easting, northing for projected coordinates.</p>
+</dd>
+<dt>transformed_components</dt><dd><p>Array which may contain one or two strings: “horizontal” when horizontal
+components of the coordinates are transformed and/or “vertical” when the
+vertical component is transformed.</p>
+</dd>
+<dt>vertices_columns</dt><dd><p>Specify the name of the columns of the rows in the <code class="docutils literal notranslate"><span class="pre">vertices</span></code>
+array. There must be exactly as many elements in <code class="docutils literal notranslate"><span class="pre">vertices_columns</span></code> as in a
+row of <code class="docutils literal notranslate"><span class="pre">vertices</span></code>. The following names have a special meaning: <code class="docutils literal notranslate"><span class="pre">source_x</span></code>,
+<code class="docutils literal notranslate"><span class="pre">source_y</span></code>, <code class="docutils literal notranslate"><span class="pre">target_x</span></code>, <code class="docutils literal notranslate"><span class="pre">target_y</span></code>, <code class="docutils literal notranslate"><span class="pre">source_z</span></code>, <code class="docutils literal notranslate"><span class="pre">target_z</span></code> and
+<code class="docutils literal notranslate"><span class="pre">offset_z</span></code>.  <code class="docutils literal notranslate"><span class="pre">source_x</span></code> and <code class="docutils literal notranslate"><span class="pre">source_y</span></code> are compulsory.
+<code class="docutils literal notranslate"><span class="pre">source_x</span></code> is for the source longitude (in degree) or easting.
+<code class="docutils literal notranslate"><span class="pre">source_y</span></code> is for the source latitude (in degree) or northing.
+<code class="docutils literal notranslate"><span class="pre">target_x</span></code> and <code class="docutils literal notranslate"><span class="pre">target_y</span></code> are compulsory when <code class="docutils literal notranslate"><span class="pre">horizontal</span></code> is specified
+in <code class="docutils literal notranslate"><span class="pre">transformed_components</span></code>. (<code class="docutils literal notranslate"><span class="pre">source_z</span></code> and <code class="docutils literal notranslate"><span class="pre">target_z</span></code>) or
+<code class="docutils literal notranslate"><span class="pre">offset_z</span></code> are compulsory when <code class="docutils literal notranslate"><span class="pre">vertical</span></code> is specified in <code class="docutils literal notranslate"><span class="pre">transformed_components</span></code></p>
+</dd>
+<dt>triangles_columns</dt><dd><p>Specify the name of the columns of the rows in the
+<code class="docutils literal notranslate"><span class="pre">triangles</span></code> array. There must be exactly as many elements in <code class="docutils literal notranslate"><span class="pre">triangles_columns</span></code>
+as in a row of <code class="docutils literal notranslate"><span class="pre">triangles</span></code>. The following names have a special meaning:
+<code class="docutils literal notranslate"><span class="pre">idx_vertex1</span></code>, <code class="docutils literal notranslate"><span class="pre">idx_vertex2</span></code>, <code class="docutils literal notranslate"><span class="pre">idx_vertex3</span></code>. They are compulsory.</p>
+</dd>
+<dt>vertices</dt><dd><p>An array whose items are themselves arrays with as many columns as
+described in <code class="docutils literal notranslate"><span class="pre">vertices_columns</span></code>.</p>
+</dd>
+<dt>triangles</dt><dd><p>An array whose items are themselves arrays with as many columns as
+described in <code class="docutils literal notranslate"><span class="pre">triangles_columns</span></code>.
+The value of the <code class="docutils literal notranslate"><span class="pre">idx_vertexN</span></code> columns must be indices
+(between 0 and len(<code class="docutils literal notranslate"><span class="pre">vertices</span></code>-1) of items of the <code class="docutils literal notranslate"><span class="pre">vertices</span></code> array.</p>
+</dd>
+</dl>
+<p>A <a class="reference external" href="https://proj.org/schemas/triangulation.schema.json">JSON schema</a> is available
+for this file format.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="vgridshift.html" class="btn btn-neutral float-right" title="Vertical grid shift" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="hgridshift.html" class="btn btn-neutral float-left" title="Horizontal grid shift" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

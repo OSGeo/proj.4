@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Guidelines for PROJ code contributors &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgcommunity/code_contributions.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code of Conduct" href="code_of_conduct.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Community</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="channels.html">Communication channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Guidelines for PROJ code contributors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Code contributions.</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#making-changes">Making Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submitting-changes">Submitting Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#coding-conventions">Coding conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tools">Tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reformatting-c-code">Reformatting C++ code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cppcheck-static-analyzer">cppcheck static analyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clang-static-analyzer-csa">CLang Static Analyzer (CSA)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#typo-detection-and-fixes">Typo detection and fixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#include-what-you-use-iwyu">Include What You Use (IWYU)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rfc/index.html">Request for Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#conference">Conference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Community</a> &raquo;</li>
+        
+      <li>Guidelines for PROJ code contributors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/community/code_contributions.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="code_of_conduct.html" class="btn btn-neutral float-right" title="Code of Conduct" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="guidelines-for-proj-code-contributors">
+<span id="code-contributions"></span><h1>Guidelines for PROJ code contributors<a class="headerlink" href="#guidelines-for-proj-code-contributors" title="Permalink to this headline">¶</a></h1>
+<p>This is a guide for PROJ, casual or regular, code contributors.</p>
+<section id="id1">
+<h2>Code contributions.<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Code contributions can be either bug fixes or new features. The process
+is the same for both, so they will be discussed together in this
+section.</p>
+<section id="making-changes">
+<h3>Making Changes<a class="headerlink" href="#making-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Create a topic branch from where you want to base your work.</p></li>
+<li><p>You usually should base your topic branch off of the master branch.</p></li>
+<li><p>To quickly create a topic branch: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">my-topic-branch</span></code></p></li>
+<li><p>Make commits of logical units.</p></li>
+<li><p>Check for unnecessary whitespace with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span> <span class="pre">--check</span></code> before
+committing.</p></li>
+<li><p>Make sure your commit messages are in the <a class="reference external" href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">proper
+format</a>.</p></li>
+<li><p>Make sure you have added the necessary tests for your changes.</p></li>
+<li><p>Make sure that all tests pass</p></li>
+</ul>
+</section>
+<section id="submitting-changes">
+<h3>Submitting Changes<a class="headerlink" href="#submitting-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Push your changes to a topic branch in your fork of the repository.</p></li>
+<li><p>Submit a pull request to the PROJ repository in the OSGeo
+organization.</p></li>
+<li><p>If your pull request fixes/references an issue, include that issue
+number in the pull request. For example:</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Wiz the bang
+
+Fixes #123.
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>PROJ developers will look at your patch and take an appropriate
+action.</p></li>
+</ul>
+</section>
+<section id="coding-conventions">
+<h3>Coding conventions<a class="headerlink" href="#coding-conventions" title="Permalink to this headline">¶</a></h3>
+<section id="programming-language">
+<h4>Programming language<a class="headerlink" href="#programming-language" title="Permalink to this headline">¶</a></h4>
+<p>PROJ was originally developed in ANSI C. Today PROJ is mostly developed in C++11,
+with a few parts of the code base still being C. Most of the older parts of the
+code base is effectively C with a few modifications so that it compiles better as
+C++.</p>
+</section>
+<section id="coding-style">
+<h4>Coding style<a class="headerlink" href="#coding-style" title="Permalink to this headline">¶</a></h4>
+<p>The parts of the code base that has started its life as C++ is formatted with
+<code class="docutils literal notranslate"><span class="pre">clang-format</span></code> using the script <code class="docutils literal notranslate"><span class="pre">scripts/reformat_cpp.sh</span></code>. This is mostly
+contained to the code in <cite>src/iso19111/</cite> but a few other <cite>.cpp</cite>-files are
+covered as well.</p>
+<p>For the rest of the code base, which has its origin in C, we don’t enforce any
+particular coding style, but please try to keep it as simple as possible. If
+improving existing code, please try to conform with the style of the locally
+surrounding code.</p>
+</section>
+<section id="whitespace">
+<h4>Whitespace<a class="headerlink" href="#whitespace" title="Permalink to this headline">¶</a></h4>
+<p>Throughout the PROJ code base you will see differing whitespace use.
+The general rule is to keep whitespace in whatever form it is in the
+file you are currently editing. If the file has a mix of tabs and space
+please convert the tabs to space in a separate commit before making any
+other changes. This makes it a lot easier to see the changes in diffs
+when evaluating the changed code. New files should use spaces as
+whitespace.</p>
+</section>
+</section>
+</section>
+<section id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
+<section id="reformatting-c-code">
+<h3>Reformatting C++ code<a class="headerlink" href="#reformatting-c-code" title="Permalink to this headline">¶</a></h3>
+<p>The script in <code class="docutils literal notranslate"><span class="pre">scripts/reformat_cpp.sh</span></code> will reformat C++ code in accordance
+to the project preference.</p>
+<p>If you are writing a new <code class="docutils literal notranslate"><span class="pre">.cpp</span></code>-file it should be added to the list in the
+reformatting script.</p>
+</section>
+<section id="cppcheck-static-analyzer">
+<h3>cppcheck static analyzer<a class="headerlink" href="#cppcheck-static-analyzer" title="Permalink to this headline">¶</a></h3>
+<p>You can run locally <code class="docutils literal notranslate"><span class="pre">scripts/cppcheck.sh</span></code> that is a wrapper script around the
+cppcheck utility. This tool is used as part of the quality control of the code.</p>
+<p>cppcheck can have false positives. In general, it is preferable to rework the
+code a bit to make it more ‘obvious’ and avoid those false positives. When not
+possible, you can add a comment in the code like</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/* cppcheck-suppress duplicateBreak */
+</pre></div>
+</div>
+<p>in the preceding line. Replace
+duplicateBreak with the actual name of the violated rule emitted by cppcheck.</p>
+</section>
+<section id="clang-static-analyzer-csa">
+<h3>CLang Static Analyzer (CSA)<a class="headerlink" href="#clang-static-analyzer-csa" title="Permalink to this headline">¶</a></h3>
+<p>CSA is run by the <code class="docutils literal notranslate"><span class="pre">travis/csa</span></code> build configuration. You may also run it locally.</p>
+<p>Preliminary step: install clang. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>wget https://releases.llvm.org/9.0.0/clang+llvm-9.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+tar xJf clang+llvm-9.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+mv clang+llvm-9.0.0-x86_64-linux-gnu-ubuntu-18.04 clang+llvm-9
+</pre></div>
+</div>
+<p>Run configure under the scan-build utility of clang:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./clang+llvm-9/bin/scan-build ./configure
+</pre></div>
+</div>
+<p>Build under scan-build:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./clang+llvm-9/bin/scan-build make [-j8]
+</pre></div>
+</div>
+<p>If CSA finds errors, they will be emitted during the build. And in which case,
+at the end of the build process, scan-build will emit a warning message
+indicating errors have been found and how to display the error report. This
+is with something like</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./clang+llvm-9/bin/scan-view /tmp/scan-build-2021-03-15-121416-17476-1
+</pre></div>
+</div>
+<p>This will open a web browser with the interactive report.</p>
+<p>CSA may also have false positives. In general, this happens when the code is
+non-trivial / makes assumptions that hard to check at first sight. You will
+need to add extra checks or rework it a bit to make it more “obvious” for CSA.
+This will also help humans reading your code !</p>
+</section>
+<section id="typo-detection-and-fixes">
+<h3>Typo detection and fixes<a class="headerlink" href="#typo-detection-and-fixes" title="Permalink to this headline">¶</a></h3>
+<p>Run <code class="docutils literal notranslate"><span class="pre">scripts/fix_typos.sh</span></code></p>
+</section>
+<section id="include-what-you-use-iwyu">
+<h3>Include What You Use (IWYU)<a class="headerlink" href="#include-what-you-use-iwyu" title="Permalink to this headline">¶</a></h3>
+<p>Managing C includes is a pain.  IWYU makes updating headers a bit
+easier.  IWYU scans the code for functions that are called and makes
+sure that the headers for all those functions are present and in
+sorted order.  However, you cannot blindly apply IWYU to PROJ.  It
+does not understand ifdefs, other platforms, or the order requirements
+of PROJ internal headers.  So the way to use it is to run it on a copy
+of the source and merge in only the changes that make sense.
+Additions of standard headers should always be safe to merge.  The
+rest require careful evaluation.  See the IWYU documentation for
+motivation and details.</p>
+<p><a class="reference external" href="https://github.com/include-what-you-use/include-what-you-use/tree/master/docs">IWYU docs</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="code_of_conduct.html" class="btn btn-neutral float-right" title="Code of Conduct" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

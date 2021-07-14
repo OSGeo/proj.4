@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Network capabilities &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgusage/network.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Applications" href="../apps/index.html" />
+    <link rel="prev" title="Known differences between versions" href="differences.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using PROJ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projections.html">Cartographic projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation.html">Geodetic transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environmentvars.html">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="differences.html">Known differences between versions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Network capabilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cdn-of-geotiff-grids">CDN of GeoTIFF grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-enable-network-capabilities">How to enable network capabilities ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-endpoint">Setting endpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caching">Caching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-api">Download API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-utility">Download utility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mirroring">Mirroring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Using PROJ</a> &raquo;</li>
+        
+      <li>Network capabilities</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/usage/network.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="../apps/index.html" class="btn btn-neutral float-right" title="Applications" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="differences.html" class="btn btn-neutral float-left" title="Known differences between versions" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="network-capabilities">
+<span id="network"></span><h1>Network capabilities<a class="headerlink" href="#network-capabilities" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 7.0.</span></p>
+</div>
+<p>PROJ 7.0 has introduced, per <a class="reference internal" href="../community/rfc/rfc-4.html#rfc4"><span class="std std-ref">PROJ RFC 4: Remote access to grids and GeoTIFF grids</span></a>, the capability to work with grid files
+that are not installed on the local machine where PROJ is executed.</p>
+<p>This enables to transparently download the parts of grids that are needed to
+perform a coordinate transformation.</p>
+<section id="cdn-of-geotiff-grids">
+<span id="cdn-grids"></span><h2>CDN of GeoTIFF grids<a class="headerlink" href="#cdn-of-geotiff-grids" title="Permalink to this headline">¶</a></h2>
+<p>Files are accessed by default through a CDN (Content Delivery Network),
+accessible through <a class="reference external" href="https://cdn.proj.org">https://cdn.proj.org</a>, that contains <a class="reference internal" href="../specifications/geodetictiffgrids.html#geodetictiffgrids"><span class="std std-ref">Geodetic TIFF grids (GTG)</span></a>
+datasets which are mirrored and managed by the
+<a class="reference external" href="https://github.com/OSGeo/PROJ-data/">https://github.com/OSGeo/PROJ-data/</a> GitHub project.
+Files in the CDN are designed to be used by PROJ 7 or later, but any software
+project wishing to use the CDN for shifting support are encouraged to
+participate in the project and leverage the CDN.</p>
+</section>
+<section id="how-to-enable-network-capabilities">
+<h2>How to enable network capabilities ?<a class="headerlink" href="#how-to-enable-network-capabilities" title="Permalink to this headline">¶</a></h2>
+<p>This capability assumes that PROJ has been build against <cite>libcurl</cite>, and that
+the user authorizes network access.</p>
+<p>Authorizing network access can be done in multiple ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>enabling / uncommenting the <code class="docutils literal notranslate"><span class="pre">network</span> <span class="pre">=</span> <span class="pre">on</span></code> line of <a class="reference internal" href="../resource_files.html#proj-ini"><span class="std std-ref">proj.ini</span></a></p></li>
+<li><p>defining the <span class="target" id="index-0"></span><a class="reference internal" href="environmentvars.html#envvar-PROJ_NETWORK"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK</span></code></a> environment variable to ON</p></li>
+<li><p>or using the <a class="reference internal" href="../development/reference/functions.html#_CPPv431proj_context_set_enable_networkP10PJ_CONTEXTi" title="proj_context_set_enable_network"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_context_set_enable_network()</span></code></a> with a
+<code class="docutils literal notranslate"><span class="pre">enabled</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> value.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Instead of using the <cite>libcurl</cite> implementation, an application using the PROJ
+API can supply its own network implementation through C function callbacks
+with <a class="reference internal" href="../development/reference/functions.html#_CPPv434proj_context_set_network_callbacksP10PJ_CONTEXT26proj_network_open_cbk_type27proj_network_close_cbk_type38proj_network_get_header_value_cbk_type28proj_network_read_range_typePv" title="proj_context_set_network_callbacks"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_context_set_network_callbacks()</span></code></a>. Enabling network use
+must still be done with one of the above mentioned method.</p>
+</div>
+</section>
+<section id="setting-endpoint">
+<h2>Setting endpoint<a class="headerlink" href="#setting-endpoint" title="Permalink to this headline">¶</a></h2>
+<p>When this is enabled, and a grid is not found in the various locations where
+<a class="reference internal" href="../resource_files.html#resource-file-paths"><span class="std std-ref">resource files are looked for</span></a>, PROJ will then
+attempt at loading the file from a remote server, which defaults to
+<a class="reference external" href="https://cdn.proj.org">https://cdn.proj.org</a> in <a class="reference internal" href="../resource_files.html#proj-ini"><span class="std std-ref">proj.ini</span></a>. This location can be changed with
+the <span class="target" id="index-1"></span><a class="reference internal" href="environmentvars.html#envvar-PROJ_NETWORK_ENDPOINT"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_NETWORK_ENDPOINT</span></code></a> environment variable or with
+<a class="reference internal" href="../development/reference/functions.html#_CPPv429proj_context_set_url_endpointP10PJ_CONTEXTPKc" title="proj_context_set_url_endpoint"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_context_set_url_endpoint()</span></code></a>.</p>
+</section>
+<section id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<p>To avoid repeated access to network, a local cache of downloaded chunks of grids
+is implemented as SQLite3 database, <code class="file docutils literal notranslate"><span class="pre">cache.db</span></code>, stored in the
+<a class="reference internal" href="../resource_files.html#user-writable-directory"><span class="std std-ref">PROJ user writable directory</span></a>.</p>
+<p>This local caching is enabled by default (can be changed in <a class="reference internal" href="../resource_files.html#proj-ini"><span class="std std-ref">proj.ini</span></a> or
+with <a class="reference internal" href="../development/reference/functions.html#_CPPv426proj_grid_cache_set_enableP10PJ_CONTEXTi" title="proj_grid_cache_set_enable"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_grid_cache_set_enable()</span></code></a>). The default maximum size of the
+cache is 300 MB, which is more than half of the total size of grids available,
+at time of writing. This size can also be customized in <a class="reference internal" href="../resource_files.html#proj-ini"><span class="std std-ref">proj.ini</span></a> or
+with <a class="reference internal" href="../development/reference/functions.html#_CPPv428proj_grid_cache_set_max_sizeP10PJ_CONTEXTi" title="proj_grid_cache_set_max_size"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_grid_cache_set_max_size()</span></code></a></p>
+</section>
+<section id="download-api">
+<h2>Download API<a class="headerlink" href="#download-api" title="Permalink to this headline">¶</a></h2>
+<p>When on-demand loading of grid is not desirable, the PROJ API also offers the
+capability to download whole grids in the
+<a class="reference internal" href="../resource_files.html#user-writable-directory"><span class="std std-ref">PROJ user writable directory</span></a> by using the
+<a class="reference internal" href="../development/reference/functions.html#_CPPv423proj_is_download_neededP10PJ_CONTEXTPKci" title="proj_is_download_needed"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_is_download_needed()</span></code></a> and <a class="reference internal" href="../development/reference/functions.html#_CPPv418proj_download_fileP10PJ_CONTEXTPKciPFiP10PJ_CONTEXTdPvEPv" title="proj_download_file"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_download_file()</span></code></a> functions.</p>
+</section>
+<section id="download-utility">
+<h2>Download utility<a class="headerlink" href="#download-utility" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../apps/projsync.html#projsync"><span class="std std-ref">projsync</span></a> is a tool for downloading resource files.</p>
+</section>
+<section id="mirroring">
+<h2>Mirroring<a class="headerlink" href="#mirroring" title="Permalink to this headline">¶</a></h2>
+<p>If you are able, you are encouraged to mirror the grids via AWS S3 command line:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aws s3 sync s3://cdn.proj.org .
+</pre></div>
+</div>
+<p>If direct S3 access is not possible, you can also use wget to locally mirror the
+data:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>wget --mirror https://cdn.proj.org/
+</pre></div>
+</div>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>The s3://cdn.proj.org bucket is hosted by the
+<a class="reference external" href="https://aws.amazon.com/opendata/public-datasets/">Amazon Public Datasets program</a>.
+CDN services are provided by the AWS Public Dataset team via
+<a class="reference external" href="https://aws.amazon.com/cloudfront/">CloudFront</a></p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../apps/index.html" class="btn btn-neutral float-right" title="Applications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="differences.html" class="btn btn-neutral float-left" title="Known differences between versions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

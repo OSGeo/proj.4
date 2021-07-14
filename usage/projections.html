@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Cartographic projection &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgusage/projections.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Geodetic transformation" href="transformation.html" />
+    <link rel="prev" title="Quick start" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using PROJ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cartographic projection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#units">Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#false-easting-northing">False Easting/Northing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#longitude-wrapping">Longitude Wrapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prime-meridian">Prime Meridian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#axis-orientation">Axis orientation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="transformation.html">Geodetic transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environmentvars.html">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="differences.html">Known differences between versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network.html">Network capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Using PROJ</a> &raquo;</li>
+        
+      <li>Cartographic projection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/usage/projections.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="transformation.html" class="btn btn-neutral float-right" title="Geodetic transformation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quick start" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="cartographic-projection">
+<span id="projections-intro"></span><h1>Cartographic projection<a class="headerlink" href="#cartographic-projection" title="Permalink to this headline">¶</a></h1>
+<p>The foundation of PROJ is the large number of
+<a class="reference internal" href="../operations/projections/index.html"><span class="doc">projections</span></a> available in the library. This section
+is devoted to the generic parameters that can be used on any projection in the
+PROJ library.</p>
+<p>Below is a list of PROJ parameters which can be applied to most coordinate
+system definitions. This table does not attempt to describe the parameters
+particular to particular projection types. These can be found on the pages
+documenting the individual <a class="reference internal" href="../operations/projections/index.html"><span class="doc">projections</span></a>.</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+a</p></td>
+<td><p>Semimajor radius of the ellipsoid axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>+axis</p></td>
+<td><p>Axis orientation</p></td>
+</tr>
+<tr class="row-even"><td><p>+b</p></td>
+<td><p>Semiminor radius of the ellipsoid axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>+ellps</p></td>
+<td><p>Ellipsoid name (see <code class="docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-le</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>+k</p></td>
+<td><p>Scaling factor (deprecated)</p></td>
+</tr>
+<tr class="row-odd"><td><p>+k_0</p></td>
+<td><p>Scaling factor</p></td>
+</tr>
+<tr class="row-even"><td><p>+lat_0</p></td>
+<td><p>Latitude of origin</p></td>
+</tr>
+<tr class="row-odd"><td><p>+lon_0</p></td>
+<td><p>Central meridian</p></td>
+</tr>
+<tr class="row-even"><td><p>+lon_wrap</p></td>
+<td><p>Center longitude to use for wrapping (see below)</p></td>
+</tr>
+<tr class="row-odd"><td><p>+over</p></td>
+<td><p>Allow longitude output outside -180 to 180 range, disables
+wrapping (see below)</p></td>
+</tr>
+<tr class="row-even"><td><p>+pm</p></td>
+<td><p>Alternate prime meridian (typically a city name, see below)</p></td>
+</tr>
+<tr class="row-odd"><td><p>+proj</p></td>
+<td><p>Projection name (see <code class="docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-l</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>+units</p></td>
+<td><p>meters, US survey feet, etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p>+vunits</p></td>
+<td><p>vertical units.</p></td>
+</tr>
+<tr class="row-even"><td><p>+x_0</p></td>
+<td><p>False easting</p></td>
+</tr>
+<tr class="row-odd"><td><p>+y_0</p></td>
+<td><p>False northing</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>In the sections below most of the parameters are explained in details.</p>
+<section id="units">
+<h2>Units<a class="headerlink" href="#units" title="Permalink to this headline">¶</a></h2>
+<p>Horizontal units can be specified using the <code class="docutils literal notranslate"><span class="pre">+units</span></code> keyword with a symbolic
+name for a unit (i.e. <code class="docutils literal notranslate"><span class="pre">us-ft</span></code>).  Alternatively the translation to meters can be
+specified with the <code class="docutils literal notranslate"><span class="pre">+to_meter</span></code> keyword (i.e. 0.304800609601219 for US feet).  The
+<code class="docutils literal notranslate"><span class="pre">-lu</span></code> argument to <strong class="program">cs2cs</strong> or <strong class="program">proj</strong> can be used to list
+symbolic unit names. The default unit for projected coordinates is the meter.
+A few special projections deviate from this behavior, most notably the
+latlong pseudo-projection that returns degrees.</p>
+<p>Vertical (Z) units can be specified using the <code class="docutils literal notranslate"><span class="pre">+vunits</span></code> keyword with a
+symbolic name for a unit (i.e. <code class="docutils literal notranslate"><span class="pre">us-ft</span></code>).  Alternatively the translation to
+meters can be specified with the <code class="docutils literal notranslate"><span class="pre">+vto_meter</span></code> keyword (i.e. 0.304800609601219
+for US feet).  The <code class="docutils literal notranslate"><span class="pre">-lu</span></code> argument to <strong class="program">cs2cs</strong> or <strong class="program">proj</strong> can
+be used to list symbolic unit names.  If no vertical units are specified, the
+vertical units will default to be the same as the horizontal coordinates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong class="program">proj</strong> does not handle vertical units at all and hence the
+<code class="docutils literal notranslate"><span class="pre">+vto_meter</span></code> argument will be ignored.</p>
+</div>
+<p>Scaling of output units can be done by applying the <code class="docutils literal notranslate"><span class="pre">+k_0</span></code> argument. The
+returned coordinates are scaled by the value assigned with the <code class="docutils literal notranslate"><span class="pre">+k_0</span></code>
+parameter.</p>
+</section>
+<section id="false-easting-northing">
+<h2>False Easting/Northing<a class="headerlink" href="#false-easting-northing" title="Permalink to this headline">¶</a></h2>
+<p>Virtually all coordinate systems allow for the presence of a false easting
+(<code class="docutils literal notranslate"><span class="pre">+x_0</span></code>) and northing (<code class="docutils literal notranslate"><span class="pre">+y_0</span></code>).  Note that these values are always expressed in
+meters even if the coordinate system is some other units.  Some coordinate
+systems (such as UTM) have implicit false easting and northing values.</p>
+</section>
+<section id="longitude-wrapping">
+<h2>Longitude Wrapping<a class="headerlink" href="#longitude-wrapping" title="Permalink to this headline">¶</a></h2>
+<p>By default PROJ wraps output longitudes in the range -180 to 180.  The <code class="docutils literal notranslate"><span class="pre">+over</span></code>
+switch can be used to disable the default wrapping which is done at a low level
+in <code class="docutils literal notranslate"><span class="pre">pj_inv()</span></code>.  This is particularly useful with projections like the
+<a class="reference internal" href="../operations/projections/eqc.html"><span class="doc">equidistant cylindrical</span></a>
+where it would be desirable for X values past -20000000 (roughly) to continue
+past -180 instead of wrapping to +180.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">+lon_wrap</span></code> option can be used to provide an alternative means of doing
+longitude wrapping within <code class="docutils literal notranslate"><span class="pre">pj_transform()</span></code>.  The argument to this option is a
+center longitude.  So <code class="docutils literal notranslate"><span class="pre">+lon_wrap=180</span></code> means wrap longitudes in the range 0 to
+360.  Note that <code class="docutils literal notranslate"><span class="pre">+over</span></code> does <strong>not</strong> disable <code class="docutils literal notranslate"><span class="pre">+lon_wrap</span></code>.</p>
+</section>
+<section id="prime-meridian">
+<h2>Prime Meridian<a class="headerlink" href="#prime-meridian" title="Permalink to this headline">¶</a></h2>
+<p>A prime meridian may be declared indicating the offset between the prime
+meridian of the declared coordinate system and that of greenwich.  A prime
+meridian is declared using the “pm” parameter, and may be assigned a symbolic
+name, or the longitude of the alternative prime meridian relative to greenwich.</p>
+<p>Currently prime meridian declarations are only utilized by the
+<code class="docutils literal notranslate"><span class="pre">pj_transform()</span></code> API call, not the <code class="docutils literal notranslate"><span class="pre">pj_inv()</span></code> and <code class="docutils literal notranslate"><span class="pre">pj_fwd()</span></code> calls.
+Consequently the user utility <strong class="program">cs2cs</strong> does honour prime meridians but
+the <strong class="program">proj</strong> user utility ignores them.</p>
+<p>The following predeclared prime meridian names are supported.  These can be
+listed using with <code class="docutils literal notranslate"><span class="pre">cs2cs</span> <span class="pre">-lm</span></code>.</p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Meridian</p></th>
+<th class="head"><p>Longitude</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>greenwich</p></td>
+<td><p>0dE</p></td>
+</tr>
+<tr class="row-odd"><td><p>lisbon</p></td>
+<td><p>9d07’54.862”W</p></td>
+</tr>
+<tr class="row-even"><td><p>paris</p></td>
+<td><p>2d20’14.025”E</p></td>
+</tr>
+<tr class="row-odd"><td><p>bogota</p></td>
+<td><p>74d04’51.3”E</p></td>
+</tr>
+<tr class="row-even"><td><p>madrid</p></td>
+<td><p>3d41’16.48”W</p></td>
+</tr>
+<tr class="row-odd"><td><p>rome</p></td>
+<td><p>12d27’8.4”E</p></td>
+</tr>
+<tr class="row-even"><td><p>bern</p></td>
+<td><p>7d26’22.5”E</p></td>
+</tr>
+<tr class="row-odd"><td><p>jakarta</p></td>
+<td><p>106d48’27.79”E</p></td>
+</tr>
+<tr class="row-even"><td><p>ferro</p></td>
+<td><p>17d40’W</p></td>
+</tr>
+<tr class="row-odd"><td><p>brussels</p></td>
+<td><p>4d22’4.71”E</p></td>
+</tr>
+<tr class="row-even"><td><p>stockholm</p></td>
+<td><p>18d3’29.8”E</p></td>
+</tr>
+<tr class="row-odd"><td><p>athens</p></td>
+<td><p>23d42’58.815”E</p></td>
+</tr>
+<tr class="row-even"><td><p>oslo</p></td>
+<td><p>10d43’22.5”E</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Example of use.  The location <code class="docutils literal notranslate"><span class="pre">long=0</span></code>, <code class="docutils literal notranslate"><span class="pre">lat=0</span></code> in the greenwich based lat/long
+coordinates is translated to lat/long coordinates with Madrid as the prime
+meridian.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs +proj=latlong +datum=WGS84 +to +proj=latlong +datum=WGS84 +pm=madrid
+0 0
+3d41&#39;16.48&quot;E    0dN 0.000
+</pre></div>
+</div>
+</section>
+<section id="axis-orientation">
+<h2>Axis orientation<a class="headerlink" href="#axis-orientation" title="Permalink to this headline">¶</a></h2>
+<p>Starting in PROJ 4.8.0, the +axis argument can be used to control the axis
+orientation of the coordinate system.  The default orientation is “easting,
+northing, up” but directions can be flipped, or axes flipped using combinations
+of the axes in the +axis switch.  The values are:</p>
+<ul class="simple">
+<li><p>“e” - Easting</p></li>
+<li><p>“w” - Westing</p></li>
+<li><p>“n” - Northing</p></li>
+<li><p>“s” - Southing</p></li>
+<li><p>“u” - Up</p></li>
+<li><p>“d” - Down</p></li>
+</ul>
+<p>They can be combined in +axis in forms like:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+axis=enu</span></code> - the default easting, northing, elevation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+axis=neu</span></code> - northing, easting, up - useful for “lat/long” geographic
+coordinates, or south orientated transverse mercator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+axis=wnu</span></code> - westing, northing, up - some planetary coordinate systems
+have “west positive” coordinate systems</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">+axis</span></code> argument does not work with the <strong class="program">proj</strong> command line
+utility.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="transformation.html" class="btn btn-neutral float-right" title="Geodetic transformation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quick start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

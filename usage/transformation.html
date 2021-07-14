@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Geodetic transformation &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgusage/transformation.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Environment variables" href="environmentvars.html" />
+    <link rel="prev" title="Cartographic projection" href="projections.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using PROJ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projections.html">Cartographic projection</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Geodetic transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#transformation-pipelines">Transformation pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proj-4-x-5-x-paradigm">PROJ 4.x/5.x paradigm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-based-datum-adjustments">Grid Based Datum Adjustments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#skipping-missing-grids">Skipping Missing Grids</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-null-grid">The null Grid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#caveats">Caveats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="environmentvars.html">Environment variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="differences.html">Known differences between versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network.html">Network capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Using PROJ</a> &raquo;</li>
+        
+      <li>Geodetic transformation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/usage/transformation.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="environmentvars.html" class="btn btn-neutral float-right" title="Environment variables" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="projections.html" class="btn btn-neutral float-left" title="Cartographic projection" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="geodetic-transformation">
+<span id="transformation"></span><h1>Geodetic transformation<a class="headerlink" href="#geodetic-transformation" title="Permalink to this headline">¶</a></h1>
+<p>PROJ can do everything from the most simple projection to very complex
+transformations across many reference frames. While originally developed as a
+tool for cartographic projections, PROJ has over time evolved into a powerful
+generic coordinate transformation engine that makes it possible to do both
+large scale cartographic projections as well as coordinate transformation at a
+geodetic high precision level. This chapter delves into the details of how
+geodetic transformations of varying complexity can be performed.</p>
+<p>In PROJ, two frameworks for geodetic transformations exists, the
+<em>PROJ 4.x/5.x</em> / <strong class="program">cs2cs</strong> / <code class="xref c c-func docutils literal notranslate"><span class="pre">pj_transform()</span></code>
+framework and the <em>transformation pipelines</em> framework. The first is the original,
+and limited, framework for doing geodetic transforms in PROJ The latter is a
+newer addition that aims to be a more complete transformation framework. Both are
+described in the sections below. Large portions of the text are based on
+<span id="id1">[<a class="reference internal" href="../zreferences.html#id13" title="Evers, K. and Knudsen, T. Transformation pipelines for PROJ.4. In FIG Working Week 2017 Proceedings. Helsinki, Finland, 2017. URL: http://www.fig.net/resources/proceedings/fig_proceedings/fig2017/papers/iss6b/ISS6B_evers_knudsen_9156.pdf.">EversKnudsen2017</a>]</span>.</p>
+<p>Before describing the details of the two frameworks, let us first remark that
+most cases of geodetic transformations can be expressed as a series of elementary
+operations, the output of one operation being the input of the next. E.g. when
+going from UTM zone 32, datum ED50, to UTM zone 32, datum ETRS89, one must, in the
+simplest case, go through 5 steps:</p>
+<ol class="arabic simple">
+<li><p>Back-project the UTM coordinates to geographic coordinates</p></li>
+<li><p>Convert the geographic coordinates to 3D cartesian geocentric coordinates</p></li>
+<li><p>Apply a Helmert transformation from ED50 to ETRS89</p></li>
+<li><p>Convert back from cartesian to geographic coordinates</p></li>
+<li><p>Finally project the geographic coordinates to UTM zone 32 planar coordinates.</p></li>
+</ol>
+<section id="transformation-pipelines">
+<h2>Transformation pipelines<a class="headerlink" href="#transformation-pipelines" title="Permalink to this headline">¶</a></h2>
+<p>The homology between the above steps and a Unix shell style pipeline is evident.
+It is there the main architectural inspiration behind the transformation pipeline
+framework. The pipeline framework is realized by utilizing a special “projection”,
+that takes as its user supplied arguments, a series of elementary operations,
+which it strings together in order to implement the full transformation needed.
+Additionally, a number of elementary geodetic operations, including Helmert
+transformations, general high order polynomial shifts and the Molodensky
+transformation are available as part of the pipeline framework.
+In anticipation of upcoming support for full time-varying transformations, we
+also introduce a 4D spatiotemporal data type, and a programming interface
+(API) for handling this.</p>
+<p>The Molodensky transformation converts directly from geodetic coordinates
+in one datum, to geodetic coordinates in another datum, while the (typically more
+accurate) Helmert transformation converts from 3D cartesian to 3D cartesian
+coordinates. So when using the Helmert transformation one typically needs to do an
+initial conversion from geodetic to cartesian coordinates, and a final conversion
+the other way round, to arrive at the desired result. Fortunately, this three-step
+compound transformation has the attractive characteristic that each step depends
+only on the output of the immediately preceding step. Hence, we can build a
+geodetic-to-geodetic Helmert transformation by tying together the outputs and inputs
+of 3 steps (geodetic-to-cartesian → Helmert → cartesian-to-geodetic), pipeline style.
+The pipeline driver, makes this kind of chained transformations possible.
+The implementation is compact, consisting of just one pseudo-projection, called
+<code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, which takes as its arguments strings of elementary projections
+(note: “projection” is the, slightly misleading, PROJ term used for any kind of
+transformation).
+The pipeline pseudo projection is supplemented by a number of elementary
+transformations, all in all providing a framework for building high accuracy
+solutions for a wide spectrum of geodetic tasks.</p>
+<p>As a first example, let us take a look at the iconic
+<em>geodetic → Cartesian → Helmert → geodetic</em> case (steps 2 to 4 in the example in
+the introduction). In PROJ it can be implemented as</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=pipeline
+step proj=cart ellps=intl
+step proj=helmert convention=coordinate_frame
+     x=-81.0703  y=-89.3603  z=-115.7526
+    rx=-0.48488 ry=-0.02436 rz=-0.41321  s=-0.540645
+step proj=cart inv ellps=GRS80
+</pre></div>
+</div>
+<p>The pipeline can be expanded at both ends to accommodate whatever coordinate type
+is needed for input and output: In the example below, we transform from the
+deprecated Danish System 45, a 2D system with some tension in the original defining
+network, to UTM zone 33, ETRS89. The tension is reduced using a polynomial
+transformation (the init=./s45b… step, s45b.pol is a file containing the
+polynomial coefficients), taking the S45 coordinates to a technical coordinate
+system (TC32), defined to represent “UTM zone 32 coordinates, as they would look if
+the Helmert transformation between ED50 and ETRS89 was perfect”. The TC32
+coordinates are then converted back to geodetic(ED50) coordinates, using an
+inverse UTM projection, further to cartesian(ED50), then to cartesian(ETRS89),
+using the relevant Helmert transformation, and back to geodetic(ETRS89), before
+finally being projected onto the UTM zone 33, ETRS89 system. All in all a 6 step
+pipeline, implementing a transformation with centimeter level accuracy from a
+deprecated system with decimeter level tensions.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=pipeline
+step init=./s45b.pol:s45b_tc32
+step proj=utm inv ellps=intl zone=32
+step proj=cart ellps=intl
+step proj=helmert convention=coordinate_frame
+      x=-81.0703  y=-89.3603  z=-115.7526
+     rx=-0.48488 ry=-0.02436 rz=-0.41321 s=-0.540645
+step proj=cart inv ellps=GRS80
+step proj=utm ellps=GRS80 zone=33
+</pre></div>
+</div>
+<p>With the pipeline framework spatiotemporal transformation is possible. This is
+possible by leveraging the time dimension in PROJ that enables 4D coordinates
+(three spatial components and one temporal component) to be passed through a
+transformation pipeline. In the example below a transformation from ITRF93 to
+ITRF2000 is defined. The temporal component is given as GPS weeks in the input
+data, but the 14-parameter Helmert transform expects temporal units in decimalyears.
+Hence the first step in the pipeline is the unitconvert pseudo-projection that makes
+sure the correct units are passed along to the Helmert transform.
+Most parameters of the Helmert transform are taken from <span id="id2">[<a class="reference internal" href="../zreferences.html#id3" title="Altamimi, Z., Sillard, P., and Boucher, C. ITRF2000: a new release of the International Terrestrial Reference Frame for earth science applications. Journal of Geophysical Research: Solid Earth, 2002. doi:10.1029/2001JB000561.">Altamimi2002</a>]</span>,
+except the epoch which is the epoch of the transformation.
+The last step in the pipeline is converting the
+coordinate timestamps back to GPS weeks.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=pipeline
+step proj=unitconvert t_in=gps_week t_out=decimalyear
+step proj=helmert convention=coordinate_frame
+     x=0.0127 y=0.0065 z=-0.0209 s=0.00195
+     rx=0.00039 ry=-0.00080 rz=0.00114
+     dx=-0.0029 dy=-0.0002 dz=-0.0006 ds=0.00001
+     drx=0.00011 dry=0.00019 drz=-0.00007
+     t_epoch=1988.0
+step proj=unitconvert t_in=decimalyear t_out=gps_week
+</pre></div>
+</div>
+</section>
+<section id="proj-4-x-5-x-paradigm">
+<h2>PROJ 4.x/5.x paradigm<a class="headerlink" href="#proj-4-x-5-x-paradigm" title="Permalink to this headline">¶</a></h2>
+<blockquote id="cs2cs-specific-options">
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>+datum</p></td>
+<td><p>Datum name (see <code class="docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-ld</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>+geoidgrids</p></td>
+<td><p>Filename of GTX grid file to use for vertical datum transforms</p></td>
+</tr>
+<tr class="row-even"><td><p>+nadgrids</p></td>
+<td><p>Filename of NTv2 grid file to use for datum transforms</p></td>
+</tr>
+<tr class="row-odd"><td><p>+towgs84</p></td>
+<td><p>3 or 7 term datum transform parameters</p></td>
+</tr>
+<tr class="row-even"><td><p>+to_meter</p></td>
+<td><p>Multiplier to convert map units to 1.0m</p></td>
+</tr>
+<tr class="row-odd"><td><p>+vto_meter</p></td>
+<td><p>Vertical conversion to meters</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This section documents the behavior of PROJ 4.x and 5.x. In PROJ 6.x,
+<strong class="program">cs2cs</strong> has been reworked to use <a class="reference internal" href="../development/reference/functions.html#c.proj_create_crs_to_crs" title="proj_create_crs_to_crs"><code class="xref c c-func docutils literal notranslate"><span class="pre">proj_create_crs_to_crs()</span></code></a> internally,
+with <em>late binding</em> capabilities, and thus is no longer constrained to using
+WGS84 as a pivot (also called as <em>early binding</em> method).
+When <strong class="program">cs2cs</strong> of PROJ 6 is used with PROJ.4 expanded strings to describe the CRS,
+including <code class="docutils literal notranslate"><span class="pre">+towgs84</span></code>, <code class="docutils literal notranslate"><span class="pre">+nadgrids</span></code> and <code class="docutils literal notranslate"><span class="pre">+geoidgrids</span></code>, it will generally give
+the same results as earlier PROJ versions. When used with AUTHORITY:CODE
+CRS descriptions, it may return different results.</p>
+</div>
+<p>The <em>cs2cs</em> framework in PROJ 4 and 5 delivers a subset of the geodetic transformations available
+with the <em>pipeline</em> framework. Coordinate transformations done in this framework
+were transformed in a two-step process with WGS84 as a pivot datum. That is, the
+input coordinates are transformed to WGS84 geodetic coordinates and then transformed
+from WGS84 coordinates to the specified output coordinate reference system, by
+utilizing either the Helmert transform, datum shift grids or a combination of both.
+Datum shifts can be described in a proj-string with the parameters <code class="docutils literal notranslate"><span class="pre">+towgs84</span></code>,
+<code class="docutils literal notranslate"><span class="pre">+nadgrids</span></code> and <code class="docutils literal notranslate"><span class="pre">+geoidgrids</span></code>.
+An inverse transform exists for all three and is applied if
+specified in the input proj-string. The most common is <code class="docutils literal notranslate"><span class="pre">+towgs84</span></code>, which is used to
+define a 3- or 7-parameter Helmert shift from the input reference frame to WGS84.
+Exactly which realization of WGS84 is not specified, hence a fair amount of
+uncertainty is introduced in this step of the transformation. With the +nadgrids
+parameter a non-linear planar correction derived from interpolation in a
+correction grid can be applied. Originally this was implemented as a means to
+transform coordinates between the North American datums NAD27 and NAD83, but
+corrections can be applied for any datum for which a correction grid exists. The
+inverse transform for the horizontal grid shift is “dumb”, in the sense that the
+correction grid is applied verbatim without taking into account that the inverse
+operation is non-linear. Similar to the horizontal grid correction, <code class="docutils literal notranslate"><span class="pre">+geoidgrids</span></code>
+can be used to perform grid corrections in the vertical component.
+Both grid correction methods allow inclusion of more than one grid in the same
+transformation</p>
+<p>In contrast to the <em>transformation pipeline</em> framework, transformations with the
+<em>cs2cs</em> framework in PROJ 4 and 5 were expressed as two separate proj-strings. One proj-string <em>to</em>
+WGS84 and one <em>from</em> WGS84. Together they form the mapping from the source
+coordinate reference system to the destination coordinate reference system.
+When used with the <strong class="program">cs2cs</strong> the source and destination CRS’s are separated by the
+special <code class="docutils literal notranslate"><span class="pre">+to</span></code> parameter.</p>
+<p>The following example demonstrates converting from the Greek GGRS87 datum
+to WGS84 with the <code class="docutils literal notranslate"><span class="pre">+towgs84</span></code> parameter.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs +proj=latlong +ellps=GRS80 +towgs84=-199.87,74.79,246.62
+    +to +proj=latlong +datum=WGS84
+20 35
+20d0&#39;5.467&quot;E    35d0&#39;9.575&quot;N 0.000
+</pre></div>
+</div>
+<p>With PROJ 6, you can simply use the following:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With PROJ 6, the order of coordinates for EPSG geographic coordinate
+reference systems is latitude first, longitude second.</p>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs &quot;GGRS87&quot; &quot;WGS 84&quot;
+35 20
+35d0&#39;9.575&quot;N    20d0&#39;5.467&quot;E 0.000
+
+cs2cs EPSG:4121 EPSG:4326
+35 20
+35d0&#39;9.575&quot;N    20d0&#39;5.467&quot;E 0.000
+</pre></div>
+</div>
+<p>The EPSG database provides this example for transforming from WGS72 to WGS84
+using an approximated 7 parameter transformation.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs +proj=latlong +ellps=WGS72 +towgs84=0,0,4.5,0,0,0.554,0.219 \
+    +to +proj=latlong +datum=WGS84
+4 55
+4d0&#39;0.554&quot;E     55d0&#39;0.09&quot;N 0.000
+</pre></div>
+</div>
+<p>With PROJ 6, you can simply use the following (note the reversed order for
+latitude and longitude)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs &quot;WGS 72&quot; &quot;WGS 84&quot;
+55 4
+55d0&#39;0.09&quot;N 4d0&#39;0.554&quot;E 0.000
+
+cs2cs EPSG:4322 EPSG:4326
+55 4
+55d0&#39;0.09&quot;N 4d0&#39;0.554&quot;E 0.000
+</pre></div>
+</div>
+</section>
+<section id="grid-based-datum-adjustments">
+<h2>Grid Based Datum Adjustments<a class="headerlink" href="#grid-based-datum-adjustments" title="Permalink to this headline">¶</a></h2>
+<p>In many places (notably North America and Australia) national geodetic
+organizations provide grid shift files for converting between different datums,
+such as NAD27 to NAD83.  These grid shift files include a shift to be applied
+at each grid location. Actually grid shifts are normally computed based on an
+interpolation between the containing four grid points.</p>
+<p>PROJ supports use of grid files for shifting between various reference frames.
+The grid shift table formats are CTable, NTv1 (the old Canadian format), and NTv2
+(<code class="file docutils literal notranslate"><span class="pre">.gsb</span></code> - the new Canadian and Australian format).</p>
+<p>The text in this section is based on the <em>cs2cs</em> framework. Gridshifting is off
+course also possible with the <em>pipeline</em> framework. The major difference between the
+two is that the <em>cs2cs</em> framework is limited to grid mappings to WGS84, whereas with
+<em>transformation pipelines</em> it is possible to perform grid shifts between any two
+reference frames, as long as a grid exists.</p>
+<p>Use of grid shifts with <strong class="program">cs2cs</strong> is specified using the <code class="docutils literal notranslate"><span class="pre">+nadgrids</span></code>
+keyword in a coordinate system definition. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>% cs2cs +proj=latlong +ellps=clrk66 +nadgrids=ntv1_can.dat \
+    +to +proj=latlong +ellps=GRS80 +datum=NAD83 &lt;&lt; EOF
+-111 50
+EOF
+111d0&#39;2.952&quot;W   50d0&#39;0.111&quot;N 0.000
+</pre></div>
+</div>
+<p>In this case the <code class="file docutils literal notranslate"><span class="pre">/usr/local/share/proj/ntv1_can.dat</span></code> grid shift file was
+loaded, and used to get a grid shift value for the selected point.</p>
+<p>It is possible to list multiple grid shift files, in which case each will be
+tried in turn till one is found that contains the point being transformed.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs +proj=latlong +ellps=clrk66 \
+          +nadgrids=conus,alaska,hawaii,stgeorge,stlrnc,stpaul \
+    +to +proj=latlong +ellps=GRS80 +datum=NAD83 &lt;&lt; EOF
+-111 44
+EOF
+111d0&#39;2.788&quot;W   43d59&#39;59.725&quot;N 0.000
+</pre></div>
+</div>
+<section id="skipping-missing-grids">
+<h3>Skipping Missing Grids<a class="headerlink" href="#skipping-missing-grids" title="Permalink to this headline">¶</a></h3>
+<p>The special prefix <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> may be prefixed to a grid to make it optional.  If it
+not found, the search will continue to the next grid.  Normally any grid not
+found will cause an error.  For instance, the following would use the
+<code class="file docutils literal notranslate"><span class="pre">ntv2_0.gsb</span></code> file if available, otherwise it would
+fallback to using the <code class="file docutils literal notranslate"><span class="pre">ntv1_can.dat</span></code> file.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs +proj=latlong +ellps=clrk66 +nadgrids=@ntv2_0.gsb,ntv1_can.dat \
+    +to +proj=latlong +ellps=GRS80 +datum=NAD83 &lt;&lt; EOF
+-111 50
+EOF
+111d0&#39;3.006&quot;W   50d0&#39;0.103&quot;N 0.000
+</pre></div>
+</div>
+</section>
+<section id="the-null-grid">
+<h3>The null Grid<a class="headerlink" href="#the-null-grid" title="Permalink to this headline">¶</a></h3>
+<p>A special <code class="file docutils literal notranslate"><span class="pre">null</span></code> grid shift file is distributed with PROJ.
+This file provides a zero shift for the whole world.  It may be
+listed at the end of a nadgrids file list if you want a zero shift to be
+applied to points outside the valid region of all the other grids.  Normally if
+no grid is found that contains the point to be transformed an error will occur.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cs2cs +proj=latlong +ellps=clrk66 +nadgrids=conus,null \
+    +to +proj=latlong +ellps=GRS80 +datum=NAD83 &lt;&lt; EOF
+-111 45
+EOF
+111d0&#39;3.006&quot;W   50d0&#39;0.103&quot;N 0.000
+
+cs2cs +proj=latlong +ellps=clrk66 +nadgrids=conus,null \
+    +to +proj=latlong +ellps=GRS80 +datum=NAD83 &lt;&lt; EOF
+-111 44
+-111 55
+EOF
+111d0&#39;2.788&quot;W   43d59&#39;59.725&quot;N 0.000
+111dW   55dN 0.000
+</pre></div>
+</div>
+<p>For more information see the chapter on <a class="reference internal" href="../resource_files.html#id6"><span class="std std-ref">Other transformation grids</span></a>.</p>
+</section>
+<section id="caveats">
+<h3>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Where grids overlap (such as conus and <code class="file docutils literal notranslate"><span class="pre">ntv1_can.dat</span></code> for instance) the first
+found for a point will be used regardless of whether it is appropriate or
+not.  So, for instance, <code class="docutils literal notranslate"><span class="pre">+nadgrids=ntv1_can.dat</span></code>,conus would result in
+the Canadian data being used for some areas in the northern United States
+even though the conus data is the approved data to use for the area.
+Careful selection of files and file order is necessary.  In some cases
+border spanning datasets may need to be pre-segmented into Canadian and
+American points so they can be properly grid shifted</p></li>
+<li><p>Additional detail on the grid shift being applied can be found by setting
+the PROJ_DEBUG environment variable to a value.  This will result in output
+to stderr on what grid is used to shift points, the bounds of the various
+grids loaded and so forth</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="environmentvars.html" class="btn btn-neutral float-right" title="Environment variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="projections.html" class="btn btn-neutral float-left" title="Cartographic projection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

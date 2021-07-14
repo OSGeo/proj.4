@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Contributing &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgcommunity/contributing.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Guidelines for PROJ code contributors" href="code_contributions.html" />
+    <link rel="prev" title="Communication channels" href="channels.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Community</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="channels.html">Communication channels</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Contributing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#help-a-fellow-proj-user">Help a fellow PROJ user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-bug-reports">Adding bug reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-requests">Feature requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#write-documentation">Write documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-contributions">Code contributions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#legalese">Legalese</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code_contributions.html">Guidelines for PROJ code contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rfc/index.html">Request for Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#conference">Conference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Community</a> &raquo;</li>
+        
+      <li>Contributing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/community/contributing.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="code_contributions.html" class="btn btn-neutral float-right" title="Guidelines for PROJ code contributors" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="channels.html" class="btn btn-neutral float-left" title="Communication channels" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="contributing">
+<span id="id1"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>PROJ has a wide and varied user base. Some are highly skilled
+geodesists with a deep knowledge of map projections and reference
+systems, some are GIS software developers and others are GIS users. All
+users, regardless of the profession or skill level, has the ability to
+contribute to PROJ. Here’s a few suggestion on how:</p>
+<ul class="simple">
+<li><p>Help PROJ-users that is less experienced than yourself.</p></li>
+<li><p>Write a bug report</p></li>
+<li><p>Request a new feature</p></li>
+<li><p>Write documentation for your favorite map projection</p></li>
+<li><p>Fix a bug</p></li>
+<li><p>Implement a new feature</p></li>
+</ul>
+<p>In the following sections you can find some guidelines on how to
+contribute. As PROJ is managed on GitHub most contributions require
+that you have a GitHub account. Familiarity with
+<a class="reference external" href="https://guides.github.com/features/issues/">issues</a> and the <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub
+Flow</a> is an advantage.</p>
+<section id="help-a-fellow-proj-user">
+<h2>Help a fellow PROJ user<a class="headerlink" href="#help-a-fellow-proj-user" title="Permalink to this headline">¶</a></h2>
+<p>The main forum for support for PROJ is the mailing list. You can
+subscribe to the mailing list
+<a class="reference external" href="http://lists.maptools.org/mailman/listinfo/proj">here</a> and read the
+archive <a class="reference external" href="http://lists.maptools.org/pipermail/proj/">here</a>.</p>
+<p>If you have questions about the usage of PROJ the mailing list is also
+the place to go. Please <em>do not</em> use the GitHub issue tracker as a
+support forum. Your question is much more likely to be answered on the
+mailing list, as many more people follow that than the issue tracker.</p>
+</section>
+<section id="adding-bug-reports">
+<span id="add-bug-report"></span><h2>Adding bug reports<a class="headerlink" href="#adding-bug-reports" title="Permalink to this headline">¶</a></h2>
+<p>Bug reports are handled in the <a class="reference external" href="https://github.com/OSGeo/PROJ/issues">issue
+tracker</a> on PROJ’s home on
+GitHub. Writing a good bug report is not easy. But fixing a poorly
+documented bug is not easy either, so please put in the effort it takes
+to create a thorough bug report.</p>
+<p>A good bug report includes at least:</p>
+<ul class="simple">
+<li><p>A title that quickly explains the problem</p></li>
+<li><p>A description of the problem and how it can be reproduced</p></li>
+<li><p>Version of PROJ being used</p></li>
+<li><p>Version numbers of any other relevant software being used, e.g.
+operating system</p></li>
+<li><p>A description of what already has been done to solve the problem</p></li>
+</ul>
+<p>The more information that is given up front, the more likely it is that
+a developer will find interest in solving the problem. You will probably
+get follow-up questions after submitting a bug report. Please answer
+them in a timely manner if you have an interest in getting the issue
+solved.</p>
+<p>Finally, please only submit bug reports that are actually related to
+PROJ. If the issue materializes in software that uses PROJ it is
+likely a problem with that particular software. Make sure that it
+actually is a PROJ problem before you submit an issue. If you can
+reproduce the problem only by using tools from PROJ it is definitely a
+problem with PROJ.</p>
+</section>
+<section id="feature-requests">
+<h2>Feature requests<a class="headerlink" href="#feature-requests" title="Permalink to this headline">¶</a></h2>
+<p>Got an idea for a new feature in PROJ? Submit a thorough description
+of the new feature in the <a class="reference external" href="https://github.com/OSGeo/PROJ/issues">issue
+tracker</a>. Please include any
+technical documents that can help the developer make the new feature a
+reality. An example of this could be a publicly available academic paper
+that describes a new projection. Also, including a numerical test case
+will make it much easier to verify that an implementation of your
+requested feature actually works as you expect.</p>
+<p>Note that not all feature requests are accepted.</p>
+</section>
+<section id="write-documentation">
+<h2>Write documentation<a class="headerlink" href="#write-documentation" title="Permalink to this headline">¶</a></h2>
+<p>PROJ is in dire need of better documentation. Any contributions of
+documentation are greatly appreciated. The PROJ documentation is
+available on <a class="reference external" href="https://proj.org">proj.org</a>. The website is generated
+with <a class="reference external" href="http://www.sphinx-doc.org/en/stable/">Sphinx</a>. Contributions to
+the documentation should be made as <a class="reference external" href="https://github.com/OSGeo/PROJ/pulls">Pull
+Requests</a> on GitHub.</p>
+<p>If you intend to document one of PROJ’s supported projections please
+use the <a class="reference internal" href="../operations/projections/merc.html"><span class="doc">Mercator projection</span></a>
+as a template.</p>
+</section>
+<section id="code-contributions">
+<h2>Code contributions<a class="headerlink" href="#code-contributions" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="code_contributions.html"><span class="doc">Code contributions</span></a></p>
+<section id="legalese">
+<h3>Legalese<a class="headerlink" href="#legalese" title="Permalink to this headline">¶</a></h3>
+<p>Committers are the front line gatekeepers to keep the code base clear of
+improperly contributed code. It is important to the PROJ users,
+developers and the OSGeo foundation to avoid contributing any code to
+the project without it being clearly licensed under the project license.</p>
+<p>Generally speaking the key issues are that those providing code to be
+included in the repository understand that the code will be released
+under the MIT/X license, and that the person providing the code has the
+right to contribute the code. For the committer themselves understanding
+about the license is hopefully clear. For other contributors, the
+committer should verify the understanding unless the committer is very
+comfortable that the contributor understands the license (for instance
+frequent contributors).</p>
+<p>If the contribution was developed on behalf of an employer (on work
+time, as part of a work project, etc) then it is important that an
+appropriate representative of the employer understand that the code will
+be contributed under the MIT/X license. The arrangement should be
+cleared with an authorized supervisor/manager, etc.</p>
+<p>The code should be developed by the contributor, or the code should be
+from a source which can be rightfully contributed such as from the
+public domain, or from an open source project under a compatible
+license.</p>
+<p>All unusual situations need to be discussed and/or documented.</p>
+<p>Committers should adhere to the following guidelines, and may be
+personally legally liable for improperly contributing code to the source
+repository:</p>
+<ul class="simple">
+<li><p>Make sure the contributor (and possibly employer) is aware of the
+contribution terms.</p></li>
+<li><p>Code coming from a source other than the contributor (such as adapted
+from another project) should be clearly marked as to the original
+source, copyright holders, license terms and so forth. This
+information can be in the file headers, but should also be added to
+the project licensing file if not exactly matching normal project
+licensing (COPYING).</p></li>
+<li><p>Existing copyright headers and license text should never be stripped
+from a file. If a copyright holder wishes to give up copyright they
+must do so in writing to the foundation before copyright messages are
+removed. If license terms are changed it has to be by agreement
+(written in email is ok) of the copyright holders.</p></li>
+<li><p>Code with licenses requiring credit, or disclosure to users should be
+added to COPYING.</p></li>
+<li><p>When substantial contributions are added to a file (such as
+substantial patches) the author/contributor should be added to the
+list of copyright holders for the file.</p></li>
+<li><p>If there is uncertainty about whether a change is proper to
+contribute to the code base, please seek more information from the
+project steering committee, or the foundation legal counsel.</p></li>
+</ul>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://help.github.com/">General GitHub documentation</a></p></li>
+<li><p><a class="reference external" href="https://help.github.com/articles/about-pull-requests/">GitHub pull request
+documentation</a></p></li>
+</ul>
+</section>
+<section id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>The <em>code contribution</em> section of this CONTRIBUTING file is inspired by
+<a class="reference external" href="https://github.com/PDAL/PDAL/blob/master/CONTRIBUTING.md">PDAL’s</a>
+and the <em>legalese</em> section is modified from <a class="reference external" href="https://trac.osgeo.org/gdal/wiki/rfc3_commiters">GDAL committer
+guidelines</a></p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="code_contributions.html" class="btn btn-neutral float-right" title="Guidelines for PROJ code contributors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="channels.html" class="btn btn-neutral float-left" title="Communication channels" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

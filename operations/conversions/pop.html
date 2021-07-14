@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Pop coordinate value to pipeline stack &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/conversions/pop.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Push coordinate value to pipeline stack" href="push.html" />
+    <link rel="prev" title="No operation" href="noop.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projections/index.html">Projections</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Conversions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="axisswap.html">Axis swap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cart.html">Geodetic to cartesian conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geoc.html">Geocentric Latitude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="latlon.html">Lat/long (Geodetic alias)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="noop.html">No operation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Pop coordinate value to pipeline stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="push.html">Push coordinate value to pipeline stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="set.html">Set coordinate value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topocentric.html">Geocentric to topocentric conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unitconvert.html">Unit conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../transformations/index.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Conversions</a> &raquo;</li>
+        
+      <li>Pop coordinate value to pipeline stack</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/conversions/pop.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="push.html" class="btn btn-neutral float-right" title="Push coordinate value to pipeline stack" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="noop.html" class="btn btn-neutral float-left" title="No operation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pop-coordinate-value-to-pipeline-stack">
+<span id="pop"></span><h1>Pop coordinate value to pipeline stack<a class="headerlink" href="#pop-coordinate-value-to-pipeline-stack" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 6.0.0.</span></p>
+</div>
+<p>Retrieve components of a coordinate that was saved in a previous pipeline step.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>pop</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>4D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input type</strong></p></td>
+<td><p>Any</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Output type</strong></p></td>
+<td><p>Any</p></td>
+</tr>
+</tbody>
+</table>
+<p>This operations makes it possible to retrieve coordinate components that was
+saved in previous pipeline steps. A retrieved coordinate component is loaded,
+or <em>popped</em>, from a memory stack that is part of a <a class="reference internal" href="../pipeline.html#pipeline"><span class="std std-ref">pipeline</span></a>.
+The pipeline coordinate stack is inspired by the stack data structure that is
+commonly used in computer science. There’s four stacks available: One four each
+coordinate dimension. The dimensions, or coordinate components, are numbered
+1–4. It is only possible to move data to and from the stack within the same
+coordinate component number. Values can be saved to the stack by using the
+<a class="reference internal" href="push.html#push"><span class="std std-ref">push operation</span></a>.</p>
+<p>If the pop operation is used by itself, e.g. not in a pipeline, it will
+function as a no-operation that passes the coordinate through unchanged.
+Similarly, if no coordinate component is available on the stack to be popped
+the operation does nothing.</p>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>A common use of the <a class="reference internal" href="push.html#push"><span class="std std-ref">push</span></a> and pop operations is in 3D
+<a class="reference internal" href="../transformations/helmert.html#helmert"><span class="std std-ref">Helmert</span></a> transformations where only the horizontal components
+are needed. This is often the case when combining heights from a legacy
+vertical reference with a modern geocentric reference. Below is a an example of
+such a transformation, where the horizontal part is transformed with a Helmert
+operation but the vertical part is kept exactly as the input was.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 12 56 12.3 2020 | cct +proj=pipeline  \
++step +proj=push +v_3                        \
++step +proj=cart +ellps=GRS80                \
++step +proj=helmert +x=3000 +y=1000 +z=2000  \
++step +proj=cart +ellps=GRS80 +inv           \
++step +proj=pop +v_3                         \
+
+ 12.0056753463   55.9866540552       12.3000     2000.0000
+</pre></div>
+</div>
+<p>Note that the third coordinate component in the output is the same as the input.</p>
+<p>The same transformation without the push and pop operations would look like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ echo 12 56 12.3 2020 | cct +proj=pipeline  \
++step +proj=cart +ellps=GRS80                \
++step +proj=helmert +x=3000 +y=1000 +z=2000  \
++step +proj=cart +ellps=GRS80 +inv           \
+
+      12.0057        55.9867     3427.7404     2000.0000
+</pre></div>
+</div>
+<p>Here the vertical component is adjusted significantly.</p>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-v_1">
+<span id="cmdoption-arg-v-1"></span><span class="sig-name descname"><span class="pre">+v_1</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-v_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the first coordinate component from the pipeline stack</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-v_2">
+<span id="cmdoption-arg-v-2"></span><span class="sig-name descname"><span class="pre">+v_2</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-v_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the second coordinate component from the pipeline stack</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-v_3">
+<span id="cmdoption-arg-v-3"></span><span class="sig-name descname"><span class="pre">+v_3</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-v_3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the third coordinate component from the pipeline stack</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-v_4">
+<span id="cmdoption-arg-v-4"></span><span class="sig-name descname"><span class="pre">+v_4</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-v_4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the fourth coordinate component from the pipeline stack</p>
+</dd></dl>
+
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">Stack data structure on Wikipedia</a></p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="push.html" class="btn btn-neutral float-right" title="Push coordinate value to pipeline stack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="noop.html" class="btn btn-neutral float-left" title="No operation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Known differences between versions &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgusage/differences.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Network capabilities" href="network.html" />
+    <link rel="prev" title="Environment variables" href="environmentvars.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using PROJ</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projections.html">Cartographic projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transformation.html">Geodetic transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environmentvars.html">Environment variables</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Known differences between versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-4-6-0">Version 4.6.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-5-0-0">Version 5.0.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#longitude-wrapping-when-using-custom-central-meridian">Longitude wrapping when using custom central meridian</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-6-0-0">Version 6.0.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#removal-of-proj-def-dat">Removal of <code class="file docutils literal notranslate"><span class="pre">proj_def.dat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changes-to-deformation">Changes to <span class="xref std std-ref">deformation</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-6-3-0">Version 6.3.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#projinfo">projinfo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#version-7-0-0">Version 7.0.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#proj">proj</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cs2cs">cs2cs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utf-8-adoption">UTF-8 adoption</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="network.html">Network capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Using PROJ</a> &raquo;</li>
+        
+      <li>Known differences between versions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/usage/differences.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="network.html" class="btn btn-neutral float-right" title="Network capabilities" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="environmentvars.html" class="btn btn-neutral float-left" title="Environment variables" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="known-differences-between-versions">
+<span id="differences"></span><h1>Known differences between versions<a class="headerlink" href="#known-differences-between-versions" title="Permalink to this headline">¶</a></h1>
+<p>Once in a while, a new version of PROJ causes changes in the existing behavior.
+In this section we track deliberate changes to PROJ that break from previous
+behavior. Most times that will be caused by a bug fix. Unfortunately, some bugs
+have existed for so long that their faulty behavior is relied upon by software
+that uses PROJ.</p>
+<p>Behavioural changes caused by new bugs are not tracked here, as they should be
+fixed in later versions of PROJ.</p>
+<section id="version-4-6-0">
+<h2>Version 4.6.0<a class="headerlink" href="#version-4-6-0" title="Permalink to this headline">¶</a></h2>
+<p>The default datum application behavior changed with the 4.6.0 release. PROJ
+will now only apply a datum shift if both the source and destination coordinate
+system have valid datum shift information.</p>
+<p>The PROJ 4.6.0 Release Notes states</p>
+<blockquote>
+<div><p>MAJOR: Rework <code class="xref c c-func docutils literal notranslate"><span class="pre">pj_transform()</span></code> to avoid applying ellipsoid to ellipsoid
+transformations as a datum shift when no datum info is available.</p>
+</div></blockquote>
+</section>
+<section id="version-5-0-0">
+<h2>Version 5.0.0<a class="headerlink" href="#version-5-0-0" title="Permalink to this headline">¶</a></h2>
+<section id="longitude-wrapping-when-using-custom-central-meridian">
+<h3>Longitude wrapping when using custom central meridian<a class="headerlink" href="#longitude-wrapping-when-using-custom-central-meridian" title="Permalink to this headline">¶</a></h3>
+<p>By default PROJ wraps output longitudes in the range -180 to 180. Previous to
+PROJ 5, this was handled incorrectly when a custom central meridian was set with
+<a class="reference internal" href="../operations/projections/wintri.html#cmdoption-arg-lon_0"><code class="xref std std-option docutils literal notranslate"><span class="pre">+lon_0</span></code></a>. This caused a change in sign on the resulting easting as seen
+below:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ proj +proj=merc +lon_0=110
+-70 0
+-20037508.34    0.00
+290 0
+20037508.34     0.00
+</pre></div>
+</div>
+<p>From PROJ 5 on onwards, the same input now results in same coordinates, as seen
+from the example below where PROJ 5 is used:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ proj +proj=merc +lon_0=110
+-70 0
+-20037508.34    0.00
+290 0
+-20037508.34    0.00
+</pre></div>
+</div>
+<p>The change is made on the basis that <span class="math notranslate nohighlight">\(\lambda=290^{\circ}\)</span> is a full
+rotation of the circle larger than <span class="math notranslate nohighlight">\(\lambda=-70^{\circ}\)</span> and hence
+should return the same output for both.</p>
+<p>Adding the <code class="docutils literal notranslate"><span class="pre">+over</span></code> flag to the projection definition provides
+the old behavior.</p>
+</section>
+</section>
+<section id="version-6-0-0">
+<h2>Version 6.0.0<a class="headerlink" href="#version-6-0-0" title="Permalink to this headline">¶</a></h2>
+<section id="removal-of-proj-def-dat">
+<h3>Removal of <code class="file docutils literal notranslate"><span class="pre">proj_def.dat</span></code><a class="headerlink" href="#removal-of-proj-def-dat" title="Permalink to this headline">¶</a></h3>
+<p>Before PROJ 6, the <code class="file docutils literal notranslate"><span class="pre">proj_def.dat</span></code> was used to provide general and per-projection
+parameters, when <code class="docutils literal notranslate"><span class="pre">+no_defs</span></code> was not specified. It has now been removed. In case,
+no ellipsoid or datum specification is provided in the PROJ string, the
+default ellipsoid is GRS80 (was WGS84 in previous PROJ versions).</p>
+</section>
+<section id="changes-to-deformation">
+<h3>Changes to <a class="reference internal" href="../operations/transformations/deformation.html#deformation"><span class="std std-ref">deformation</span></a><a class="headerlink" href="#changes-to-deformation" title="Permalink to this headline">¶</a></h3>
+<section id="reversed-order-of-operation">
+<span id="differences-deformation"></span><h4>Reversed order of operation<a class="headerlink" href="#reversed-order-of-operation" title="Permalink to this headline">¶</a></h4>
+<p>In the initial version of the of <a class="reference internal" href="../operations/transformations/deformation.html#deformation"><span class="std std-ref">deformation</span></a> operation
+the time span between <span class="math notranslate nohighlight">\(t_{obs}\)</span> and <span class="math notranslate nohighlight">\(t_c\)</span> was determined by the
+expression</p>
+<div class="math notranslate nohighlight">
+\[dt = t_c - t_{obs}\]</div>
+<p>With version 6.0.0 this has been reversed in order to behave similarly to
+the <a class="reference internal" href="../operations/transformations/helmert.html#helmert"><span class="std std-ref">Helmert operation</span></a>, which determines time differences as</p>
+<div class="math notranslate nohighlight">
+\[dt = t_{obs} - t_c\]</div>
+<p>Effectively this means that the direction of the operation has been reversed,
+so that what in PROJ 5 was a forward operation is now an inverse operation and
+vice versa.</p>
+<p>Pipelines written for PROJ 5 can be migrated to PROJ 6 by adding <a class="reference internal" href="../operations/pipeline.html#cmdoption-arg-inv"><code class="xref std std-option docutils literal notranslate"><span class="pre">+inv</span></code></a>
+to forward steps involving the deformation operation. Similarly
+<a class="reference internal" href="../operations/pipeline.html#cmdoption-arg-inv"><code class="xref std std-option docutils literal notranslate"><span class="pre">+inv</span></code></a> should be removed from inverse steps to be compatible with
+PROJ 6.</p>
+</section>
+<section id="removed-t-obs-parameter">
+<h4>Removed <code class="docutils literal notranslate"><span class="pre">+t_obs</span></code>  parameter<a class="headerlink" href="#removed-t-obs-parameter" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">+t_obs</span></code> parameter was confusing for users since it effectively
+overwrote the observation time in input coordinates. To make it more clear
+what is the operation is doing, users are now required to directly specify
+the time span for which they wish to apply a given deformation. The parameter
+<a class="reference internal" href="../operations/transformations/deformation.html#cmdoption-arg-dt"><code class="xref std std-option docutils literal notranslate"><span class="pre">+dt</span></code></a> has been added for that purpose. The new parameter is mutually
+exclusive with <a class="reference internal" href="../operations/transformations/vgridshift.html#cmdoption-arg-t_epoch"><code class="xref std std-option docutils literal notranslate"><span class="pre">+t_epoch</span></code></a>. <a class="reference internal" href="../operations/transformations/deformation.html#cmdoption-arg-dt"><code class="xref std std-option docutils literal notranslate"><span class="pre">+dt</span></code></a> is used when deformation
+for a set amount of time is needed and <a class="reference internal" href="../operations/transformations/vgridshift.html#cmdoption-arg-t_epoch"><code class="xref std std-option docutils literal notranslate"><span class="pre">+t_epoch</span></code></a> is used (in
+conjunction with the observation time of the input coordinate) when
+deformation from a specific epoch to the observation time is needed.</p>
+</section>
+</section>
+</section>
+<section id="version-6-3-0">
+<h2>Version 6.3.0<a class="headerlink" href="#version-6-3-0" title="Permalink to this headline">¶</a></h2>
+<section id="projinfo">
+<h3>projinfo<a class="headerlink" href="#projinfo" title="Permalink to this headline">¶</a></h3>
+<p>Before PROJ 6.3.0, WKT1:GDAL was implicitly calling <code class="docutils literal notranslate"><span class="pre">--boundcrs-to-wgs84</span></code>, to
+add a <code class="docutils literal notranslate"><span class="pre">TOWGS84[]</span></code> node in some cases. This is no longer the case.</p>
+</section>
+</section>
+<section id="version-7-0-0">
+<h2>Version 7.0.0<a class="headerlink" href="#version-7-0-0" title="Permalink to this headline">¶</a></h2>
+<section id="proj">
+<h3>proj<a class="headerlink" href="#proj" title="Permalink to this headline">¶</a></h3>
+<p>Removed <code class="docutils literal notranslate"><span class="pre">-ld</span></code> option from application, since it promoted use of deprecated
+parameters like <code class="docutils literal notranslate"><span class="pre">+towgs</span></code> and <code class="docutils literal notranslate"><span class="pre">+datum</span></code>.</p>
+</section>
+<section id="cs2cs">
+<h3>cs2cs<a class="headerlink" href="#cs2cs" title="Permalink to this headline">¶</a></h3>
+<p>Removed <code class="docutils literal notranslate"><span class="pre">-ld</span></code> option from application, since it promoted use of deprecated
+parameters like <code class="docutils literal notranslate"><span class="pre">+towgs</span></code> and <code class="docutils literal notranslate"><span class="pre">+datum</span></code>.</p>
+</section>
+<section id="utf-8-adoption">
+<h3>UTF-8 adoption<a class="headerlink" href="#utf-8-adoption" title="Permalink to this headline">¶</a></h3>
+<p>The value of all path, filenames passed to PROJ through function calls, PROJ
+strings or environment variables should be encoded in UTF-8.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="network.html" class="btn btn-neutral float-right" title="Network capabilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="environmentvars.html" class="btn btn-neutral float-left" title="Environment variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

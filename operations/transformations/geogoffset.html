@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Geographic offsets &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgoperations/transformations/geogoffset.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Helmert transform" href="helmert.html" />
+    <link rel="prev" title="Kinematic datum shifting utilizing a deformation model" href="deformation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Coordinate operations</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../projections/index.html">Projections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../conversions/index.html">Conversions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Transformations</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="affine.html">Affine transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="defmodel.html">Multi-component time-based deformation model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deformation.html">Kinematic datum shifting utilizing a deformation model</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Geographic offsets</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="helmert.html">Helmert transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="horner.html">Horner polynomial evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molodensky.html">Molodensky transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="molobadekas.html">Molodensky-Badekas transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hgridshift.html">Horizontal grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tinshift.html">Triangulated Irregular Network based transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vgridshift.html">Vertical grid shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xyzgridshift.html">Geocentric grid shift</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pipeline.html">The pipeline operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_computation.html">Computation of coordinate operations between two CRS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Coordinate operations</a> &raquo;</li>
+        
+          <li><a href="index.html">Transformations</a> &raquo;</li>
+        
+      <li>Geographic offsets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/operations/transformations/geogoffset.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="helmert.html" class="btn btn-neutral float-right" title="Helmert transform" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="deformation.html" class="btn btn-neutral float-left" title="Kinematic datum shifting utilizing a deformation model" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="geographic-offsets">
+<span id="geogoffset"></span><h1>Geographic offsets<a class="headerlink" href="#geographic-offsets" title="Permalink to this headline">¶</a></h1>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 6.0.0.</span></p>
+</div>
+<p>The Geographic offsets transformation adds an offset to the geographic longitude,
+latitude coordinates, and an offset to the ellipsoidal height.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Alias</strong></p></td>
+<td><p>geogoffset</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Domain</strong></p></td>
+<td><p>3D</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Input type</strong></p></td>
+<td><p>Geodetic coordinates (horizontal), meters (vertical)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>output type</strong></p></td>
+<td><p>Geodetic coordinates (horizontal), meters (vertical)</p></td>
+</tr>
+</tbody>
+</table>
+<p>This method is normally only used when low accuracy is tolerated. It is documented
+as coordinate operation method code 9619 (for geographic 2D) and 9660 (for
+geographic 3D) in the EPSG dataset (<span id="id1">[<a class="reference internal" href="../../zreferences.html#id17" title="IOGP. Geomatics guidance note 7, part 2: coordinate conversions &amp; transformations including formulas. IOGP Publication 373-7-2, International Association For Oil And Gas Producers, 2018. URL: https://www.iogp.org/bookstore/product/coordinate-conversions-and-transformation-including-formulas/.">IOGP2018</a>]</span>)</p>
+<p>It can also be used to implement the method Geographic2D with Height Offsets
+(code 9618) by noting that the input vertical component is a gravity-related
+height and the output vertical component is the ellipsoid height (dh being
+the geoid undulation).</p>
+<p>It can also be used to implement the method Vertical offset (code 9616)</p>
+<p>The reverse transformation simply consists in subtracting the offsets.</p>
+<p>This method is a conveniency wrapper for the more general <a class="reference internal" href="affine.html#affine"><span class="std std-ref">Affine transformation</span></a>.</p>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Geographic offset from the old Greek geographic 2D CRS to the newer GGRS87 CRS:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=geogoffset dlon=0.28 dlat=-5.86
+</pre></div>
+</div>
+<p>Conversion from Tokyo + JSLD69 height to WGS 84:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=geogoffset dlon=-13.97 dlat=7.94 dh=26.9
+</pre></div>
+</div>
+<p>Conversion from Baltic 1977 height to Black Sea height:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>proj=geogoffset dh=0.4
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<section id="optional">
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-dlon">
+<span class="sig-name descname"><span class="pre">+dlon</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-dlon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset in longitude, expressed in arc-second, to add.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-dlat">
+<span class="sig-name descname"><span class="pre">+dlat</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-dlat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset in latitude, expressed in arc-second, to add.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-dh">
+<span class="sig-name descname"><span class="pre">+dh</span></span><span class="sig-prename descclassname"><span class="pre">=&lt;value&gt;</span></span><a class="headerlink" href="#cmdoption-arg-dh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Offset in height, expressed in meter, to add.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="helmert.html" class="btn btn-neutral float-right" title="Helmert transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="deformation.html" class="btn btn-neutral float-left" title="Kinematic datum shifting utilizing a deformation model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

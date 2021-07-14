@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PROJ RFC 5: Adopt GeoTIFF-based grids for grids delivered with PROJ &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgcommunity/rfc/rfc-5.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PROJ RFC 6: Triangulation-based transformations" href="rfc-6.html" />
+    <link rel="prev" title="PROJ RFC 4: Remote access to grids and GeoTIFF grids" href="rfc-4.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Community</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../channels.html">Communication channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code_contributions.html">Guidelines for PROJ code contributors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../code_of_conduct.html">Code of Conduct</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Request for Comments</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="rfc-1.html">PROJ RFC 1: Project Committee Guidelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-2.html">PROJ RFC 2: Initial integration of “GDAL SRS barn” work</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-3.html">PROJ RFC 3: Dependency management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-4.html">PROJ RFC 4: Remote access to grids and GeoTIFF grids</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PROJ RFC 5: Adopt GeoTIFF-based grids for grids delivered with PROJ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-work-planned-by-this-rfc-and-related-decisions">Summary of work planned by this RFC and related decisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backward-compatibility">Backward compatibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proposed-implementation">Proposed implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adoption-status">Adoption status</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rfc-6.html">PROJ RFC 6: Triangulation-based transformations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#conference">Conference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Community</a> &raquo;</li>
+        
+          <li><a href="index.html">Request for Comments</a> &raquo;</li>
+        
+      <li>PROJ RFC 5: Adopt GeoTIFF-based grids for grids delivered with PROJ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/community/rfc/rfc-5.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="rfc-6.html" class="btn btn-neutral float-right" title="PROJ RFC 6: Triangulation-based transformations" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="rfc-4.html" class="btn btn-neutral float-left" title="PROJ RFC 4: Remote access to grids and GeoTIFF grids" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="proj-rfc-5-adopt-geotiff-based-grids-for-grids-delivered-with-proj">
+<span id="rfc5"></span><h1>PROJ RFC 5: Adopt GeoTIFF-based grids for grids delivered with PROJ<a class="headerlink" href="#proj-rfc-5-adopt-geotiff-based-grids-for-grids-delivered-with-proj" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Even Rouault</p>
+</dd>
+<dt class="field-even">Contact</dt>
+<dd class="field-even"><p><a class="reference external" href="mailto:even&#46;rouault&#37;&#52;&#48;spatialys&#46;com">even<span>&#46;</span>rouault<span>&#64;</span>spatialys<span>&#46;</span>com</a></p>
+</dd>
+<dt class="field-odd">Status</dt>
+<dd class="field-odd"><p>Adopted</p>
+</dd>
+<dt class="field-even">Implementation target</dt>
+<dd class="field-even"><p>PROJ 7</p>
+</dd>
+<dt class="field-odd">Last Updated</dt>
+<dd class="field-odd"><p>2020-01-28</p>
+</dd>
+</dl>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>This RFC is a continuation of <a class="reference internal" href="rfc-4.html#rfc4"><span class="std std-ref">PROJ RFC 4: Remote access to grids and GeoTIFF grids</span></a>. With RFC4, PROJ can, upon request
+of the user, download grids from a CDN in a progressive way. There is also API,
+such as <a class="reference internal" href="../../development/reference/functions.html#_CPPv418proj_download_fileP10PJ_CONTEXTPKciPFiP10PJ_CONTEXTdPvEPv" title="proj_download_file"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_download_file()</span></code></a> to be able to download a GeoTIFF grid in
+the user writable directory. The content of the CDN at <a class="reference external" href="https://cdn.proj.org">https://cdn.proj.org</a>
+is <a class="reference external" href="https://github.com/OSGeo/PROJ-data">https://github.com/OSGeo/PROJ-data</a> , which has the same content
+as <a class="reference external" href="https://github.com/OSGeo/proj-datumgrid">https://github.com/OSGeo/proj-datumgrid</a> converted in GeoTIFF files. In the
+current state, we could have a somewhat inconsistency between users relying on
+the proj-datumgrid, proj-datumgrid-[world,northamerica,oceania,europe] packages
+of mostly NTv2 and GTX files, and what is shipped through the CDN. Maintaining
+two repositories is also a maintenance burden in the long term.</p>
+<p>It is thus desirable to have a single source of truth, and we propose it to be
+based on the GeoTIFF grids.</p>
+</section>
+<section id="summary-of-work-planned-by-this-rfc-and-related-decisions">
+<h2>Summary of work planned by this RFC and related decisions<a class="headerlink" href="#summary-of-work-planned-by-this-rfc-and-related-decisions" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p><a class="reference external" href="https://github.com/OSGeo/PROJ-data/">https://github.com/OSGeo/PROJ-data/</a> will be used, starting with
+PROJ 7.0, to create “static” grid packages.</p></li>
+<li><p>For now, a single package of, mostly GeoTIFF grids (a few text files for
+PROJ init style files, as well as a few edge cases for deformation models where
+grids have not been converted), will be delivered.
+Its size at the time of writing is 486 MB (compared to 1.5 GB of uncompressed
+NTv2 + GTX content, compressed to ~ 700 MB currently)</p></li>
+<li><p>The content of this archive will be flat, i.e. no subdirectories</p></li>
+<li><p>Each file will be named according to the following pattern
+<code class="docutils literal notranslate"><span class="pre">${agency_name}_${filename}[.ext]</span></code>. For example fr_ign_ntf_r93.tif
+This convention should allow packagers, if the need arise, to be able to
+split the monolithic package in smaller ones, based on criterion related to
+the country.</p>
+<p>The agency name is the one you can see from the directory names at
+<a class="reference external" href="https://github.com/OSGeo/PROJ-data/">https://github.com/OSGeo/PROJ-data/</a>.
+<code class="docutils literal notranslate"><span class="pre">${agency_name}</span></code> itself is structure like <code class="docutils literal notranslate"><span class="pre">${two_letter_country_code_of_agency_nationality}_${some_abbreviation}</span></code>
+(with the exception of eur_nkg, for the Nordic Geodetic Commission which
+isn’t affiliated to a single country but to some European countries, and
+follows the general scheme)</p>
+</li>
+<li><p><a class="reference external" href="https://github.com/OSGeo/proj-datumgrid">https://github.com/OSGeo/proj-datumgrid</a> and related packages will only be
+maintained during the remaining lifetime of PROJ 6.x. After that, the
+repository will no longer receive any update and will be put in archiving
+state (see <a class="reference external" href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-archiving-repositories">https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-archiving-repositories</a>)</p></li>
+<li><p>PROJ database <code class="docutils literal notranslate"><span class="pre">grid_alternatives</span></code> table will be updated to point to the new
+TIFF filenames. It will also maintain the old names as used by current
+proj-datumgrid packages to be able to provide backward compatibility when
+a PROJ string refers to a grid by its previous name.</p></li>
+<li><p>Upon adoption of this RFC, new grids referenced by PROJ database will only
+point to GeoTIFF grid names.</p></li>
+<li><p>Related to the above point, if a PROJ string refers to a grid name, let’s
+say foo.gsb. This grid will first be looked for in all the relevant locations
+under this name. If no match is found, then a lookup in the
+<code class="docutils literal notranslate"><span class="pre">grid_alternatives</span></code> table will be done to retrieve the potential new name
+(GeoTIFF file), and if there’s such match, a new look-up in the file system
+will be done with the name of this GeoTIFF file.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">package_name</span></code> column of grid_alternatives will no longer be filled.
+And <code class="docutils literal notranslate"><span class="pre">url</span></code> will be filled with the direct URL to the grid in the CDN, for
+example: <a class="reference external" href="https://cdn.proj.org/fr_ign_ntf_r93.tif">https://cdn.proj.org/fr_ign_ntf_r93.tif</a></p></li>
+<li><p>The Python scripts to convert grids (NTv2, GTX) to GeoTIFF currently available at
+<a class="reference external" href="https://github.com/rouault/sample_proj_gtiff_grids/">https://github.com/rouault/sample_proj_gtiff_grids/</a> will be moved to a
+grid_tools/ subdirectories of <a class="reference external" href="https://github.com/OSGeo/PROJ-data/">https://github.com/OSGeo/PROJ-data/</a>
+Documentation for those utilities will be added to PROJ documentation.</p></li>
+<li><p>Obviously, all the above assumes PROJ builds to have libtiff enabled.
+Non-libtiff builds are not considered as nominal PROJ builds (if a PROJ master
+build is attempted and libtiff is not detected, it fails. The user has to
+explicitly ask to disable TIFF support), and users deciding to go through that
+route will have to deal with the consequences (that is that
+grid-based transformations generated by PROJ will likely be non working)</p></li>
+</ul>
+</section>
+<section id="backward-compatibility">
+<h2>Backward compatibility<a class="headerlink" href="#backward-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>This change is considered to be <em>mostly</em> backward compatible. There might be
+impacts for software using <a class="reference internal" href="../../development/reference/functions.html#_CPPv433proj_coordoperation_get_grid_usedP10PJ_CONTEXTPK2PJiPPKcPPKcPPKcPPKcPiPiPi" title="proj_coordoperation_get_grid_used"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_coordoperation_get_grid_used()</span></code></a> and
+assuming that the url returned is one of the proj-datumgrid-xxx files at
+<a class="reference external" href="https://download.osgeo.org">https://download.osgeo.org</a>. As mentioned in
+<a class="reference external" href="https://lists.osgeo.org/pipermail/proj/2020-January/009274.html">https://lists.osgeo.org/pipermail/proj/2020-January/009274.html</a> , this
+assumption was not completely bullet-proof either.
+There will be impacts on software checking the value of PROJ pipeline strings
+resulting <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">proj_create_crs_to_crs()</span></code>. The new grid names will now
+be returned (the most impacted software will likely be PROJ’s own test suite)</p>
+<p>Although discouraged, people not using the new proj-datumgrid-geotiff-XXX.zip
+archives, should still be able to use the old archives made of NTv2/GTX files,
+at least as long as the PROJ database does not only point to a GeoTIFF grid.
+So this might be a short-term partly working solution, but at time goes, it
+will become increasingly non-working. The nominal combination will be
+PROJ 7.0 + proj-datumgrid-geotiff-1.0.zip</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
+<p>PROJ test suite will have to be adapted for the new TIFF based filenames.</p>
+<p>Mechanism to auto-promote existing NTv2/GTX names to TIFF ones will be exercised.</p>
+</section>
+<section id="proposed-implementation">
+<h2>Proposed implementation<a class="headerlink" href="#proposed-implementation" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/OSGeo/PROJ/pull/1891">https://github.com/OSGeo/PROJ/pull/1891</a> and <a class="reference external" href="https://github.com/OSGeo/PROJ-data/pull/5">https://github.com/OSGeo/PROJ-data/pull/5</a></p>
+</section>
+<section id="adoption-status">
+<h2>Adoption status<a class="headerlink" href="#adoption-status" title="Permalink to this headline">¶</a></h2>
+<p>The RFC was adopted on 2020-01-28 with +1’s from the following PSC members</p>
+<ul class="simple">
+<li><p>Kristian Evers</p></li>
+<li><p>Even Rouault</p></li>
+<li><p>Thomas Knudsen</p></li>
+<li><p>Howard Butler</p></li>
+<li><p>Kurt Schwehr</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rfc-6.html" class="btn btn-neutral float-right" title="PROJ RFC 6: Triangulation-based transformations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rfc-4.html" class="btn btn-neutral float-left" title="PROJ RFC 4: Remote access to grids and GeoTIFF grids" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

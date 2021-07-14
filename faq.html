@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>FAQ &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgfaq.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="PROJ RFC 6: Triangulation-based transformations" href="community/rfc/rfc-6.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community/index.html">Community</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#which-file-formats-does-proj-support">Which file formats does PROJ support?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#can-i-transform-from-abc-to-xyz">Can I transform from <em>abc</em> to <em>xyz</em>?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinate-reference-system-xyz-is-not-in-the-epsg-registry-what-do-i-do">Coordinate reference system <em>xyz</em> is not in the EPSG registry, what do I do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-found-a-bug-in-proj-how-do-i-get-it-fixed">I found a bug in PROJ, how do I get it fixed?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-contribute-to-proj">How do I contribute to PROJ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-calculate-distances-directions-on-the-surface-of-the-earth">How do I calculate distances/directions on the surface of the earth?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-the-best-format-for-describing-coordinate-reference-systems">What is the best format for describing coordinate reference systems?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-is-the-axis-ordering-in-proj-not-consistent">Why is the axis ordering in PROJ not consistent?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-am-i-getting-the-error-cannot-find-proj-db">Why am I getting the error “Cannot find proj.db”?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-happened-to-proj-4">What happened to PROJ.4?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>FAQ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/faq.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="community/rfc/rfc-6.html" class="btn btn-neutral float-left" title="PROJ RFC 6: Triangulation-based transformations" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="faq">
+<span id="id1"></span><h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#faq" id="id3">FAQ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#which-file-formats-does-proj-support" id="id4">Which file formats does PROJ support?</a></p></li>
+<li><p><a class="reference internal" href="#can-i-transform-from-abc-to-xyz" id="id5">Can I transform from <em>abc</em> to <em>xyz</em>?</a></p></li>
+<li><p><a class="reference internal" href="#coordinate-reference-system-xyz-is-not-in-the-epsg-registry-what-do-i-do" id="id6">Coordinate reference system <em>xyz</em> is not in the EPSG registry, what do I do?</a></p></li>
+<li><p><a class="reference internal" href="#i-found-a-bug-in-proj-how-do-i-get-it-fixed" id="id7">I found a bug in PROJ, how do I get it fixed?</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-contribute-to-proj" id="id8">How do I contribute to PROJ?</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-calculate-distances-directions-on-the-surface-of-the-earth" id="id9">How do I calculate distances/directions on the surface of the earth?</a></p></li>
+<li><p><a class="reference internal" href="#what-is-the-best-format-for-describing-coordinate-reference-systems" id="id10">What is the best format for describing coordinate reference systems?</a></p></li>
+<li><p><a class="reference internal" href="#why-is-the-axis-ordering-in-proj-not-consistent" id="id11">Why is the axis ordering in PROJ not consistent?</a></p></li>
+<li><p><a class="reference internal" href="#why-am-i-getting-the-error-cannot-find-proj-db" id="id12">Why am I getting the error “Cannot find proj.db”?</a></p></li>
+<li><p><a class="reference internal" href="#what-happened-to-proj-4" id="id13">What happened to PROJ.4?</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="which-file-formats-does-proj-support">
+<h2>Which file formats does PROJ support?<a class="headerlink" href="#which-file-formats-does-proj-support" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="apps/index.html#apps"><span class="std std-ref">command line applications</span></a> that come with PROJ only support text
+input and output (apart from <strong class="program">proj</strong> which accepts a simple binary data
+stream as well). <strong class="program">proj</strong>, <strong class="program">cs2cs</strong> and <strong class="program">cct</strong> expects
+text files with one coordinate per line with each coordinate dimension in a
+separate column.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your data is stored in a common geodata file format chances are that
+you can use <a class="reference external" href="https://gdal.org/">GDAL</a> as a frontend to PROJ and transform your data with the
+<strong class="program">ogr2ogr</strong> application.</p>
+</div>
+</section>
+<section id="can-i-transform-from-abc-to-xyz">
+<h2>Can I transform from <em>abc</em> to <em>xyz</em>?<a class="headerlink" href="#can-i-transform-from-abc-to-xyz" title="Permalink to this headline">¶</a></h2>
+<p>Probably. PROJ supports transformations between most coordinate reference systems
+registered in the EPSG registry, as well as a number of other coordinate reference
+systems. The best way to find out is to test it with the <strong class="program">projinfo</strong>
+application. Here’s an example checking if there’s a transformation between
+ETRS89/UTM32N (EPSG:25832) and ETRS89/DKTM1 (EPSG:4093):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./projinfo -s EPSG:25832 -t EPSG:4093 -o PROJ
+<span class="go">Candidate operations found: 1</span>
+<span class="go">-------------------------------------</span>
+<span class="go">Operation No. 1:</span>
+
+<span class="go">unknown id, Inverse of UTM zone 32N + DKTM1, 0 m, World</span>
+
+<span class="go">PROJ string:</span>
+<span class="go">+proj=pipeline</span>
+<span class="go">  +step +inv +proj=utm +zone=32 +ellps=GRS80</span>
+<span class="go">  +step +proj=tmerc +lat_0=0 +lon_0=9 +k=0.99998 +x_0=200000 +y_0=-5000000</span>
+<span class="go">        +ellps=GRS80</span>
+</pre></div>
+</div>
+<p>See the <strong class="program">projinfo</strong> <a class="reference internal" href="apps/projinfo.html#projinfo"><span class="std std-ref">documentation</span></a> for more info on
+how to use it.</p>
+</section>
+<section id="coordinate-reference-system-xyz-is-not-in-the-epsg-registry-what-do-i-do">
+<h2>Coordinate reference system <em>xyz</em> is not in the EPSG registry, what do I do?<a class="headerlink" href="#coordinate-reference-system-xyz-is-not-in-the-epsg-registry-what-do-i-do" title="Permalink to this headline">¶</a></h2>
+<p>Generally PROJ will accept coordinate reference system descriptions in the form
+of WKT, WKT2 and PROJ strings. If you are able to describe your desired CRS
+in either of those formats there’s a good chance that PROJ will be able to make
+sense of it.</p>
+<p>If it is important to you that a given CRS is added to the EPSG registry, you
+should contact your local geodetic authority and ask them to submit the CRS for
+inclusion in the registry.</p>
+</section>
+<section id="i-found-a-bug-in-proj-how-do-i-get-it-fixed">
+<h2>I found a bug in PROJ, how do I get it fixed?<a class="headerlink" href="#i-found-a-bug-in-proj-how-do-i-get-it-fixed" title="Permalink to this headline">¶</a></h2>
+<p>Please report bugs that you find to the issue tracker on GitHub. <a class="reference internal" href="community/contributing.html#add-bug-report"><span class="std std-ref">Here’s how</span></a>.</p>
+<p>If you know how to program you can also try to fix it yourself. You are welcome
+to ask for guidance on one of the <a class="reference internal" href="community/channels.html#channels"><span class="std std-ref">communication channels</span></a> used
+by the project.</p>
+</section>
+<section id="how-do-i-contribute-to-proj">
+<h2>How do I contribute to PROJ?<a class="headerlink" href="#how-do-i-contribute-to-proj" title="Permalink to this headline">¶</a></h2>
+<p>Any contributions from the PROJ community is welcome. See <a class="reference internal" href="community/contributing.html#contributing"><span class="std std-ref">Contributing</span></a> for
+more details.</p>
+</section>
+<section id="how-do-i-calculate-distances-directions-on-the-surface-of-the-earth">
+<h2>How do I calculate distances/directions on the surface of the earth?<a class="headerlink" href="#how-do-i-calculate-distances-directions-on-the-surface-of-the-earth" title="Permalink to this headline">¶</a></h2>
+<p>These are called geodesic calculations. There is a page about it here:
+<a class="reference internal" href="geodesic.html#geodesic"><span class="std std-ref">Geodesic calculations</span></a>.</p>
+</section>
+<section id="what-is-the-best-format-for-describing-coordinate-reference-systems">
+<h2>What is the best format for describing coordinate reference systems?<a class="headerlink" href="#what-is-the-best-format-for-describing-coordinate-reference-systems" title="Permalink to this headline">¶</a></h2>
+<p>A coordinate reference system (CRS) can in PROJ be described in several ways:
+As PROJ strings, Well-Known Text (WKT) and as spatial reference ID’s (such as EPSG
+codes). Generally, WKT or SRID’s are preferred over PROJ strings as they can
+contain more information about a given CRS. Conversions between WKT and PROJ
+strings will in most cases cause a loss of information, potentially leading to
+erroneous transformations.</p>
+<p>For compatibility reasons PROJ supports several WKT dialects
+(see <a class="reference internal" href="apps/projinfo.html#cmdoption-projinfo-o"><code class="xref std std-option docutils literal notranslate"><span class="pre">projinfo</span> <span class="pre">-o</span></code></a>). If possible WKT2 should be used.</p>
+</section>
+<section id="why-is-the-axis-ordering-in-proj-not-consistent">
+<h2>Why is the axis ordering in PROJ not consistent?<a class="headerlink" href="#why-is-the-axis-ordering-in-proj-not-consistent" title="Permalink to this headline">¶</a></h2>
+<p>PROJ respects the axis ordering as it was defined by the authority in charge of
+a given coordinate reference system. This is in accordance to the ISO19111 standard
+<span id="id2">[<a class="reference internal" href="zreferences.html#id18" title="ISO. Geographic information – Referencing by coordinates. Standard, International Organization for Standardization, Geneva, CH, January 2019. URL: http://docs.opengeospatial.org/as/18-005r4/18-005r4.html.">ISO19111</a>]</span>. Unfortunately most GIS software on the market doesn’t follow this
+standard. Before version 6, PROJ did not respect the standard either. This causes
+some problems while the rest of the industry conforms to the standard. PROJ intends
+to spearhead this effort, hopefully setting a good example for the rest of the
+geospatial industry.</p>
+<p>Customarily in GIS the first component in a coordinate tuple has been aligned with
+the east/west direction and the second component with the north/south direction.
+For many coordinate reference systems this is also what is defined by the authority.
+There are however exceptions, especially when dealing with coordinate systems that
+don’t align with the cardinal directions of a compass. For example it is not
+obvious which coordinate component aligns to which axis in a skewed coordinate
+system with a 45 degrees angle against the north direction. Similarly, a geocentric
+cartesian coordinate system usually has the z-component aligned with the rotational
+axis of the earth and hence the axis points towards north. Both cases are
+incompatible with the convention of always having the x-component be the east/west
+axis, the y-component the north/south axis and the z-component the up/down axis.</p>
+<p>In most cases coordinate reference systems with geodetic coordinates expect the
+input ordered as latitude/longitude  (typically with the EPSG dataset), however,
+internally PROJ expects an longitude/latitude ordering for all projections. This
+is generally hidden for users but in a few cases it is exposed at the surface
+level of PROJ, most prominently in the <strong class="program">proj</strong> utility which expects
+longitude/latitude ordering of input date (unless <a class="reference internal" href="apps/proj.html#cmdoption-proj-r"><code class="xref std std-option docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-r</span></code></a> is used).</p>
+<p>In case of doubt about the axis order of a specific CRS <strong class="program">projinfo</strong> is
+able to provide an answer. Simply look up the CRS and examine the axis specification
+of the Well-Known Text output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">projinfo EPSG:4326</span>
+<span class="go">PROJ.4 string:</span>
+<span class="go">+proj=longlat +datum=WGS84 +no_defs +type=crs</span>
+
+<span class="go">WKT2:2019 string:</span>
+<span class="go">GEOGCRS[&quot;WGS 84&quot;,</span>
+<span class="go">    DATUM[&quot;World Geodetic System 1984&quot;,</span>
+<span class="go">        ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,</span>
+<span class="go">            LENGTHUNIT[&quot;metre&quot;,1]]],</span>
+<span class="go">    PRIMEM[&quot;Greenwich&quot;,0,</span>
+<span class="go">        ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],</span>
+<span class="go">    CS[ellipsoidal,2],</span>
+<span class="go">        AXIS[&quot;geodetic latitude (Lat)&quot;,north,</span>
+<span class="go">            ORDER[1],</span>
+<span class="go">            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],</span>
+<span class="go">        AXIS[&quot;geodetic longitude (Lon)&quot;,east,</span>
+<span class="go">            ORDER[2],</span>
+<span class="go">            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],</span>
+<span class="go">    USAGE[</span>
+<span class="go">        SCOPE[&quot;unknown&quot;],</span>
+<span class="go">        AREA[&quot;World&quot;],</span>
+<span class="go">        BBOX[-90,-180,90,180]],</span>
+<span class="go">    ID[&quot;EPSG&quot;,4326]]</span>
+</pre></div>
+</div>
+</section>
+<section id="why-am-i-getting-the-error-cannot-find-proj-db">
+<h2>Why am I getting the error “Cannot find proj.db”?<a class="headerlink" href="#why-am-i-getting-the-error-cannot-find-proj-db" title="Permalink to this headline">¶</a></h2>
+<p>The file <a class="reference internal" href="resource_files.html#proj-db"><span class="std std-ref">proj.db</span></a> must be readable for the library to properly
+function.  Like other <a class="reference internal" href="resource_files.html"><span class="doc">resource files</span></a>,
+it is located using a set of search
+paths.  In most cases, the following paths are checked in order:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A path provided by the environment variable <span class="target" id="index-0"></span><a class="reference internal" href="usage/environmentvars.html#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a>.</p></li>
+<li><p>A path built into PROJ as its resource installation directory
+(typically ../share/proj relative to the PROJ library).</p></li>
+<li><p>The current directory.</p></li>
+</ul>
+</div></blockquote>
+<p>Note that if you’re using conda, activating an environment sets
+<span class="target" id="index-1"></span><a class="reference internal" href="usage/environmentvars.html#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a> to a resource directory located in that environment.</p>
+</section>
+<section id="what-happened-to-proj-4">
+<h2>What happened to PROJ.4?<a class="headerlink" href="#what-happened-to-proj-4" title="Permalink to this headline">¶</a></h2>
+<p>The first incarnation of PROJ saw the light of day in 1983. Back then it
+was simply known as PROJ. Eventually a new version was released, known
+as PROJ.2 in order to distinguish between the two versions. Later on both
+PROJ.3 and PROJ.4 was released. By the time PROJ.4 was released the
+software had matured enough that a new major version release wasn’t an
+immediate necessity. PROJ.4 was around for more than 25 years before it
+again became time for an update. This left the project in a bit of a
+conundrum regarding the name. For the majority of the life-time of the product it was known as PROJ.4, but with the release of version 5 the name
+was no longer aligned with the version number. As a consequence, it was
+decided to decouple the name from the version number and once again simply
+call the software PROJ.</p>
+<p>Use of name PROJ.4 is now strictly reserved for describing legacy behavior
+of the software, e.g. “PROJ.4 strings” as seen in <strong class="program">projinfo</strong>
+output.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="community/rfc/rfc-6.html" class="btn btn-neutral float-left" title="PROJ RFC 6: Triangulation-based transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

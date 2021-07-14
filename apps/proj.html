@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>proj &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgapps/proj.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="projinfo" href="projinfo.html" />
+    <link rel="prev" title="gie" href="gie.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cct.html">cct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cs2cs.html">cs2cs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geod.html">geod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gie.html">gie</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">proj</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="projinfo.html">projinfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projsync.html">projsync</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Applications</a> &raquo;</li>
+        
+      <li>proj</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/apps/proj.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="projinfo.html" class="btn btn-neutral float-right" title="projinfo" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="gie.html" class="btn btn-neutral float-left" title="gie" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="proj">
+<span id="id1"></span><h1>proj<a class="headerlink" href="#proj" title="Permalink to this headline">¶</a></h1>
+<p>Cartographic projection filter.</p>
+<section id="synopsis">
+<span id="index-0"></span><h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>proj</strong> [<strong>-beEfiIlmorsStTvVwW</strong>] [args]] [<em>+opt[=arg]</em> …] file …</p>
+<p><strong>invproj</strong> [<strong>-beEfiIlmorsStTvVwW</strong>] [args]] [<em>+opt[=arg]</em> …] file …</p>
+</div></blockquote>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p><strong class="program">proj</strong> and <strong class="program">invproj</strong> perform respective forward and inverse
+conversion of cartographic data to or from cartesian data with a wide
+range of selectable projection functions.</p>
+<p><strong class="program">invproj</strong> may not be available on all platforms; in this case
+use <a class="reference internal" href="#cmdoption-proj-I"><code class="xref std std-option docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-I</span></code></a> instead.</p>
+<p>The following control parameters can appear in any order</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-b">
+<span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Special option for binary coordinate data input and output through standard
+input and standard output. Data is assumed to be in system type double
+floating point words. This option is to be used when <strong class="program">proj</strong> is a child process
+and allows bypassing formatting operations.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-d">
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;n&gt;</span></span><a class="headerlink" href="#cmdoption-proj-d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 5.2.0: </span>Specify the number of decimals in the output.</p>
+</div>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-i">
+<span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects binary input only (see <a class="reference internal" href="#cmdoption-proj-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-I">
+<span class="sig-name descname"><span class="pre">-I</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-I" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternate method to specify inverse projection. Redundant when used with
+<strong class="program">invproj</strong>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects binary output only (see <a class="reference internal" href="#cmdoption-proj-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-t-a">
+<span class="sig-name descname"><span class="pre">-t&lt;a&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-t-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>a</em> specifies a character employed as the first character to denote a
+control line to be passed through without processing. This option
+applicable to ASCII input only. (# is the default value).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-e">
+<span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;string&gt;</span></span><a class="headerlink" href="#cmdoption-proj-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>string</em> is an arbitrary string to be output if an error is detected during
+data transformations. The default value is a three character string: <code class="docutils literal notranslate"><span class="pre">*\t*</span></code>.
+Note that if the <a class="reference internal" href="#cmdoption-proj-b"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b</span></code></a>, <a class="reference internal" href="#cmdoption-proj-i"><code class="xref std std-option docutils literal notranslate"><span class="pre">-i</span></code></a> or <a class="reference internal" href="#cmdoption-proj-o"><code class="xref std std-option docutils literal notranslate"><span class="pre">-o</span></code></a> options are employed, an error
+is returned as HUGE_VAL value for both return values.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-E">
+<span class="sig-name descname"><span class="pre">-E</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-E" title="Permalink to this definition">¶</a></dt>
+<dd><p>Causes the input coordinates to be copied to the output line prior to
+printing the converted values.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-l">
+<span class="sig-name descname"><span class="pre">-l&lt;[</span></span><span class="sig-prename descclassname"><span class="pre">=id]&gt;</span></span><a class="headerlink" href="#cmdoption-proj-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>List projection identifiers that can be selected with <em>+proj</em>. <code class="docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-l=id</span></code>
+gives expanded description of projection <em>id</em>, e.g. <code class="docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-l=merc</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-lp">
+<span class="sig-name descname"><span class="pre">-lp</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-lp" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all projection id that can be used with the <em>+proj</em> parameter.
+Equivalent to <code class="docutils literal notranslate"><span class="pre">proj</span> <span class="pre">-l</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-lP">
+<span class="sig-name descname"><span class="pre">-lP</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-lP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expanded description of all projections that can be used with the <em>+proj</em>
+parameter.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-le">
+<span class="sig-name descname"><span class="pre">-le</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-le" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all ellipsoids that can be selected with the <em>+ellps</em> parameters.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-lu">
+<span class="sig-name descname"><span class="pre">-lu</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-lu" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of all distance units that can be selected with the <em>+units</em> parameter.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-r">
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>This options reverses the order of the expected input from
+longitude-latitude or x-y to latitude-longitude or y-x.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-s">
+<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>This options reverses the order of the output from x-y or longitude-latitude
+to y-x or latitude-longitude.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-S">
+<span class="sig-name descname"><span class="pre">-S</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-S" title="Permalink to this definition">¶</a></dt>
+<dd><p>Causes estimation of meridional and parallel scale factors, area scale
+factor and angular distortion, and maximum and minimum scale factors to be
+listed between &lt;&gt; for each input point. For conformal projections meridional
+and parallel scales factors will be equal and angular distortion zero. Equal
+area projections will have an area factor of 1.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-m">
+<span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mult&gt;</span></span><a class="headerlink" href="#cmdoption-proj-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cartesian data may be scaled by the <em>mult</em> parameter. When processing data
+in a forward projection mode the cartesian output values are multiplied by
+<em>mult</em> otherwise the input cartesian values are divided by <em>mult</em> before inverse
+projection. If the first two characters of <em>mult</em> are 1/ or 1: then the
+reciprocal value of <em>mult</em> is employed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-f">
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;format&gt;</span></span><a class="headerlink" href="#cmdoption-proj-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>format</em> is a printf format string to control the form of the output values.
+For inverse projections, the output will be in degrees when this option is
+employed. The default format is <code class="docutils literal notranslate"><span class="pre">&quot;%.2f&quot;</span></code> for forward projection and DMS for
+inverse.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-w-n">
+<span class="sig-name descname"><span class="pre">-w&lt;n&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-w-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>n</em> is the number of significant fractional digits to employ for seconds
+output (when the option is not specified, <code class="docutils literal notranslate"><span class="pre">-w3</span></code> is assumed).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-W-n">
+<span class="sig-name descname"><span class="pre">-W&lt;n&gt;</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-W-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where <em>n</em> is the number of significant fractional digits to employ for seconds
+output. When <code class="docutils literal notranslate"><span class="pre">-W</span></code> is employed the fields will be constant width
+with leading zeroes.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-v">
+<span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Causes a listing of cartographic control parameters tested for and used by
+the program to be printed prior to input data.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-proj-V">
+<span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-proj-V" title="Permalink to this definition">¶</a></dt>
+<dd><p>This option causes an expanded annotated listing of the characteristics of
+the projected point. <a class="reference internal" href="#cmdoption-proj-v"><code class="xref std std-option docutils literal notranslate"><span class="pre">-v</span></code></a> is implied with this option.</p>
+</dd></dl>
+
+<p>The <em>+opt</em> run-line arguments are associated with cartographic parameters.
+Additional projection control parameters may be contained in two auxiliary
+control files: the first is optionally referenced with the
+<em>+init=file:id</em> and the second is always processed after the name of the
+projection has been established from either the run-line or the contents of
++init file. The environment parameter <span class="target" id="index-1"></span><a class="reference internal" href="../usage/environmentvars.html#envvar-PROJ_LIB"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PROJ_LIB</span></code></a> establishes the
+default directory for a file reference without an absolute path. This is
+also used for supporting files like datum shift files.</p>
+<p>Usage of <em>+opt</em> varies with projection and for a complete description
+consult the <a class="reference internal" href="../operations/projections/index.html#projections"><span class="std std-ref">projection pages</span></a>.</p>
+<p>One or more files (processed in left to right order) specify the source of
+data to be converted. A <code class="docutils literal notranslate"><span class="pre">-</span></code> will specify the location of processing standard
+input. If no files are specified, the input is assumed to be from stdin.
+For ASCII input data the two data values must be in the first two white space
+separated fields and when both input and output are ASCII all trailing
+portions of the input line are appended to the output line.</p>
+<p>Input geographic data (longitude and latitude) must be in DMS or decimal degrees format and input
+cartesian data must be in units consistent with the ellipsoid major axis or
+sphere radius units. Output geographic coordinates will be in DMS (if the
+<code class="docutils literal notranslate"><span class="pre">-w</span></code> switch is not employed) and precise to 0.001” with trailing, zero-valued
+minute-second fields deleted.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The following script</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">proj +proj=utm +lon_0=112w +ellps=clrk66 -r &lt;&lt;EOF</span>
+<span class="go">45d15&#39;33.1&quot; 111.5W</span>
+<span class="go">45d15.551666667N -111d30</span>
+<span class="go">+45.25919444444 111d30&#39;000w</span>
+<span class="go">EOF</span>
+</pre></div>
+</div>
+<p>will perform UTM forward projection with a standard UTM central meridian
+nearest longitude 112W. The geographic values of this example are equivalent
+and meant as examples of various forms of DMS input. The x-y output
+data will appear as three lines of:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>460769.27     5011648.45
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="projinfo.html" class="btn btn-neutral float-right" title="projinfo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gie.html" class="btn btn-neutral float-left" title="gie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>common namespace &mdash; PROJ 8.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/../images/favicon.png"/>
+  
+
+  
+  
+    <link rel="canonical" href="https://proj.orgdevelopment/reference/cpp/common.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="util namespace" href="util.html" />
+    <link rel="prev" title="General documentation" href="cpp_general.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #353130" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/../images/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                8.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage/index.html">Using PROJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apps/index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operations/index.html">Coordinate operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource_files.html">Resource files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../geodesic.html">Geodesic calculations</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Development</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart.html">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../transformations.html">Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../errorhandling.html">Error handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../threads.html">Threads</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../macros.html">Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../datatypes.html">Data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions.html">Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cpp_general.html">General documentation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">common namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="util.html">util namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="metadata.html">metadata namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cs.html">cs namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="datum.html">datum namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crs.html">crs namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="operation.html">operation namespace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="io.html">io namespace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cmake.html">Using PROJ in CMake projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bindings.html">Language bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../migration.html">Version 4 to 6 API Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../migration.html#version-4-to-5-api-migration">Version 4 to 5 API Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../specifications/index.html">Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../community/index.html">Community</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PROJ</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Development</a> &raquo;</li>
+        
+          <li><a href="../index.html">Reference</a> &raquo;</li>
+        
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+        
+      <li>common namespace</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            
+              <a href="https://github.com/OSGeo/PROJ/edit//8.1/docs/source/development/reference/cpp/common.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="util.html" class="btn btn-neutral float-right" title="util namespace" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="cpp_general.html" class="btn btn-neutral float-left" title="General documentation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="common-namespace">
+<span id="common"></span><h1>common namespace<a class="headerlink" href="#common-namespace" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6commonE">
+<span id="_CPPv3N5osgeo4proj6commonE"></span><span id="_CPPv2N5osgeo4proj6commonE"></span><span id="osgeo::proj::common"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">common</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6commonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Common classes. </p>
+<p><a class="reference internal" href="#namespaceosgeo_1_1proj_1_1common"><span class="std std-ref">osgeo.proj.common</span></a> namespace </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16UnitOfMeasurePtrE">
+<span id="_CPPv3N5osgeo4proj6common16UnitOfMeasurePtrE"></span><span id="_CPPv2N5osgeo4proj6common16UnitOfMeasurePtrE"></span><span id="osgeo::proj::common::UnitOfMeasurePtr"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1aaceb0025e7d31df0fc219145b6a59908"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnitOfMeasurePtr</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16UnitOfMeasurePtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure"><span class="std std-ref">UnitOfMeasure</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common18UnitOfMeasureNNPtrE">
+<span id="_CPPv3N5osgeo4proj6common18UnitOfMeasureNNPtrE"></span><span id="_CPPv2N5osgeo4proj6common18UnitOfMeasureNNPtrE"></span><span id="osgeo::proj::common::UnitOfMeasureNNPtr"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1abd72c7d84f852c41c7c2a528f8fa1d62"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nn</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common16UnitOfMeasurePtrE" title="osgeo::proj::common::UnitOfMeasurePtr"><span class="n"><span class="pre">UnitOfMeasurePtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnitOfMeasureNNPtr</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common18UnitOfMeasureNNPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-null shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure"><span class="std std-ref">UnitOfMeasure</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common19IdentifiedObjectPtrE">
+<span id="_CPPv3N5osgeo4proj6common19IdentifiedObjectPtrE"></span><span id="_CPPv2N5osgeo4proj6common19IdentifiedObjectPtrE"></span><span id="osgeo::proj::common::IdentifiedObjectPtr"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1accd81b8802949ca7ecd25579c55cfae2"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common16IdentifiedObjectE" title="osgeo::proj::common::IdentifiedObject"><span class="n"><span class="pre">IdentifiedObject</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IdentifiedObjectPtr</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common19IdentifiedObjectPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">IdentifiedObject</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common21IdentifiedObjectNNPtrE">
+<span id="_CPPv3N5osgeo4proj6common21IdentifiedObjectNNPtrE"></span><span id="_CPPv2N5osgeo4proj6common21IdentifiedObjectNNPtrE"></span><span id="osgeo::proj::common::IdentifiedObjectNNPtr"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1ada5c6f6eed30d72e1849e5aa583e2e99"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nn</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common19IdentifiedObjectPtrE" title="osgeo::proj::common::IdentifiedObjectPtr"><span class="n"><span class="pre">IdentifiedObjectPtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IdentifiedObjectNNPtr</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common21IdentifiedObjectNNPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-null shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">IdentifiedObject</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common15ObjectDomainPtrE">
+<span id="_CPPv3N5osgeo4proj6common15ObjectDomainPtrE"></span><span id="_CPPv2N5osgeo4proj6common15ObjectDomainPtrE"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1ad52e74a5720556a419450be6350359eb"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ObjectDomainPtr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common12ObjectDomainE" title="osgeo::proj::common::ObjectDomain"><span class="n"><span class="pre">ObjectDomain</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common15ObjectDomainPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectDomain"><span class="std std-ref">ObjectDomain</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common17ObjectDomainNNPtrE">
+<span id="_CPPv3N5osgeo4proj6common17ObjectDomainNNPtrE"></span><span id="_CPPv2N5osgeo4proj6common17ObjectDomainNNPtrE"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1a5b1a089231563f64b7ff97f4c74e9a39"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ObjectDomainNNPtr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nn</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common15ObjectDomainPtrE" title="osgeo::proj::common::ObjectDomainPtr"><span class="n"><span class="pre">ObjectDomainPtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common17ObjectDomainNNPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-null shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectDomain"><span class="std std-ref">ObjectDomain</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common14ObjectUsagePtrE">
+<span id="_CPPv3N5osgeo4proj6common14ObjectUsagePtrE"></span><span id="_CPPv2N5osgeo4proj6common14ObjectUsagePtrE"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1aabbd69def596723b3878f0cf2e3fc7ab"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ObjectUsagePtr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common11ObjectUsageE" title="osgeo::proj::common::ObjectUsage"><span class="n"><span class="pre">ObjectUsage</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common14ObjectUsagePtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">ObjectUsage</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16ObjectUsageNNPtrE">
+<span id="_CPPv3N5osgeo4proj6common16ObjectUsageNNPtrE"></span><span id="_CPPv2N5osgeo4proj6common16ObjectUsageNNPtrE"></span><span class="target" id="namespaceosgeo_1_1proj_1_1common_1afcc07fd83e2a69f3af50378a26bf6431"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ObjectUsageNNPtr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nn</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common14ObjectUsagePtrE" title="osgeo::proj::common::ObjectUsagePtr"><span class="n"><span class="pre">ObjectUsagePtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16ObjectUsageNNPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-null shared pointer of <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">ObjectUsage</span></a>. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasureE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasureE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasureE"></span><span id="osgeo::proj::common::UnitOfMeasure"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UnitOfMeasure</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util10BaseObjectE" title="osgeo::proj::util::BaseObject"><span class="n"><span class="pre">BaseObject</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Unit of measure. </p>
+<p>This is a mutable object. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4TypeE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4TypeE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4TypeE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4TypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Type of unit of measure. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type7UNKNOWNE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type7UNKNOWNE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type7UNKNOWNE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a696b031073e74bf2cb98e5ef201d4aa3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UNKNOWN</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type7UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unknown unit of measure </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type4Type4NONEE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type4Type4NONEE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type4Type4NONEE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10ab50339a10e1de285ac99d4c3990b8693"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NONE</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type4Type4NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No unit of measure </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type7ANGULARE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type7ANGULARE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type7ANGULARE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a5a1440a6a75811013183701d52bf87f7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ANGULAR</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type7ANGULARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Angular unit of measure </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type6LINEARE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type6LINEARE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type6LINEARE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10aaac544aacc3615aada24897a215f5046"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LINEAR</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type6LINEARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Linear unit of measure </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type5SCALEE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type5SCALEE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type5SCALEE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a127ea1d20becc4dba06d9d152db0c2e5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SCALE</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type5SCALEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Scale"><span class="std std-ref">Scale</span></a> unit of measure </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type4TIMEE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type4TIMEE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type4TIMEE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a346ff32eaa3c09983fb2ec057816d352"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TIME</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type4TIMEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Time unit of measure </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type10PARAMETRICE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4Type10PARAMETRICE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4Type10PARAMETRICE"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a5ddcf11fc0e285f9efec996732ba4ab8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PARAMETRIC</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type10PARAMETRICE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parametric unit of measure </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure13UnitOfMeasureERKNSt6stringEd4TypeRKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure13UnitOfMeasureERKNSt6stringEd4TypeRKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure13UnitOfMeasureERKNSt6stringEd4TypeRKNSt6stringERKNSt6stringE"></span><span id="osgeo::proj::common::UnitOfMeasure::UnitOfMeasure__ssCR.double.Type.ssCR.ssCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a96ee47b23d28c5ce8925bd8f352a0891"></span><span class="sig-name descname"><span class="n"><span class="pre">UnitOfMeasure</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nameIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">toSIIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span>, <a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4TypeE" title="osgeo::proj::common::UnitOfMeasure::Type"><span class="n"><span class="pre">Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">typeIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4TypeE" title="osgeo::proj::common::UnitOfMeasure::Type"><span class="n"><span class="pre">Type</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4Type7UNKNOWNE" title="osgeo::proj::common::UnitOfMeasure::Type::UNKNOWN"><span class="n"><span class="pre">UNKNOWN</span></span></a>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">codeSpaceIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">codeIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure13UnitOfMeasureERKNSt6stringEd4TypeRKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure"><span class="std std-ref">UnitOfMeasure</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4nameEv">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4nameEv"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4nameEv"></span><span id="osgeo::proj::common::UnitOfMeasure::name"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a082c332360ef76c8658195661011273e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the name of the unit of measure. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure14conversionToSIEv">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure14conversionToSIEv"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure14conversionToSIEv"></span><span id="osgeo::proj::common::UnitOfMeasure::conversionToSI"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1ae16b75dd0b56b786a1aafff8ac405c18"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">conversionToSI</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure14conversionToSIEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the conversion factor to the unit of the International System of Units of the same Type. </p>
+<p>For example, for foot, this would be 0.3048 (metre)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the conversion factor, or 0 if no conversion exists. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4typeEv">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4typeEv"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4typeEv"></span><span id="osgeo::proj::common::UnitOfMeasure::type"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a0143fdbc02af3c17fe430c19d4004dc0"></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4TypeE" title="osgeo::proj::common::UnitOfMeasure::Type"><span class="n"><span class="pre">Type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the type of the unit of measure. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure9codeSpaceEv">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure9codeSpaceEv"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure9codeSpaceEv"></span><span id="osgeo::proj::common::UnitOfMeasure::codeSpace"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a70d2e1a7e4dd0a5485779c205e0e8b88"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">codeSpace</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure9codeSpaceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the code space of the unit of measure. </p>
+<p>For example “EPSG”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the code space, or empty string. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4codeEv">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4codeEv"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4codeEv"></span><span id="osgeo::proj::common::UnitOfMeasure::code"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1adcbf51167f66cbf8b6d4bf0aee847959"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">code</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4codeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the code of the unit of measure. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the code, or empty string. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasureeqERK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasureeqERK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasureeqERK13UnitOfMeasure"></span><span id="osgeo::proj::common::UnitOfMeasure::eq-operator__UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a774977d587e8ab6b3f0712afd9226386"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureeqERK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns whether two units of measures are equal.</p>
+<p>The comparison is based on the name. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasureneERK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasureneERK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasureneERK13UnitOfMeasure"></span><span id="osgeo::proj::common::UnitOfMeasure::neq-operator__UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a8f51ba07caa8f33b6a1cb2521b756148"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureneERK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns whether two units of measures are different.</p>
+<p>The comparison is based on the name. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4NONEE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4NONEE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4NONEE"></span><span id="osgeo::proj::common::UnitOfMeasure::NONE__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a2f4c79c96afc93c5add7dae9a06d8f19"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NONE</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>“Empty”/”None”, unit of measure of type NONE. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure11SCALE_UNITYE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure11SCALE_UNITYE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure11SCALE_UNITYE"></span><span id="osgeo::proj::common::UnitOfMeasure::SCALE_UNITY__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a36c1424eb7d367b552956ee7ff84a78a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SCALE_UNITY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure11SCALE_UNITYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Scale"><span class="std std-ref">Scale</span></a> unity, unit of measure of type SCALE. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure17PARTS_PER_MILLIONE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure17PARTS_PER_MILLIONE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure17PARTS_PER_MILLIONE"></span><span id="osgeo::proj::common::UnitOfMeasure::PARTS_PER_MILLION__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a4cb01410906889a08dcf41b192edd1a4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PARTS_PER_MILLION</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure17PARTS_PER_MILLIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parts-per-million, unit of measure of type SCALE. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure12PPM_PER_YEARE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure12PPM_PER_YEARE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure12PPM_PER_YEARE"></span><span id="osgeo::proj::common::UnitOfMeasure::PPM_PER_YEAR__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a3c1db5ffe2875eb25253639728360007"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PPM_PER_YEAR</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure12PPM_PER_YEARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parts-per-million per year, unit of measure of type SCALE. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure5METREE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure5METREE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure5METREE"></span><span id="osgeo::proj::common::UnitOfMeasure::METRE__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1ab53f3d1e195096c742f661bc35fc1fa4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">METRE</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure5METREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Metre, unit of measure of type LINEAR (SI unit). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure14METRE_PER_YEARE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure14METRE_PER_YEARE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure14METRE_PER_YEARE"></span><span id="osgeo::proj::common::UnitOfMeasure::METRE_PER_YEAR__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a56c3d81d2570405de580507f1c62b214"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">METRE_PER_YEAR</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure14METRE_PER_YEARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Metre per year, unit of measure of type LINEAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4FOOTE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4FOOTE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4FOOTE"></span><span id="osgeo::proj::common::UnitOfMeasure::FOOT__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1aa547b03da98f0b2e3d6590dbf65f5aa2"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FOOT</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4FOOTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Foot, unit of measure of type LINEAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure7US_FOOTE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure7US_FOOTE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure7US_FOOTE"></span><span id="osgeo::proj::common::UnitOfMeasure::US_FOOT__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a88250923137ac459118e04fbed4ef57a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">US_FOOT</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure7US_FOOTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>US survey foot, unit of measure of type LINEAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure6RADIANE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure6RADIANE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure6RADIANE"></span><span id="osgeo::proj::common::UnitOfMeasure::RADIAN__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a77faa87dd8337ec0dc07be8c78d567ad"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RADIAN</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure6RADIANE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Radian, unit of measure of type ANGULAR (SI unit). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure11MICRORADIANE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure11MICRORADIANE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure11MICRORADIANE"></span><span id="osgeo::proj::common::UnitOfMeasure::MICRORADIAN__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a14ef72dd32fba55911fb598ce4a91ecb"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MICRORADIAN</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure11MICRORADIANE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Microradian, unit of measure of type ANGULAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure6DEGREEE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure6DEGREEE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure6DEGREEE"></span><span id="osgeo::proj::common::UnitOfMeasure::DEGREE__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1aa2bdeeefc214149309462f231a17f954"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DEGREE</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure6DEGREEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Degree, unit of measure of type ANGULAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure10ARC_SECONDE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure10ARC_SECONDE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure10ARC_SECONDE"></span><span id="osgeo::proj::common::UnitOfMeasure::ARC_SECOND__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1ae8562788e28c7f9647d95e536940ff29"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ARC_SECOND</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure10ARC_SECONDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arc-second, unit of measure of type ANGULAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4GRADE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4GRADE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4GRADE"></span><span id="osgeo::proj::common::UnitOfMeasure::GRAD__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1afe228a621e6f27c5b0a144a0f2d7697b"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GRAD</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4GRADE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Grad, unit of measure of type ANGULAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure19ARC_SECOND_PER_YEARE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure19ARC_SECOND_PER_YEARE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure19ARC_SECOND_PER_YEARE"></span><span id="osgeo::proj::common::UnitOfMeasure::ARC_SECOND_PER_YEAR__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a0867123b7244a3af084afcded0421421"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ARC_SECOND_PER_YEAR</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure19ARC_SECOND_PER_YEARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arc-second per year, unit of measure of type ANGULAR. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure6SECONDE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure6SECONDE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure6SECONDE"></span><span id="osgeo::proj::common::UnitOfMeasure::SECOND__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a5a7e14a22a4a61727a99ea35316bd538"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SECOND</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure6SECONDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Second, unit of measure of type TIME (SI unit). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common13UnitOfMeasure4YEARE">
+<span id="_CPPv3N5osgeo4proj6common13UnitOfMeasure4YEARE"></span><span id="_CPPv2N5osgeo4proj6common13UnitOfMeasure4YEARE"></span><span id="osgeo::proj::common::UnitOfMeasure::YEAR__UnitOfMeasureC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a029845d9618a923670dc8f75452bb961"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">YEAR</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasure4YEARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Year, unit of measure of type TIME. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7MeasureE">
+<span id="_CPPv3N5osgeo4proj6common7MeasureE"></span><span id="_CPPv2N5osgeo4proj6common7MeasureE"></span><span id="osgeo::proj::common::Measure"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Measure</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util10BaseObjectE" title="osgeo::proj::util::BaseObject"><span class="n"><span class="pre">BaseObject</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Numeric value associated with a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure"><span class="std std-ref">UnitOfMeasure</span></a>. </p>
+<p>Subclassed by <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Angle"><span class="std std-ref">osgeo::proj::common::Angle</span></a>, <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Length"><span class="std std-ref">osgeo::proj::common::Length</span></a>, <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Scale"><span class="std std-ref">osgeo::proj::common::Scale</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7Measure7MeasureEdRK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common7Measure7MeasureEdRK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common7Measure7MeasureEdRK13UnitOfMeasure"></span><span id="osgeo::proj::common::Measure::Measure__double.UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1a6b3aa05d159c717da871d9fcb88a7c59"></span><span class="sig-name descname"><span class="n"><span class="pre">Measure</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">unitIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7Measure7MeasureEdRK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Measure"><span class="std std-ref">Measure</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7Measure4unitEv">
+<span id="_CPPv3N5osgeo4proj6common7Measure4unitEv"></span><span id="_CPPv2N5osgeo4proj6common7Measure4unitEv"></span><span id="osgeo::proj::common::Measure::unit"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1a84349190613af54346aa622258500a83"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">unit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7Measure4unitEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the unit of the <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Measure"><span class="std std-ref">Measure</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7Measure10getSIValueEv">
+<span id="_CPPv3N5osgeo4proj6common7Measure10getSIValueEv"></span><span id="_CPPv2N5osgeo4proj6common7Measure10getSIValueEv"></span><span id="osgeo::proj::common::Measure::getSIValue"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1adf426e515bafda8acf4d16d8f82196e7"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSIValue</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7Measure10getSIValueEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the value of the <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Measure"><span class="std std-ref">Measure</span></a>, after conversion to the corresponding unit of the International System. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7Measure5valueEv">
+<span id="_CPPv3N5osgeo4proj6common7Measure5valueEv"></span><span id="_CPPv2N5osgeo4proj6common7Measure5valueEv"></span><span id="osgeo::proj::common::Measure::value"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1a1b2926e6a57a707558e6e5da7adcbc7b"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7Measure5valueEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the value of the measure, expressed in the <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Measure_1a84349190613af54346aa622258500a83"><span class="std std-ref">unit()</span></a> </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7Measure13convertToUnitERK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common7Measure13convertToUnitERK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common7Measure13convertToUnitERK13UnitOfMeasure"></span><span id="osgeo::proj::common::Measure::convertToUnit__UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1ae7498a12901244a69574f81472445a7e"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">convertToUnit</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">otherUnit</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7Measure13convertToUnitERK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the value of this measure expressed into the provided unit. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7MeasureeqERK7Measure">
+<span id="_CPPv3N5osgeo4proj6common7MeasureeqERK7Measure"></span><span id="_CPPv2N5osgeo4proj6common7MeasureeqERK7Measure"></span><span id="osgeo::proj::common::Measure::eq-operator__MeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1a0a295dc3bb1d0e3ffc10d546c5f6c3f8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="osgeo::proj::common::Measure"><span class="n"><span class="pre">Measure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7MeasureeqERK7Measure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return whether two measures are equal. </p>
+<p>The comparison is done both on the value and the unit. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5osgeo4proj6common7Measure15_isEquivalentToERK7MeasureN4util11IComparable9CriterionEd">
+<span id="_CPPv3NK5osgeo4proj6common7Measure15_isEquivalentToERK7MeasureN4util11IComparable9CriterionEd"></span><span id="_CPPv2NK5osgeo4proj6common7Measure15_isEquivalentToERK7MeasureN4util11IComparable9CriterionEd"></span><span id="osgeo::proj::common::Measure::_isEquivalentTo__MeasureCR.util::IComparable::Criterion.doubleC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1a18410783442e78fa0e813a4cf95e88f3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_isEquivalentTo</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="osgeo::proj::common::Measure"><span class="n"><span class="pre">Measure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span>, <a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparableE" title="osgeo::proj::util::IComparable"><span class="n"><span class="pre">IComparable</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparable9CriterionE" title="osgeo::proj::util::IComparable::Criterion"><span class="n"><span class="pre">Criterion</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">criterion</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparableE" title="osgeo::proj::util::IComparable"><span class="n"><span class="pre">IComparable</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparable9CriterionE" title="osgeo::proj::util::IComparable::Criterion"><span class="n"><span class="pre">Criterion</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparable9Criterion6STRICTE" title="osgeo::proj::util::IComparable::Criterion::STRICT"><span class="n"><span class="pre">STRICT</span></span></a>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">maxRelativeError</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7Measure21DEFAULT_MAX_REL_ERRORE" title="osgeo::proj::common::Measure::DEFAULT_MAX_REL_ERROR"><span class="n"><span class="pre">DEFAULT_MAX_REL_ERROR</span></span></a><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5osgeo4proj6common7Measure15_isEquivalentToERK7MeasureN4util11IComparable9CriterionEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns whether an object is equivalent to another one. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> – other object to compare to </p></li>
+<li><p><strong>criterion</strong> – comparison criterion. </p></li>
+<li><p><strong>maxRelativeError</strong> – Maximum relative error allowed. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>true if objects are equivalent. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common7Measure21DEFAULT_MAX_REL_ERRORE">
+<span id="_CPPv3N5osgeo4proj6common7Measure21DEFAULT_MAX_REL_ERRORE"></span><span id="_CPPv2N5osgeo4proj6common7Measure21DEFAULT_MAX_REL_ERRORE"></span><span id="osgeo::proj::common::Measure::DEFAULT_MAX_REL_ERROR__double"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Measure_1af3f68a05dfac81d6461afb14a173433f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DEFAULT_MAX_REL_ERROR</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1e-10</span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common7Measure21DEFAULT_MAX_REL_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default maximum resulative error. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common5ScaleE">
+<span id="_CPPv3N5osgeo4proj6common5ScaleE"></span><span id="_CPPv2N5osgeo4proj6common5ScaleE"></span><span id="osgeo::proj::common::Scale"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Scale"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6commonE" title="osgeo::proj::common"><span class="n"><span class="pre">common</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="osgeo::proj::common::Measure"><span class="n"><span class="pre">Measure</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common5ScaleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Numeric value, without a physical unit of measure. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common5Scale5ScaleEd">
+<span id="_CPPv3N5osgeo4proj6common5Scale5ScaleEd"></span><span id="_CPPv2N5osgeo4proj6common5Scale5ScaleEd"></span><span id="osgeo::proj::common::Scale::Scale__double"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Scale_1ae92d614c12ef674917e96412b5be57ba"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common5Scale5ScaleEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Scale"><span class="std std-ref">Scale</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>valueIn</strong> – value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common5Scale5ScaleEdRK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common5Scale5ScaleEdRK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common5Scale5ScaleEdRK13UnitOfMeasure"></span><span id="osgeo::proj::common::Scale::Scale__double.UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Scale_1a47c7b5a2226e341d996c261beb797195"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Scale</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">unitIn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common5Scale5ScaleEdRK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Scale"><span class="std std-ref">Scale</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>valueIn</strong> – value </p></li>
+<li><p><strong>unitIn</strong> – unit. Constraint: unit.type() == <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a127ea1d20becc4dba06d9d152db0c2e5"><span class="std std-ref">UnitOfMeasure::Type::SCALE</span></a> </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common5AngleE">
+<span id="_CPPv3N5osgeo4proj6common5AngleE"></span><span id="_CPPv2N5osgeo4proj6common5AngleE"></span><span id="osgeo::proj::common::Angle"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Angle"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Angle</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6commonE" title="osgeo::proj::common"><span class="n"><span class="pre">common</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="osgeo::proj::common::Measure"><span class="n"><span class="pre">Measure</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common5AngleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Numeric value, with a angular unit of measure. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common5Angle5AngleEd">
+<span id="_CPPv3N5osgeo4proj6common5Angle5AngleEd"></span><span id="_CPPv2N5osgeo4proj6common5Angle5AngleEd"></span><span id="osgeo::proj::common::Angle::Angle__double"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Angle_1a5935f86160b9b2a37a832db646ba193b"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Angle</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common5Angle5AngleEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Angle"><span class="std std-ref">Angle</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>valueIn</strong> – value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common5Angle5AngleEdRK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common5Angle5AngleEdRK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common5Angle5AngleEdRK13UnitOfMeasure"></span><span id="osgeo::proj::common::Angle::Angle__double.UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Angle_1a227062bad1f55b25b677d38da072abc0"></span><span class="sig-name descname"><span class="n"><span class="pre">Angle</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">unitIn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common5Angle5AngleEdRK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Angle"><span class="std std-ref">Angle</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>valueIn</strong> – value </p></li>
+<li><p><strong>unitIn</strong> – unit. Constraint: unit.type() == <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10a5a1440a6a75811013183701d52bf87f7"><span class="std std-ref">UnitOfMeasure::Type::ANGULAR</span></a> </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common6LengthE">
+<span id="_CPPv3N5osgeo4proj6common6LengthE"></span><span id="_CPPv2N5osgeo4proj6common6LengthE"></span><span id="osgeo::proj::common::Length"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Length"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Length</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6commonE" title="osgeo::proj::common"><span class="n"><span class="pre">common</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="osgeo::proj::common::Measure"><span class="n"><span class="pre">Measure</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common6LengthE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Numeric value, with a linear unit of measure. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common6Length6LengthEd">
+<span id="_CPPv3N5osgeo4proj6common6Length6LengthEd"></span><span id="_CPPv2N5osgeo4proj6common6Length6LengthEd"></span><span id="osgeo::proj::common::Length::Length__double"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Length_1a458d0329134d7e8f1da83df48efa96e8"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Length</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common6Length6LengthEd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Length"><span class="std std-ref">Length</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>valueIn</strong> – value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common6Length6LengthEdRK13UnitOfMeasure">
+<span id="_CPPv3N5osgeo4proj6common6Length6LengthEdRK13UnitOfMeasure"></span><span id="_CPPv2N5osgeo4proj6common6Length6LengthEdRK13UnitOfMeasure"></span><span id="osgeo::proj::common::Length::Length__double.UnitOfMeasureCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1Length_1a1b32fd9d69c7bb5168028596695bb19a"></span><span class="sig-name descname"><span class="n"><span class="pre">Length</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">valueIn</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common13UnitOfMeasureE" title="osgeo::proj::common::UnitOfMeasure"><span class="n"><span class="pre">UnitOfMeasure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">unitIn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common6Length6LengthEdRK13UnitOfMeasure" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1Length"><span class="std std-ref">Length</span></a>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>valueIn</strong> – value </p></li>
+<li><p><strong>unitIn</strong> – unit. Constraint: unit.type() == <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1UnitOfMeasure_1a400c71b5a6d7927e3e5850cee2b07d10aaac544aacc3615aada24897a215f5046"><span class="std std-ref">UnitOfMeasure::Type::LINEAR</span></a> </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common8DateTimeE">
+<span id="_CPPv3N5osgeo4proj6common8DateTimeE"></span><span id="_CPPv2N5osgeo4proj6common8DateTimeE"></span><span id="osgeo::proj::common::DateTime"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1DateTime"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DateTime</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common8DateTimeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Date-time value, as a ISO:8601 encoded string, or other string encoding. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5osgeo4proj6common8DateTime10isISO_8601Ev">
+<span id="_CPPv3NK5osgeo4proj6common8DateTime10isISO_8601Ev"></span><span id="_CPPv2NK5osgeo4proj6common8DateTime10isISO_8601Ev"></span><span id="osgeo::proj::common::DateTime::isISO_8601C"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1DateTime_1ac937fdd18e39bd7552cef144dca34498"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isISO_8601</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5osgeo4proj6common8DateTime10isISO_8601Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return whether the <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1DateTime"><span class="std std-ref">DateTime</span></a> is ISO:8601 compliant. </p>
+<p><dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>The current implementation is really simplistic, and aimed at detecting date-times that are not ISO:8601 compliant. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5osgeo4proj6common8DateTime8toStringEv">
+<span id="_CPPv3NK5osgeo4proj6common8DateTime8toStringEv"></span><span id="_CPPv2NK5osgeo4proj6common8DateTime8toStringEv"></span><span id="osgeo::proj::common::DateTime::toStringC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1DateTime_1a210cd45e84182d63d8f6a2a5235cc24f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5osgeo4proj6common8DateTime8toStringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1DateTime"><span class="std std-ref">DateTime</span></a> as a string. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common8DateTime6createERKNSt6stringE">
+<span id="_CPPv3N5osgeo4proj6common8DateTime6createERKNSt6stringE"></span><span id="_CPPv2N5osgeo4proj6common8DateTime6createERKNSt6stringE"></span><span id="osgeo::proj::common::DateTime::create__ssCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1DateTime_1ac3e6a27b04b59a237aec876176cd8003"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common8DateTimeE" title="osgeo::proj::common::DateTime"><span class="n"><span class="pre">DateTime</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">create</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common8DateTime6createERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1DateTime"><span class="std std-ref">DateTime</span></a>. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common9DataEpochE">
+<span id="_CPPv3N5osgeo4proj6common9DataEpochE"></span><span id="_CPPv2N5osgeo4proj6common9DataEpochE"></span><span id="osgeo::proj::common::DataEpoch"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1DataEpoch"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DataEpoch</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common9DataEpochE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Data epoch. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5osgeo4proj6common9DataEpoch15coordinateEpochEv">
+<span id="_CPPv3NK5osgeo4proj6common9DataEpoch15coordinateEpochEv"></span><span id="_CPPv2NK5osgeo4proj6common9DataEpoch15coordinateEpochEv"></span><span id="osgeo::proj::common::DataEpoch::coordinateEpochC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1DataEpoch_1ac8750597ce98ff6c174c9d1cbd593e2d"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common7MeasureE" title="osgeo::proj::common::Measure"><span class="n"><span class="pre">Measure</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">coordinateEpoch</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5osgeo4proj6common9DataEpoch15coordinateEpochEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the coordinate epoch, as a measure in decimal year. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObjectE">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObjectE"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObjectE"></span><span id="osgeo::proj::common::IdentifiedObject"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IdentifiedObject</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util10BaseObjectE" title="osgeo::proj::util::BaseObject"><span class="n"><span class="pre">BaseObject</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparableE" title="osgeo::proj::util::IComparable"><span class="n"><span class="pre">IComparable</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="io.html#_CPPv4N5osgeo4proj2ioE" title="osgeo::proj::io"><span class="n"><span class="pre">io</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="io.html#_CPPv4N5osgeo4proj2io14IWKTExportableE" title="osgeo::proj::io::IWKTExportable"><span class="n"><span class="pre">IWKTExportable</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObjectE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Abstract class representing a CRS-related object that has an identification. </p>
+<p><dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>Implements <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">IdentifiedObject</span></a> from <a class="reference internal" href="cpp_general.html#general_doc_1ISO_19111_2019"><span class="std std-ref">ISO 19111:2019</span></a> </p>
+</dd>
+</dl>
+</p>
+<p>Subclassed by <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">osgeo::proj::common::ObjectUsage</span></a>, <a class="reference internal" href="cs.html#classosgeo_1_1proj_1_1cs_1_1CoordinateSystem"><span class="std std-ref">osgeo::proj::cs::CoordinateSystem</span></a>, <a class="reference internal" href="cs.html#classosgeo_1_1proj_1_1cs_1_1CoordinateSystemAxis"><span class="std std-ref">osgeo::proj::cs::CoordinateSystemAxis</span></a>, <a class="reference internal" href="cs.html#classosgeo_1_1proj_1_1cs_1_1Meridian"><span class="std std-ref">osgeo::proj::cs::Meridian</span></a>, <a class="reference internal" href="datum.html#classosgeo_1_1proj_1_1datum_1_1Ellipsoid"><span class="std std-ref">osgeo::proj::datum::Ellipsoid</span></a>, <a class="reference internal" href="datum.html#classosgeo_1_1proj_1_1datum_1_1PrimeMeridian"><span class="std std-ref">osgeo::proj::datum::PrimeMeridian</span></a>, <a class="reference internal" href="operation.html#classosgeo_1_1proj_1_1operation_1_1GeneralOperationParameter"><span class="std std-ref">osgeo::proj::operation::GeneralOperationParameter</span></a>, <a class="reference internal" href="operation.html#classosgeo_1_1proj_1_1operation_1_1OperationMethod"><span class="std std-ref">osgeo::proj::operation::OperationMethod</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject4nameEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject4nameEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject4nameEv"></span><span id="osgeo::proj::common::IdentifiedObject::name"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1ab0925ff38e7ce3ed164ec0b0a14a239a"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadataE" title="osgeo::proj::metadata"><span class="n"><span class="pre">metadata</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadata15IdentifierNNPtrE" title="osgeo::proj::metadata::IdentifierNNPtr"><span class="n"><span class="pre">IdentifierNNPtr</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject4nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the name of the object. </p>
+<p>Generally, the only interesting field of the name will be <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1ab0925ff38e7ce3ed164ec0b0a14a239a"><span class="std std-ref">name()</span></a>-&gt;description(). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject7nameStrEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject7nameStrEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject7nameStrEv"></span><span id="osgeo::proj::common::IdentifiedObject::nameStr"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a2294fccce17a073461428e6b229ea8d8"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">nameStr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject7nameStrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the name of the object. </p>
+<p>Return *(<a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1ab0925ff38e7ce3ed164ec0b0a14a239a"><span class="std std-ref">name()</span></a>-&gt;description()) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject11identifiersEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject11identifiersEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject11identifiersEv"></span><span id="osgeo::proj::common::IdentifiedObject::identifiers"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a5c87b81f3ee0f6ae69ce2128d8af0b40"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadataE" title="osgeo::proj::metadata"><span class="n"><span class="pre">metadata</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadata15IdentifierNNPtrE" title="osgeo::proj::metadata::IdentifierNNPtr"><span class="n"><span class="pre">IdentifierNNPtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">identifiers</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject11identifiersEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the identifier(s) of the object. </p>
+<p>Generally, those will have Identifier::code() and Identifier::codeSpace() filled. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject7aliasesEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject7aliasesEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject7aliasesEv"></span><span id="osgeo::proj::common::IdentifiedObject::aliases"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a3938d6244df14b1737e655ec7de3f705"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util16GenericNameNNPtrE" title="osgeo::proj::util::GenericNameNNPtr"><span class="n"><span class="pre">GenericNameNNPtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">aliases</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject7aliasesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the alias(es) of the object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject7remarksEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject7remarksEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject7remarksEv"></span><span id="osgeo::proj::common::IdentifiedObject::remarks"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a920bc09021170365cf9ba1120cfa9a52"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">remarks</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject7remarksEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the remarks. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject12isDeprecatedEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject12isDeprecatedEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject12isDeprecatedEv"></span><span id="osgeo::proj::common::IdentifiedObject::isDeprecated"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a9607f3c9bf52073a33db1f4b1481a182"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isDeprecated</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject12isDeprecatedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return whether the object is deprecated. </p>
+<p><dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>Extension of <a class="reference internal" href="cpp_general.html#general_doc_1ISO_19111_2019"><span class="std std-ref">ISO 19111:2019</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject5aliasEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject5aliasEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject5aliasEv"></span><span id="osgeo::proj::common::IdentifiedObject::alias"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a191362086203a76ca3fde4a69aeb60b3"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alias</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject5aliasEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the (first) alias of the object as a string. </p>
+<p>Shortcut for <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a3938d6244df14b1737e655ec7de3f705"><span class="std std-ref">aliases()</span></a>[0]-&gt;toFullyQualifiedName()-&gt;toString() </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject11getEPSGCodeEv">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject11getEPSGCodeEv"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject11getEPSGCodeEv"></span><span id="osgeo::proj::common::IdentifiedObject::getEPSGCode"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a1b66fe694d13259aedda2ab27c152a95"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getEPSGCode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject11getEPSGCodeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the EPSG code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>code, or 0 if not found </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject8NAME_KEYE">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject8NAME_KEYE"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject8NAME_KEYE"></span><span id="osgeo::proj::common::IdentifiedObject::NAME_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1afa06cdb6d6d48c6785e7374b0db60a59"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NAME_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject8NAME_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the name of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">common::IdentifiedObject</span></a>. </p>
+<p>The value is to be provided as a string or <a class="reference internal" href="metadata.html#namespaceosgeo_1_1proj_1_1metadata_1aa56f3dbff085fc0fceea708365b3f1be"><span class="std std-ref">metadata::IdentifierNNPtr</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject15IDENTIFIERS_KEYE">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject15IDENTIFIERS_KEYE"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject15IDENTIFIERS_KEYE"></span><span id="osgeo::proj::common::IdentifiedObject::IDENTIFIERS_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a50b1c9dcd7f87da6533e0bd65b2f810a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IDENTIFIERS_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject15IDENTIFIERS_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the identifier(s) of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">common::IdentifiedObject</span></a>. </p>
+<p>The value is to be provided as a common::IdentifierNNPtr or a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1a7fc091170790d0923879c9367fc5cc6d"><span class="std std-ref">util::ArrayOfBaseObjectNNPtr</span></a> of common::IdentifierNNPtr. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject9ALIAS_KEYE">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject9ALIAS_KEYE"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject9ALIAS_KEYE"></span><span id="osgeo::proj::common::IdentifiedObject::ALIAS_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a4edc3a085e20f518ebd5dff048fc0483"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ALIAS_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject9ALIAS_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the alias(es) of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">common::IdentifiedObject</span></a>. </p>
+<p>The value is to be provided as string, a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1acb99046eaf266f8cdf30304a5c43f696"><span class="std std-ref">util::GenericNameNNPtr</span></a> or a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1a7fc091170790d0923879c9367fc5cc6d"><span class="std std-ref">util::ArrayOfBaseObjectNNPtr</span></a> of <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1acb99046eaf266f8cdf30304a5c43f696"><span class="std std-ref">util::GenericNameNNPtr</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject11REMARKS_KEYE">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject11REMARKS_KEYE"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject11REMARKS_KEYE"></span><span id="osgeo::proj::common::IdentifiedObject::REMARKS_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1afb4d796fd45b0268575d3c2e069b06da"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">REMARKS_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject11REMARKS_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the remarks of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">common::IdentifiedObject</span></a>. </p>
+<p>The value is to be provided as a string. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common16IdentifiedObject14DEPRECATED_KEYE">
+<span id="_CPPv3N5osgeo4proj6common16IdentifiedObject14DEPRECATED_KEYE"></span><span id="_CPPv2N5osgeo4proj6common16IdentifiedObject14DEPRECATED_KEYE"></span><span id="osgeo::proj::common::IdentifiedObject::DEPRECATED_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1IdentifiedObject_1a0f6f3ad5b0930115364d4a5a94f58a42"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DEPRECATED_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common16IdentifiedObject14DEPRECATED_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the deprecation flag of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1IdentifiedObject"><span class="std std-ref">common::IdentifiedObject</span></a>. </p>
+<p>The value is to be provided as a boolean. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common12ObjectDomainE">
+<span id="_CPPv3N5osgeo4proj6common12ObjectDomainE"></span><span id="_CPPv2N5osgeo4proj6common12ObjectDomainE"></span><span id="osgeo::proj::common::ObjectDomain"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectDomain"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ObjectDomain</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util10BaseObjectE" title="osgeo::proj::util::BaseObject"><span class="n"><span class="pre">BaseObject</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4util11IComparableE" title="osgeo::proj::util::IComparable"><span class="n"><span class="pre">IComparable</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common12ObjectDomainE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>The scope and validity of a CRS-related object. </p>
+<p><dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>Implements <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectDomain"><span class="std std-ref">ObjectDomain</span></a> from <a class="reference internal" href="cpp_general.html#general_doc_1ISO_19111_2019"><span class="std std-ref">ISO 19111:2019</span></a> </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common12ObjectDomain5scopeEv">
+<span id="_CPPv3N5osgeo4proj6common12ObjectDomain5scopeEv"></span><span id="_CPPv2N5osgeo4proj6common12ObjectDomain5scopeEv"></span><span id="osgeo::proj::common::ObjectDomain::scope"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectDomain_1abdd77ad5cc0ef6f9de3d552fc13b9602"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4I0EN5osgeo4proj4util8optionalE" title="osgeo::proj::util::optional"><span class="n"><span class="pre">optional</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">scope</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common12ObjectDomain5scopeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the scope. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the scope, or empty. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common12ObjectDomain16domainOfValidityEv">
+<span id="_CPPv3N5osgeo4proj6common12ObjectDomain16domainOfValidityEv"></span><span id="_CPPv2N5osgeo4proj6common12ObjectDomain16domainOfValidityEv"></span><span id="osgeo::proj::common::ObjectDomain::domainOfValidity"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectDomain_1aad736e44fc8cc6eea891bac29fccceb4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadataE" title="osgeo::proj::metadata"><span class="n"><span class="pre">metadata</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadata9ExtentPtrE" title="osgeo::proj::metadata::ExtentPtr"><span class="n"><span class="pre">ExtentPtr</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">domainOfValidity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common12ObjectDomain16domainOfValidityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the domain of validity. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the domain of validity, or nullptr. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common12ObjectDomain6createERKN4util8optionalINSt6stringEEERKN8metadata9ExtentPtrE">
+<span id="_CPPv3N5osgeo4proj6common12ObjectDomain6createERKN4util8optionalINSt6stringEEERKN8metadata9ExtentPtrE"></span><span id="_CPPv2N5osgeo4proj6common12ObjectDomain6createERKN4util8optionalINSt6stringEEERKN8metadata9ExtentPtrE"></span><span id="osgeo::proj::common::ObjectDomain::create__util::optional:ss:CR.metadata::ExtentPtrCR"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectDomain_1a356e227d135bc1cc65de87b33ed05297"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common17ObjectDomainNNPtrE" title="osgeo::proj::common::ObjectDomainNNPtr"><span class="n"><span class="pre">ObjectDomainNNPtr</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">create</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="util.html#_CPPv4N5osgeo4proj4utilE" title="osgeo::proj::util"><span class="n"><span class="pre">util</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="util.html#_CPPv4I0EN5osgeo4proj4util8optionalE" title="osgeo::proj::util::optional"><span class="n"><span class="pre">optional</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scopeIn</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadataE" title="osgeo::proj::metadata"><span class="n"><span class="pre">metadata</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="metadata.html#_CPPv4N5osgeo4proj8metadata9ExtentPtrE" title="osgeo::proj::metadata::ExtentPtr"><span class="n"><span class="pre">ExtentPtr</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">extent</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common12ObjectDomain6createERKN4util8optionalINSt6stringEEERKN8metadata9ExtentPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instantiate a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectDomain"><span class="std std-ref">ObjectDomain</span></a>. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common11ObjectUsageE">
+<span id="_CPPv3N5osgeo4proj6common11ObjectUsageE"></span><span id="_CPPv2N5osgeo4proj6common11ObjectUsageE"></span><span id="osgeo::proj::common::ObjectUsage"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectUsage"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ObjectUsage</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">osgeo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">proj</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6commonE" title="osgeo::proj::common"><span class="n"><span class="pre">common</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common16IdentifiedObjectE" title="osgeo::proj::common::IdentifiedObject"><span class="n"><span class="pre">IdentifiedObject</span></span></a><a class="headerlink" href="#_CPPv4N5osgeo4proj6common11ObjectUsageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;common.hpp&gt;</em><p>Abstract class of a CRS-related object that has usages. </p>
+<p><dl class="simple">
+<dt><strong>Remark</strong></dt><dd><p>Implements <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">ObjectUsage</span></a> from <a class="reference internal" href="cpp_general.html#general_doc_1ISO_19111_2019"><span class="std std-ref">ISO 19111:2019</span></a> </p>
+</dd>
+</dl>
+</p>
+<p>Subclassed by <a class="reference internal" href="crs.html#classosgeo_1_1proj_1_1crs_1_1CRS"><span class="std std-ref">osgeo::proj::crs::CRS</span></a>, <a class="reference internal" href="datum.html#classosgeo_1_1proj_1_1datum_1_1Datum"><span class="std std-ref">osgeo::proj::datum::Datum</span></a>, <a class="reference internal" href="datum.html#classosgeo_1_1proj_1_1datum_1_1DatumEnsemble"><span class="std std-ref">osgeo::proj::datum::DatumEnsemble</span></a>, <a class="reference internal" href="operation.html#classosgeo_1_1proj_1_1operation_1_1CoordinateOperation"><span class="std std-ref">osgeo::proj::operation::CoordinateOperation</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common11ObjectUsage7domainsEv">
+<span id="_CPPv3N5osgeo4proj6common11ObjectUsage7domainsEv"></span><span id="_CPPv2N5osgeo4proj6common11ObjectUsage7domainsEv"></span><span id="osgeo::proj::common::ObjectUsage::domains"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectUsage_1a1a9ef483349953faaf63714c8b479393"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5osgeo4proj6common17ObjectDomainNNPtrE" title="osgeo::proj::common::ObjectDomainNNPtr"><span class="n"><span class="pre">ObjectDomainNNPtr</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">domains</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common11ObjectUsage7domainsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the domains of the object. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common11ObjectUsage9SCOPE_KEYE">
+<span id="_CPPv3N5osgeo4proj6common11ObjectUsage9SCOPE_KEYE"></span><span id="_CPPv2N5osgeo4proj6common11ObjectUsage9SCOPE_KEYE"></span><span id="osgeo::proj::common::ObjectUsage::SCOPE_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectUsage_1ad3253602467718d7a8822b71d6180b11"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SCOPE_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common11ObjectUsage9SCOPE_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the scope of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">common::ObjectUsage</span></a>. </p>
+<p>The value is to be provided as a string. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common11ObjectUsage22DOMAIN_OF_VALIDITY_KEYE">
+<span id="_CPPv3N5osgeo4proj6common11ObjectUsage22DOMAIN_OF_VALIDITY_KEYE"></span><span id="_CPPv2N5osgeo4proj6common11ObjectUsage22DOMAIN_OF_VALIDITY_KEYE"></span><span id="osgeo::proj::common::ObjectUsage::DOMAIN_OF_VALIDITY_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectUsage_1a50478db23c866cb3e6f7068da24f0a6c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DOMAIN_OF_VALIDITY_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common11ObjectUsage22DOMAIN_OF_VALIDITY_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the domain of validity of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">common::ObjectUsage</span></a>. </p>
+<p>The value is to be provided as a common::ExtentNNPtr. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5osgeo4proj6common11ObjectUsage17OBJECT_DOMAIN_KEYE">
+<span id="_CPPv3N5osgeo4proj6common11ObjectUsage17OBJECT_DOMAIN_KEYE"></span><span id="_CPPv2N5osgeo4proj6common11ObjectUsage17OBJECT_DOMAIN_KEYE"></span><span id="osgeo::proj::common::ObjectUsage::OBJECT_DOMAIN_KEY__ssC"></span><span class="target" id="classosgeo_1_1proj_1_1common_1_1ObjectUsage_1a5a34b5e56034634c259ae82560e7dc44"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OBJECT_DOMAIN_KEY</span></span></span><a class="headerlink" href="#_CPPv4N5osgeo4proj6common11ObjectUsage17OBJECT_DOMAIN_KEYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key to set the object domain(s) of a <a class="reference internal" href="#classosgeo_1_1proj_1_1common_1_1ObjectUsage"><span class="std std-ref">common::ObjectUsage</span></a>. </p>
+<p>The value is to be provided as a <a class="reference internal" href="#namespaceosgeo_1_1proj_1_1common_1a5b1a089231563f64b7ff97f4c74e9a39"><span class="std std-ref">common::ObjectDomainNNPtr</span></a> or a <a class="reference internal" href="util.html#namespaceosgeo_1_1proj_1_1util_1a7fc091170790d0923879c9367fc5cc6d"><span class="std std-ref">util::ArrayOfBaseObjectNNPtr</span></a> of <a class="reference internal" href="#namespaceosgeo_1_1proj_1_1common_1a5b1a089231563f64b7ff97f4c74e9a39"><span class="std std-ref">common::ObjectDomainNNPtr</span></a>. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="util.html" class="btn btn-neutral float-right" title="util namespace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpp_general.html" class="btn btn-neutral float-left" title="General documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 1983-2021.
+      <span class="lastupdated">
+        Last updated on 14 Jul 2021.
+      </span>
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
