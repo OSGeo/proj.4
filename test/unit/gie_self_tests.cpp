@@ -852,4 +852,60 @@ TEST(gie, proj_trans_generic) {
     proj_destroy(P);
 }
 
+TEST(gie, proj_create_crs_to_crs_force_over) {
+
+    PJ_CONTEXT* ctx;
+
+    ctx = proj_context_create();
+    ASSERT_TRUE(ctx != nullptr);
+    proj_context_set_force_over(ctx, 1);
+    ASSERT_TRUE(ctx->forceOver);
+
+    auto P = proj_create_crs_to_crs(ctx, "EPSG:4326", "EPSG:3857", nullptr);
+    ASSERT_TRUE(P != nullptr);
+    PJ_COORD input;
+    PJ_COORD input_over;
+
+    //Test a point along the equator. 
+    //The same point, but in two different representations.
+    input.xyz.x = 0; // Lat in deg
+    input.xyz.y = 140;  // Long in deg
+    input.xyz.z = 0;
+
+    input_over.xyz.x = 0; // Lat in deg
+    input_over.xyz.y = -220;  // Long in deg
+    input_over.xyz.z = 0;
+
+    auto output = proj_trans(P, PJ_FWD, input);
+    auto output_over = proj_trans(P, PJ_FWD, input_over);
+
+    auto input_inv = proj_trans(P, PJ_INV, output);
+    auto input_over_inv = proj_trans(P, PJ_INV, output_over);
+
+    //Web Mercator x's between 0 and 180 longitude come out positive.
+    //But when forcing the over flag, the -220 calculation makes it flip.
+    EXPECT_GT(output.xyz.x, 0);
+    EXPECT_LT(output_over.xyz.x, 0);
+
+    EXPECT_NEAR(output.xyz.x, 15584728.711058298, 1e-8);
+    EXPECT_NEAR(output_over.xyz.x, -24490287.974520184, 1e-8);
+
+    //The distance from 140 to 180 and -220 to -180 should be pretty much the same.
+    auto dx_o = fabs(output.xyz.x - 20037508.342789244);
+    auto dx_over = fabs(output_over.xyz.x + 20037508.342789244);
+    auto dx = fabs(dx_o - dx_over);
+
+    EXPECT_NEAR(dx, 0, 1e-8);
+
+    //Check the inverse operations get us back close to our original input values.
+    EXPECT_NEAR(input.xyz.x, input_inv.xyz.x, 1e-8);
+    EXPECT_NEAR(input.xyz.y, input_inv.xyz.y, 1e-8);
+    EXPECT_NEAR(input_over.xyz.x, input_over_inv.xyz.x, 1e-8);
+    EXPECT_NEAR(input_over.xyz.y, input_over_inv.xyz.y, 1e-8);
+
+    proj_destroy(P);
+
+    proj_context_destroy(ctx);
+}
+
 } // namespace

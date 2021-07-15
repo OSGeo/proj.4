@@ -965,6 +965,17 @@ int proj_context_get_use_proj4_init_rules(PJ_CONTEXT *ctx, int from_legacy_code_
     return from_legacy_code_path;
 }
 
+/************************************************************************/
+/*                  proj_context_set_force_over()                       */
+/************************************************************************/
+
+void proj_context_set_force_over(PJ_CONTEXT* ctx, int enable) {
+    if (ctx == nullptr) {
+        ctx = pj_get_default_ctx();
+    }
+    ctx->forceOver = enable;
+}
+
 /** Adds a " +type=crs" suffix to a PROJ string (if it is a PROJ string) */
 std::string pj_add_type_crs_if_needed(const std::string& str)
 {

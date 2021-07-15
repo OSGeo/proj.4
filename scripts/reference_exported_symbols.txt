@@ -809,6 +809,7 @@ proj_context_set_ca_bundle_path
 proj_context_set_database_path
 proj_context_set_enable_network
 proj_context_set_fileapi
+proj_context_set_force_over
 proj_context_set_file_finder
 proj_context_set_network_callbacks
 proj_context_set(PJconsts*, pj_ctx*)

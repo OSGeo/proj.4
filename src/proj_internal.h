@@ -683,6 +683,7 @@ struct pj_ctx{
     void    *logger_app_data = nullptr;
     struct projCppContext* cpp_context = nullptr; /* internal context for C++ code */
     int     use_proj4_init_rules = -1; /* -1 = unknown, 0 = no, 1 = yes */
+    int     forceOver = 0; /* 0 = no, 1 = yes */
     int     epsg_file_exists = -1; /* -1 = unknown, 0 = no, 1 = yes */
     std::string ca_bundle_path{};
 
